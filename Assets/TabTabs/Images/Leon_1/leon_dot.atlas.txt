@@ -1,0 +1,89 @@
+leon_dot.png
+size:609,78
+filter:Linear,Linear
+pma:true
+Cutting effect1
+bounds:567,7,69,40
+offsets:15,28,108,96
+rotate:90
+Cutting effect1_2
+bounds:499,8,66,68
+offsets:14,13,108,96
+Cutting effect1_3
+bounds:418,9,79,67
+offsets:12,14,108,96
+Cutting effect1_4
+bounds:341,5,75,44
+offsets:15,23,108,96
+Cutting effect1_5
+bounds:198,11,49,9
+offsets:26,25,108,96
+Cutting effect2
+bounds:137,9,11,59
+offsets:110,115,285,285
+rotate:90
+Cutting effect2_2
+bounds:2,2,18,133
+offsets:106,68,285,285
+rotate:90
+Cutting effect2_3
+bounds:195,51,25,174
+offsets:103,51,285,285
+rotate:90
+Cutting effect2_4
+bounds:2,48,28,191
+offsets:102,51,285,285
+rotate:90
+Cutting effect2_5
+bounds:2,22,24,198
+offsets:107,66,285,285
+rotate:90
+arm_L
+bounds:198,2,7,9
+rotate:90
+arm_L2
+bounds:235,3,6,6
+arm_R
+bounds:304,13,8,9
+arm_R2
+bounds:219,2,7,6
+rotate:90
+body
+bounds:265,4,17,13
+rotate:90
+body_under
+bounds:280,7,15,9
+rotate:90
+eye
+bounds:137,4,6,3
+offsets:1,1,8,5
+head
+bounds:249,3,18,14
+offsets:1,1,20,16
+rotate:90
+leg_L
+bounds:227,2,7,6
+rotate:90
+leg_R
+bounds:209,3,8,6
+leon_atk2_1
+bounds:305,26,23,31
+offsets:14,10,56,49
+rotate:90
+leon_atk2_2
+bounds:242,23,26,29
+offsets:8,10,56,49
+rotate:90
+leon_atk2_3
+bounds:273,24,30,25
+offsets:6,11,56,49
+leon_atk2_4
+bounds:314,2,22,25
+offsets:14,11,56,49
+rotate:90
+leon_atk2_5
+bounds:202,23,38,26
+offsets:13,11,56,49
+sword
+bounds:291,11,11,11
+offsets:1,1,13,13
