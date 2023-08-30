@@ -166,7 +166,7 @@ namespace TabTabs.NamChanwoo
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f);
 
-                    PlayerBaseInstance.PlayerAnim.SetTrigger("SlideAtk_Triger"); // 오크의 위치로 이동해 공격모션
+                    PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
 
                     Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
                     Instantiate(Player_Effect, targetPosition, Quaternion.identity);
@@ -178,7 +178,7 @@ namespace TabTabs.NamChanwoo
                     selectEnemy.Hit();
 
                     PlayerBaseInstance.PlayerTransform.localScale =
-                    new Vector3(-1f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
+                    new Vector3(-2.5f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
                 }
             }
             else if (selectEnemy == LeftEnemy)
@@ -190,7 +190,7 @@ namespace TabTabs.NamChanwoo
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f);
 
-                    PlayerBaseInstance.PlayerAnim.SetTrigger("SlideAtk_Triger"); // 오크의 위치로 이동해 공격모션
+                    PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
 
                     Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
                     Instantiate(Player_Effect, targetPosition, Quaternion.identity);
@@ -202,26 +202,39 @@ namespace TabTabs.NamChanwoo
                     selectEnemy.Hit();
 
                     PlayerBaseInstance.PlayerTransform.localScale =
-                    new Vector3(1f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
+                    new Vector3(2.5f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
                 }
             }
         }
 
         public void RandAnim()
         {
-            int randAnim = Random.Range(0, 3);
-            if (randAnim==0)
+            int randAnim = Random.Range(0, 6);
+            if (randAnim == 0)
             {
-                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk1_Triger"); // 오크의 위치로 이동해 공격모션
+                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_1"); // 오크의 위치로 이동해 공격모션
             }
-            else if (randAnim==1)
+            else if (randAnim == 1)
             {
-                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk2_Triger"); // 오크의 위치로 이동해 공격모션
+                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_2"); // 오크의 위치로 이동해 공격모션
+            }
+            else if (randAnim==2)
+            {
+                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_3"); // 오크의 위치로 이동해 공격모션
+            }
+            else if (randAnim == 3)
+            {
+                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_4"); // 오크의 위치로 이동해 공격모션
+            }
+            else if (randAnim == 4)
+            {
+                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_5"); // 오크의 위치로 이동해 공격모션
             }
             else
             {
-                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk3_Triger"); // 오크의 위치로 이동해 공격모션
+                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_6"); // 오크의 위치로 이동해 공격모션
             }
+
         }
 
         public void StartSpawn()

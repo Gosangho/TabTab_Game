@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: swordgirl_1_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: 167a41bc8826c3b44bbabbba394f02f3, type: 2}
-  scale: 0.03
-  skeletonJSON: {fileID: 4900000, guid: b41b6b37062c346429e138e2891a87f4, type: 3}
+  - {fileID: 11400000, guid: ae744dc8f9ebcfa4183a6b2cbca5accc, type: 2}
+  scale: 0.01
+  skeletonJSON: {fileID: 4900000, guid: 4b2ceb3eaf0998744a5d74684fa82bdc, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
     requiresBlendModeMaterials: 0
@@ -28,4 +28,4 @@ MonoBehaviour:
   toAnimation: []
   duration: []
   defaultMix: 0.2
-  controller: {fileID: 9100000, guid: a9e30af6d7802bc46b8db4ee93b50cbc, type: 2}
+  controller: {fileID: 9100000, guid: 8e9681d83034d1443ac1f60935c86326, type: 2}
