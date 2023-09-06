@@ -25,8 +25,6 @@ namespace TabTabs.NamChanwoo
         public Button AttackButton;
         public Button SelectEnemyButton;
         public PlayerBase PlayerBaseInstance;
-        public Player_Effect Player_EffectInstance;
-        public GameObject Player_Effect;
         public GameObject Left_Ork;
         public GameObject Right_Ork;
         public bool MonsterDie;
@@ -38,7 +36,6 @@ namespace TabTabs.NamChanwoo
             ClickNode = ENodeType.Default;
             CharacterBaseInstance = FindObjectOfType<CharacterBase>();
             PlayerBaseInstance = FindObjectOfType<PlayerBase>();
-            Player_EffectInstance = FindObjectOfType<Player_Effect>();
             AttackButton.onClick.AddListener(Attack);
             SelectEnemyButton.onClick.AddListener(SelectEnemy);
             StartSpawn();
@@ -80,8 +77,21 @@ namespace TabTabs.NamChanwoo
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f);
                     RandAnim();
+                    
+                    if (selectEnemy == RightEnemy)
+                    {
+                        Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage");
+                    }
+                    else
+                    {
+                        Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
+                    }
+
+                    //else
+                    //{
+
+                    //}
                     Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
-                    Instantiate(Player_Effect, targetPosition, Quaternion.identity);
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
 
                     selectEnemy.GetOwnNodes().Dequeue();
@@ -92,25 +102,28 @@ namespace TabTabs.NamChanwoo
                         // 에너미 노드의 남아있는 갯수가 0보다 작거나 같다면
                         // 몬스터 제거 후 다시생성
 
-                        //if (selectEnemy.gameObject==SceneEnemyList[0])
+                        //if (selectEnemy == RightEnemy)
                         //{
-                        //    SceneEnemyList.RemoveAt(0);
+                        //    Right_Orc2_Anim.RightAnim.SetTrigger("Right_Die");
                         //}
                         //else
                         //{
-                        //    SceneEnemyList.RemoveAt(1);
+                        //    Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
                         //}
                         selectEnemy.Die();
 
                         if (MonsterDie)
                         {// 오른쪽 몬스터가 죽은상태라면
-                            RightMonsterSpawn();
+                            // MonsterDie(Bool)가 true상태라면 
+                            Invoke("RightMonsterSpawn", 0.7f);
+                            //RightMonsterSpawn();
                             // 스폰 후
                             MonsterDie = false;
                         }
                         else
-                        {
-                            LeftMonsterSpawn();
+                        {// MonsterDie가 false상태라면
+                            Invoke("LeftMonsterSpawn", 0.7f);
+                            //LeftMonsterSpawn();
                         }
                         //HandleSceneMonsterSpawned(SceneEnemyList[0]);
 
@@ -164,12 +177,11 @@ namespace TabTabs.NamChanwoo
                     selectEnemy = LeftEnemy;
 
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
-                    , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f);
+                    , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // 몬스터의 첫번째 노드위치로 이동
 
                     PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
-
-                    Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
-                    Instantiate(Player_Effect, targetPosition, Quaternion.identity);
+                    Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
+                    //Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
 
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
 
@@ -178,7 +190,7 @@ namespace TabTabs.NamChanwoo
                     selectEnemy.Hit();
 
                     PlayerBaseInstance.PlayerTransform.localScale =
-                    new Vector3(-2.5f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
+                    new Vector3(-1f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
                 }
             }
             else if (selectEnemy == LeftEnemy)
@@ -188,12 +200,11 @@ namespace TabTabs.NamChanwoo
                     selectEnemy = RightEnemy;
 
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
-                    , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f);
+                    , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // 몬스터의 첫번째 노드위치로 이동
 
                     PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
-
-                    Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
-                    Instantiate(Player_Effect, targetPosition, Quaternion.identity);
+                    Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage"); // 오크의 피격모션 재생
+                    //Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
 
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
 
@@ -202,14 +213,14 @@ namespace TabTabs.NamChanwoo
                     selectEnemy.Hit();
 
                     PlayerBaseInstance.PlayerTransform.localScale =
-                    new Vector3(2.5f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
+                    new Vector3(1f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
                 }
             }
         }
 
         public void RandAnim()
         {
-            int randAnim = Random.Range(0, 6);
+            int randAnim = Random.Range(0, 7);
             if (randAnim == 0)
             {
                 PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_1"); // 오크의 위치로 이동해 공격모션
@@ -230,17 +241,20 @@ namespace TabTabs.NamChanwoo
             {
                 PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_5"); // 오크의 위치로 이동해 공격모션
             }
-            else
+            else if (randAnim==5)
             {
                 PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_6"); // 오크의 위치로 이동해 공격모션
             }
-
+            else
+            {
+                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_7"); // 오크의 위치로 이동해 공격모션
+            }
         }
 
         public void StartSpawn()
         {
             GameObject RightMonster = Right_Ork;
-            GameObject RightSpawnMonster = Instantiate(RightMonster, new Vector3(4.0f, 1.85f, 0), Quaternion.identity);
+            GameObject RightSpawnMonster = Instantiate(RightMonster, new Vector3(4.0f, 0.72f, 0), Quaternion.identity);
             EnemyBase spawnEnemy = RightSpawnMonster.GetComponent<EnemyBase>();
             if (spawnEnemy != null)
             {
@@ -251,7 +265,7 @@ namespace TabTabs.NamChanwoo
             selectEnemy = spawnEnemy; // 오른쪽 몬스터가 디폴트값
 
             GameObject LefttMonster = Left_Ork;
-            GameObject LeftSpawnMonster = Instantiate(LefttMonster, new Vector3(-4.0f, 1.85f, 0), Quaternion.identity);
+            GameObject LeftSpawnMonster = Instantiate(LefttMonster, new Vector3(-4.0f, 0.72f, 0), Quaternion.identity);
             EnemyBase spawnEnemy2 = LeftSpawnMonster.GetComponent<EnemyBase>();
             if (spawnEnemy2 != null)
             {
@@ -263,7 +277,7 @@ namespace TabTabs.NamChanwoo
         public void RightMonsterSpawn()
         {
             GameObject RightMonster = Right_Ork;
-            GameObject RightSpawnMonster = Instantiate(RightMonster, new Vector3(4.0f, 1.85f, 0), Quaternion.identity);
+            GameObject RightSpawnMonster = Instantiate(RightMonster, new Vector3(4.0f, 0.72f, 0), Quaternion.identity);
             EnemyBase spawnEnemy = RightSpawnMonster.GetComponent<EnemyBase>();
             if (spawnEnemy != null)
             {
@@ -276,7 +290,7 @@ namespace TabTabs.NamChanwoo
         public void LeftMonsterSpawn()
         {
             GameObject LefttMonster = Left_Ork;
-            GameObject LeftSpawnMonster = Instantiate(LefttMonster, new Vector3(-4.0f, 1.85f, 0), Quaternion.identity);
+            GameObject LeftSpawnMonster = Instantiate(LefttMonster, new Vector3(-4.0f, 0.72f, 0), Quaternion.identity);
             EnemyBase spawnEnemy2 = LeftSpawnMonster.GetComponent<EnemyBase>();
             if (spawnEnemy2 != null)
             {

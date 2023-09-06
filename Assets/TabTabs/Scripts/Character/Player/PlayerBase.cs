@@ -14,6 +14,7 @@ public class PlayerBase : CharacterBase
     void Start()
     {
         PlayerAnim = GetComponent<Animator>();
+        PlayerTransform = GetComponent<Transform>();
     }
 
     

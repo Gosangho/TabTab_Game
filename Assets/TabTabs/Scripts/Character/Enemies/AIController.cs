@@ -15,7 +15,7 @@ namespace TabTabs.NamChanwoo
         [Header("Target Following Settings")]
         [SerializeField] private Vector2 m_detectionArea = new Vector2(5f, 5f); // 플레이어 감지 영역
         [SerializeField] private float m_targetDistance = 1.0f; // 표적 추적 거리
-        [SerializeField] private float m_soughtDistanceFromTarget = 1.0f; // 이 거리에 따라 표적과의 거리를 유지합니다.
+        [SerializeField] private float m_soughtDistanceFromTarget; // 이 거리에 따라 표적과의 거리를 유지합니다.
         private bool m_isCoroutineAttack = false;
         
         private CharacterBase m_target = null; // AI 캐릭터의 목표

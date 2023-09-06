@@ -23,7 +23,6 @@ namespace TabTabs.NamChanwoo
         [FormerlySerializedAs("m_chargAttackGauge")] [SerializeField] private float m_maxAttackGauge = 10.0f; 
         private float m_attackGauge = 10.0f; // 공격 쿨다운
         
-        public GameObject skullPrefab;
         
         public float AttackGauge
         {
@@ -146,34 +145,46 @@ namespace TabTabs.NamChanwoo
             SetState(ECharacterState.Die);
 
             BoxCollider2D orcCollider = GetComponent<BoxCollider2D>();
-            Vector3 skullPosition = transform.position;
 
-            if (orcCollider != null)
+            //if (SceneManager.GetActiveScene().buildIndex == 1)
+            //{
+            //    if (BattleInstance2.selectEnemy == BattleInstance2.RightEnemy)
+            //    {
+            //        BattleInstance2.MonsterDie = true;
+            //    }
+            //}
+            //if (SceneManager.GetActiveScene().buildIndex == 3)
+            //{
+            if (BattleInstance3.selectEnemy == BattleInstance3.RightEnemy)
             {
-                skullPosition += new Vector3(0, orcCollider.size.y / 2, 0);
+                BattleInstance3.MonsterDie = true;
+                Right_Orc2_Anim.RightAnim.SetTrigger("Right_Die");
+                StartCoroutine(Right_MonsterDie());
             }
-
-            GameObject skull = Instantiate(skullPrefab, skullPosition, Quaternion.identity);
-            if (SceneManager.GetActiveScene().buildIndex == 1)
+            else
             {
-                if (BattleInstance2.selectEnemy == BattleInstance2.RightEnemy)
-                {
-                    BattleInstance2.MonsterDie = true;
-                }
+                Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Die");
+                StartCoroutine(Left_MonsterDie());
             }
-            else if (SceneManager.GetActiveScene().buildIndex == 3)
-            {
-                if (BattleInstance3.selectEnemy == BattleInstance3.RightEnemy)
-                {
-                    BattleInstance3.MonsterDie = true;
-                }
-            }
-
-            Destroy(gameObject);
+            //}
+            
+            //StartCoroutine(Right_MonsterDie());
+            //Destroy(gameObject);
 
             
             GameManager.NotificationSystem.SceneMonsterDeath?.Invoke(this);
         }
-
+        private IEnumerator Right_MonsterDie()
+        {
+            float DieAnimDuration = 0.85f;
+            yield return new WaitForSeconds(DieAnimDuration);
+            Destroy(gameObject);
+        }
+        private IEnumerator Left_MonsterDie()
+        {
+            float DieAnimDuration = 0.85f;
+            yield return new WaitForSeconds(DieAnimDuration);
+            Destroy(gameObject);
+        }
     }
 }

@@ -53,7 +53,7 @@ public class SpineAnimController : MonoBehaviour
     {
         if (m_model != null)
         {
-            m_model.ChangeState -= PlayNewStableAnimation;
+            m_model.ChangeState -= PlayNewStableAnimation;  
         }
         m_skeletonAnimation.AnimationState.Complete -= HandleAnimCompleteEvent;
     }

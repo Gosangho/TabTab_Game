@@ -22,20 +22,20 @@ public class Resolution : MonoBehaviour
 
     private void Awake()
     {
-        SetResolution(1080, 1920);
+        SetResolution(540, 860);
     }
 
-    void SetCanvasScaler(int _width, int _height)
+    //void SetCanvasScaler(int _width, int _height)
+    //{
+    //    CanvasScaler canvasScaler = FindObjectOfType<CanvasScaler>();
+    //    // CanvasScaler 컴포넌트를 가진 오브젝트를 찾아서 저장
+    //    canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+    //    canvasScaler.referenceResolution = new Vector2(_width, _height);
+    //    canvasScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand; // 확장
+    //}
+    void SetResolution(int width = 540, int height = 860)
     {
-        CanvasScaler canvasScaler = FindObjectOfType<CanvasScaler>();
-        // CanvasScaler 컴포넌트를 가진 오브젝트를 찾아서 저장
-        canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        canvasScaler.referenceResolution = new Vector2(_width, _height);
-        canvasScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand; // 확장
-    }
-    void SetResolution(int width = 1080, int height = 1920)
-    {
-        SetCanvasScaler(width, height);
+        //SetCanvasScaler(width, height);
 
         int deviceWidth = Screen.width; // 기기의 해상도 너비
         int deviceHeight = Screen.height; // 기기의 해상도 높이

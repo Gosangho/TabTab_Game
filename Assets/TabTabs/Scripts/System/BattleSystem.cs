@@ -25,7 +25,6 @@ namespace TabTabs.NamChanwoo
         public Button UpButton;
         public Button RightButton;
         public PlayerBase PlayerBaseInstance;
-        public Player_Effect Player_EffectInstance;
         public GameObject Player_Effect;
         
         void Start()
@@ -33,7 +32,6 @@ namespace TabTabs.NamChanwoo
             ClickNode = ENodeType.Default;
             CharacterBaseInstance = FindObjectOfType<CharacterBase>();
             PlayerBaseInstance = FindObjectOfType<PlayerBase>();
-            Player_EffectInstance = FindObjectOfType<Player_Effect>();
             LeftButton.onClick.AddListener(LeftB);
             UpButton.onClick.AddListener(UpB);
             RightButton.onClick.AddListener(RightB);
