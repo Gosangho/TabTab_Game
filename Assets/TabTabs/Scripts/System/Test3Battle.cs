@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.Animations;
 
+
 namespace TabTabs.NamChanwoo
 {
     public class Test3Battle : GameSystem
@@ -27,8 +28,9 @@ namespace TabTabs.NamChanwoo
         public PlayerBase PlayerBaseInstance;
         public GameObject Left_Ork;
         public GameObject Right_Ork;
-        public bool MonsterDie;
+        public bool MonsterDie; // 어느 쪽 몬스터가 죽었는지 확인하는 bool형 변수
         public Node NodeInstance;
+        public GameObject Character_Effect;
 
 
         void Start()
@@ -77,6 +79,7 @@ namespace TabTabs.NamChanwoo
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f);
                     RandAnim();
+                    RandEffect();
                     
                     if (selectEnemy == RightEnemy)
                     {
@@ -180,7 +183,9 @@ namespace TabTabs.NamChanwoo
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // 몬스터의 첫번째 노드위치로 이동
 
                     PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
-                    Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
+                    Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage"); 
+                    Character_Effect.transform.localScale = new Vector3(-1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
+                    RandEffect();
                     //Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
 
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
@@ -204,6 +209,8 @@ namespace TabTabs.NamChanwoo
 
                     PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
                     Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage"); // 오크의 피격모션 재생
+                    Character_Effect.transform.localScale = new Vector3(1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
+                    RandEffect();
                     //Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
 
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
@@ -221,6 +228,7 @@ namespace TabTabs.NamChanwoo
         public void RandAnim()
         {
             int randAnim = Random.Range(0, 7);
+            
             if (randAnim == 0)
             {
                 PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_1"); // 오크의 위치로 이동해 공격모션
@@ -249,6 +257,19 @@ namespace TabTabs.NamChanwoo
             {
                 PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_7"); // 오크의 위치로 이동해 공격모션
             }
+        }
+
+        void RandEffect()
+        {
+
+            Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
+            Instantiate(Character_Effect, targetPosition, Quaternion.identity);
+            //float randEffect = Random.Range(0f, 100f);
+            //if (randEffect <= 20f)
+            //{// randEffect : 20퍼센트 확률
+            //    Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
+            //    Instantiate(Character_Effect, targetPosition, Quaternion.identity);
+            //}
         }
 
         public void StartSpawn()

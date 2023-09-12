@@ -259,6 +259,7 @@ MonoBehaviour:
   Right_Ork: {fileID: 1641563902055648439, guid: 3ae824eb34b928f498f324d115a56a98, type: 3}
   MonsterDie: 0
   NodeInstance: {fileID: 0}
+  Character_Effect: {fileID: 683572925939352447, guid: 850ab64c476437e45b8d27b97cfddbbd, type: 3}
 --- !u!1 &123383739
 GameObject:
   m_ObjectHideFlags: 0
