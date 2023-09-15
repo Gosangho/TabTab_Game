@@ -31,7 +31,7 @@ namespace TabTabs.NamChanwoo
         public bool MonsterDie; // 어느 쪽 몬스터가 죽었는지 확인하는 bool형 변수
         public Node NodeInstance;
         public GameObject Character_Effect;
-
+        bool FirstAttack; // 게임시작시 공격버튼으로 최초 한번만 재생되는 애니메이션 변수
 
         void Start()
         {
@@ -42,7 +42,11 @@ namespace TabTabs.NamChanwoo
             SelectEnemyButton.onClick.AddListener(SelectEnemy);
             StartSpawn();
             MonsterDie = false;
+            FirstAttack = true;
             NodeInstance = FindObjectOfType<Node>();
+            Character_Effect.transform.localScale = 
+            new Vector3(1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
+
         }
 
         public override void OnSystemInit()
@@ -52,7 +56,6 @@ namespace TabTabs.NamChanwoo
 
         private void HandleSceneMonsterSpawned(EnemyBase spawnedEnemy)
         {
-            spawnedEnemy.SetupAttackSliderUI(GameManager.UISystem.AttackSliderUI);
 
             if (selectEnemy == null)
                 selectEnemy = spawnedEnemy;
@@ -74,11 +77,20 @@ namespace TabTabs.NamChanwoo
 
                     // 1. 해당하는 enemy의 블럭 destroy
                     // 2. 캐릭터가 해당하는 enemy의 블럭위치로 이동 후 공격 애니메이션 재생 후 원래위치로 이동
-                    // 3. 시간변수 +
+
+                    TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
 
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f);
+
+                    
+
                     RandAnim();
+                    if (FirstAttack)
+                    {// 최초 공격시만 발동되는 애니메이션
+                        PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_6");
+                        FirstAttack = false;
+                    }
                     RandEffect();
                     
                     if (selectEnemy == RightEnemy)
@@ -178,7 +190,7 @@ namespace TabTabs.NamChanwoo
                 if (selectEnemy.GetOwnNodes().Count==7)
                 {// 몬스터에게 남아있는 노드가 7 이상이라면 (몬스터의 첫번째 노드만 셀렉애너미 버튼으로 타격가능)
                     selectEnemy = LeftEnemy;
-
+                    TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // 몬스터의 첫번째 노드위치로 이동
 
@@ -203,7 +215,7 @@ namespace TabTabs.NamChanwoo
                 if (selectEnemy.GetOwnNodes().Count == 7)
                 {// 몬스터에게 남아있는 노드가 7 이상이라면 (몬스터의 첫번째 노드만 셀렉애너미 버튼으로 타격가능)
                     selectEnemy = RightEnemy;
-
+                    TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // 몬스터의 첫번째 노드위치로 이동
 
@@ -227,36 +239,36 @@ namespace TabTabs.NamChanwoo
 
         public void RandAnim()
         {
-            int randAnim = Random.Range(0, 7);
-            
-            if (randAnim == 0)
+            int randAnim = Random.Range(0, 6);
+            if (FirstAttack==false)
             {
-                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_1"); // 오크의 위치로 이동해 공격모션
+                if (randAnim == 0)
+                {
+                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_1"); // 오크의 위치로 이동해 공격모션
+                }
+                else if (randAnim == 1)
+                {
+                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_2"); // 오크의 위치로 이동해 공격모션
+                }
+                else if (randAnim == 2)
+                {
+                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_3"); // 오크의 위치로 이동해 공격모션
+                }
+                else if (randAnim == 3)
+                {
+                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_4"); // 오크의 위치로 이동해 공격모션
+                }
+                else if (randAnim == 4)
+                {
+                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_5"); // 오크의 위치로 이동해 공격모션
+                }
+                else
+                {// 5
+                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_7"); // 오크의 위치로 이동해 공격모션
+                }
+                // * Atk_6애니메이션은 게임 최초시작시만 발동되는 애니메이션
             }
-            else if (randAnim == 1)
-            {
-                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_2"); // 오크의 위치로 이동해 공격모션
-            }
-            else if (randAnim==2)
-            {
-                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_3"); // 오크의 위치로 이동해 공격모션
-            }
-            else if (randAnim == 3)
-            {
-                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_4"); // 오크의 위치로 이동해 공격모션
-            }
-            else if (randAnim == 4)
-            {
-                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_5"); // 오크의 위치로 이동해 공격모션
-            }
-            else if (randAnim==5)
-            {
-                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_6"); // 오크의 위치로 이동해 공격모션
-            }
-            else
-            {
-                PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_7"); // 오크의 위치로 이동해 공격모션
-            }
+
         }
 
         void RandEffect()

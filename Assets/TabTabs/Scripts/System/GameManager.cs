@@ -20,7 +20,7 @@ namespace TabTabs.NamChanwoo
         // System Access Shortcuts
         public static SpawnSystem SpawnSystem => GetSystem<SpawnSystem>();
         public static NotificationSystem NotificationSystem => GetSystem<NotificationSystem>();
-        public static UISystem UISystem => GetSystem<UISystem>();
+        //public static UISystem UISystem => GetSystem<UISystem>();
         public static BattleSystem BattleSystem => GetSystem<BattleSystem>();
 
 

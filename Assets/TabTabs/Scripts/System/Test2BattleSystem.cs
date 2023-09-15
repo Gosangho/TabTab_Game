@@ -55,7 +55,6 @@ namespace TabTabs.NamChanwoo
 
         private void HandleSceneMonsterSpawned(EnemyBase spawnedEnemy)
         {
-            spawnedEnemy.SetupAttackSliderUI(GameManager.UISystem.AttackSliderUI);
 
             if (selectEnemy == null)
                 selectEnemy = spawnedEnemy;
