@@ -22,6 +22,8 @@ namespace TabTabs.NamChanwoo
         public Slider m_attackGaugeSlider;
         [FormerlySerializedAs("m_chargAttackGauge")] [SerializeField] private float m_maxAttackGauge = 10.0f; 
         private float m_attackGauge = 10.0f; // 공격 쿨다운
+        public GameObject RightOrc2Die;
+        public GameObject LeftOrc2Die;
         
         
         public float AttackGauge
@@ -158,13 +160,17 @@ namespace TabTabs.NamChanwoo
             if (BattleInstance3.selectEnemy == BattleInstance3.RightEnemy)
             {
                 BattleInstance3.MonsterDie = true;
-                Right_Orc2_Anim.RightAnim.SetTrigger("Right_Die");
-                StartCoroutine(Right_MonsterDie());
+                Destroy(gameObject);
+                GameObject DieEffect = Instantiate(RightOrc2Die);
+                //Right_Orc2_Anim.RightAnim.SetTrigger("Right_Die");
+                //StartCoroutine(Right_MonsterDie());
             }
             else
             {
-                Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Die");
-                StartCoroutine(Left_MonsterDie());
+                Destroy(gameObject);
+                GameObject DieEffect = Instantiate(LeftOrc2Die);
+                //Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Die");
+                //StartCoroutine(Left_MonsterDie());
             }
             //}
             
@@ -174,17 +180,17 @@ namespace TabTabs.NamChanwoo
             
             GameManager.NotificationSystem.SceneMonsterDeath?.Invoke(this);
         }
-        private IEnumerator Right_MonsterDie()
-        {
-            float DieAnimDuration = 0.85f;
-            yield return new WaitForSeconds(DieAnimDuration);
-            Destroy(gameObject);
-        }
-        private IEnumerator Left_MonsterDie()
-        {
-            float DieAnimDuration = 0.85f;
-            yield return new WaitForSeconds(DieAnimDuration);
-            Destroy(gameObject);
-        }
+        //private IEnumerator Right_MonsterDie()
+        //{
+        //    float DieAnimDuration = 0.85f;
+        //    yield return new WaitForSeconds(DieAnimDuration);
+        //    Destroy(gameObject);
+        //}
+        //private IEnumerator Left_MonsterDie()
+        //{
+        //    float DieAnimDuration = 0.85f;
+        //    yield return new WaitForSeconds(DieAnimDuration);
+        //    Destroy(gameObject);
+        //}
     }
 }

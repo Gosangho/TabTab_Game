@@ -130,15 +130,15 @@ namespace TabTabs.NamChanwoo
                         if (MonsterDie)
                         {// 오른쪽 몬스터가 죽은상태라면
                             // MonsterDie(Bool)가 true상태라면 
-                            Invoke("RightMonsterSpawn", 0.7f);
-                            //RightMonsterSpawn();
+                            //Invoke("RightMonsterSpawn", 0.7f);
+                            RightMonsterSpawn();
                             // 스폰 후
                             MonsterDie = false;
                         }
                         else
                         {// MonsterDie가 false상태라면
-                            Invoke("LeftMonsterSpawn", 0.7f);
-                            //LeftMonsterSpawn();
+                            //Invoke("LeftMonsterSpawn", 0.7f);
+                            LeftMonsterSpawn();
                         }
                         //HandleSceneMonsterSpawned(SceneEnemyList[0]);
 

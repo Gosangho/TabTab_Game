@@ -265,6 +265,8 @@ MonoBehaviour:
   BattleInstance3: {fileID: 0}
   m_attackGaugeSlider: {fileID: 0}
   m_maxAttackGauge: 2
+  RightOrc2Die: {fileID: 0}
+  LeftOrc2Die: {fileID: 8331212226777391327, guid: bcc7726901eee954e9e88501ef88061b, type: 3}
   m_moveSpeed: 8
 --- !u!114 &1641563902055648436
 MonoBehaviour:
