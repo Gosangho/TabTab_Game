@@ -26,7 +26,6 @@ namespace TabTabs.NamChanwoo
         [SerializeField] private GameObject m_SpawnLocation;
         [SerializeField] List<GameObject> m_NodeList = new List<GameObject>(); // 몬스터에 부착될 노드리스트
         [SerializeField] private List<GameObject> m_monsterPrefabList; // 생성될 몬스터 리스트
-        
         /*[SerializeField] private GameObject m_Enemy;*/
         
         
@@ -94,7 +93,7 @@ namespace TabTabs.NamChanwoo
 
             // 스폰할 노드 수는 행 수와 같습니다.
             int spawnNodeNum = nodeArea.Rows;
-
+            
             for (int row = 0; row < spawnNodeNum; row++)
             {
                 // 이 행에서 임의로 열을 선택합니다.
@@ -114,6 +113,7 @@ namespace TabTabs.NamChanwoo
 
                 // NodeSheet로 노드를 초기화합니다.
                 Node nodeComponent = spawnedNode.GetComponent<Node>();
+
                 nodeComponent.Init_Right();
                 
                 //에너미가 소유하는 노드에 추가합니다.

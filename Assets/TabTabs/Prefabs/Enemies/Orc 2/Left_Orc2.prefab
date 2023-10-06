@@ -65,6 +65,7 @@ GameObject:
   - component: {fileID: 1641563901395504488}
   - component: {fileID: 1641563901395504489}
   - component: {fileID: 2936648070398407710}
+  - component: {fileID: 3527201528819733296}
   m_Layer: 0
   m_Name: Spine Mecanim GameObject (orc_2)
   m_TagString: Untagged
@@ -211,6 +212,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122cf1b7b2b94804eab14f41b9949744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3527201528819733296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641563901395504491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445b1c9f162479c469516fd357b41489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newMaterial: {fileID: 2100000, guid: 33e28f38b4949e54f8663f7b38630644, type: 2}
+  Left_brightnessValue1: 0.3
 --- !u!1 &1641563902055648439
 GameObject:
   m_ObjectHideFlags: 0
