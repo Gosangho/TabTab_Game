@@ -186,16 +186,16 @@ namespace TabTabs.NamChanwoo
         void SelectEnemy()
         {
             if (selectEnemy == RightEnemy)
-            {
-                if (selectEnemy.GetOwnNodes().Count==7)
-                {// 몬스터에게 남아있는 노드가 7 이상이라면 (몬스터의 첫번째 노드만 셀렉애너미 버튼으로 타격가능)
+            {// 현재 선택된 몬스터가 오른쪽 몬스터이고
+                if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
+                {// 왼쪽몬스터에 생성된 노드의 총수가 같다면 == 몬스터의 첫번째 노드라면
                     selectEnemy = LeftEnemy;
                     TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // 몬스터의 첫번째 노드위치로 이동
 
                     PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
-                    Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage"); 
+                    Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
                     Character_Effect.transform.localScale = new Vector3(-1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
                     RandEffect();
                     //Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
@@ -208,12 +208,28 @@ namespace TabTabs.NamChanwoo
 
                     PlayerBaseInstance.PlayerTransform.localScale =
                     new Vector3(-1f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
+                    if (selectEnemy.GetOwnNodes().Count <= 0)
+                    {
+                        selectEnemy.Die();
+
+                        if (MonsterDie)
+                        {
+                            RightMonsterSpawn();
+
+                            MonsterDie = false;
+                        }
+                        else
+                        {
+                            LeftMonsterSpawn();
+                        }
+
+                    }
                 }
             }
             else if (selectEnemy == LeftEnemy)
             {
-                if (selectEnemy.GetOwnNodes().Count == 7)
-                {// 몬스터에게 남아있는 노드가 7 이상이라면 (몬스터의 첫번째 노드만 셀렉애너미 버튼으로 타격가능)
+                if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
+                {
                     selectEnemy = RightEnemy;
                     TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
@@ -233,6 +249,21 @@ namespace TabTabs.NamChanwoo
 
                     PlayerBaseInstance.PlayerTransform.localScale =
                     new Vector3(1f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
+                    
+                    if (selectEnemy.GetOwnNodes().Count <= 0)
+                    {
+                        selectEnemy.Die();
+
+                        if (MonsterDie)
+                        {
+                            RightMonsterSpawn();
+                            MonsterDie = false;
+                        }
+                        else
+                        {
+                            LeftMonsterSpawn();
+                        }
+                    }
                 }
             }
         }

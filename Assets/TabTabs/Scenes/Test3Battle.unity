@@ -290,6 +290,10 @@ MonoBehaviour:
   - {fileID: 227375368035209049, guid: 3ae824eb34b928f498f324d115a56a98, type: 3}
   - {fileID: 227375368035209049, guid: a77bcdfc45b30e84dafbfbc6e11f2461, type: 3}
   BattleInstance: {fileID: 0}
+  AttackNode: {fileID: 5973646219145352338, guid: a6731850480bec246932879c7018b691, type: 3}
+  SpawnNodePosition: {x: 0, y: 0}
+  RightAttackNum: 0
+  LeftAttackNum: 0
 --- !u!1 &337069146
 GameObject:
   m_ObjectHideFlags: 0

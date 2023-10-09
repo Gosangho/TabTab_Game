@@ -20,6 +20,12 @@ namespace TabTabs.NamChanwoo
         [SerializeField] public List<GameObject> m_NodeList = new List<GameObject>(); // 몬스터에 부착될 노드리스트
         [SerializeField] private List<GameObject> m_monsterPrefabList; // 생성될 몬스터 리스트
         public Test3Battle BattleInstance;
+        public GameObject AttackNode;
+        public Vector2 SpawnNodePosition;
+        public int RightAttackNum;
+        public int LeftAttackNum;
+        int RightRow;
+        int LeftRow;
 
         /*[SerializeField] private GameObject m_Enemy;*/
 
@@ -92,32 +98,56 @@ namespace TabTabs.NamChanwoo
 
             // 스폰할 노드 수는 행 수와 같습니다.
             int spawnNodeNum = nodeArea.Rows;
-
-            for (int row = 0; row < spawnNodeNum; row++)
+            // 7행 3열의 구조 -> 각 행에서 3열의 공간에 공격포인트를 생성할지 안할지 확률로 생성
+            for (RightRow = 0; RightRow < spawnNodeNum; RightRow++)
             {
-                // 이 행에서 임의로 열을 선택합니다.
-                int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
+                int ranAttackNode = Random.Range(0, 2); // 50퍼센트 확률
+                if (ranAttackNode == 0)
+                {
+                    // 이 행에서 임의로 열을 선택합니다.
+                    int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
 
-                // 목록에서 열에 해당하는 노드 프리팹을 가져옵니다.
-                GameObject nodePrefab = GetNodePrefab(randColumn);
+                    // 목록에서 열에 해당하는 노드 프리팹을 가져옵니다.
+                    GameObject nodePrefab = GetNodePrefab(randColumn);
 
-                // NodeArea에서 이 노드의 위치를 가져옵니다.
-                Vector2 spawnPosition = nodeArea.GetGridPosition(row, randColumn);
+                    // NodeArea에서 이 노드의 위치를 가져옵니다.
+                    Vector2 spawnPosition = nodeArea.GetGridPosition(RightRow, randColumn);
 
-                // 계산된 위치에 노드를 인스턴스화하고 nodeArea의 자식으로 설정합니다.
-                GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+                    // 계산된 위치에 노드를 인스턴스화하고 nodeArea의 자식으로 설정합니다.
+                    GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
 
-                // 노드의 이름을 설정합니다.
-                spawnedNode.name = $"Node_{row}_{randColumn}";
+                    // 노드의 이름을 설정합니다.
+                    spawnedNode.name = $"Node_{RightRow}_{randColumn}";
 
-                // NodeSheet로 노드를 초기화합니다.
-                Node nodeComponent = spawnedNode.GetComponent<Node>();
+                    // NodeSheet로 노드를 초기화합니다.
+                    Node nodeComponent = spawnedNode.GetComponent<Node>();
 
-                nodeComponent.Init_Right();
+                    nodeComponent.Init_Right();
 
-                //에너미가 소유하는 노드에 추가합니다.
-                enemyBase.AddNodes(nodeComponent);
+                    //에너미가 소유하는 노드에 추가합니다.
+                    enemyBase.AddNodes(nodeComponent);
+                    RightAttackNum++; // 오른쪽 몬스터에 몇개의 공격포인트가 생성되었는지 알려주는 변수
+                }
+                else
+                {
+                    Debug.Log("오른쪽 몬스터의 공격포인트를 생성하지 않습니다.");
+                }
+
+                if (RightRow == 6 && RightAttackNum == 0)
+                {// for문이 7번 돌았을때까지 생성된 공격포인트가 0개 일경우(예외설정)
+                    int randColumn2 = UnityEngine.Random.Range(0, nodeArea.Columns);
+                    int randRow = UnityEngine.Random.Range(0, 7);
+                    GameObject nodePrefab2 = GetNodePrefab(randColumn2);
+                    Vector2 spawnPosition2 = nodeArea.GetGridPosition(randRow, randColumn2);
+                    GameObject spawnedNode2 = Instantiate(nodePrefab2, spawnPosition2, Quaternion.identity, nodeArea.transform);
+                    Node nodeComponent2 = spawnedNode2.GetComponent<Node>();
+                    nodeComponent2.Init_Right();
+                    //에너미가 소유하는 노드에 추가합니다.
+                    enemyBase.AddNodes(nodeComponent2);
+                    RightAttackNum++;
+                }
             }
+            RightRow = 0;
         }
         public void SpawnLeft_Node(EnemyBase enemyBase)
         {
@@ -142,32 +172,57 @@ namespace TabTabs.NamChanwoo
 
             // 스폰할 노드 수는 행 수와 같습니다.
             int spawnNodeNum = nodeArea.Rows;
-
-            for (int row = 0; row < spawnNodeNum; row++)
+            // spawnNodeNum = 7; 0,1,2,3,4,5,6
+            for (LeftRow = 0; LeftRow < spawnNodeNum; LeftRow++)
             {
-                // 이 행에서 임의로 열을 선택합니다.
-                int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
+                int ranAttackNodeNum = Random.Range(0, 2); // 우선은 50퍼센트 확률
 
-                // 목록에서 열에 해당하는 노드 프리팹을 가져옵니다.
-                GameObject nodePrefab = GetNodePrefab(randColumn);
+                if (ranAttackNodeNum == 0)
+                {// 생성되는 확률이 뽑혔다면
+                 // 이 행에서 임의로 열을 선택합니다.
+                    int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
 
-                // NodeArea에서 이 노드의 위치를 가져옵니다.
-                Vector2 spawnPosition = nodeArea.GetGridPosition(row, randColumn);
+                    // 목록에서 열에 해당하는 노드 프리팹을 가져옵니다.
+                    GameObject nodePrefab = GetNodePrefab(randColumn);
 
-                // 계산된 위치에 노드를 인스턴스화하고 nodeArea의 자식으로 설정합니다.
-                GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+                    // NodeArea에서 이 노드의 위치를 가져옵니다.
+                    Vector2 spawnPosition = nodeArea.GetGridPosition(LeftRow, randColumn);
 
-                // 노드의 이름을 설정합니다.
-                spawnedNode.name = $"Node_{row}_{randColumn}";
+                    // 계산된 위치에 노드를 인스턴스화하고 nodeArea의 자식으로 설정합니다.
+                    GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
 
-                // NodeSheet로 노드를 초기화합니다.
-                Node nodeComponent = spawnedNode.GetComponent<Node>();
+                    // 노드의 이름을 설정합니다.
+                    spawnedNode.name = $"Node_{LeftRow}_{randColumn}";
 
-                nodeComponent.Init_Left();
+                    // NodeSheet로 노드를 초기화합니다.
+                    Node nodeComponent = spawnedNode.GetComponent<Node>();
 
-                //에너미가 소유하는 노드에 추가합니다.
-                enemyBase.AddNodes(nodeComponent);
+                    nodeComponent.Init_Left();
+
+                    //에너미가 소유하는 노드에 추가합니다.
+                    enemyBase.AddNodes(nodeComponent);
+                    LeftAttackNum++; // 왼쪽몬스터에 몇개의 공격포인트가 생성되었는지 알려주는 변수
+                }
+                else
+                {// 뽑히지 않았다면 공격포인트를 생성하지 않음
+                    Debug.Log("왼쪽 몬스터의 공격포인트를 생성하지 않습니다.");
+                }
+
+                if (LeftRow == 6 && LeftAttackNum == 0)
+                {// for문이 7번 돌았을때까지 생성된 공격포인트가 0개 일경우(예외설정)
+                    int randColumn2 = UnityEngine.Random.Range(0, nodeArea.Columns);
+                    int randRow = UnityEngine.Random.Range(0, 7);
+                    GameObject nodePrefab2 = GetNodePrefab(randColumn2);
+                    Vector2 spawnPosition2 = nodeArea.GetGridPosition(randRow, randColumn2);
+                    GameObject spawnedNode2 = Instantiate(nodePrefab2, spawnPosition2, Quaternion.identity, nodeArea.transform);
+                    Node nodeComponent2 = spawnedNode2.GetComponent<Node>();
+                    nodeComponent2.Init_Right();
+                    //에너미가 소유하는 노드에 추가합니다.
+                    enemyBase.AddNodes(nodeComponent2);
+                    LeftAttackNum++;
+                }
             }
+            LeftRow = 0;
         }
         private GameObject GetNodePrefab(int Column)
         {

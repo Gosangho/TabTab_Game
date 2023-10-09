@@ -161,6 +161,7 @@ namespace TabTabs.NamChanwoo
             {
                 BattleInstance3.MonsterDie = true;
                 Destroy(gameObject);
+                Test3Spawn.Instance.RightAttackNum = 0; // 리셋
                 GameObject DieEffect = Instantiate(RightOrc2Die);
                 //Right_Orc2_Anim.RightAnim.SetTrigger("Right_Die");
                 //StartCoroutine(Right_MonsterDie());
@@ -168,6 +169,7 @@ namespace TabTabs.NamChanwoo
             else
             {
                 Destroy(gameObject);
+                Test3Spawn.Instance.LeftAttackNum = 0; // 리셋    
                 GameObject DieEffect = Instantiate(LeftOrc2Die);
                 //Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Die");
                 //StartCoroutine(Left_MonsterDie());
