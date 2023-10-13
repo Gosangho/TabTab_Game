@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.Animations;
+using UnityEngine.SceneManagement;
 
 
 namespace TabTabs.NamChanwoo
@@ -32,7 +33,9 @@ namespace TabTabs.NamChanwoo
         public Node NodeInstance;
         public GameObject Character_Effect;
         bool FirstAttack; // 게임시작시 공격버튼으로 최초 한번만 재생되는 애니메이션 변수
-
+        public bool Right_TrainAttack; // 오른쪽 몬스터를 연속공격했는지 판단하는 변수
+        public bool Left_TrainAttack; // 왼쪽 몬스터를 연속공격했는지 판단하는 변수
+        public GameObject ReStartButton;
         void Start()
         {
             ClickNode = ENodeType.Default;
@@ -42,6 +45,8 @@ namespace TabTabs.NamChanwoo
             SelectEnemyButton.onClick.AddListener(SelectEnemy);
             StartSpawn();
             MonsterDie = false;
+            Right_TrainAttack = false;
+            Left_TrainAttack = false;
             FirstAttack = true;
             NodeInstance = FindObjectOfType<Node>();
             Character_Effect.transform.localScale = 
@@ -83,7 +88,13 @@ namespace TabTabs.NamChanwoo
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f);
 
-                    
+                    if (Right_TrainAttack==true || Left_TrainAttack ==true)
+                    {// 오른쪽 몬스터나 왼쪽 몬스터를 연속으로 공격했다면
+                        // 게임오버 -> 게임 다시시작
+                        Debug.Log("게임오버");
+                        ReStartButton.SetActive(true);
+                        Time.timeScale = 0.0f; // 게임멈춤
+                    }
 
                     RandAnim();
                     if (FirstAttack)
@@ -129,7 +140,7 @@ namespace TabTabs.NamChanwoo
 
                         if (MonsterDie)
                         {// 오른쪽 몬스터가 죽은상태라면
-                            // MonsterDie(Bool)가 true상태라면 
+                            // MonsterDie(Bool)가 true상태라면
                             //Invoke("RightMonsterSpawn", 0.7f);
                             RightMonsterSpawn();
                             // 스폰 후
@@ -189,6 +200,7 @@ namespace TabTabs.NamChanwoo
             {// 현재 선택된 몬스터가 오른쪽 몬스터이고
                 if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
                 {// 왼쪽몬스터에 생성된 노드의 총수가 같다면 == 몬스터의 첫번째 노드라면
+                    Right_TrainAttack = false;
                     selectEnemy = LeftEnemy;
                     TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
@@ -199,7 +211,6 @@ namespace TabTabs.NamChanwoo
                     Character_Effect.transform.localScale = new Vector3(-1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
                     RandEffect();
                     //Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
-
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
 
                     selectEnemy.GetOwnNodes().Dequeue();
@@ -213,7 +224,7 @@ namespace TabTabs.NamChanwoo
                         selectEnemy.Die();
 
                         if (MonsterDie)
-                        {
+                        {// 오른쪽 몬스터가 죽었다면
                             RightMonsterSpawn();
 
                             MonsterDie = false;
@@ -230,6 +241,7 @@ namespace TabTabs.NamChanwoo
             {
                 if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
                 {
+                    Left_TrainAttack = false;
                     selectEnemy = RightEnemy;
                     TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
