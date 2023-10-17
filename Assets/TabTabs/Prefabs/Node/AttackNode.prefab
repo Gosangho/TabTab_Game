@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2915164025772596168}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2342229684117485913
 SpriteRenderer:
@@ -131,3 +131,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_sheet: {fileID: 11400000, guid: c34b88911a1d6114ab0be7593b9bcd21, type: 2}
   m_button: {fileID: 1939310831789647566}
+  ScoreText: {fileID: 358926773355653144, guid: 3513facfa2601f04584cd4f370a4fe93, type: 3}
