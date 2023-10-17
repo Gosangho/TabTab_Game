@@ -39,6 +39,7 @@ namespace TabTabs.NamChanwoo
         public GameObject ReStartButton;
         public ScoreSystem ScoreSystemInstance;
         public GameObject ScoreTextObj;
+        public TImebar TimebarInstance;
         void Start()
         {
             ClickNode = ENodeType.Default;
@@ -53,6 +54,7 @@ namespace TabTabs.NamChanwoo
             FirstAttack = true;
             NodeInstance = FindObjectOfType<Node>();
             ScoreSystemInstance = FindObjectOfType<ScoreSystem>();
+            TimebarInstance = FindObjectOfType<TImebar>();
             Character_Effect.transform.localScale = 
             new Vector3(1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
 
@@ -145,6 +147,8 @@ namespace TabTabs.NamChanwoo
                         //}
                         selectEnemy.Die();
 
+                        TimebarInstance.KillCount += 1;
+
                         if (MonsterDie)
                         {// 오른쪽 몬스터가 죽은상태라면
                             // MonsterDie(Bool)가 true상태라면
@@ -234,6 +238,8 @@ namespace TabTabs.NamChanwoo
                     {
                         selectEnemy.Die();
 
+                        TimebarInstance.KillCount += 1;
+
                         if (MonsterDie)
                         {// 오른쪽 몬스터가 죽었다면
                             RightMonsterSpawn();
@@ -280,6 +286,8 @@ namespace TabTabs.NamChanwoo
                     if (selectEnemy.GetOwnNodes().Count <= 0)
                     {
                         selectEnemy.Die();
+
+                        TimebarInstance.KillCount += 1;
 
                         if (MonsterDie)
                         {

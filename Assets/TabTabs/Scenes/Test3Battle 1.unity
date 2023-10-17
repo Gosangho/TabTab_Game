@@ -266,6 +266,7 @@ MonoBehaviour:
   ReStartButton: {fileID: 2137440952}
   ScoreSystemInstance: {fileID: 0}
   ScoreTextObj: {fileID: 358926773355653144, guid: 3513facfa2601f04584cd4f370a4fe93, type: 3}
+  TimebarInstance: {fileID: 0}
 --- !u!1 &207486219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6542092640523454477, guid: 33ff088c5040fdb4f8a161c3feaef808, type: 3}
@@ -436,7 +437,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myButton: {fileID: 337069148}
-  ReStartButton: {fileID: 0}
   normalImage: {fileID: 21300000, guid: 14cdca32251c6874cb40cb44531c31a5, type: 3}
   pressedImage: {fileID: 21300000, guid: e63cacb4878a45f42aa2ff88d55b5cb9, type: 3}
 --- !u!1 &381735034
@@ -1019,7 +1019,7 @@ RectTransform:
   m_GameObject: {fileID: 1161599607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.175, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 79536191}
@@ -1091,8 +1091,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.81
-  m_fontSizeBase: 40.81
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -1225,6 +1225,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerHeart: {fileID: 0}
+  StartTimeGauge: 0.5
+  depletionRate: 0.1
+  depletionRateIncrease: 0.01
+  KillCount: 0
+  ReStart_Button: {fileID: 2137440952}
 --- !u!114 &1299366705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1398,7 +1403,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myButton: {fileID: 1488109284}
-  ReStartButton: {fileID: 0}
   normalImage: {fileID: 21300000, guid: 08238727629d031428d55748198133fd, type: 3}
   pressedImage: {fileID: 21300000, guid: c009c2fb23f7d61478d9f84016078150, type: 3}
 --- !u!1 &1544501589
@@ -2148,7 +2152,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2137440957}
-        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: ReStartButton, Assembly-CSharp
         m_MethodName: ReStartButton2
         m_Mode: 1
         m_Arguments:
@@ -2206,13 +2210,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2137440952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccb2670087934454380140bb7aeb41c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c6ed551745992b4e957584d4f708870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myButton: {fileID: 0}
-  ReStartButton: {fileID: 2137440954}
-  normalImage: {fileID: 0}
-  pressedImage: {fileID: 0}
 --- !u!1 &1137480794894746482
 GameObject:
   m_ObjectHideFlags: 0
