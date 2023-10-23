@@ -267,6 +267,7 @@ MonoBehaviour:
   ScoreSystemInstance: {fileID: 0}
   ScoreTextObj: {fileID: 358926773355653144, guid: 3513facfa2601f04584cd4f370a4fe93, type: 3}
   TimebarInstance: {fileID: 0}
+  Player_AfterImage: {fileID: 2996212023197568148, guid: 9d73b5899a3f0b84c99779426ec2277f, type: 3}
 --- !u!1 &207486219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6542092640523454477, guid: 33ff088c5040fdb4f8a161c3feaef808, type: 3}

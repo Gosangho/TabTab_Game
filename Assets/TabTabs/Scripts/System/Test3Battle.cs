@@ -40,6 +40,7 @@ namespace TabTabs.NamChanwoo
         public ScoreSystem ScoreSystemInstance;
         public GameObject ScoreTextObj;
         public TImebar TimebarInstance;
+        public GameObject Player_AfterImage;
         void Start()
         {
             ClickNode = ENodeType.Default;
@@ -212,18 +213,28 @@ namespace TabTabs.NamChanwoo
                 if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
                 {// 왼쪽몬스터에 생성된 노드의 총수가 같다면 == 몬스터의 첫번째 노드라면
                     ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
+
                     Right_TrainAttack = false;
+
                     selectEnemy = LeftEnemy;
+
                     TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
+
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // 몬스터의 첫번째 노드위치로 이동
                     
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
-                    GameObject gameObject = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
-                    
+                    GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
+
+                    GameObject PlayerAfterImage = Instantiate(Player_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                    SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
+                    spriteRenderer.flipX = true;
                     PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
+
                     Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
+
                     Character_Effect.transform.localScale = new Vector3(-1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
+                    
                     RandEffect();
                     //Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
@@ -259,18 +270,28 @@ namespace TabTabs.NamChanwoo
                 if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
                 {
                     ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
+
                     Left_TrainAttack = false;
+
                     selectEnemy = RightEnemy;
+
                     TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
+                    
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // 몬스터의 첫번째 노드위치로 이동
 
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
-                    GameObject gameObject = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
+                    GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
 
+                    GameObject PlayerAfterImage = Instantiate(Player_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                    SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
+                    spriteRenderer.flipX = false;
                     PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
+
                     Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage"); // 오크의 피격모션 재생
+
                     Character_Effect.transform.localScale = new Vector3(1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
+                    
                     RandEffect();
                     //Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
 
