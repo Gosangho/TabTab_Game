@@ -258,7 +258,7 @@ MonoBehaviour:
   PlayerBaseInstance: {fileID: 0}
   Left_Ork: {fileID: 1641563902055648439, guid: d4eef8e6923e3754a9e75a3e2ce988c4, type: 3}
   Right_Ork: {fileID: 1641563902055648439, guid: 3ae824eb34b928f498f324d115a56a98, type: 3}
-  MonsterDie: 0
+  Right_MonsterDie: 0
   NodeInstance: {fileID: 0}
   Character_Effect: {fileID: 8798867621190144735, guid: 850ab64c476437e45b8d27b97cfddbbd, type: 3}
   Right_TrainAttack: 0
@@ -315,7 +315,6 @@ GameObject:
   - component: {fileID: 337069150}
   - component: {fileID: 337069149}
   - component: {fileID: 337069148}
-  - component: {fileID: 337069151}
   m_Layer: 5
   m_Name: Attack_Button_Ad
   m_TagString: DynamicImage
@@ -362,7 +361,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -372,8 +371,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: 14cdca32251c6874cb40cb44531c31a5, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: e63cacb4878a45f42aa2ff88d55b5cb9, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -425,21 +424,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337069146}
   m_CullTransparentMesh: 1
---- !u!114 &337069151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337069146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccb2670087934454380140bb7aeb41c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myButton: {fileID: 337069148}
-  normalImage: {fileID: 21300000, guid: 14cdca32251c6874cb40cb44531c31a5, type: 3}
-  pressedImage: {fileID: 21300000, guid: e63cacb4878a45f42aa2ff88d55b5cb9, type: 3}
 --- !u!1 &381735034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,7 +1265,6 @@ GameObject:
   - component: {fileID: 1488109286}
   - component: {fileID: 1488109285}
   - component: {fileID: 1488109284}
-  - component: {fileID: 1488109287}
   m_Layer: 5
   m_Name: SelectEnemy_Button_Ad
   m_TagString: DynamicImage
@@ -1328,7 +1311,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1338,8 +1321,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: 08238727629d031428d55748198133fd, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: c009c2fb23f7d61478d9f84016078150, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -1391,21 +1374,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488109282}
   m_CullTransparentMesh: 1
---- !u!114 &1488109287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488109282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccb2670087934454380140bb7aeb41c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myButton: {fileID: 1488109284}
-  normalImage: {fileID: 21300000, guid: 08238727629d031428d55748198133fd, type: 3}
-  pressedImage: {fileID: 21300000, guid: c009c2fb23f7d61478d9f84016078150, type: 3}
 --- !u!1 &1544501589
 GameObject:
   m_ObjectHideFlags: 0

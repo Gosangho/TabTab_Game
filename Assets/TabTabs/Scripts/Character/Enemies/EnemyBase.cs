@@ -159,8 +159,9 @@ namespace TabTabs.NamChanwoo
             //{
             if (BattleInstance3.selectEnemy == BattleInstance3.RightEnemy)
             {
-                BattleInstance3.MonsterDie = true;
+                BattleInstance3.Right_MonsterDie = true;
                 BattleInstance3.Right_TrainAttack = true;
+                BattleInstance3.FirstDashAttack = false;
                 Destroy(gameObject);
                 Test3Spawn.Instance.RightAttackNum = 0; // 리셋
                 GameObject DieEffect = Instantiate(RightOrc2Die);
@@ -169,9 +170,11 @@ namespace TabTabs.NamChanwoo
             }
             else
             {
+                BattleInstance3.Left_MonsterDie = true;
                 BattleInstance3.Left_TrainAttack = true;
+                BattleInstance3.FirstDashAttack = false;
                 Destroy(gameObject);
-                Test3Spawn.Instance.LeftAttackNum = 0; // 리셋    
+                Test3Spawn.Instance.LeftAttackNum = 0; // 리셋
                 GameObject DieEffect = Instantiate(LeftOrc2Die);
                 //Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Die");
                 //StartCoroutine(Left_MonsterDie());

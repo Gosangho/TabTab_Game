@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 namespace TabTabs.NamChanwoo
 {
     public class Left_Orc2_Material : MonoBehaviour
@@ -8,9 +9,14 @@ namespace TabTabs.NamChanwoo
         public Material newMaterial;
         public float Left_brightnessValue1; // 개별 객체의 명암값
         Test3Battle Test3BattleInstance1;
+        TutorialBattleSystem TutorialBattleSystem;
+        int currentSceneIndex;
         private void Start()
         {
+            Scene currentScene = SceneManager.GetActiveScene();
+            currentSceneIndex = currentScene.buildIndex;
             Test3BattleInstance1 = FindObjectOfType<Test3Battle>();
+            TutorialBattleSystem = FindObjectOfType<TutorialBattleSystem>();
             StartCoroutine(ChangeMaterialAfterOneFrame());
         }
 
@@ -25,15 +31,28 @@ namespace TabTabs.NamChanwoo
 
         private void Update()
         {
-            if (Test3BattleInstance1.selectEnemy == Test3BattleInstance1.LeftEnemy)
+            if (currentSceneIndex == 3)
             {
-                Left_brightnessValue1 = 1.0f;
+                if (Test3BattleInstance1.selectEnemy == Test3BattleInstance1.LeftEnemy)
+                {
+                    Left_brightnessValue1 = 1.0f;
+                }
+                else
+                {
+                    Left_brightnessValue1 = 0.2f;
+                }
             }
-            else
+            else if (currentSceneIndex == 5)
             {
-                Left_brightnessValue1 = 0.2f;
+                if (TutorialBattleSystem.selectEnemy == TutorialBattleSystem.LeftEnemy)
+                {
+                    Left_brightnessValue1 = 1.0f;
+                }
+                else
+                {
+                    Left_brightnessValue1 = 0.2f;
+                }
             }
-
             newMaterial.SetFloat("_Brightness", Left_brightnessValue1);
         }
         // Material이 게임 시작전에는 변경이 안돼는 문제 -> start와 awake등의 문제인듯함.

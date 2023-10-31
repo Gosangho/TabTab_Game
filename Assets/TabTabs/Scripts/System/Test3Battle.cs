@@ -30,17 +30,21 @@ namespace TabTabs.NamChanwoo
         public PlayerBase PlayerBaseInstance;
         public GameObject Left_Ork;
         public GameObject Right_Ork;
-        public bool MonsterDie; // 어느 쪽 몬스터가 죽었는지 확인하는 bool형 변수
+        public bool Right_MonsterDie; // 오른쪽 몬스터가 죽었을경우 true로 변경 -> 리젠 후 false로 변경
+        public bool Left_MonsterDie;
         public Node NodeInstance;
         public GameObject Character_Effect;
-        bool FirstAttack; // 게임시작시 공격버튼으로 최초 한번만 재생되는 애니메이션 변수
+        bool FirstAttack; // 게임시작시 공격버튼으로 최초 한번만 재생되는 애니메이션 변수/[
         public bool Right_TrainAttack; // 오른쪽 몬스터를 연속공격했는지 판단하는 변수
         public bool Left_TrainAttack; // 왼쪽 몬스터를 연속공격했는지 판단하는 변수
         public GameObject ReStartButton;
         public ScoreSystem ScoreSystemInstance;
         public GameObject ScoreTextObj;
         public TImebar TimebarInstance;
-        public GameObject Player_AfterImage;
+        public bool FirstDashAttack;
+        public GameObject Player_AfterImage; // 대쉬 버튼을 눌렀을 경우 캐릭터의 잔상이 표시되는 애니메이션
+        public bool ReStart;
+
         void Start()
         {
             ClickNode = ENodeType.Default;
@@ -49,10 +53,13 @@ namespace TabTabs.NamChanwoo
             AttackButton.onClick.AddListener(Attack);
             SelectEnemyButton.onClick.AddListener(SelectEnemy);
             StartSpawn();
-            MonsterDie = false;
+            Right_MonsterDie = false;
+            Left_MonsterDie = false;
             Right_TrainAttack = false;
             Left_TrainAttack = false;
             FirstAttack = true;
+            FirstDashAttack = true;
+            ReStart = false;
             NodeInstance = FindObjectOfType<Node>();
             ScoreSystemInstance = FindObjectOfType<ScoreSystem>();
             TimebarInstance = FindObjectOfType<TImebar>();
@@ -99,11 +106,12 @@ namespace TabTabs.NamChanwoo
                     GameObject gameObject = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
 
                     if (Right_TrainAttack==true || Left_TrainAttack ==true)
-                    {// 오른쪽 몬스터나 왼쪽 몬스터를 연속으로 공격했다면
+                    {// 오른쪽이나 왼쪽 몬스터를 죽이고 다시 젠 된상태에서 공격버튼을 누를경우
                         // 게임오버 -> 게임 다시시작
                         Debug.Log("게임오버");
                         ReStartButton.SetActive(true);
                         Time.timeScale = 0.0f; // 게임멈춤
+                        ReStart = true;
                     }
 
                     RandAnim();
@@ -123,10 +131,6 @@ namespace TabTabs.NamChanwoo
                         Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
                     }
 
-                    //else
-                    //{
-
-                    //}
                     Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
 
@@ -150,18 +154,19 @@ namespace TabTabs.NamChanwoo
 
                         TimebarInstance.KillCount += 1;
 
-                        if (MonsterDie)
+                        if (Right_MonsterDie)
                         {// 오른쪽 몬스터가 죽은상태라면
-                            // MonsterDie(Bool)가 true상태라면
                             //Invoke("RightMonsterSpawn", 0.7f);
                             RightMonsterSpawn();
                             // 스폰 후
-                            MonsterDie = false;
+                            Right_MonsterDie = false;
                         }
                         else
-                        {// MonsterDie가 false상태라면
+                        {// 왼쪽 몬스터가 죽은상태라면
                             //Invoke("LeftMonsterSpawn", 0.7f);
                             LeftMonsterSpawn();
+                            // 스폰 후
+                            Left_MonsterDie = false;
                         }
                         //HandleSceneMonsterSpawned(SceneEnemyList[0]);
 
@@ -204,14 +209,26 @@ namespace TabTabs.NamChanwoo
         void Attack()
         {
             ClickNode = ENodeType.Attack;
+            if (Time.timeScale == 0.0f)
+            {
+                ReStart = true;
+                ClickNode = ENodeType.Default;
+            }
         }
 
         void SelectEnemy()
         {
-            if (selectEnemy == RightEnemy)
+            if (selectEnemy == RightEnemy && ReStart == false)
             {// 현재 선택된 몬스터가 오른쪽 몬스터이고
                 if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
                 {// 왼쪽몬스터에 생성된 노드의 총수가 같다면 == 몬스터의 첫번째 노드라면
+
+                    if (FirstDashAttack || FirstAttack)
+                    {// FirstAttack : 게임시작시 첫 공격이 대쉬버튼일 경우 GameOver
+                        ReStart = true;
+                        Time.timeScale = 0.0f;
+                    }
+
                     ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
 
                     Right_TrainAttack = false;
@@ -245,30 +262,41 @@ namespace TabTabs.NamChanwoo
 
                     PlayerBaseInstance.PlayerTransform.localScale =
                     new Vector3(-1f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
+
+                    FirstDashAttack = true;
+                    
                     if (selectEnemy.GetOwnNodes().Count <= 0)
                     {
+
+                        FirstDashAttack = false;
                         selectEnemy.Die();
 
                         TimebarInstance.KillCount += 1;
 
-                        if (MonsterDie)
+                        if (Right_MonsterDie)
                         {// 오른쪽 몬스터가 죽었다면
                             RightMonsterSpawn();
 
-                            MonsterDie = false;
+                            Right_MonsterDie = false;
                         }
                         else
                         {
                             LeftMonsterSpawn();
                         }
-
                     }
                 }
             }
-            else if (selectEnemy == LeftEnemy)
+            else if (selectEnemy == LeftEnemy && ReStart == false)
             {
                 if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
                 {
+
+                    if (FirstDashAttack || FirstAttack)
+                    {// FirstAttack : 게임시작시 첫 공격이 대쉬버튼일 경우 GameOver
+                        ReStart = true;
+                        Time.timeScale = 0.0f;
+                    }
+
                     ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
 
                     Left_TrainAttack = false;
@@ -303,17 +331,21 @@ namespace TabTabs.NamChanwoo
 
                     PlayerBaseInstance.PlayerTransform.localScale =
                     new Vector3(1f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
+
+                    FirstDashAttack = true;
                     
                     if (selectEnemy.GetOwnNodes().Count <= 0)
                     {
+
+                        FirstDashAttack = false;
                         selectEnemy.Die();
 
                         TimebarInstance.KillCount += 1;
 
-                        if (MonsterDie)
+                        if (Right_MonsterDie)
                         {
                             RightMonsterSpawn();
-                            MonsterDie = false;
+                            Right_MonsterDie = false;
                         }
                         else
                         {
