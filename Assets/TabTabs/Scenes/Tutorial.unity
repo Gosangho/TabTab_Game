@@ -456,7 +456,8 @@ MonoBehaviour:
   PlayerBaseInstance: {fileID: 0}
   Left_Ork: {fileID: 1641563902055648439, guid: d4eef8e6923e3754a9e75a3e2ce988c4, type: 3}
   Right_Ork: {fileID: 1641563902055648439, guid: 3ae824eb34b928f498f324d115a56a98, type: 3}
-  MonsterDie: 0
+  Right_MonsterDie: 0
+  Left_MonsterDie: 0
   NodeInstance: {fileID: 0}
   Character_Effect: {fileID: 8798867621190144735, guid: 850ab64c476437e45b8d27b97cfddbbd, type: 3}
   Right_TrainAttack: 0
@@ -465,7 +466,9 @@ MonoBehaviour:
   ScoreSystemInstance: {fileID: 0}
   ScoreTextObj: {fileID: 358926773355653144, guid: 3513facfa2601f04584cd4f370a4fe93, type: 3}
   TimebarInstance: {fileID: 0}
+  FirstDashAttack: 0
   Player_AfterImage: {fileID: 2996212023197568148, guid: 9d73b5899a3f0b84c99779426ec2277f, type: 3}
+  ReStart: 0
 --- !u!1 &207486219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6542092640523454477, guid: 33ff088c5040fdb4f8a161c3feaef808, type: 3}
@@ -737,9 +740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb2670087934454380140bb7aeb41c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myButton: {fileID: 337069148}
-  normalImage: {fileID: 21300000, guid: 14cdca32251c6874cb40cb44531c31a5, type: 3}
-  pressedImage: {fileID: 21300000, guid: e63cacb4878a45f42aa2ff88d55b5cb9, type: 3}
 --- !u!1 &381735034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,6 +1097,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1182,6 +1183,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e354c59937bf3d4fbe2137b49b041b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &519420034
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 06906d718be5b6a4cb2df8732bf39832, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &542702084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2772,9 +2869,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb2670087934454380140bb7aeb41c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myButton: {fileID: 1488109284}
-  normalImage: {fileID: 21300000, guid: 08238727629d031428d55748198133fd, type: 3}
-  pressedImage: {fileID: 21300000, guid: c009c2fb23f7d61478d9f84016078150, type: 3}
 --- !u!4 &1539531319 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5520429025521187045, guid: e88caf5bc38b0894bbe2e140364e26d3, type: 3}
