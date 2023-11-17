@@ -31,6 +31,7 @@ namespace TabTabs.NamChanwoo
 
         private void Start()
         {
+            StartCoroutine(StartWarningAudio());
             StartCoroutine(StartDialog());
         }
 
@@ -46,11 +47,18 @@ namespace TabTabs.NamChanwoo
             }
         }
 
+        public IEnumerator StartWarningAudio()
+        {
+            audioManager.Instance.SfxAudio_Enemy_hitAudio.loop = true;
+            audioManager.Instance.SfxAudioPlay_Enemy("Tutorial_Warning");
+            yield return new WaitForSeconds(3.0f);
+            audioManager.Instance.SfxAudio_Enemy_hitAudio.loop = false;
+        }
         public IEnumerator StartDialog()
         {
             // 첫 번째 대사분기 시작
+            
             yield return new WaitUntil(() => dialogSystem01.UpdateDialog());
-
             yield return new WaitForSeconds(0.2f);
             // 대사 분기 사이에 원하는 행동을 추가
             //StartCoroutine(ChangeAlphaOverTime());

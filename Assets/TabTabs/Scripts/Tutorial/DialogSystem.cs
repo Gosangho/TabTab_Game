@@ -109,7 +109,7 @@ public class DialogSystem : MonoBehaviour
         int index = 0;
 
         IsTypingEffect = true;
-
+        audioManager.Instance.SfxAudioPlay("Tutorial_Text"); // 대화창의 텍스트 출력시 재생되는 오디오
         // 택스를 한글자씩 재생
         while (index < Dialogs[CurrentDialogIndex].Dialogues.Length+1)
         {

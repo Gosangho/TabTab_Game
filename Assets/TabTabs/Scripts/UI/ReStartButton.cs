@@ -17,4 +17,8 @@ public class ReStartButton : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         SceneManager.LoadScene(3);
     }
+    public void TutorialReStart()
+    {
+        SceneManager.LoadScene(5);
+    }
 }

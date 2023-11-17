@@ -108,7 +108,6 @@ namespace TabTabs.NamChanwoo
                     if (Right_TrainAttack==true || Left_TrainAttack ==true)
                     {// 오른쪽이나 왼쪽 몬스터를 죽이고 다시 젠 된상태에서 공격버튼을 누를경우
                         // 게임오버 -> 게임 다시시작
-                        Debug.Log("게임오버");
                         ReStartButton.SetActive(true);
                         Time.timeScale = 0.0f; // 게임멈춤
                         ReStart = true;
@@ -119,9 +118,23 @@ namespace TabTabs.NamChanwoo
                     {// 최초 공격시만 발동되는 애니메이션
                         PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_6");
                         FirstAttack = false;
+                        float RandAttackSound = Random.value; // 0~1사이의 무작위 값
+                        if (RandAttackSound < 0.4f)
+                        {
+                            audioManager.Instance.SfxAudioPlay("Char_Attack1");
+                        }
+                        else if (RandAttackSound < 0.8f)
+                        {
+                            audioManager.Instance.SfxAudioPlay("Char_Attack2");
+                        }
+                        else
+                        {
+                            audioManager.Instance.SfxAudioPlay("Char_Spirit");
+                        }
                     }
-                    RandEffect();
-                    
+                    //RandEffect();
+                    RandAttackAudio();
+                    RandEnemyHitAudio();
                     if (selectEnemy == RightEnemy)
                     {
                         Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage");
@@ -151,7 +164,7 @@ namespace TabTabs.NamChanwoo
                         //    Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
                         //}
                         selectEnemy.Die();
-
+                        audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
                         TimebarInstance.KillCount += 1;
 
                         if (Right_MonsterDie)
@@ -225,12 +238,14 @@ namespace TabTabs.NamChanwoo
 
                     if (FirstDashAttack || FirstAttack)
                     {// FirstAttack : 게임시작시 첫 공격이 대쉬버튼일 경우 GameOver
+                        ReStartButton.SetActive(true);
+                        Time.timeScale = 0.0f; // 게임멈춤
                         ReStart = true;
-                        Time.timeScale = 0.0f;
                     }
 
                     ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
-
+                    RandDashAttackAudio();
+                    RandEnemyHitAudio();
                     Right_TrainAttack = false;
 
                     selectEnemy = LeftEnemy;
@@ -247,7 +262,6 @@ namespace TabTabs.NamChanwoo
                     SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
                     spriteRenderer.flipX = true;
                     PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
-
                     Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
 
                     Character_Effect.transform.localScale = new Vector3(-1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
@@ -270,6 +284,7 @@ namespace TabTabs.NamChanwoo
 
                         FirstDashAttack = false;
                         selectEnemy.Die();
+                        audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
 
                         TimebarInstance.KillCount += 1;
 
@@ -293,12 +308,14 @@ namespace TabTabs.NamChanwoo
 
                     if (FirstDashAttack || FirstAttack)
                     {// FirstAttack : 게임시작시 첫 공격이 대쉬버튼일 경우 GameOver
+                        ReStartButton.SetActive(true);
+                        Time.timeScale = 0.0f; // 게임멈춤
                         ReStart = true;
-                        Time.timeScale = 0.0f;
                     }
 
                     ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
-
+                    RandDashAttackAudio();
+                    RandEnemyHitAudio();
                     Left_TrainAttack = false;
 
                     selectEnemy = RightEnemy;
@@ -339,7 +356,7 @@ namespace TabTabs.NamChanwoo
 
                         FirstDashAttack = false;
                         selectEnemy.Die();
-
+                        audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
                         TimebarInstance.KillCount += 1;
 
                         if (Right_MonsterDie)
@@ -356,6 +373,47 @@ namespace TabTabs.NamChanwoo
             }
         }
 
+        public void RandAttackAudio()
+        {
+            float RandAttackSound = Random.value; // 0~1사이의 무작위 값
+            if (RandAttackSound < 0.4f)
+            {
+                audioManager.Instance.SfxAudioPlay("Char_Attack1");
+            }
+            else if (RandAttackSound < 0.8f)
+            {
+                audioManager.Instance.SfxAudioPlay("Char_Attack2");
+            }
+            else
+            {
+                RandEffect();
+                audioManager.Instance.SfxAudioPlay("Char_Spirit");
+            }
+        }
+        public void RandDashAttackAudio()
+        {
+            int Ran = Random.Range(0, 2);
+            if (Ran == 0)
+            {
+                audioManager.Instance.SfxAudioPlay("Char_Dash1");
+            }
+            else
+            {
+                audioManager.Instance.SfxAudioPlay("Char_Dash2");
+            }
+        }
+        public void RandEnemyHitAudio()
+        {
+            int Ran = Random.Range(0, 2);
+            if (Ran == 0)
+            {
+                audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Hit");
+            }
+            else
+            {
+                audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
+            }
+        }
         public void RandAnim()
         {
             int randAnim = Random.Range(0, 6);
@@ -392,15 +450,12 @@ namespace TabTabs.NamChanwoo
 
         void RandEffect()
         {
-
-            Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
-            Instantiate(Character_Effect, targetPosition, Quaternion.identity);
             //float randEffect = Random.Range(0f, 100f);
             //if (randEffect <= 20f)
             //{// randEffect : 20퍼센트 확률
-            //    Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
-            //    Instantiate(Character_Effect, targetPosition, Quaternion.identity);
-            //}
+            Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
+            Instantiate(Character_Effect, targetPosition, Quaternion.identity);
+            
         }
 
         public void StartSpawn()

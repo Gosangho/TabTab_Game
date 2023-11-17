@@ -17,6 +17,7 @@ public class ActiveButton : MonoBehaviour
 
     public void Active_B()
     {
+        audioManager.Instance.SfxAudioPlay("Ui_Click");
         TargetUI.SetActive(!TargetUI.activeSelf);
         if (TargetUI.activeSelf)
         {
@@ -30,11 +31,13 @@ public class ActiveButton : MonoBehaviour
 
     public void LobbyScene()
     {
+        audioManager.Instance.SfxAudioPlay("Ui_Click");
         SceneManager.LoadScene(4);
     }
 
     public void GameEnd()
     {
+        audioManager.Instance.SfxAudioPlay("Ui_Click");
         Application.Quit();
     }
 }

@@ -88,12 +88,26 @@ namespace TabTabs.NamChanwoo
                         ReStartButton.SetActive(true);
                         Time.timeScale = 0.0f; // 게임멈춤
                     }
-
+                    RandAttackAudio();
+                    RandEnemyHitAudio();
                     RandAnim();
                     if (FirstAttack)
                     {// 최초 공격시만 발동되는 애니메이션
                         PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_6");
                         FirstAttack = false;
+                        float RandAttackSound = Random.value; // 0~1사이의 무작위 값
+                        if (RandAttackSound < 0.4f)
+                        {
+                            audioManager.Instance.SfxAudioPlay("Char_Attack1");
+                        }
+                        else if (RandAttackSound < 0.8f)
+                        {
+                            audioManager.Instance.SfxAudioPlay("Char_Attack2");
+                        }
+                        else
+                        {
+                            audioManager.Instance.SfxAudioPlay("Char_Spirit");
+                        }
                     }
                     RandEffect();
 
@@ -106,10 +120,6 @@ namespace TabTabs.NamChanwoo
                         Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
                     }
 
-                    //else
-                    //{
-
-                    //}
                     Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
 
@@ -119,6 +129,7 @@ namespace TabTabs.NamChanwoo
                     if (selectEnemy.GetOwnNodes().Count <= 0)
                     {
                         TimebarInstance.KillCount += 1;
+                        audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
                         if (selectEnemy == RightEnemy)
                         {
                             RightMonsterDie = true;
@@ -176,7 +187,8 @@ namespace TabTabs.NamChanwoo
                 if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
                 {// 왼쪽몬스터에 생성된 노드의 총수가 같다면 == 몬스터의 첫번째 노드라면
                     ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
-
+                    RandDashAttackAudio();
+                    RandEnemyHitAudio();
                     Right_TrainAttack = false;
 
                     selectEnemy = LeftEnemy;
@@ -210,6 +222,7 @@ namespace TabTabs.NamChanwoo
                     new Vector3(-1f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
                     if (selectEnemy.GetOwnNodes().Count <= 0)
                     {
+                        audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
                         if (selectEnemy == RightEnemy)
                         {
                             RightMonsterDie = true;
@@ -229,7 +242,8 @@ namespace TabTabs.NamChanwoo
                 if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
                 {
                     ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
-
+                    RandDashAttackAudio();
+                    RandEnemyHitAudio();
                     Left_TrainAttack = false;
 
                     selectEnemy = RightEnemy;
@@ -265,6 +279,7 @@ namespace TabTabs.NamChanwoo
 
                     if (selectEnemy.GetOwnNodes().Count <= 0)
                     {
+                        audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
                         if (selectEnemy == RightEnemy)
                         {
                             RightMonsterDie = true;
@@ -349,6 +364,47 @@ namespace TabTabs.NamChanwoo
                 Test3Spawn.Instance.SpawnLeft_Node(spawnEnemy2);
             }
             LeftEnemy = spawnEnemy2; // 값 저장
+        }
+        public void RandAttackAudio()
+        {
+            float RandAttackSound = Random.value; // 0~1사이의 무작위 값
+            if (RandAttackSound < 0.4f)
+            {
+                audioManager.Instance.SfxAudioPlay("Char_Attack1");
+            }
+            else if (RandAttackSound < 0.8f)
+            {
+                audioManager.Instance.SfxAudioPlay("Char_Attack2");
+            }
+            else
+            {
+                RandEffect();
+                audioManager.Instance.SfxAudioPlay("Char_Spirit");
+            }
+        }
+        public void RandDashAttackAudio()
+        {
+            int Ran = Random.Range(0, 2);
+            if (Ran == 0)
+            {
+                audioManager.Instance.SfxAudioPlay("Char_Dash1");
+            }
+            else
+            {
+                audioManager.Instance.SfxAudioPlay("Char_Dash2");
+            }
+        }
+        public void RandEnemyHitAudio()
+        {
+            int Ran = Random.Range(0, 2);
+            if (Ran == 0)
+            {
+                audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Hit");
+            }
+            else
+            {
+                audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
+            }
         }
     }
 }
