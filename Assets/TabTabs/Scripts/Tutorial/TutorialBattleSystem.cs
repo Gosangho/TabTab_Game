@@ -15,6 +15,7 @@ namespace TabTabs.NamChanwoo
         // SpawnSystem클래스의 SpawnNode(GameObject enemy)함수 => 싱클톤
         // EnemyBase클래스의 m_nodeQueue변수(Queue 블록) => GetownNodes함수 가져다 씀
         //NodeSheet NodeSheetInstance;
+        
         public EnemyBase selectEnemy;
         public EnemyBase LeftEnemy;
         public EnemyBase RightEnemy;
@@ -39,9 +40,11 @@ namespace TabTabs.NamChanwoo
         public GameObject Player_AfterImage;
         public bool RightMonsterDie = false;
         public bool LeftMonsterDie = false;
+        public DialogTest DialogTestInstance;
         void Start()
         {
             ClickNode = ENodeType.Default;
+            DialogTestInstance = FindObjectOfType<DialogTest>();
             CharacterBaseInstance = FindObjectOfType<CharacterBase>();
             PlayerBaseInstance = FindObjectOfType<PlayerBase>();
             AttackButton.onClick.AddListener(Attack);
@@ -91,6 +94,7 @@ namespace TabTabs.NamChanwoo
                     RandAttackAudio();
                     RandEnemyHitAudio();
                     RandAnim();
+                    DialogTestInstance.FirstAttack = true;
                     if (FirstAttack)
                     {// 최초 공격시만 발동되는 애니메이션
                         PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_6");
@@ -190,6 +194,7 @@ namespace TabTabs.NamChanwoo
                     RandDashAttackAudio();
                     RandEnemyHitAudio();
                     Right_TrainAttack = false;
+                    DialogTestInstance.FirstAttack = true;
 
                     selectEnemy = LeftEnemy;
 
@@ -245,6 +250,7 @@ namespace TabTabs.NamChanwoo
                     RandDashAttackAudio();
                     RandEnemyHitAudio();
                     Left_TrainAttack = false;
+                    DialogTestInstance.FirstAttack = true;
 
                     selectEnemy = RightEnemy;
 

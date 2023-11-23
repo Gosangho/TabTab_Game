@@ -29,7 +29,7 @@ public class DialogSystem : MonoBehaviour
         for (int i = 0; i < Speakers.Length; i++)
         {
             SetActiveObject(Speakers[i], false);
-            Speakers[i].SpriteRenderer.gameObject.SetActive(true);
+            Speakers[i].Leon.SetActive(true);
         }
     }
 
@@ -70,7 +70,7 @@ public class DialogSystem : MonoBehaviour
                 for (int i = 0; i < Speakers.Length; i++)
                 {
                     SetActiveObject(Speakers[i], false);
-                    Speakers[i].SpriteRenderer.gameObject.SetActive(false);
+                    Speakers[i].Leon.SetActive(false);
                 }
                 // Skip버튼을 Go버튼으로 변경
                 // 씬 전환
@@ -99,6 +99,7 @@ public class DialogSystem : MonoBehaviour
         speaker.TextName.gameObject.SetActive(visible);
         speaker.TextDialog.gameObject.SetActive(visible);
         speaker.ImageArrow.gameObject.SetActive(visible);
+        speaker.Leon.SetActive(visible);
 
         speaker.ObjectArrow.SetActive(false);
         // 대화가 종료되었을떄만 활성화(대화창 오른쪽하단의 에로우)
@@ -128,7 +129,7 @@ public class DialogSystem : MonoBehaviour
 [System.Serializable]
 public struct Speaker
 {
-    public SpriteRenderer SpriteRenderer; // 캐릭터 이미지
+    public GameObject Leon;
     public Image ImageDialog; // 대화창 Image UI
     public TextMeshProUGUI TextName;
     public TextMeshProUGUI TextDialog;
