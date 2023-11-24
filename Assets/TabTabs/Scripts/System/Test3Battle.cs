@@ -44,12 +44,17 @@ namespace TabTabs.NamChanwoo
         public bool FirstDashAttack;
         public GameObject Player_AfterImage; // 대쉬 버튼을 눌렀을 경우 캐릭터의 잔상이 표시되는 애니메이션
         public bool ReStart;
+        private bool restartButtonActivated = false;
 
         void Start()
         {
             ClickNode = ENodeType.Default;
-            CharacterBaseInstance = FindObjectOfType<CharacterBase>();
-            PlayerBaseInstance = FindObjectOfType<PlayerBase>();
+            GameObject character2Object = GameObject.FindGameObjectWithTag("Player");
+            if (character2Object !=null)
+            {
+                CharacterBaseInstance = character2Object.GetComponent<CharacterBase>();
+                PlayerBaseInstance = character2Object.GetComponent<PlayerBase>();
+            }
             AttackButton.onClick.AddListener(Attack);
             SelectEnemyButton.onClick.AddListener(SelectEnemy);
             StartSpawn();
@@ -65,7 +70,7 @@ namespace TabTabs.NamChanwoo
             TimebarInstance = FindObjectOfType<TImebar>();
             Character_Effect.transform.localScale = 
             new Vector3(1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
-
+            
         }
 
         public override void OnSystemInit()
@@ -213,9 +218,19 @@ namespace TabTabs.NamChanwoo
                         Test3Spawn.Instance.SpawnLeft_Node(selectEnemy);
                     }
                 }
-
+                
                 ClickNode = ENodeType.Default; // reset
                 Debug.Log(ClickNode);
+            }
+
+            if (TimebarInstance.TimebarImagefillAmount <= 0 && !restartButtonActivated)
+            {
+                Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Attack");
+                Right_Orc2_Anim.RightAnim.SetTrigger("Right_Attack");
+                ReStartButton.SetActive(true);
+                ReStart = true;
+                restartButtonActivated = true;
+                Time.timeScale = 0.0f; // 게임멈춤
             }
         }
 
@@ -258,9 +273,9 @@ namespace TabTabs.NamChanwoo
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
                     GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
 
-                    GameObject PlayerAfterImage = Instantiate(Player_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
-                    SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
-                    spriteRenderer.flipX = true;
+                    //GameObject PlayerAfterImage = Instantiate(Player_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                    //SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
+                    //spriteRenderer.flipX = true;
                     PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
                     Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
 
@@ -328,9 +343,9 @@ namespace TabTabs.NamChanwoo
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
                     GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
 
-                    GameObject PlayerAfterImage = Instantiate(Player_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
-                    SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
-                    spriteRenderer.flipX = false;
+                    //GameObject PlayerAfterImage = Instantiate(Player_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                    //SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
+                    //spriteRenderer.flipX = false;
                     PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
 
                     Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage"); // 오크의 피격모션 재생

@@ -8,7 +8,11 @@ public class PlayerHeart : MonoBehaviour
     PlayerBase PlayerBaseInstance;
     void Start()
     {
-        PlayerBaseInstance = FindObjectOfType<PlayerBase>();
+        GameObject character2Object = GameObject.FindGameObjectWithTag("Player");
+        if (character2Object != null)
+        {
+            PlayerBaseInstance = character2Object.GetComponent<PlayerBase>();
+        }
     }
 
     // Update is called once per frame
