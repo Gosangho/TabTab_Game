@@ -98,7 +98,7 @@ public class DialogSystem : MonoBehaviour
         speaker.ImageDialog.gameObject.SetActive(visible);
         speaker.TextName.gameObject.SetActive(visible);
         speaker.TextDialog.gameObject.SetActive(visible);
-        speaker.ImageArrow.gameObject.SetActive(visible);
+        //speaker.ImageArrow.gameObject.SetActive(visible);
         speaker.Leon.SetActive(visible);
 
         speaker.ObjectArrow.SetActive(false);
@@ -134,7 +134,7 @@ public struct Speaker
     public TextMeshProUGUI TextName;
     public TextMeshProUGUI TextDialog;
     public GameObject ObjectArrow; // 대사완료시 출력되는 에로우
-    public Image ImageArrow;
+    //public Image ImageArrow;
 }
 [System.Serializable]
 public struct DialogData

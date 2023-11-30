@@ -8,12 +8,14 @@ public class SkipButton : MonoBehaviour
 {
     public Image Image;
     public Sprite GoImage;
+    FadeScene FadeSceneInstance;
     private void Start()
     {
         Image = GetComponent<Image>();
+        FadeSceneInstance = FindObjectOfType<FadeScene>();
     }
     public void LobbyButton()
     {
-        SceneManager.LoadScene(4);
+        FadeSceneInstance.LoadLobbyScene();
     }
 }

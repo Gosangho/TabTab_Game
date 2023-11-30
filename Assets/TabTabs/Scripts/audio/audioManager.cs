@@ -15,7 +15,14 @@ public class audioManager : MonoBehaviour
     [SerializeField]public AudioSource SfxAudio_Enemy_hitAudio;
     [SerializeField] private AudioClip[] SfxClip;
     [SerializeField] private AudioClip[] SfxClip_Enemyhit;
+    [SerializeField] private AudioSource SfxTutorial;
     [SerializeField] public Slider SfxSetSlider;
+    public Image SfxImage;
+    public Image BgmImage;
+    public Sprite SfxFirstImage;
+    public Sprite SfxSecondImage;
+    public Sprite BgmFirstImage;
+    public Sprite BgmSecondImage;
     public static audioManager Instance;
 
     private void Awake()
@@ -24,6 +31,7 @@ public class audioManager : MonoBehaviour
         BgmAudio = GetComponent<AudioSource>();
         SfxAudio_Char_AttackAudio = GameObject.Find("SFX_audio_CharAttack").GetComponent<AudioSource>();
         SfxAudio_Enemy_hitAudio = GameObject.Find("SFX_audio_Enemyhit").GetComponent<AudioSource>();
+        
         if (SceneManager.GetActiveScene().buildIndex == 3)
         {// 배틀
             int ranBGM = Random.Range(0, 3);
@@ -36,6 +44,7 @@ public class audioManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().buildIndex == 5)
         {// 튜토리얼(루프)
+            SfxTutorial = GameObject.Find("SFX_audio_Tutorialsfx").GetComponent<AudioSource>();
             BgmAudio.Play();
         }
         else
@@ -48,6 +57,30 @@ public class audioManager : MonoBehaviour
         BgmAudio.volume = BgmSetSlider.value;
         SfxAudio_Char_AttackAudio.volume = SfxSetSlider.value;
         SfxAudio_Enemy_hitAudio.volume = SfxSetSlider.value;
+
+        if (SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            SfxTutorial.volume = SfxSetSlider.value;
+        }
+
+        if (SfxAudio_Char_AttackAudio.volume <= 0 || SfxAudio_Enemy_hitAudio.volume <= 0)
+        {
+            SfxImage.sprite = SfxSecondImage;
+        }
+        else
+        {
+            SfxImage.sprite = SfxFirstImage;
+        }
+
+        if (BgmAudio.volume <= 0)
+        {
+            BgmImage.sprite = BgmSecondImage;
+        }
+        else
+        {
+            BgmImage.sprite = BgmFirstImage;
+        }
+
         if (!BgmAudio.isPlaying && SceneManager.GetActiveScene().buildIndex==3)
         {
             int ranBGM = Random.Range(0, 3);

@@ -31,9 +31,9 @@ namespace TabTabs.NamChanwoo
         public Node NodeInstance;
         public GameObject Character_Effect;
         bool FirstAttack; // 게임시작시 공격버튼으로 최초 한번만 재생되는 애니메이션 변수
-        public bool Right_TrainAttack; // 오른쪽 몬스터를 연속공격했는지 판단하는 변수
-        public bool Left_TrainAttack; // 왼쪽 몬스터를 연속공격했는지 판단하는 변수
-        public GameObject ReStartButton;
+        //public bool Right_TrainAttack; // 오른쪽 몬스터를 연속공격했는지 판단하는 변수
+        //public bool Left_TrainAttack; // 왼쪽 몬스터를 연속공격했는지 판단하는 변수
+        //public GameObject ReStartButton;
         public ScoreSystem ScoreSystemInstance;
         public GameObject ScoreTextObj;
         public TImebar TimebarInstance;
@@ -41,6 +41,7 @@ namespace TabTabs.NamChanwoo
         public bool RightMonsterDie = false;
         public bool LeftMonsterDie = false;
         public DialogTest DialogTestInstance;
+        bool TutorialRightMonsterDie = false;
         void Start()
         {
             ClickNode = ENodeType.Default;
@@ -51,8 +52,8 @@ namespace TabTabs.NamChanwoo
             SelectEnemyButton.onClick.AddListener(SelectEnemy);
             StartSpawn();
             MonsterDie = false;
-            Right_TrainAttack = false;
-            Left_TrainAttack = false;
+            //Right_TrainAttack = false;
+            //Left_TrainAttack = false;
             FirstAttack = true;
             NodeInstance = FindObjectOfType<Node>();
             ScoreSystemInstance = FindObjectOfType<ScoreSystem>();
@@ -84,13 +85,13 @@ namespace TabTabs.NamChanwoo
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
                     GameObject gameObject = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
 
-                    if (Right_TrainAttack == true || Left_TrainAttack == true)
-                    {// 오른쪽 몬스터나 왼쪽 몬스터를 연속으로 공격했다면
-                     // 게임오버 -> 게임 다시시작
-                        Debug.Log("게임오버");
-                        ReStartButton.SetActive(true);
-                        Time.timeScale = 0.0f; // 게임멈춤
-                    }
+                    //if (Right_TrainAttack == true || Left_TrainAttack == true)
+                    //{// 오른쪽 몬스터나 왼쪽 몬스터를 연속으로 공격했다면
+                    // // 게임오버 -> 게임 다시시작
+                    //    Debug.Log("게임오버");
+                    //    ReStartButton.SetActive(true);
+                    //    Time.timeScale = 0.0f; // 게임멈춤
+                    //}
                     RandAttackAudio();
                     RandEnemyHitAudio();
                     RandAnim();
@@ -137,6 +138,7 @@ namespace TabTabs.NamChanwoo
                         if (selectEnemy == RightEnemy)
                         {
                             RightMonsterDie = true;
+                            TutorialRightMonsterDie = true;
                         }
                         else
                         {
@@ -186,14 +188,14 @@ namespace TabTabs.NamChanwoo
 
         void SelectEnemy()
         {
-            if (selectEnemy == RightEnemy)
+            if (selectEnemy == RightEnemy && RightMonsterDie)
             {// 현재 선택된 몬스터가 오른쪽 몬스터이고
                 if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
                 {// 왼쪽몬스터에 생성된 노드의 총수가 같다면 == 몬스터의 첫번째 노드라면
                     ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
                     RandDashAttackAudio();
                     RandEnemyHitAudio();
-                    Right_TrainAttack = false;
+                    //Right_TrainAttack = false;
                     DialogTestInstance.FirstAttack = true;
 
                     selectEnemy = LeftEnemy;
@@ -238,7 +240,6 @@ namespace TabTabs.NamChanwoo
                         }
                         Destroy(selectEnemy.gameObject);
                         TimebarInstance.KillCount += 1;
-
                     }
                 }
             }
@@ -249,7 +250,7 @@ namespace TabTabs.NamChanwoo
                     ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
                     RandDashAttackAudio();
                     RandEnemyHitAudio();
-                    Left_TrainAttack = false;
+                    //Left_TrainAttack = false;
                     DialogTestInstance.FirstAttack = true;
 
                     selectEnemy = RightEnemy;
@@ -338,14 +339,14 @@ namespace TabTabs.NamChanwoo
         void RandEffect()
         {
 
-            Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
-            Instantiate(Character_Effect, targetPosition, Quaternion.identity);
-            //float randEffect = Random.Range(0f, 100f);
-            //if (randEffect <= 20f)
-            //{// randEffect : 20퍼센트 확률
-            //    Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
-            //    Instantiate(Character_Effect, targetPosition, Quaternion.identity);
-            //}
+            //Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
+            //Instantiate(Character_Effect, targetPosition, Quaternion.identity);
+            float randEffect = Random.Range(0f, 100f);
+            if (randEffect <= 20f)
+            {// randEffect : 20퍼센트 확률
+                Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
+                Instantiate(Character_Effect, targetPosition, Quaternion.identity);
+            }
         }
 
         public void StartSpawn()

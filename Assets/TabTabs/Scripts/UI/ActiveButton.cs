@@ -10,6 +10,9 @@ public class ActiveButton : MonoBehaviour
 {
     public Button Button;
     public GameObject TargetUI;
+    public Sprite FirstImage;
+    public Sprite SecondImage;
+    
     void Start()
     {
         Button = GetComponent<Button>();
@@ -32,7 +35,6 @@ public class ActiveButton : MonoBehaviour
     public void LobbyScene()
     {
         audioManager.Instance.SfxAudioPlay("Ui_Click");
-        SceneManager.LoadScene(4);
     }
 
     public void GameEnd()
