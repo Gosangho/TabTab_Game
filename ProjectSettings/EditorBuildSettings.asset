@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TabTabs/Scenes/Tutorial.unity
     guid: 094d6b999f7adf4409ece27339d144b6
+  - enabled: 1
+    path: Assets/TabTabs/Scenes/Loading.unity
+    guid: 8439f84f3ed74aa41ab9e467c34718b0
   m_configObjects: {}
