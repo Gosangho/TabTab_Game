@@ -123,9 +123,30 @@ namespace TabTabs.NamChanwoo
                 {//다음에 나갈 노드타입과 비교(같은 NodeType을 클릭했다면)
 
                     GameManager.NotificationSystem.NodeHitSuccess?.Invoke();
-                    ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
+                    ScoreSystemInstance.score += 1; // 공격성공시 Score +1
                     // 1. 해당하는 enemy의 블럭 destroy
                     // 2. 캐릭터가 해당하는 enemy의 블럭위치로 이동 후 공격 애니메이션 재생 후 원래위치로 이동
+                    if (SelectCharacter.swordGirl1)
+                    {
+                        if (ScoreSystem.swordGirl1BestScore <= ScoreSystemInstance.score)
+                        {
+                            ScoreSystem.swordGirl1BestScore = ScoreSystemInstance.score;
+                        }
+                    }
+                    else if (SelectCharacter.swordGirl2)
+                    {
+                        if (ScoreSystem.swordGirl2BestScore <= ScoreSystemInstance.score)
+                        {
+                            ScoreSystem.swordGirl2BestScore = ScoreSystemInstance.score;
+                        }
+                    }
+                    else
+                    {
+                        if (ScoreSystem.leonBestScore <= ScoreSystemInstance.score)
+                        {
+                            ScoreSystem.leonBestScore = ScoreSystemInstance.score;
+                        }
+                    }
 
                     TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
 
@@ -214,6 +235,19 @@ namespace TabTabs.NamChanwoo
                         audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
                         TimebarInstance.KillCount += 1;
 
+                        if (SelectCharacter.swordGirl1)
+                        {
+                            ScoreSystem.swordGirl1KillCount++;
+                        }
+                        else if (SelectCharacter.swordGirl2)
+                        {
+                            ScoreSystem.swordGirl2KillCount++;
+                        }
+                        else
+                        {
+                            ScoreSystem.leonKillCount++;
+                        }
+
                         if (Right_MonsterDie)
                         {// 오른쪽 몬스터가 죽은상태라면
                             //Invoke("RightMonsterSpawn", 0.7f);
@@ -300,7 +334,30 @@ namespace TabTabs.NamChanwoo
                         ReStart = true;
                     }
 
-                    ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
+                    ScoreSystemInstance.score += 1; // 공격성공시 Score +1
+
+                    if (SelectCharacter.swordGirl1)
+                    {
+                        if (ScoreSystem.swordGirl1BestScore <= ScoreSystemInstance.score)
+                        {
+                            ScoreSystem.swordGirl1BestScore = ScoreSystemInstance.score;
+                        }
+                    }
+                    else if (SelectCharacter.swordGirl2)
+                    {
+                        if (ScoreSystem.swordGirl2BestScore <= ScoreSystemInstance.score)
+                        {
+                            ScoreSystem.swordGirl2BestScore = ScoreSystemInstance.score;
+                        }
+                    }
+                    else
+                    {
+                        if (ScoreSystem.leonBestScore <= ScoreSystemInstance.score)
+                        {
+                            ScoreSystem.leonBestScore = ScoreSystemInstance.score;
+                        }
+                    }
+
                     RandDashAttackAudio();
                     RandEnemyHitAudio();
                     Right_TrainAttack = false;
@@ -365,6 +422,19 @@ namespace TabTabs.NamChanwoo
                         selectEnemy.Die();
                         audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
 
+                        if (SelectCharacter.swordGirl1)
+                        {
+                            ScoreSystem.swordGirl1KillCount++;
+                        }
+                        else if (SelectCharacter.swordGirl2)
+                        {
+                            ScoreSystem.swordGirl2KillCount++;
+                        }
+                        else
+                        {
+                            ScoreSystem.leonKillCount++;
+                        }
+
                         TimebarInstance.KillCount += 1;
 
                         if (Right_MonsterDie)
@@ -392,7 +462,30 @@ namespace TabTabs.NamChanwoo
                         ReStart = true;
                     }
 
-                    ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
+                    ScoreSystemInstance.score += 1; // 공격성공시 Score +1
+
+                    if (SelectCharacter.swordGirl1)
+                    {
+                        if (ScoreSystem.swordGirl1BestScore <= ScoreSystemInstance.score)
+                        {
+                            ScoreSystem.swordGirl1BestScore = ScoreSystemInstance.score;
+                        }
+                    }
+                    else if (SelectCharacter.swordGirl2)
+                    {
+                        if (ScoreSystem.swordGirl2BestScore <= ScoreSystemInstance.score)
+                        {
+                            ScoreSystem.swordGirl2BestScore = ScoreSystemInstance.score;
+                        }
+                    }
+                    else
+                    {
+                        if (ScoreSystem.leonBestScore <= ScoreSystemInstance.score)
+                        {
+                            ScoreSystem.leonBestScore = ScoreSystemInstance.score;
+                        }
+                    }
+
                     RandDashAttackAudio();
                     RandEnemyHitAudio();
                     Left_TrainAttack = false;
@@ -459,6 +552,19 @@ namespace TabTabs.NamChanwoo
                         selectEnemy.Die();
                         audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
                         TimebarInstance.KillCount += 1;
+
+                        if (SelectCharacter.swordGirl1)
+                        {
+                            ScoreSystem.swordGirl1KillCount++;
+                        }
+                        else if (SelectCharacter.swordGirl2)
+                        {
+                            ScoreSystem.swordGirl2KillCount++;
+                        }
+                        else
+                        {
+                            ScoreSystem.leonKillCount++;
+                        }
 
                         if (Right_MonsterDie)
                         {

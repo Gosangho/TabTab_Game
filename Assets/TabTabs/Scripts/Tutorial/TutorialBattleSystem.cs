@@ -73,7 +73,7 @@ namespace TabTabs.NamChanwoo
                 {//다음에 나갈 노드타입과 비교(같은 NodeType을 클릭했다면)
 
                     GameManager.NotificationSystem.NodeHitSuccess?.Invoke();
-                    ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
+                    ScoreSystemInstance.score += 1; // 공격성공시 Score +1
                                                     // 1. 해당하는 enemy의 블럭 destroy
                                                     // 2. 캐릭터가 해당하는 enemy의 블럭위치로 이동 후 공격 애니메이션 재생 후 원래위치로 이동
 
@@ -192,7 +192,7 @@ namespace TabTabs.NamChanwoo
             {// 현재 선택된 몬스터가 오른쪽 몬스터이고
                 if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
                 {// 왼쪽몬스터에 생성된 노드의 총수가 같다면 == 몬스터의 첫번째 노드라면
-                    ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
+                    ScoreSystemInstance.score += 1; // 공격성공시 Score +1
                     RandDashAttackAudio();
                     RandEnemyHitAudio();
                     //Right_TrainAttack = false;
@@ -247,7 +247,7 @@ namespace TabTabs.NamChanwoo
             {
                 if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
                 {
-                    ScoreSystemInstance.Score += 1; // 공격성공시 Score +1
+                    ScoreSystemInstance.score += 1; // 공격성공시 Score +1
                     RandDashAttackAudio();
                     RandEnemyHitAudio();
                     //Left_TrainAttack = false;

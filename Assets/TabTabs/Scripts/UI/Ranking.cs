@@ -9,7 +9,7 @@ public class Ranking : MonoBehaviour
     [SerializeField] private int myRankingScore;
     void Update()
     {
-        myRankingScore = ScoreSystem.BestScore;
+        myRankingScore = ScoreSystem.bestScore;
         rankingUi.text = "ID  TTW    " + myRankingScore;
     }
 }
