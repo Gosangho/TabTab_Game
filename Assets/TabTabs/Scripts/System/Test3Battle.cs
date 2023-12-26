@@ -34,7 +34,7 @@ namespace TabTabs.NamChanwoo
         public bool Left_MonsterDie;
         public Node NodeInstance;
         public GameObject Character_Effect;
-        bool FirstAttack; // 게임시작시 공격버튼으로 최초 한번만 재생되는 애니메이션 변수/[
+        bool FirstAttack; // 게임시작시 공격버튼으로 최초 한번만 재생되는 애니메이션 변수
         public bool Right_TrainAttack; // 오른쪽 몬스터를 연속공격했는지 판단하는 변수
         public bool Left_TrainAttack; // 왼쪽 몬스터를 연속공격했는지 판단하는 변수
         public GameObject ReStartButton;
@@ -42,12 +42,36 @@ namespace TabTabs.NamChanwoo
         public GameObject ScoreTextObj;
         public TImebar TimebarInstance;
         public bool FirstDashAttack;
-        public GameObject Player_AfterImage; // 대쉬 버튼을 눌렀을 경우 캐릭터의 잔상이 표시되는 애니메이션
+        public GameObject swordGirl1_AfterImage; // 대쉬 버튼을 눌렀을 경우 캐릭터의 잔상이 표시되는 애니메이션
+        public GameObject swordGirl2_AfterImage;
+        public GameObject leon_AfterImage;
+        public GameObject swordGirl1_FirstAttack;
+        public GameObject swordGirl2_FirstAttack;
+        public GameObject leon_FirstAttack;
+        public GameObject swordGirl1;
+        public GameObject swordGirl2;
+        public GameObject leon;
         public bool ReStart;
         private bool restartButtonActivated = false;
+        public SelectCharacter selectCharacterInstance;
 
         void Start()
         {
+            selectCharacterInstance = FindObjectOfType<SelectCharacter>();
+
+            if (SelectCharacter.swordGirl1)
+            {
+                swordGirl1.SetActive(true);
+            }
+            else if (SelectCharacter.swordGirl2)
+            {
+                swordGirl2.SetActive(true);
+            }
+            else
+            {
+                leon.SetActive(true);
+            }
+
             ClickNode = ENodeType.Default;
             GameObject character2Object = GameObject.FindGameObjectWithTag("Player");
             if (character2Object !=null)
@@ -87,6 +111,7 @@ namespace TabTabs.NamChanwoo
             SceneEnemyList.Add(spawnedEnemy);
         }
 
+        
         void Update()
         {
             if (ClickNode != ENodeType.Default)
@@ -110,7 +135,7 @@ namespace TabTabs.NamChanwoo
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
                     GameObject gameObject = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
 
-                    if (Right_TrainAttack==true || Left_TrainAttack ==true)
+                    if (Right_TrainAttack == true || Left_TrainAttack == true)
                     {// 오른쪽이나 왼쪽 몬스터를 죽이고 다시 젠 된상태에서 공격버튼을 누를경우
                         // 게임오버 -> 게임 다시시작
                         ReStartButton.SetActive(true);
@@ -121,7 +146,24 @@ namespace TabTabs.NamChanwoo
                     RandAnim();
                     if (FirstAttack)
                     {// 최초 공격시만 발동되는 애니메이션
-                        PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_6");
+                        if (SelectCharacter.swordGirl1)
+                        {
+                            GameObject swordGirl1FirstAttack =
+                            Instantiate(swordGirl1_FirstAttack, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                        }
+                        else if (SelectCharacter.swordGirl2)
+                        {
+                            GameObject swordGirl2FirstAttack =
+                            Instantiate(swordGirl2_FirstAttack, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                        }
+                        else
+                        {
+                            GameObject leonFirstAttack =
+                            Instantiate(leon_FirstAttack, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                        }
+
+                        //PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_6");
+
                         FirstAttack = false;
                         float RandAttackSound = Random.value; // 0~1사이의 무작위 값
                         if (RandAttackSound < 0.4f)
@@ -218,7 +260,7 @@ namespace TabTabs.NamChanwoo
                         Test3Spawn.Instance.SpawnLeft_Node(selectEnemy);
                     }
                 }
-                
+
                 ClickNode = ENodeType.Default; // reset
                 Debug.Log(ClickNode);
             }
@@ -272,11 +314,33 @@ namespace TabTabs.NamChanwoo
                     
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
                     GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
-
-                    //GameObject PlayerAfterImage = Instantiate(Player_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                    
+                    if (SelectCharacter.swordGirl1)
+                    {
+                        GameObject swordGirl1AfterImage =
+                        Instantiate(swordGirl1_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                        SpriteRenderer spriteRenderer = swordGirl1_AfterImage.GetComponent<SpriteRenderer>();
+                        spriteRenderer.flipX = false;
+                    }
+                    else if (SelectCharacter.swordGirl2)
+                    {
+                        GameObject swordGirl2AfterImage =
+                        Instantiate(swordGirl2_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                        SpriteRenderer spriteRenderer = swordGirl2_AfterImage.GetComponent<SpriteRenderer>();
+                        spriteRenderer.flipX = false;
+                    }
+                    else
+                    {
+                        GameObject leonAfterImage =
+                        Instantiate(leon_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                        SpriteRenderer spriteRenderer = leon_AfterImage.GetComponent<SpriteRenderer>();
+                        spriteRenderer.flipX = false;
+                    }
+                    //GameObject PlayerAfterImage = Instantiate(swordGirl1_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
                     //SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
                     //spriteRenderer.flipX = true;
-                    PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
+
+                    //PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
                     Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
 
                     Character_Effect.transform.localScale = new Vector3(-1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
@@ -343,10 +407,32 @@ namespace TabTabs.NamChanwoo
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
                     GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
 
-                    //GameObject PlayerAfterImage = Instantiate(Player_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                    if (SelectCharacter.swordGirl1)
+                    {
+                        GameObject swordGirl1AfterImage =
+                        Instantiate(swordGirl1_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                        SpriteRenderer spriteRenderer = swordGirl1_AfterImage.GetComponent<SpriteRenderer>();
+                        spriteRenderer.flipX = true;
+                    }
+                    else if (SelectCharacter.swordGirl2)
+                    {
+                        GameObject swordGirl2AfterImage =
+                        Instantiate(swordGirl2_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                        SpriteRenderer spriteRenderer = swordGirl2_AfterImage.GetComponent<SpriteRenderer>();
+                        spriteRenderer.flipX = true;
+                    }
+                    else
+                    {
+                        GameObject leonAfterImage =
+                        Instantiate(leon_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                        SpriteRenderer spriteRenderer = leon_AfterImage.GetComponent<SpriteRenderer>();
+                        spriteRenderer.flipX = true;
+                    }
+
+                    //GameObject PlayerAfterImage = Instantiate(swordGirl1_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
                     //SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
                     //spriteRenderer.flipX = false;
-                    PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
+                    //PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
 
                     Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage"); // 오크의 피격모션 재생
 

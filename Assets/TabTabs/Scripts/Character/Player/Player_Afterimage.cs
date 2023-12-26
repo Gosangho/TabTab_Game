@@ -27,7 +27,7 @@ public class Player_Afterimage : MonoBehaviour
                 if (spriteRenderer.sprite == player_AfterImage[i])
                 {
                     // 스프라이트에 따라 알파 값을 설정
-                    float alpha = 1.0f - (0.2f * i);
+                    float alpha = 1.0f - (0.1f * i);
                     SetAlpha(alpha);
                 }
             }
