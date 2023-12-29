@@ -1,0 +1,16 @@
+7.png
+size:1940,1752
+filter:Linear,Linear
+pma:true
+bk
+bounds:2,670,1080,1080
+offsets:1,1,1082,1082
+ef
+bounds:1084,854,854,896
+offsets:2,1,858,899
+mon
+bounds:2,2,666,971
+offsets:1,1,668,974
+rotate:90
+text
+bounds:1084,491,645,361

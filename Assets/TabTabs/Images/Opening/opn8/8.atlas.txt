@@ -1,0 +1,14 @@
+8.png
+size:1848,1084
+filter:Linear,Linear
+pma:true
+bk
+bounds:2,2,1080,1080
+offsets:1,1,1082,1082
+mon
+bounds:1084,34,1048,493
+offsets:1,1,1051,496
+rotate:90
+text
+bounds:1579,742,340,267
+rotate:90

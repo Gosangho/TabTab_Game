@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/TabTabs/Scenes/Open.unity
-    guid: de879dd7f376f9b4c9f80f25e02ad974
+    path: Assets/TabTabs/Scenes/Opening.unity
+    guid: b10c82a1ca926124eb3cb417542302d2
   - enabled: 1
     path: Assets/TabTabs/Scenes/Test2Battle.unity
     guid: 9c601e9623d382a4c8041a4d03161778
