@@ -26,10 +26,10 @@ public class ControlAttandSprite : MonoBehaviour
     public void UpdateSprite()
     {
         currentImage.sprite = toDayAttand;
-        Color currentColor = currentImage.color;
-        currentColor.r = 0;
-        currentColor.g = 0;
-        currentColor.b = 0;
-        currentImage.color = currentColor;
+        //Color currentColor = currentImage.color;
+        //currentColor.r = 0;
+        //currentColor.g = 0;
+        //currentColor.b = 0;
+        //currentImage.color = currentColor;
     }
 }

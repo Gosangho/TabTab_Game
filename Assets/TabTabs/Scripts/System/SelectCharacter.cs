@@ -26,28 +26,33 @@ public class SelectCharacter : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 4)
         {
-            if (ScoreSystem.swordGirl1BestScore > ScoreSystem.swordGirl2BestScore &&
-            ScoreSystem.swordGirl1BestScore > ScoreSystem.leonBestScore)
+            if (DataManager.Instance.swordGirl1.bestScore >= DataManager.Instance.swordGirl2.bestScore &&
+            DataManager.Instance.swordGirl1.bestScore >= DataManager.Instance.leon.bestScore)
             {// 스워드걸1의 점수가 가장 높다면
                 bestScoreCharacterImage.sprite = swordGirl1Image;
-                bestcharacterName.text = "캐릭터 : sword1";
-                bestcharacterBestScore.text = "최고기록 : " + ScoreSystem.swordGirl1BestScore.ToString();
-                bestcharacterKillCount.text = "킬카운트 : " + ScoreSystem.swordGirl1KillCount.ToString();
+                bestcharacterName.text = "캐릭터 :  Sword1"; 
+                bestcharacterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl1.bestScore.ToString();
+                bestcharacterKillCount.text = "킬카운트 : " + DataManager.Instance.swordGirl1.totalKillScore.ToString();
             }
-            else if (ScoreSystem.swordGirl2BestScore > ScoreSystem.swordGirl1BestScore &&
-                ScoreSystem.swordGirl2BestScore > ScoreSystem.leonBestScore)
+            else if (DataManager.Instance.swordGirl2.bestScore >= DataManager.Instance.swordGirl1.bestScore &&
+                DataManager.Instance.swordGirl2.bestScore >= DataManager.Instance.leon.bestScore)
             {// 스워드걸2의 점수가 가장 높다면
                 bestScoreCharacterImage.sprite = swordGirl2Image;
-                bestcharacterName.text = "캐릭터 : sword2";
-                bestcharacterBestScore.text = "최고기록 : " + ScoreSystem.swordGirl2BestScore.ToString();
-                bestcharacterKillCount.text = "킬카운트 : " + ScoreSystem.swordGirl2KillCount.ToString();
+                bestcharacterName.text = "캐릭터 :  Sword2";
+                bestcharacterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl2.bestScore.ToString();
+                bestcharacterKillCount.text = "킬카운트 : " + DataManager.Instance.swordGirl2.totalKillScore.ToString();
+            }
+            else if (DataManager.Instance.leon.bestScore >= DataManager.Instance.swordGirl1.bestScore &&
+                DataManager.Instance.leon.bestScore >= DataManager.Instance.swordGirl2.bestScore)
+            {
+                bestScoreCharacterImage.sprite = leonImage;
+                bestcharacterName.text = "캐릭터 :  Leon";
+                bestcharacterBestScore.text = "최고기록 : " + DataManager.Instance.leon.bestScore.ToString();
+                bestcharacterKillCount.text = "킬카운트 : " + DataManager.Instance.leon.totalKillScore.ToString();
             }
             else
-            {// 레온의 점수가 가장 높다면
-                bestScoreCharacterImage.sprite = leonImage;
-                bestcharacterName.text = "캐릭터 : leon";
-                bestcharacterBestScore.text = "최고기록 : " + ScoreSystem.leonBestScore.ToString();
-                bestcharacterKillCount.text = "킬카운트 : " + ScoreSystem.leonKillCount.ToString();
+            {
+                return;
             }
         }
     }
@@ -63,9 +68,9 @@ public class SelectCharacter : MonoBehaviour
         swordGirl2 = false;
         leon = false;
         //UpdateImage(swordGirl1Image);
-        characterName.text = "캐릭터 : sword1";
-        characterBestScore.text = "최고기록 : " + ScoreSystem.swordGirl1BestScore.ToString();
-        characterKillCount.text = "킬카운트 : " + ScoreSystem.swordGirl1KillCount.ToString();
+        characterName.text = "캐릭터 :  Sword1";
+        characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl1.bestScore.ToString();
+        characterKillCount.text = "킬카운트 : " + DataManager.Instance.swordGirl1.totalKillScore.ToString();
     }
 
     public void SelectSwordGirl2()
@@ -74,9 +79,9 @@ public class SelectCharacter : MonoBehaviour
         swordGirl2 = true;
         leon = false;
         //UpdateImage(swordGirl2Image);
-        characterName.text = "캐릭터 : sword2";
-        characterBestScore.text = "최고기록 : " + ScoreSystem.swordGirl2BestScore.ToString();
-        characterKillCount.text = "킬카운트 : " + ScoreSystem.swordGirl2KillCount.ToString();
+        characterName.text = "캐릭터 :  Sword2";
+        characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl2.bestScore.ToString();
+        characterKillCount.text = "킬카운트 : " + DataManager.Instance.swordGirl2.totalKillScore.ToString();
     }
 
     public void SelectLeon()
@@ -85,9 +90,9 @@ public class SelectCharacter : MonoBehaviour
         swordGirl2 = false;
         leon = true;
         //UpdateImage(leonImage);
-        characterName.text = "캐릭터 : leon";
-        characterBestScore.text = "최고기록 : " + ScoreSystem.leonBestScore.ToString();
-        characterKillCount.text = "킬카운트 : " + ScoreSystem.leonKillCount.ToString();
+        characterName.text = "캐릭터 :  Leon";
+        characterBestScore.text = "최고기록 : " + DataManager.Instance.leon.bestScore.ToString();
+        characterKillCount.text = "킬카운트 : " + DataManager.Instance.leon.totalKillScore.ToString();
     }
     
 }

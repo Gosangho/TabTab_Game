@@ -6,7 +6,6 @@ using TMPro;
 
 public class ReStartButton : MonoBehaviour
 {
-
     public void ReStartButton2()
     {
         StartCoroutine(ReStart());

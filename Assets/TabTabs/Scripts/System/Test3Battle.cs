@@ -237,15 +237,15 @@ namespace TabTabs.NamChanwoo
 
                         if (SelectCharacter.swordGirl1)
                         {
-                            ScoreSystem.swordGirl1KillCount++;
+                            DataManager.Instance.swordGirl1.totalKillScore++;
                         }
                         else if (SelectCharacter.swordGirl2)
                         {
-                            ScoreSystem.swordGirl2KillCount++;
+                            DataManager.Instance.swordGirl2.totalKillScore++;
                         }
                         else
                         {
-                            ScoreSystem.leonKillCount++;
+                            DataManager.Instance.leon.totalKillScore++;
                         }
 
                         if (Right_MonsterDie)
@@ -424,15 +424,15 @@ namespace TabTabs.NamChanwoo
 
                         if (SelectCharacter.swordGirl1)
                         {
-                            ScoreSystem.swordGirl1KillCount++;
+                            DataManager.Instance.swordGirl1.totalKillScore++;
                         }
                         else if (SelectCharacter.swordGirl2)
                         {
-                            ScoreSystem.swordGirl2KillCount++;
+                            DataManager.Instance.swordGirl2.totalKillScore++;
                         }
                         else
                         {
-                            ScoreSystem.leonKillCount++;
+                            DataManager.Instance.leon.totalKillScore++;
                         }
 
                         TimebarInstance.KillCount += 1;
@@ -555,15 +555,15 @@ namespace TabTabs.NamChanwoo
 
                         if (SelectCharacter.swordGirl1)
                         {
-                            ScoreSystem.swordGirl1KillCount++;
+                            DataManager.Instance.swordGirl1.totalKillScore++;
                         }
                         else if (SelectCharacter.swordGirl2)
                         {
-                            ScoreSystem.swordGirl2KillCount++;
+                            DataManager.Instance.swordGirl2.totalKillScore++;
                         }
                         else
                         {
-                            ScoreSystem.leonKillCount++;
+                            DataManager.Instance.leon.totalKillScore++;
                         }
 
                         if (Right_MonsterDie)
