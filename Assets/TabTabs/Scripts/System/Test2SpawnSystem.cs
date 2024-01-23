@@ -19,7 +19,7 @@ namespace TabTabs.NamChanwoo
         [SerializeField] public GameObject m_SpawnLocation_Left;
         [SerializeField] List<GameObject> m_NodeList = new List<GameObject>(); // 몬스터에 부착될 노드리스트
         [SerializeField] private List<GameObject> m_monsterPrefabList; // 생성될 몬스터 리스트
-        public Test2BattleSystem BattleInstance;
+        //public Test2BattleSystem BattleInstance;
 
         /*[SerializeField] private GameObject m_Enemy;*/
 
@@ -41,7 +41,7 @@ namespace TabTabs.NamChanwoo
         private void Start()
         {
             GameManager.NotificationSystem.SceneMonsterDeath.AddListener(HandleSceneMonsterDeath);
-            BattleInstance = FindObjectOfType<Test2BattleSystem>();
+            //BattleInstance = FindObjectOfType<Test2BattleSystem>();
             // SpawnLocation 자식 개체 찾기
             m_SpawnLocation_Right = transform.Find("SpawnLocation_Right").gameObject;
             m_SpawnLocation_Left = transform.Find("SpawnLocation_Left").gameObject;

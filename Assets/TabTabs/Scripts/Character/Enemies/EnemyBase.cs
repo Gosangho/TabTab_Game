@@ -16,7 +16,7 @@ namespace TabTabs.NamChanwoo
         public NodeArea nodeArea => m_nodeArea;
 
         private Queue<Node> m_nodeQueue = new Queue<Node>();
-        public Test2BattleSystem BattleInstance2;
+        //public Test2BattleSystem BattleInstance2;
         public Test3Battle BattleInstance3;
         [Header("Attack Properties")]
         public Slider m_attackGaugeSlider;
@@ -52,7 +52,7 @@ namespace TabTabs.NamChanwoo
                 m_rigidbody = GetComponent<Rigidbody2D>();
             }
             BattleInstance3 = FindObjectOfType<Test3Battle>();
-            BattleInstance2= FindObjectOfType<Test2BattleSystem>();
+            //BattleInstance2= FindObjectOfType<Test2BattleSystem>();
         }
 
         protected void Update()

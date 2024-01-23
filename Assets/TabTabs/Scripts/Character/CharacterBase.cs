@@ -41,7 +41,7 @@ namespace TabTabs.NamChanwoo
         }
         
         public event Action<ECharacterState> ChangeState;
-        
+
         public bool IsMovingUp() => m_movementDirection.y > 0.0f;
         public bool IsMovingDown() => m_movementDirection.y < 0.0f;
         public bool IsMovingLeft() => m_movementDirection.x < 0.0f;

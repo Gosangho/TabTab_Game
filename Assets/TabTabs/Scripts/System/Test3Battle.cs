@@ -34,10 +34,9 @@ namespace TabTabs.NamChanwoo
         public bool Left_MonsterDie;
         public Node NodeInstance;
         public GameObject Character_Effect;
-        bool FirstAttack; // 게임시작시 공격버튼으로 최초 한번만 재생되는 애니메이션 변수
+        public bool FirstAttack; // 게임시작시 공격버튼으로 최초 한번만 재생되는 애니메이션 변수
         public bool Right_TrainAttack; // 오른쪽 몬스터를 연속공격했는지 판단하는 변수
         public bool Left_TrainAttack; // 왼쪽 몬스터를 연속공격했는지 판단하는 변수
-        public GameObject ReStartButton;
         public ScoreSystem ScoreSystemInstance;
         public GameObject ScoreTextObj;
         public TImebar TimebarInstance;
@@ -51,10 +50,12 @@ namespace TabTabs.NamChanwoo
         public GameObject swordGirl1;
         public GameObject swordGirl2;
         public GameObject leon;
-        public bool ReStart;
-        private bool restartButtonActivated = false;
+        public GameObject reStartObj;
         public SelectCharacter selectCharacterInstance;
-
+        public bool playerDie = false;
+        public GameObject resultObj;
+        public Button continue_Button;
+        public bool repetition;
         void Start()
         {
             selectCharacterInstance = FindObjectOfType<SelectCharacter>();
@@ -73,12 +74,13 @@ namespace TabTabs.NamChanwoo
             }
 
             ClickNode = ENodeType.Default;
+
             GameObject character2Object = GameObject.FindGameObjectWithTag("Player");
-            if (character2Object !=null)
+            if (character2Object != null)
             {
-                CharacterBaseInstance = character2Object.GetComponent<CharacterBase>();
                 PlayerBaseInstance = character2Object.GetComponent<PlayerBase>();
             }
+            
             AttackButton.onClick.AddListener(Attack);
             SelectEnemyButton.onClick.AddListener(SelectEnemy);
             StartSpawn();
@@ -88,13 +90,12 @@ namespace TabTabs.NamChanwoo
             Left_TrainAttack = false;
             FirstAttack = true;
             FirstDashAttack = true;
-            ReStart = false;
+            repetition = false;
             NodeInstance = FindObjectOfType<Node>();
             ScoreSystemInstance = FindObjectOfType<ScoreSystem>();
             TimebarInstance = FindObjectOfType<TImebar>();
-            Character_Effect.transform.localScale = 
-            new Vector3(1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
-            
+            EffectInit();
+            ContinueButton.continueButtonClick = false;
         }
 
         public override void OnSystemInit()
@@ -111,7 +112,6 @@ namespace TabTabs.NamChanwoo
             SceneEnemyList.Add(spawnedEnemy);
         }
 
-        
         void Update()
         {
             if (ClickNode != ENodeType.Default)
@@ -150,18 +150,30 @@ namespace TabTabs.NamChanwoo
 
                     TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
 
-                    CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
+                    PlayerBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f);
 
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
                     GameObject gameObject = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
 
                     if (Right_TrainAttack == true || Left_TrainAttack == true)
-                    {// 오른쪽이나 왼쪽 몬스터를 죽이고 다시 젠 된상태에서 공격버튼을 누를경우
+                    {// 오른쪽이나 왼쪽 몬스터를 죽이고 다시 젠 된상태에서 공격버튼을 누를경우(GameOver)
                         // 게임오버 -> 게임 다시시작
-                        ReStartButton.SetActive(true);
-                        Time.timeScale = 0.0f; // 게임멈춤
-                        ReStart = true;
+                        //Time.timeScale = 0.0f; // 게임멈춤
+                        playerDie = true;
+                        PlayerBase.PlayerAnim.SetTrigger("Die");
+                        resultObj.gameObject.SetActive(true);
+                        continue_Button.gameObject.SetActive(true);
+                        reStartObj.gameObject.SetActive(true);
+
+                        if (ContinueButton.continueButtonClick == true)
+                        {
+                            continue_Button.gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            continue_Button.gameObject.SetActive(true);
+                        }
                     }
 
                     RandAnim();
@@ -170,17 +182,17 @@ namespace TabTabs.NamChanwoo
                         if (SelectCharacter.swordGirl1)
                         {
                             GameObject swordGirl1FirstAttack =
-                            Instantiate(swordGirl1_FirstAttack, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                            Instantiate(swordGirl1_FirstAttack, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                         }
                         else if (SelectCharacter.swordGirl2)
                         {
                             GameObject swordGirl2FirstAttack =
-                            Instantiate(swordGirl2_FirstAttack, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                            Instantiate(swordGirl2_FirstAttack, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                         }
                         else
                         {
                             GameObject leonFirstAttack =
-                            Instantiate(leon_FirstAttack, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                            Instantiate(leon_FirstAttack, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                         }
 
                         //PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_6");
@@ -222,6 +234,16 @@ namespace TabTabs.NamChanwoo
                     {
                         // 에너미 노드의 남아있는 갯수가 0보다 작거나 같다면
                         // 몬스터 제거 후 다시생성
+                        float rand = Random.Range(0f, 1f);
+                        if (rand <= 0.05f)
+                        {// 5% 확률로 1골드 추가(몬스터가 사망할시)
+                            DataManager.Instance.playerData.Gold += 1;
+                        }
+                        // 추가 10골드 확률 계산
+                        else if (rand <= 0.0005f)
+                        {// 0.05% 확률로 10골드를 추가(몬스터가 사망할시)
+                            DataManager.Instance.playerData.Gold += 10;
+                        }
 
                         //if (selectEnemy == RightEnemy)
                         //{
@@ -299,39 +321,62 @@ namespace TabTabs.NamChanwoo
                 Debug.Log(ClickNode);
             }
 
-            if (TimebarInstance.TimebarImagefillAmount <= 0 && !restartButtonActivated)
-            {
+            if (TImebar.timebarImage.fillAmount <=0 && repetition == false)
+            {// Time이 다 끝났다면(GameOver) timeOver
+                repetition = true;
                 Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Attack");
                 Right_Orc2_Anim.RightAnim.SetTrigger("Right_Attack");
-                ReStartButton.SetActive(true);
-                ReStart = true;
-                restartButtonActivated = true;
-                Time.timeScale = 0.0f; // 게임멈춤
+                playerDie = true;
+                PlayerBase.PlayerAnim.SetTrigger("Die");
+                resultObj.gameObject.SetActive(true);
+                reStartObj.gameObject.SetActive(true);
+                //continue_Button.gameObject.SetActive(true);
+
+                if (ContinueButton.continueButtonClick == true)
+                {
+                    continue_Button.gameObject.SetActive(false);
+                }
+                else
+                {
+                    continue_Button.gameObject.SetActive(true);
+                }
+                //Time.timeScale = 0.0f; // 게임멈춤
             }
         }
 
         void Attack()
         {
             ClickNode = ENodeType.Attack;
-            if (Time.timeScale == 0.0f)
+            if (playerDie == true)
             {
-                ReStart = true;
                 ClickNode = ENodeType.Default;
             }
         }
 
         void SelectEnemy()
         {
-            if (selectEnemy == RightEnemy && ReStart == false)
+            if (selectEnemy == RightEnemy && playerDie == false)
             {// 현재 선택된 몬스터가 오른쪽 몬스터이고
                 if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
                 {// 왼쪽몬스터에 생성된 노드의 총수가 같다면 == 몬스터의 첫번째 노드라면
 
                     if (FirstDashAttack || FirstAttack)
                     {// FirstAttack : 게임시작시 첫 공격이 대쉬버튼일 경우 GameOver
-                        ReStartButton.SetActive(true);
-                        Time.timeScale = 0.0f; // 게임멈춤
-                        ReStart = true;
+                        //Time.timeScale = 0.0f; // 게임멈춤
+                        playerDie = true;
+                        PlayerBase.PlayerAnim.SetTrigger("Die");
+                        resultObj.gameObject.SetActive(true);
+                        continue_Button.gameObject.SetActive(true);
+                        reStartObj.gameObject.SetActive(true);
+
+                        if (ContinueButton.continueButtonClick == true)
+                        {
+                            continue_Button.gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            continue_Button.gameObject.SetActive(true);
+                        }
                     }
 
                     ScoreSystemInstance.score += 1; // 공격성공시 Score +1
@@ -366,57 +411,62 @@ namespace TabTabs.NamChanwoo
 
                     TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
 
-                    CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
+                    PlayerBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // 몬스터의 첫번째 노드위치로 이동
                     
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
                     GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
-                    
+
+                    Debug.Log(SelectCharacter.swordGirl1);
+                    Debug.Log(SelectCharacter.swordGirl2);
+                    Debug.Log(SelectCharacter.leon);
+
                     if (SelectCharacter.swordGirl1)
                     {
-                        GameObject swordGirl1AfterImage =
-                        Instantiate(swordGirl1_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
-                        SpriteRenderer spriteRenderer = swordGirl1_AfterImage.GetComponent<SpriteRenderer>();
-                        spriteRenderer.flipX = false;
+                        swordGirl1_AfterImage.transform.localScale = new Vector3(-1.0f, swordGirl1_AfterImage.transform.localScale.y, swordGirl1_AfterImage.transform.localScale.z);
+                        Instantiate(swordGirl1_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
                     else if (SelectCharacter.swordGirl2)
                     {
-                        GameObject swordGirl2AfterImage =
-                        Instantiate(swordGirl2_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
-                        SpriteRenderer spriteRenderer = swordGirl2_AfterImage.GetComponent<SpriteRenderer>();
-                        spriteRenderer.flipX = false;
+                        swordGirl2_AfterImage.transform.localScale = new Vector3(-1.0f, swordGirl2_AfterImage.transform.localScale.y, swordGirl2_AfterImage.transform.localScale.z);
+                        Instantiate(swordGirl2_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
                     else
                     {
-                        GameObject leonAfterImage =
-                        Instantiate(leon_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
-                        SpriteRenderer spriteRenderer = leon_AfterImage.GetComponent<SpriteRenderer>();
-                        spriteRenderer.flipX = false;
+                        leon_AfterImage.transform.localScale = new Vector3(-1.0f, leon_AfterImage.transform.localScale.y, leon_AfterImage.transform.localScale.z);
+                        Instantiate(leon_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
-                    //GameObject PlayerAfterImage = Instantiate(swordGirl1_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
-                    //SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
-                    //spriteRenderer.flipX = true;
 
-                    //PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
                     Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
 
                     Character_Effect.transform.localScale = new Vector3(-1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
                     
                     RandEffect();
-                    //Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
+
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
 
                     selectEnemy.GetOwnNodes().Dequeue();
 
                     selectEnemy.Hit();
 
-                    PlayerBaseInstance.PlayerTransform.localScale =
-                    new Vector3(-1f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
+                    PlayerBase.PlayerTransform.localScale =
+                    new Vector3(-1f, PlayerBase.PlayerTransform.localScale.y, PlayerBase.PlayerTransform.localScale.z);
 
                     FirstDashAttack = true;
                     
                     if (selectEnemy.GetOwnNodes().Count <= 0)
                     {
+                        
+                        float rand = Random.Range(0f, 1f);
+                        if (rand <= 0.05f)
+                        {// 5% 확률로 1골드 추가(몬스터가 사망할시)
+                            DataManager.Instance.playerData.Gold += 1;
+                        }
+                        // 추가 10골드 확률 계산
+                        else if (rand <= 0.0005f)
+                        {// 0.05% 확률로 10골드를 추가(몬스터가 사망할시)
+                            DataManager.Instance.playerData.Gold += 10;
+                        }
 
                         FirstDashAttack = false;
                         selectEnemy.Die();
@@ -450,16 +500,28 @@ namespace TabTabs.NamChanwoo
                     }
                 }
             }
-            else if (selectEnemy == LeftEnemy && ReStart == false)
+            else if (selectEnemy == LeftEnemy && playerDie == false)
             {
                 if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
                 {
 
                     if (FirstDashAttack || FirstAttack)
                     {// FirstAttack : 게임시작시 첫 공격이 대쉬버튼일 경우 GameOver
-                        ReStartButton.SetActive(true);
-                        Time.timeScale = 0.0f; // 게임멈춤
-                        ReStart = true;
+                        //Time.timeScale = 0.0f; // 게임멈춤
+                        playerDie = true;
+                        PlayerBase.PlayerAnim.SetTrigger("Die");
+                        resultObj.gameObject.SetActive(true);
+                        continue_Button.gameObject.SetActive(true);
+                        reStartObj.gameObject.SetActive(true);
+
+                        if (ContinueButton.continueButtonClick == true)
+                        {
+                            continue_Button.gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            continue_Button.gameObject.SetActive(true);
+                        }
                     }
 
                     ScoreSystemInstance.score += 1; // 공격성공시 Score +1
@@ -493,8 +555,8 @@ namespace TabTabs.NamChanwoo
                     selectEnemy = RightEnemy;
 
                     TImebar.timebarImage.fillAmount += 0.1f; // 시간변수 +0.1f
-                    
-                    CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
+
+                    PlayerBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // 몬스터의 첫번째 노드위치로 이동
 
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
@@ -502,30 +564,19 @@ namespace TabTabs.NamChanwoo
 
                     if (SelectCharacter.swordGirl1)
                     {
-                        GameObject swordGirl1AfterImage =
-                        Instantiate(swordGirl1_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
-                        SpriteRenderer spriteRenderer = swordGirl1_AfterImage.GetComponent<SpriteRenderer>();
-                        spriteRenderer.flipX = true;
+                        swordGirl1_AfterImage.transform.localScale = new Vector3(1.0f, swordGirl1_AfterImage.transform.localScale.y, swordGirl1_AfterImage.transform.localScale.z);
+                        Instantiate(swordGirl1_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
                     else if (SelectCharacter.swordGirl2)
                     {
-                        GameObject swordGirl2AfterImage =
-                        Instantiate(swordGirl2_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
-                        SpriteRenderer spriteRenderer = swordGirl2_AfterImage.GetComponent<SpriteRenderer>();
-                        spriteRenderer.flipX = true;
+                        swordGirl2_AfterImage.transform.localScale = new Vector3(1.0f, swordGirl2_AfterImage.transform.localScale.y, swordGirl2_AfterImage.transform.localScale.z);
+                        Instantiate(swordGirl2_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
                     else
                     {
-                        GameObject leonAfterImage =
-                        Instantiate(leon_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
-                        SpriteRenderer spriteRenderer = leon_AfterImage.GetComponent<SpriteRenderer>();
-                        spriteRenderer.flipX = true;
+                        leon_AfterImage.transform.localScale = new Vector3(1.0f, leon_AfterImage.transform.localScale.y, leon_AfterImage.transform.localScale.z);
+                        Instantiate(leon_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
-
-                    //GameObject PlayerAfterImage = Instantiate(swordGirl1_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
-                    //SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
-                    //spriteRenderer.flipX = false;
-                    //PlayerBaseInstance.PlayerAnim.SetTrigger("Slide_Atk_1"); // 오크의 위치로 이동해 공격모션
 
                     Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage"); // 오크의 피격모션 재생
 
@@ -540,13 +591,23 @@ namespace TabTabs.NamChanwoo
 
                     selectEnemy.Hit();
 
-                    PlayerBaseInstance.PlayerTransform.localScale =
-                    new Vector3(1f, PlayerBaseInstance.PlayerTransform.localScale.y, PlayerBaseInstance.PlayerTransform.localScale.z);
+                    PlayerBase.PlayerTransform.localScale =
+                    new Vector3(1f, PlayerBase.PlayerTransform.localScale.y, PlayerBase.PlayerTransform.localScale.z);
 
                     FirstDashAttack = true;
                     
                     if (selectEnemy.GetOwnNodes().Count <= 0)
                     {
+                        float rand = Random.Range(0f, 1f);
+                        if (rand <= 0.05f)
+                        {// 5% 확률로 1골드 추가(몬스터가 사망할시)
+                            DataManager.Instance.playerData.Gold += 1;
+                        }
+                        // 추가 10골드 확률 계산
+                        else if (rand <= 0.0005f)
+                        {// 0.05% 확률로 10골드를 추가(몬스터가 사망할시)
+                            DataManager.Instance.playerData.Gold += 10;
+                        }
 
                         FirstDashAttack = false;
                         selectEnemy.Die();
@@ -628,27 +689,27 @@ namespace TabTabs.NamChanwoo
             {
                 if (randAnim == 0)
                 {
-                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_1"); // 오크의 위치로 이동해 공격모션
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_1"); // 오크의 위치로 이동해 공격모션
                 }
                 else if (randAnim == 1)
                 {
-                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_2"); // 오크의 위치로 이동해 공격모션
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_2"); // 오크의 위치로 이동해 공격모션
                 }
                 else if (randAnim == 2)
                 {
-                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_3"); // 오크의 위치로 이동해 공격모션
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_3"); // 오크의 위치로 이동해 공격모션
                 }
                 else if (randAnim == 3)
                 {
-                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_4"); // 오크의 위치로 이동해 공격모션
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_4"); // 오크의 위치로 이동해 공격모션
                 }
                 else if (randAnim == 4)
                 {
-                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_5"); // 오크의 위치로 이동해 공격모션
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_5"); // 오크의 위치로 이동해 공격모션
                 }
                 else
                 {// 5
-                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_7"); // 오크의 위치로 이동해 공격모션
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_7"); // 오크의 위치로 이동해 공격모션
                 }
                 // * Atk_6애니메이션은 게임 최초시작시만 발동되는 애니메이션
             }
@@ -662,7 +723,6 @@ namespace TabTabs.NamChanwoo
             //{// randEffect : 20퍼센트 확률
             Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
             Instantiate(Character_Effect, targetPosition, Quaternion.identity);
-            
         }
 
         public void StartSpawn()
@@ -713,6 +773,21 @@ namespace TabTabs.NamChanwoo
             }
             selectEnemy = spawnEnemy2;
             LeftEnemy = spawnEnemy2;
+        }
+
+        void EffectInit()
+        {
+            Character_Effect.transform.localScale =
+            new Vector3(1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
+
+            swordGirl1_AfterImage.transform.localScale =
+            new Vector3(1.0f, swordGirl1_AfterImage.transform.localScale.y, swordGirl1_AfterImage.transform.localScale.z);
+
+            swordGirl2_AfterImage.transform.localScale =
+            new Vector3(1.0f, swordGirl2_AfterImage.transform.localScale.y, swordGirl2_AfterImage.transform.localScale.z);
+
+            leon_AfterImage.transform.localScale =
+            new Vector3(1.0f, leon_AfterImage.transform.localScale.y, leon_AfterImage.transform.localScale.z);
         }
     }
 }

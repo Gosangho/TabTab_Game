@@ -36,7 +36,7 @@ namespace TabTabs.NamChanwoo
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject); // 선택 사항: 이 관리자가 장면 로드 간에 지속되도록 하려면
+                //DontDestroyOnLoad(gameObject); // 선택 사항: 이 관리자가 장면 로드 간에 지속되도록 하려면
             }
             else
             {

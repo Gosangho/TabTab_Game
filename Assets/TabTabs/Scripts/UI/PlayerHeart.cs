@@ -15,13 +15,13 @@ public class PlayerHeart : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (PlayerHeartGauge <= 0)
         {
-            PlayerBaseInstance.PlayerAnim.SetTrigger("Die");
-            Destroy(gameObject);
+            PlayerBase.PlayerAnim.SetTrigger("Die");
+            //Destroy(gameObject);
         }
     }
 }

@@ -15,9 +15,9 @@ TagManager:
   - Player
   - Monster
   - System
-  - 
-  - 
-  - 
+  - SFX_audio
+  - BGM_audio
+  - Ui_Click
   - 
   - 
   - 

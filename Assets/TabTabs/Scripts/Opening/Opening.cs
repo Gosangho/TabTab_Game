@@ -11,6 +11,13 @@ public class Opening : MonoBehaviour
     }
     public void GoLobby()
     {
-        SceneManager.LoadScene(4);
+        if (DataManager.Instance.playerData.TutorialPlay == true)
+        {
+            SceneManager.LoadScene(4);
+        }
+        else
+        {
+            SceneManager.LoadScene(5);
+        }
     }
 }

@@ -69,7 +69,7 @@ namespace TabTabs.NamChanwoo
 
                     CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y,0.0f);
-                    PlayerBaseInstance.PlayerAnim.SetTrigger("Atk1_Triger"); // 오크의 위치로 이동해 공격모션
+                    //PlayerBaseInstance.PlayerAnim.SetTrigger("Atk1_Triger"); // 오크의 위치로 이동해 공격모션
                     Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
                     Instantiate(Player_Effect, targetPosition, Quaternion.identity);
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);

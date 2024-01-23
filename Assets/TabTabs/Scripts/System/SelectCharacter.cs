@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class SelectCharacter : MonoBehaviour
 {
-    public static bool swordGirl1 = false;
-    public static bool swordGirl2 = false;
-    public static bool leon = true;
+    public static bool swordGirl1;
+    public static bool swordGirl2;
+    public static bool leon;
     public Image bestScoreCharacterImage;
     public TextMeshProUGUI bestcharacterName;
     public TextMeshProUGUI bestcharacterBestScore;
@@ -21,11 +21,14 @@ public class SelectCharacter : MonoBehaviour
     public TextMeshProUGUI characterName;
     public TextMeshProUGUI characterBestScore;
     public TextMeshProUGUI characterKillCount;
+    public TextMeshProUGUI playerGold;
 
     void Start()
     {
         if (SceneManager.GetActiveScene().buildIndex == 4)
         {
+            playerGold.text = DataManager.Instance.playerData.Gold.ToString();
+            
             if (DataManager.Instance.swordGirl1.bestScore >= DataManager.Instance.swordGirl2.bestScore &&
             DataManager.Instance.swordGirl1.bestScore >= DataManager.Instance.leon.bestScore)
             {// 스워드걸1의 점수가 가장 높다면

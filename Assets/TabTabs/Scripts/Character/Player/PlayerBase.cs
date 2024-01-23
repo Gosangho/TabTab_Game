@@ -7,34 +7,28 @@ using Spine;
 using Spine.Unity;
 using UnityEngine.SceneManagement;
 
-public class PlayerBase : CharacterBase
+public class PlayerBase : MonoBehaviour
 {
-    public Animator PlayerAnim;
-    public Transform PlayerTransform;
+    [SerializeField]
+    public static Animator PlayerAnim;
+    [SerializeField]
+    public static Transform PlayerTransform;
+
     void Start()
     {
-        PlayerAnim = GetComponent<Animator>();
+        if (PlayerAnim == null)
+        {
+            PlayerAnim = GetComponent<Animator>();
+        }
+        //PlayerAnim = GetComponent<Animator>();
         PlayerTransform = GetComponent<Transform>();
-    }
 
-    
-    void Update()
-    {
-        
+        Debug.Log("playerAnim: " + PlayerAnim);
+        Debug.Log("playerTrans:" + PlayerTransform);
     }
-
-    //public void PlayerAnimEvent()
+    //private void OnEnable()
     //{
-    //    if (SceneManager.GetActiveScene().buildIndex==1||SceneManager.GetActiveScene().buildIndex==3)
-    //    {// 첫번째 씬이라면
-    //        Vector3 targetPosition = new Vector3(0.0f, 1.5f, 0f);
-    //        transform.position = targetPosition;
-    //    }
-    //    else
-    //    {
-    //        Vector3 targetPosition = new Vector3(-1.2f, 1.5f, 0f);
-    //        transform.position = targetPosition;
-    //    }
+    //    PlayerAnim = GetComponent<Animator>();
+    //    PlayerTransform = GetComponent<Transform>();
     //}
-
 }

@@ -12,6 +12,20 @@ public class FadeScene : MonoBehaviour
     public static bool isLobby = false;
     public static bool isTutorial = false;
 
+    public void Opennig()
+    {
+        if (DataManager.Instance.playerData.TutorialPlay == true)
+        {
+            isLobby = true;
+            StartCoroutine(_LoadLobbyScene());
+        }
+        else
+        {
+            isTutorial = true;
+            StartCoroutine(_LoadeTutorialScene());
+        }
+    }
+
     public void LoadLobbyScene()
     {
         isLobby = true;
@@ -22,8 +36,6 @@ public class FadeScene : MonoBehaviour
     {
         Time.timeScale = 1.0f;
 
-        //audioManager.Instance.SfxAudioPlay("Ui_Click");
-        
         Transition.SetTrigger("FadeSceneStart");
 
         yield return new WaitForSeconds(TransitionTime);
@@ -36,7 +48,6 @@ public class FadeScene : MonoBehaviour
         Time.timeScale = 1.0f;
 
         Transition.SetTrigger("FadeSceneStart");
-        //audioManager.Instance.SfxAudioPlay("Ui_Click");
 
         yield return new WaitForSeconds(TransitionTime);
 
@@ -46,8 +57,6 @@ public class FadeScene : MonoBehaviour
     IEnumerator _LoadeTutorialScene()
     {
         Time.timeScale = 1.0f;
-
-        //audioManager.Instance.SfxAudioPlay("Ui_Click");
 
         Transition.SetTrigger("FadeSceneStart");
 
