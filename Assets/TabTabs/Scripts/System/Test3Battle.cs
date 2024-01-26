@@ -43,12 +43,15 @@ namespace TabTabs.NamChanwoo
         public bool FirstDashAttack;
         public GameObject swordGirl1_AfterImage; // 대쉬 버튼을 눌렀을 경우 캐릭터의 잔상이 표시되는 애니메이션
         public GameObject swordGirl2_AfterImage;
+        public GameObject swordGirl3_AfterImage;
         public GameObject leon_AfterImage;
         public GameObject swordGirl1_FirstAttack;
         public GameObject swordGirl2_FirstAttack;
+        public GameObject swordGirl3_FirstAttack;
         public GameObject leon_FirstAttack;
         public GameObject swordGirl1;
         public GameObject swordGirl2;
+        public GameObject swordGirl3;
         public GameObject leon;
         public GameObject reStartObj;
         public SelectCharacter selectCharacterInstance;
@@ -60,17 +63,22 @@ namespace TabTabs.NamChanwoo
         {
             selectCharacterInstance = FindObjectOfType<SelectCharacter>();
 
-            if (SelectCharacter.swordGirl1)
+            if (SelectCharacter.leon)
             {
-                swordGirl1.SetActive(true);
+                leon.SetActive(true);
             }
             else if (SelectCharacter.swordGirl2)
             {
                 swordGirl2.SetActive(true);
             }
-            else
+            else if (SelectCharacter.swordGirl3)
             {
-                leon.SetActive(true);
+                swordGirl3.SetActive(true);
+            }
+            else
+            { // 어떤 캐릭터도 선택하지 않을경우 기본캐릭터 : SwrodGirl1
+                swordGirl1.SetActive(true);
+                SelectCharacter.swordGirl1 = true;
             }
 
             ClickNode = ENodeType.Default;
@@ -126,6 +134,7 @@ namespace TabTabs.NamChanwoo
                     ScoreSystemInstance.score += 1; // 공격성공시 Score +1
                     // 1. 해당하는 enemy의 블럭 destroy
                     // 2. 캐릭터가 해당하는 enemy의 블럭위치로 이동 후 공격 애니메이션 재생 후 원래위치로 이동
+
                     if (SelectCharacter.swordGirl1)
                     {
                         if (ScoreSystem.swordGirl1BestScore <= ScoreSystemInstance.score)
@@ -138,6 +147,13 @@ namespace TabTabs.NamChanwoo
                         if (ScoreSystem.swordGirl2BestScore <= ScoreSystemInstance.score)
                         {
                             ScoreSystem.swordGirl2BestScore = ScoreSystemInstance.score;
+                        }
+                    }
+                    else if (SelectCharacter.swordGirl3)
+                    {
+                        if (ScoreSystem.swordGirl3BestScore <= ScoreSystemInstance.score)
+                        {
+                            ScoreSystem.swordGirl3BestScore = ScoreSystemInstance.score;
                         }
                     }
                     else
@@ -188,6 +204,11 @@ namespace TabTabs.NamChanwoo
                         {
                             GameObject swordGirl2FirstAttack =
                             Instantiate(swordGirl2_FirstAttack, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
+                        }
+                        else if (SelectCharacter.swordGirl3)
+                        {
+                            GameObject swordGirl3FirstAttack =
+                            Instantiate(swordGirl3_FirstAttack, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                         }
                         else
                         {
@@ -245,14 +266,6 @@ namespace TabTabs.NamChanwoo
                             DataManager.Instance.playerData.Gold += 10;
                         }
 
-                        //if (selectEnemy == RightEnemy)
-                        //{
-                        //    Right_Orc2_Anim.RightAnim.SetTrigger("Right_Die");
-                        //}
-                        //else
-                        //{
-                        //    Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
-                        //}
                         selectEnemy.Die();
                         audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
                         TimebarInstance.KillCount += 1;
@@ -264,6 +277,10 @@ namespace TabTabs.NamChanwoo
                         else if (SelectCharacter.swordGirl2)
                         {
                             DataManager.Instance.swordGirl2.totalKillScore++;
+                        }
+                        else if (SelectCharacter.swordGirl3)
+                        {
+                            DataManager.Instance.swordGirl3.totalKillScore++;
                         }
                         else
                         {
@@ -284,13 +301,6 @@ namespace TabTabs.NamChanwoo
                             // 스폰 후
                             Left_MonsterDie = false;
                         }
-                        //HandleSceneMonsterSpawned(SceneEnemyList[0]);
-
-                        //if (SceneEnemyList.Count > 0)
-                        //{
-                        //    selectEnemy = SceneEnemyList[0];
-                        //    selectEnemy.SetupAttackSliderUI(GameManager.UISystem.AttackSliderUI);
-                        //}
                     }
                 }
                 else
@@ -395,6 +405,13 @@ namespace TabTabs.NamChanwoo
                             ScoreSystem.swordGirl2BestScore = ScoreSystemInstance.score;
                         }
                     }
+                    else if (SelectCharacter.swordGirl3)
+                    {
+                        if (ScoreSystem.swordGirl3BestScore <= ScoreSystemInstance.score)
+                        {
+                            ScoreSystem.swordGirl3BestScore = ScoreSystemInstance.score;
+                        }
+                    }
                     else
                     {
                         if (ScoreSystem.leonBestScore <= ScoreSystemInstance.score)
@@ -417,10 +434,6 @@ namespace TabTabs.NamChanwoo
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
                     GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
 
-                    Debug.Log(SelectCharacter.swordGirl1);
-                    Debug.Log(SelectCharacter.swordGirl2);
-                    Debug.Log(SelectCharacter.leon);
-
                     if (SelectCharacter.swordGirl1)
                     {
                         swordGirl1_AfterImage.transform.localScale = new Vector3(-1.0f, swordGirl1_AfterImage.transform.localScale.y, swordGirl1_AfterImage.transform.localScale.z);
@@ -430,6 +443,11 @@ namespace TabTabs.NamChanwoo
                     {
                         swordGirl2_AfterImage.transform.localScale = new Vector3(-1.0f, swordGirl2_AfterImage.transform.localScale.y, swordGirl2_AfterImage.transform.localScale.z);
                         Instantiate(swordGirl2_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
+                    }
+                    else if (SelectCharacter.swordGirl3)
+                    {
+                        swordGirl3_AfterImage.transform.localScale = new Vector3(-1.0f, swordGirl3_AfterImage.transform.localScale.y, swordGirl3_AfterImage.transform.localScale.z);
+                        Instantiate(swordGirl3_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
                     else
                     {
@@ -479,6 +497,10 @@ namespace TabTabs.NamChanwoo
                         else if (SelectCharacter.swordGirl2)
                         {
                             DataManager.Instance.swordGirl2.totalKillScore++;
+                        }
+                        else if (SelectCharacter.swordGirl3)
+                        {
+                            DataManager.Instance.swordGirl3.totalKillScore++;
                         }
                         else
                         {
@@ -540,6 +562,13 @@ namespace TabTabs.NamChanwoo
                             ScoreSystem.swordGirl2BestScore = ScoreSystemInstance.score;
                         }
                     }
+                    else if (SelectCharacter.swordGirl3)
+                    {
+                        if (ScoreSystem.swordGirl3BestScore <= ScoreSystemInstance.score)
+                        {
+                            ScoreSystem.swordGirl3BestScore = ScoreSystemInstance.score;
+                        }
+                    }
                     else
                     {
                         if (ScoreSystem.leonBestScore <= ScoreSystemInstance.score)
@@ -571,6 +600,11 @@ namespace TabTabs.NamChanwoo
                     {
                         swordGirl2_AfterImage.transform.localScale = new Vector3(1.0f, swordGirl2_AfterImage.transform.localScale.y, swordGirl2_AfterImage.transform.localScale.z);
                         Instantiate(swordGirl2_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
+                    }
+                    else if (SelectCharacter.swordGirl3)
+                    {
+                        swordGirl3_AfterImage.transform.localScale = new Vector3(1.0f, swordGirl3_AfterImage.transform.localScale.y, swordGirl3_AfterImage.transform.localScale.z);
+                        Instantiate(swordGirl3_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
                     else
                     {
@@ -621,6 +655,10 @@ namespace TabTabs.NamChanwoo
                         else if (SelectCharacter.swordGirl2)
                         {
                             DataManager.Instance.swordGirl2.totalKillScore++;
+                        }
+                        else if (SelectCharacter.swordGirl3)
+                        {
+                            DataManager.Instance.swordGirl3.totalKillScore++;
                         }
                         else
                         {
@@ -785,6 +823,9 @@ namespace TabTabs.NamChanwoo
 
             swordGirl2_AfterImage.transform.localScale =
             new Vector3(1.0f, swordGirl2_AfterImage.transform.localScale.y, swordGirl2_AfterImage.transform.localScale.z);
+
+            swordGirl3_AfterImage.transform.localScale =
+            new Vector3(1.0f, swordGirl3_AfterImage.transform.localScale.y, swordGirl3_AfterImage.transform.localScale.z);
 
             leon_AfterImage.transform.localScale =
             new Vector3(1.0f, leon_AfterImage.transform.localScale.y, leon_AfterImage.transform.localScale.z);

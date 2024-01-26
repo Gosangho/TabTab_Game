@@ -51,6 +51,18 @@ namespace TabTabs.NamChanwoo
                     newRecordObj.gameObject.SetActive(false);
                 }
             }
+            else if (SelectCharacter.swordGirl3)
+            {
+                resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl3PreviousBestScore.ToString();
+                if (test3BattleInstance.playerDie == true && scoreSystemInstance.swordGirl3PreviousBestScore < scoreSystemInstance.score)
+                {
+                    newRecordObj.gameObject.SetActive(true);
+                }
+                else
+                {
+                    newRecordObj.gameObject.SetActive(false);
+                }
+            }
             else
             {
                 resultBestScore.text = "Best Score : " + scoreSystemInstance.leonPreviousBestScore.ToString();

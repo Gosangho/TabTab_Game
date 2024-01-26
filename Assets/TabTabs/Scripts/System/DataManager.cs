@@ -26,11 +26,13 @@ public class DataManager : MonoBehaviour
 
     private string swordGirl1FileName = "sword1.json";
     private string swordGirl2FileName = "sword2.json";
+    private string swordGirl3FileName = "sword3.json";
     private string leonFileName = "leon.json";
     private string playerDataFileName = "PlayerData.json";
 
     public CharacterData swordGirl1 = new CharacterData();
     public CharacterData swordGirl2 = new CharacterData();
+    public CharacterData swordGirl3 = new CharacterData();
     public CharacterData leon = new CharacterData();
     public PlayerData playerData = new PlayerData();
 
@@ -54,6 +56,7 @@ public class DataManager : MonoBehaviour
     {
         LoadCharacterData(swordGirl1FileName, ref swordGirl1);
         LoadCharacterData(swordGirl2FileName, ref swordGirl2);
+        LoadCharacterData(swordGirl3FileName, ref swordGirl3);
         LoadCharacterData(leonFileName, ref leon);
 
         string playerfilePath = Path.Combine(Application.persistentDataPath, playerDataFileName);
@@ -79,6 +82,7 @@ public class DataManager : MonoBehaviour
     {
         SaveCharacterData(swordGirl1FileName, swordGirl1);
         SaveCharacterData(swordGirl2FileName, swordGirl2);
+        SaveCharacterData(swordGirl3FileName, swordGirl3);
         SaveCharacterData(leonFileName, leon);
 
         string playerfilePath = Path.Combine(Application.persistentDataPath, playerDataFileName);

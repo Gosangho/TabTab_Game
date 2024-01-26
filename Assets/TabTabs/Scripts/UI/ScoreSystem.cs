@@ -12,18 +12,18 @@ public class ScoreSystem : MonoBehaviour
     public static int bestScore; // 캐릭터중 최고의 기록을 저장
     public static int swordGirl1BestScore;
     public static int swordGirl2BestScore;
+    public static int swordGirl3BestScore;
     public static int leonBestScore;
     public int swordGirl1PreviousBestScore = 0;
     public int swordGirl2PreviousBestScore = 0;
+    public int swordGirl3PreviousBestScore = 0;
     public int leonPreviousBestScore = 0;
 
     void Start()
     {
-        //swordGirl1KillCount = DataManager.Instance.swordGirl1.totalKillScore;
-        //swordGirl2KillCount = DataManager.Instance.swordGirl2.totalKillScore;
-        //leonKillCount = DataManager.Instance.leon.totalKillScore;
         swordGirl1PreviousBestScore = DataManager.Instance.swordGirl1.bestScore;
         swordGirl2PreviousBestScore = DataManager.Instance.swordGirl2.bestScore;
+        swordGirl3PreviousBestScore = DataManager.Instance.swordGirl3.bestScore;
         leonPreviousBestScore = DataManager.Instance.leon.bestScore;
         scoreText = GetComponent<TextMeshProUGUI>();
         score = 0;
@@ -42,6 +42,11 @@ public class ScoreSystem : MonoBehaviour
         else if (SelectCharacter.swordGirl2 && score > DataManager.Instance.swordGirl2.bestScore)
         {
             DataManager.Instance.swordGirl2.bestScore = score;
+            DataManager.Instance.SaveGameData();
+        }
+        else if (SelectCharacter.swordGirl3 && score > DataManager.Instance.swordGirl3.bestScore)
+        {
+            DataManager.Instance.swordGirl3.bestScore = score;
             DataManager.Instance.SaveGameData();
         }
         else if (SelectCharacter.leon && score > DataManager.Instance.leon.bestScore)
