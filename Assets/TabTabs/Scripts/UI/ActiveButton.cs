@@ -32,12 +32,12 @@ public class ActiveButton : MonoBehaviour
         }
     }
 
-    public void LobbyScene()
-    {
-    }
-
     public void GameEnd()
     {
-        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); // 어플리케이션 종료
+#endif
     }
 }

@@ -33,7 +33,10 @@ namespace TabTabs.NamChanwoo
         public bool Right_MonsterDie; // 오른쪽 몬스터가 죽었을경우 true로 변경 -> 리젠 후 false로 변경
         public bool Left_MonsterDie;
         public Node NodeInstance;
-        public GameObject Character_Effect;
+        public GameObject swordGirl1_CriticalEffect;
+        public GameObject swordGirl2_CriticalEffect;
+        public GameObject swordGirl3_CriticalEffect;
+        public GameObject leon_CriticalEffect;
         public bool FirstAttack; // 게임시작시 공격버튼으로 최초 한번만 재생되는 애니메이션 변수
         public bool Right_TrainAttack; // 오른쪽 몬스터를 연속공격했는지 판단하는 변수
         public bool Left_TrainAttack; // 왼쪽 몬스터를 연속공격했는지 판단하는 변수
@@ -193,6 +196,7 @@ namespace TabTabs.NamChanwoo
                     }
 
                     RandAnim();
+
                     if (FirstAttack)
                     {// 최초 공격시만 발동되는 애니메이션
                         if (SelectCharacter.swordGirl1)
@@ -434,6 +438,7 @@ namespace TabTabs.NamChanwoo
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
                     GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
 
+
                     if (SelectCharacter.swordGirl1)
                     {
                         swordGirl1_AfterImage.transform.localScale = new Vector3(-1.0f, swordGirl1_AfterImage.transform.localScale.y, swordGirl1_AfterImage.transform.localScale.z);
@@ -457,9 +462,6 @@ namespace TabTabs.NamChanwoo
 
                     Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
 
-                    Character_Effect.transform.localScale = new Vector3(-1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
-                    
-                    RandEffect();
 
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
 
@@ -591,6 +593,7 @@ namespace TabTabs.NamChanwoo
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // 노드의 위치를 가져옴
                     GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // 노드위치에 생성
 
+
                     if (SelectCharacter.swordGirl1)
                     {
                         swordGirl1_AfterImage.transform.localScale = new Vector3(1.0f, swordGirl1_AfterImage.transform.localScale.y, swordGirl1_AfterImage.transform.localScale.z);
@@ -614,10 +617,6 @@ namespace TabTabs.NamChanwoo
 
                     Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage"); // 오크의 피격모션 재생
 
-                    Character_Effect.transform.localScale = new Vector3(1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
-                    
-                    RandEffect();
-                    //Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
 
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
 
@@ -692,7 +691,7 @@ namespace TabTabs.NamChanwoo
             }
             else
             {
-                RandEffect();
+                RandCriticalEffect();
                 audioManager.Instance.SfxAudioPlay("Char_Spirit");
             }
         }
@@ -754,15 +753,59 @@ namespace TabTabs.NamChanwoo
 
         }
 
-        void RandEffect()
+        void RandCriticalEffect()
         {
             //float randEffect = Random.Range(0f, 100f);
-            //if (randEffect <= 20f)
-            //{// randEffect : 20퍼센트 확률
-            Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
-            Instantiate(Character_Effect, targetPosition, Quaternion.identity);
-        }
+            Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().transform.position;
 
+            if (selectEnemy == LeftEnemy)
+            {
+                swordGirl1_CriticalEffect.transform.localScale =
+                new Vector3(-1.0f, swordGirl1_CriticalEffect.transform.localScale.y, swordGirl1_CriticalEffect.transform.localScale.z);
+
+                swordGirl2_CriticalEffect.transform.localScale =
+                new Vector3(-0.6f, 0.6f, swordGirl2_CriticalEffect.transform.localScale.z);
+
+                swordGirl3_CriticalEffect.transform.localScale =
+                new Vector3(-0.8f, 0.7f, swordGirl3_CriticalEffect.transform.localScale.z);
+
+                leon_CriticalEffect.transform.localScale =
+                new Vector3(-1.0f, leon_CriticalEffect.transform.localScale.y, leon_CriticalEffect.transform.localScale.z);
+            }
+            else
+            {
+                swordGirl1_CriticalEffect.transform.localScale =
+                new Vector3(1.0f, swordGirl1_CriticalEffect.transform.localScale.y, swordGirl1_CriticalEffect.transform.localScale.z);
+
+                swordGirl2_CriticalEffect.transform.localScale =
+                new Vector3(0.6f, 0.6f, swordGirl2_CriticalEffect.transform.localScale.z);
+
+                swordGirl3_CriticalEffect.transform.localScale =
+                new Vector3(0.8f, 0.7f, swordGirl3_CriticalEffect.transform.localScale.z);
+
+                leon_CriticalEffect.transform.localScale =
+                new Vector3(1.0f, leon_CriticalEffect.transform.localScale.y, leon_CriticalEffect.transform.localScale.z);
+            }
+            
+            
+            if (SelectCharacter.swordGirl1)
+            {
+                Instantiate(swordGirl1_CriticalEffect, targetPosition, Quaternion.identity);
+            }
+            else if (SelectCharacter.swordGirl2)
+            {
+                Instantiate(swordGirl2_CriticalEffect, targetPosition, Quaternion.identity);
+            }
+            else if (SelectCharacter.swordGirl3)
+            {
+                Instantiate(swordGirl3_CriticalEffect, targetPosition, Quaternion.identity);
+            }
+            else if (SelectCharacter.leon)
+            {
+                Instantiate(leon_CriticalEffect, targetPosition, Quaternion.identity);
+            }
+        }
+            
         public void StartSpawn()
         {
             GameObject RightMonster = Right_Ork;
@@ -815,8 +858,17 @@ namespace TabTabs.NamChanwoo
 
         void EffectInit()
         {
-            Character_Effect.transform.localScale =
-            new Vector3(1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
+            swordGirl1_CriticalEffect.transform.localScale =
+            new Vector3(1.0f, swordGirl1_CriticalEffect.transform.localScale.y, swordGirl1_CriticalEffect.transform.localScale.z);
+
+            swordGirl2_CriticalEffect.transform.localScale =
+            new Vector3(0.6f, 0.6f, swordGirl2_CriticalEffect.transform.localScale.z);
+
+            swordGirl3_CriticalEffect.transform.localScale =
+            new Vector3(0.8f, 0.7f, swordGirl3_CriticalEffect.transform.localScale.z);
+
+            leon_CriticalEffect.transform.localScale =
+            new Vector3(1.0f, leon_CriticalEffect.transform.localScale.y, leon_CriticalEffect.transform.localScale.z);
 
             swordGirl1_AfterImage.transform.localScale =
             new Vector3(1.0f, swordGirl1_AfterImage.transform.localScale.y, swordGirl1_AfterImage.transform.localScale.z);

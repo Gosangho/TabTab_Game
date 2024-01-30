@@ -34,8 +34,7 @@ public class SelectCharacter : MonoBehaviour
 
     void Start()
     {
-        CharacterImageChange();
-
+        
         characterScores.Add("SwordGirl1", DataManager.Instance.swordGirl1.bestScore);
         characterScores.Add("SwordGirl2", DataManager.Instance.swordGirl2.bestScore);
         characterScores.Add("SwordGirl3", DataManager.Instance.swordGirl3.bestScore);
@@ -45,6 +44,7 @@ public class SelectCharacter : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex == 4)
         {
+            CharacterImageChange();
             playerGold.text = DataManager.Instance.playerData.Gold.ToString();
             
             if (DataManager.Instance.swordGirl1.bestScore == characterMaxScroe)

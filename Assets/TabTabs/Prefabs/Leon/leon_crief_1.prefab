@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3923612964004226097
+--- !u!1 &6881962206919827633
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2349177034282809148}
-  - component: {fileID: 6879796759411962369}
-  - component: {fileID: 6662065274208150260}
-  - component: {fileID: 5429370110287080969}
+  - component: {fileID: 671433768594758394}
+  - component: {fileID: 7973298453104081499}
+  - component: {fileID: 6662569013517480941}
+  - component: {fileID: 2998983040129896065}
   m_Layer: 0
-  m_Name: swordgirl_3_SlideAttack
+  m_Name: leon_crief_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2349177034282809148
+--- !u!4 &671433768594758394
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3923612964004226097}
+  m_GameObject: {fileID: 6881962206919827633}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.029, y: 0.955, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6879796759411962369
+--- !u!212 &7973298453104081499
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3923612964004226097}
+  m_GameObject: {fileID: 6881962206919827633}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,28 +75,28 @@ SpriteRenderer:
   m_SortingLayerID: 590611611
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1c39a0c9e284889409a6c0a5d267d04d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22139a3fc35f7344685c0c112a3a9ca9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.11, y: 0.96}
+  m_Size: {x: 2.85, y: 2.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6662065274208150260
+--- !u!95 &6662569013517480941
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3923612964004226097}
+  m_GameObject: {fileID: 6881962206919827633}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 19664a1dd62e8e64f90f208ed7bee525, type: 2}
+  m_Controller: {fileID: 9100000, guid: a0a912565bf6077418b01b419164281c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -107,22 +107,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5429370110287080969
+--- !u!114 &2998983040129896065
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3923612964004226097}
+  m_GameObject: {fileID: 6881962206919827633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeba790661483174ba0313f016941165, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fa50bf9f3e6e504bb2194623cea21fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_AfterImage:
-  - {fileID: 21300000, guid: 1c39a0c9e284889409a6c0a5d267d04d, type: 3}
-  - {fileID: 21300000, guid: 3fb306105fa2360448ebc44d25aa7273, type: 3}
-  - {fileID: 21300000, guid: 0e070ee4d0681ca43bda1abc8fd2baaf, type: 3}
-  - {fileID: 21300000, guid: c3bfceb5f3449f44ba5565006e49ded7, type: 3}
-  - {fileID: 21300000, guid: 6ace334ab224cbf4c8f75772f6539b87, type: 3}
-  - {fileID: 21300000, guid: 947a3d287b3a5a44e86e9501c0ae6af7, type: 3}
