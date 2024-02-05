@@ -9,7 +9,7 @@ namespace TabTabs.NamChanwoo
     public class ContinueButton : MonoBehaviour
     {
         Test3Battle test3BattleInstance;
-        public static bool continueButtonClick = false; // ÀÌ¾îÇÏ±â(1È¸)¸¦ ÀÌ¹Ì »ç¿ëÇß´ÂÁöÀÇ ¿©ºÎ
+        public static bool continueButtonClick = false; // ï¿½Ì¾ï¿½ï¿½Ï±ï¿½(1È¸)ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         public GameObject resultObj;
         public GameObject newRecordObj;
         public GameObject reStartObj;
@@ -27,22 +27,32 @@ namespace TabTabs.NamChanwoo
         {
             if (continueButtonClick == false)
             {
-                TImebar.timebarImage.fillAmount = 0.5f;
-                reStartObj.gameObject.SetActive(false);
-                resultObj.gameObject.SetActive(false);
-                this.gameObject.SetActive(false);
-                test3BattleInstance.playerDie = false;
-                resultObjText.gameObject.SetActive(false);
-                resultBestObjText.gameObject.SetActive(false);
-                newRecordObj.gameObject.SetActive(false);
-                test3BattleInstance.Right_TrainAttack = false;
-                test3BattleInstance.Left_TrainAttack = false;
-                test3BattleInstance.FirstAttack = true;
-                test3BattleInstance.FirstDashAttack = true;
-                PlayerBase.PlayerAnim.SetTrigger("Continue");
-                continueButtonClick = true;
-                test3BattleInstance.repetition = false;
-            }
+                if(!AdsManager.Instance.isPurchase) {
+                    AdsManager.Instance.continueButtonInstance = this;
+                    AdsManager.Instance.rewardedAdPlay();
+                    
+                } else {
+                    GetReward();
+                }
+            } 
+        }
+
+        public void GetReward() {
+            TImebar.timebarImage.fillAmount = 0.5f;
+            reStartObj.gameObject.SetActive(false);
+            resultObj.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
+            test3BattleInstance.playerDie = false;
+            resultObjText.gameObject.SetActive(false);
+            resultBestObjText.gameObject.SetActive(false);
+            newRecordObj.gameObject.SetActive(false);
+            test3BattleInstance.Right_TrainAttack = false;
+            test3BattleInstance.Left_TrainAttack = false;
+            test3BattleInstance.FirstAttack = true;
+            test3BattleInstance.FirstDashAttack = true;
+            PlayerBase.PlayerAnim.SetTrigger("Continue");
+            continueButtonClick = true;
+            test3BattleInstance.repetition = false;
         }
     }
 }

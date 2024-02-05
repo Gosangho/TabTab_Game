@@ -13,6 +13,29 @@ namespace TabTabs.NamChanwoo
         BannerView bannerView;
         InterstitialAd interstitial;
 
+        public bool isPurchase = false;
+
+        public ContinueButton continueButtonInstance;
+
+        public static AdsManager  Instance { get; private set; }
+
+  
+        void Awake()
+        {
+            // 이미 인스턴스가 있는지 확인합니다.
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(this.gameObject);
+            }
+            else
+            {
+                // 중복되는 인스턴스가 있는 경우, 이 게임 객체를 파괴합니다.
+                Destroy(this.gameObject);
+            }
+
+        }
+
         // Start is called before the first frame update
         void Start()
         {
@@ -31,8 +54,16 @@ namespace TabTabs.NamChanwoo
 
             AdRequest request = new AdRequest.Builder().Build();
 
+            if(bannerView != null) {
+                bannerView.Destroy();
+                bannerView = null;
+            }
+
             bannerView = new BannerView(adbanerId, AdSize.Banner, AdPosition.Bottom);
             bannerView.LoadAd(request);
+
+            
+            bannerView.Show();
 
             RewardedAd.Load(adUnitId, request, LoadCallback);
             
@@ -60,7 +91,6 @@ namespace TabTabs.NamChanwoo
             });
 
 
-            bannerView.Show();
         }
 
         // RewardedAd 객체 생성
@@ -90,20 +120,24 @@ namespace TabTabs.NamChanwoo
                     if (this.interstitial.CanShowAd())
                     {
                         this.interstitial.Show();
+                        continueButtonInstance.GetReward();
                     }
                 }
             } else {
                 if (this.interstitial.CanShowAd())
                 {
                     this.interstitial.Show();
+                    continueButtonInstance.GetReward();
                 }
             }
+
+            InitAds();
         }
 
 
         public void GetReward(Reward reward)
         {
-            Debug.Log("광고 보상 처리");
+            continueButtonInstance.GetReward();
         }
 
         

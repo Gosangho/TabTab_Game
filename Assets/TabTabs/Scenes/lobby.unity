@@ -5995,7 +5995,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 656647609}
-  - component: {fileID: 656647610}
   m_Layer: 5
   m_Name: Store
   m_TagString: Untagged
@@ -6027,19 +6026,6 @@ RectTransform:
   m_AnchoredPosition: {x: 4.82, y: -9.41}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &656647610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656647608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56b8138b7516db94eae0a5d2ed51eb52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetUI: {fileID: 1355338293}
 --- !u!1 &663679676
 GameObject:
   m_ObjectHideFlags: 0
@@ -8749,6 +8735,7 @@ GameObject:
   - component: {fileID: 940346843}
   - component: {fileID: 940346842}
   - component: {fileID: 940346841}
+  - component: {fileID: 940346844}
   m_Layer: 5
   m_Name: buyinggold_Button
   m_TagString: Untagged
@@ -8858,6 +8845,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940346839}
   m_CullTransparentMesh: 1
+--- !u!114 &940346844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940346839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a862e7fb5252604795f9b83f1e771ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &947140501
 GameObject:
   m_ObjectHideFlags: 0
@@ -15001,6 +15000,7 @@ GameObject:
   - component: {fileID: 1902174090}
   - component: {fileID: 1902174089}
   - component: {fileID: 1902174088}
+  - component: {fileID: 1902174091}
   m_Layer: 5
   m_Name: adremoval_Button
   m_TagString: Untagged
@@ -15072,7 +15072,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1355338293}
+      - m_Target: {fileID: 1902174086}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 1
@@ -15122,6 +15122,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902174086}
   m_CullTransparentMesh: 1
+--- !u!114 &1902174091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902174086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79db256e3d2a4e498be965efc259766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1915819945
 GameObject:
   m_ObjectHideFlags: 0
