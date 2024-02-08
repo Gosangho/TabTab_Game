@@ -1422,6 +1422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcec6b33735a20488d95bca961c0dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPurchase: 0
+  continueButtonInstance: {fileID: 0}
 --- !u!1 &169941887
 GameObject:
   m_ObjectHideFlags: 0
@@ -6001,7 +6003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &656647609
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8736,6 +8738,7 @@ GameObject:
   - component: {fileID: 940346842}
   - component: {fileID: 940346841}
   - component: {fileID: 940346844}
+  - component: {fileID: 940346845}
   m_Layer: 5
   m_Name: buyinggold_Button
   m_TagString: Untagged
@@ -8857,6 +8860,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a862e7fb5252604795f9b83f1e771ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &940346845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940346839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b79b5624d944058bd39aad2b90fb275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productId: 
+  buttonType: 0
+  consumePurchase: 1
+  onTransactionsRestored:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  onProductFetched:
+    m_PersistentCalls:
+      m_Calls: []
+  button: {fileID: 940346841}
 --- !u!1 &947140501
 GameObject:
   m_ObjectHideFlags: 0
