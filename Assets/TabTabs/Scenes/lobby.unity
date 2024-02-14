@@ -5126,6 +5126,7 @@ GameObject:
   - component: {fileID: 574303220}
   - component: {fileID: 574303219}
   - component: {fileID: 574303218}
+  - component: {fileID: 574303221}
   m_Layer: 5
   m_Name: UserGold_Text
   m_TagString: Untagged
@@ -5252,6 +5253,18 @@ RectTransform:
   m_AnchoredPosition: {x: 49.413673, y: -5.54}
   m_SizeDelta: {x: 161.8474, y: 44.9131}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &574303221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574303217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef3d473c3e27804db9f57027f7a9f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &575402215
 GameObject:
   m_ObjectHideFlags: 0
@@ -10970,7 +10983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a8cc0629a1db64ea45b773f15106d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectCharacter: {fileID: 1794729117}
+  selectCharacter: {fileID: 0}
 --- !u!1 &1280133732
 GameObject:
   m_ObjectHideFlags: 0
@@ -14295,7 +14308,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1052362002}
   m_Direction: 2
   m_Value: 0.99235433
-  m_Size: 0.48363692
+  m_Size: 0.48363686
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
