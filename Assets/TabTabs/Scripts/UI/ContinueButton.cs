@@ -27,10 +27,9 @@ namespace TabTabs.NamChanwoo
         {
             if (continueButtonClick == false)
             {
-                if(!AdsManager.Instance.isPurchase) {
+                if(DataManager.Instance.playerData.AdsYn == 0) {
                     AdsManager.Instance.continueButtonInstance = this;
                     AdsManager.Instance.rewardedAdPlay();
-                    
                 } else {
                     GetReward();
                 }

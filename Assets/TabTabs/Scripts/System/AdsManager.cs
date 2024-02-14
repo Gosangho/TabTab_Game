@@ -13,8 +13,6 @@ namespace TabTabs.NamChanwoo
         BannerView bannerView;
         InterstitialAd interstitial;
 
-        public bool isPurchase = false;
-
         public ContinueButton continueButtonInstance;
 
         public static AdsManager  Instance { get; private set; }
@@ -62,8 +60,9 @@ namespace TabTabs.NamChanwoo
             bannerView = new BannerView(adbanerId, AdSize.Banner, AdPosition.Bottom);
             bannerView.LoadAd(request);
 
-            
-            bannerView.Show();
+            if(DataManager.Instance.playerData.AdsYn == 0) {
+                bannerView.Show();
+            }
 
             RewardedAd.Load(adUnitId, request, LoadCallback);
             
