@@ -31,10 +31,18 @@ public class SelectCharacter : MonoBehaviour
     public TextMeshProUGUI playerGold;
     Dictionary<string, int> characterScores = new Dictionary<string, int>();
     int characterMaxScroe;
+    public GameObject swordGirl3Purchase;
+    public GameObject leonPurchase;
+    public TextMeshProUGUI goldLackText;
+    public TextMeshProUGUI goldLackText1;
+    public TextMeshProUGUI swordGirl3PurchaseText;
+    public TextMeshProUGUI leonPurchaseText;
+    public GameObject swordGirl3PurchaseUi;
+    public GameObject leonPurchaseUi;
+    public GameObject purchaseSuccess;
 
     void Start()
     {
-        
         characterScores.Add("SwordGirl1", DataManager.Instance.swordGirl1.bestScore);
         characterScores.Add("SwordGirl2", DataManager.Instance.swordGirl2.bestScore);
         characterScores.Add("SwordGirl3", DataManager.Instance.swordGirl3.bestScore);
@@ -82,11 +90,6 @@ public class SelectCharacter : MonoBehaviour
         }
     }
 
-    //public void UpdateImage(Sprite newSprite)
-    //{
-    //    selectImage.sprite = newSprite;
-    //}
-
     public void SelectSwordGirl1()
     {
         swordGirl1 = true;
@@ -123,6 +126,10 @@ public class SelectCharacter : MonoBehaviour
             swordGirl3 = true;
             leon = false;
         }
+        else
+        {
+            swordGirl3Purchase.gameObject.SetActive(true);
+        }
         //UpdateImage(swordGirl2Image);
         characterName.text = "캐릭터 :  Sword3";
         characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl3.bestScore.ToString();
@@ -137,6 +144,10 @@ public class SelectCharacter : MonoBehaviour
             swordGirl2 = false;
             swordGirl3 = false;
             leon = true;
+        }
+        else
+        {
+            leonPurchase.gameObject.SetActive(true);
         }
         //UpdateImage(leonImage);
         characterName.text = "캐릭터 :  Leon";
@@ -160,5 +171,62 @@ public class SelectCharacter : MonoBehaviour
         {
             leonImage.sprite = leonSprite;
         }
+    }
+
+    public void PurchaseSwordGirl3()
+    {
+        if (DataManager.Instance.playerData.Gold >= 250 && DataManager.Instance.playerData.SwordGirl3Get == false)
+        {
+            DataManager.Instance.playerData.Gold -= 250;
+            DataManager.Instance.playerData.SwordGirl3Get = true;
+            purchaseSuccess.gameObject.SetActive(true);
+            DataManager.Instance.SaveGameData();
+            playerGold.text = DataManager.Instance.playerData.Gold.ToString();
+            swordGirl3Image.sprite = swordGirl3Sprite;
+        }
+        else
+        {
+            swordGirl3PurchaseText.gameObject.SetActive(false);
+            goldLackText.gameObject.SetActive(true);
+        }
+    }
+
+    public void PurchaseLeon()
+    {
+        if (DataManager.Instance.playerData.Gold >= 500 && DataManager.Instance.playerData.LeonGet == false)
+        {
+            DataManager.Instance.playerData.Gold -= 500;
+            DataManager.Instance.playerData.LeonGet = true;
+            purchaseSuccess.gameObject.SetActive(true);
+            DataManager.Instance.SaveGameData();
+            playerGold.text = DataManager.Instance.playerData.Gold.ToString();
+            leonImage.sprite = leonSprite;
+        }
+        else
+        {
+            leonPurchaseText.gameObject.SetActive(false);
+            goldLackText1.gameObject.SetActive(true);
+        }
+    }
+
+    public void SwordGirl3PurchaseUiExit()
+    {
+        swordGirl3PurchaseText.gameObject.SetActive(true);
+        goldLackText.gameObject.SetActive(false);
+        swordGirl3PurchaseUi.SetActive(false);
+    }
+
+    public void LeonPurchaseUiExit()
+    {
+        leonPurchaseText.gameObject.SetActive(true);
+        goldLackText1.gameObject.SetActive(false);
+        leonPurchaseUi.SetActive(false);
+    }
+
+    public void ExitUIButton()
+    {
+        purchaseSuccess.gameObject.SetActive(false);
+        swordGirl3Purchase.gameObject.SetActive(false);
+        leonPurchase.gameObject.SetActive(false);
     }
 }

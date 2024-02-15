@@ -481,6 +481,15 @@ MonoBehaviour:
   characterBestScore: {fileID: 0}
   characterKillCount: {fileID: 0}
   playerGold: {fileID: 0}
+  swordGirl3Purchase: {fileID: 0}
+  leonPurchase: {fileID: 0}
+  goldLackText: {fileID: 0}
+  goldLackText1: {fileID: 0}
+  swordGirl3PurchaseText: {fileID: 0}
+  leonPurchaseText: {fileID: 0}
+  swordGirl3PurchaseUi: {fileID: 0}
+  leonPurchaseUi: {fileID: 0}
+  purchaseSuccess: {fileID: 0}
 --- !u!1 &89593150
 GameObject:
   m_ObjectHideFlags: 0

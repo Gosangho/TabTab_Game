@@ -29,6 +29,7 @@ public class AttandButton : MonoBehaviour
         {
             rewardSprite[System.DateTime.Now.Day - 1].UpdateSprite();
             AttandManager.AttandInstance.attandDay[System.DateTime.Now.Day - 1] = true;
+            DataManager.Instance.playerData.PlayerAttandence[System.DateTime.Now.Day - 1] = true;
         }
     }
 }

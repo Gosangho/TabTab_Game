@@ -23,6 +23,7 @@ using System;
       public bool SwordGirl2Get; // 플레이어가 스워드걸2를 소유하고있는지의 여부
       public bool SwordGirl3Get; // 플레이어가 스워드걸3를 소유하고있는지의 여부
       public bool LeonGet; // 플레이어가 레온을 소유하고있는지의 여부
+      public bool[] PlayerAttandence = new bool[31]; // 플레이어의 출석상황
   }
    
 
