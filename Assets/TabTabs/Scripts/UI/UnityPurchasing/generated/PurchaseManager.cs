@@ -79,6 +79,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
     {
         Debug.Log("구매에 성공했습니다");
+        Debug.Log("productId_test_id:"+args.purchasedProduct.definition.id);
 
         if (args.purchasedProduct.definition.id == productId_test_id)
         {
@@ -91,8 +92,12 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
         {
             /* test_id2 구매 처리 */
             DataManager.Instance.playerData.Gold += 2000;
+        } else if (args.purchasedProduct.definition.id == "purchase_test") {
+            DataManager.Instance.playerData.AdsYn = 1;
+            DataManager.Instance.playerData.AdsDate = System.DateTime.Now.ToString();
+            DataManager.Instance.playerData.Gold += 3000;
+            Debug.Log("구매 성공:"+DataManager.Instance.playerData.Gold );
         }
-        selectCharacter.goldText.text = DataManager.Instance.playerData.Gold.ToString();
 
         return PurchaseProcessingResult.Complete;
     }
