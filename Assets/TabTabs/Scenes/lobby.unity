@@ -551,10 +551,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &33674468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,10 +909,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &59274380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1506,10 +1506,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &140160839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1569,6 +1569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcec6b33735a20488d95bca961c0dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  continueButtonInstance: {fileID: 0}
 --- !u!1 &169941887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,10 +1758,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &173064546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3219,10 +3220,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &316526750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3795,10 +3796,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &364071227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4861,12 +4862,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attandDay: 00000000000000000000000000000000000000000000000000000000000000
-  attandanceCharacterReward: {fileID: 1370427491}
-  attandanceGoldReward: {fileID: 1837932155}
-  onAttandanceCharacterRewardSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  onAttandanceGoldRewardSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
-  getAttandanceCharacterRewardSprite: {fileID: 21300000, guid: 2fe7a27f3210ea242913ed0d9b30c1ba, type: 3}
-  getAttandanceGoldRewardSprite: {fileID: 21300000, guid: 76980bbbcd12ab54f98e7fefb1753c10, type: 3}
+  attandanceCharacterReward: {fileID: 0}
+  attandanceGoldReward: {fileID: 0}
+  onAttandanceCharacterRewardSprite: {fileID: 0}
+  onAttandanceGoldRewardSprite: {fileID: 0}
+  getAttandanceCharacterRewardSprite: {fileID: 0}
+  getAttandanceGoldRewardSprite: {fileID: 0}
   attandCount: 0
   getattandanceCharacterReward: 0
   getattandanceGoldReward: 0
@@ -5249,10 +5250,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &516707483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5419,10 +5420,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &523034702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5665,10 +5666,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &548038884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6389,10 +6390,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &590894507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6680,10 +6681,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &610827747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6850,10 +6851,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &634186546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7346,10 +7347,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &703316173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7806,10 +7807,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &744094370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8125,6 +8126,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772758362}
   m_CullTransparentMesh: 1
+--- !u!1 &773347458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 773347460}
+  - component: {fileID: 773347459}
+  m_Layer: 0
+  m_Name: PurchaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &773347459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773347458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a8cc0629a1db64ea45b773f15106d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectCharacter: {fileID: 0}
+--- !u!4 &773347460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773347458}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 254.90839, y: 391.44324, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &776913185
 GameObject:
   m_ObjectHideFlags: 0
@@ -8715,10 +8761,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &853655741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8885,10 +8931,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &874666610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9429,10 +9475,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &933972369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9712,9 +9758,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 940346839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a862e7fb5252604795f9b83f1e771ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b79b5624d944058bd39aad2b90fb275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  productId: purchase_test
+  buttonType: 0
+  consumePurchase: 1
+  onTransactionsRestored:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  onProductFetched:
+    m_PersistentCalls:
+      m_Calls: []
+  button: {fileID: 940346841}
 --- !u!1 &947140501
 GameObject:
   m_ObjectHideFlags: 0
@@ -9866,10 +9928,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &947140507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10328,10 +10390,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &964376833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10498,10 +10560,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &964524637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11149,10 +11211,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &995575512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11801,10 +11863,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &1087818303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11971,10 +12033,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &1144272209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12562,10 +12624,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &1280133738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12925,6 +12987,8 @@ MonoBehaviour:
     MakeNickName: 0
     PlayerName: 
     Gold: 0
+    AdsYn: 0
+    AdsDate: 
     SwordGirl2Get: 0
     SwordGirl3Get: 0
     LeonGet: 0
@@ -14511,10 +14575,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &1556019368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15437,10 +15501,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &1660722229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16417,8 +16481,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1052362003}
   m_HandleRect: {fileID: 1052362002}
   m_Direction: 2
-  m_Value: 0.99235433
-  m_Size: 0.48363692
+  m_Value: 0.99235445
+  m_Size: 0.48363686
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16589,8 +16653,6 @@ MonoBehaviour:
   goldLackText1: {fileID: 1647819364}
   swordGirl3PurchaseText: {fileID: 1838552805}
   leonPurchaseText: {fileID: 972938347}
-  swordGirl3PurchaseUi: {fileID: 583171643}
-  leonPurchaseUi: {fileID: 997959113}
   purchaseSuccess: {fileID: 1565360867}
 --- !u!4 &1794729118
 Transform:
@@ -17732,9 +17794,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1902174086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c79db256e3d2a4e498be965efc259766, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b79b5624d944058bd39aad2b90fb275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  productId: purchase_test
+  buttonType: 0
+  consumePurchase: 1
+  onTransactionsRestored:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchaseComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onPurchaseFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  onProductFetched:
+    m_PersistentCalls:
+      m_Calls: []
+  button: {fileID: 1902174088}
 --- !u!1 &1915819945
 GameObject:
   m_ObjectHideFlags: 0
@@ -18083,10 +18161,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &1921891887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18543,10 +18621,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &1956010425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18789,10 +18867,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &1979313928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19461,10 +19539,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &2035446744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20200,10 +20278,10 @@ MonoBehaviour:
   toDayAttand: {fileID: 21300000, guid: 5a275e23a1a464f4bb39e758be128c83, type: 3}
   lateAttand: {fileID: 21300000, guid: 791f763c03d4ea148ac478959d0172ac, type: 3}
   notGetAttand: {fileID: 21300000, guid: be2673c4646651647a3bddeab834257c, type: 3}
-  attandRewardCharacterButton: {fileID: 1370427491}
-  attandRewardGoldButton: {fileID: 1837932155}
-  attandRewardCharacterSprite: {fileID: 21300000, guid: 4fff793e55466164191bd09fca1153c0, type: 3}
-  attandRewardGoldSprite: {fileID: 21300000, guid: d16b7ed744029ed44ab2bd0142118ab1, type: 3}
+  attandRewardCharacterButton: {fileID: 0}
+  attandRewardGoldButton: {fileID: 0}
+  attandRewardCharacterSprite: {fileID: 0}
+  attandRewardGoldSprite: {fileID: 0}
 --- !u!114 &2124710536
 MonoBehaviour:
   m_ObjectHideFlags: 0

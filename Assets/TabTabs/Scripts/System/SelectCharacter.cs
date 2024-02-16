@@ -37,8 +37,6 @@ public class SelectCharacter : MonoBehaviour
     public TextMeshProUGUI goldLackText1;
     public TextMeshProUGUI swordGirl3PurchaseText;
     public TextMeshProUGUI leonPurchaseText;
-    public GameObject swordGirl3PurchaseUi;
-    public GameObject leonPurchaseUi;
     public GameObject purchaseSuccess;
 
     void Start()
@@ -56,32 +54,32 @@ public class SelectCharacter : MonoBehaviour
             playerGold.text = DataManager.Instance.playerData.Gold.ToString();
             
             if (DataManager.Instance.swordGirl1.bestScore == characterMaxScroe)
-            {// ½º¿öµå°É1ÀÇ Á¡¼ö°¡ °¡Àå ³ô´Ù¸é
+            {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
                 bestScoreCharacterImage.sprite = swordGirl1Sprite;
-                bestcharacterName.text = "Ä³¸¯ÅÍ :  Sword1"; 
-                bestcharacterBestScore.text = "ÃÖ°í±â·Ï : " + DataManager.Instance.swordGirl1.bestScore.ToString();
-                bestcharacterKillCount.text = "Å³Ä«¿îÆ® : " + DataManager.Instance.swordGirl1.totalKillScore.ToString();
+                bestcharacterName.text = "Ä³ï¿½ï¿½ï¿½ï¿½ :  Sword1"; 
+                bestcharacterBestScore.text = "ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ : " + DataManager.Instance.swordGirl1.bestScore.ToString();
+                bestcharacterKillCount.text = "Å³Ä«ï¿½ï¿½Æ® : " + DataManager.Instance.swordGirl1.totalKillScore.ToString();
             }
             else if (DataManager.Instance.swordGirl2.bestScore == characterMaxScroe)
-            {// ½º¿öµå°É2ÀÇ Á¡¼ö°¡ °¡Àå ³ô´Ù¸é
+            {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
                 bestScoreCharacterImage.sprite = swordGirl2Sprite;
-                bestcharacterName.text = "Ä³¸¯ÅÍ :  Sword2";
-                bestcharacterBestScore.text = "ÃÖ°í±â·Ï : " + DataManager.Instance.swordGirl2.bestScore.ToString();
-                bestcharacterKillCount.text = "Å³Ä«¿îÆ® : " + DataManager.Instance.swordGirl2.totalKillScore.ToString();
+                bestcharacterName.text = "Ä³ï¿½ï¿½ï¿½ï¿½ :  Sword2";
+                bestcharacterBestScore.text = "ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ : " + DataManager.Instance.swordGirl2.bestScore.ToString();
+                bestcharacterKillCount.text = "Å³Ä«ï¿½ï¿½Æ® : " + DataManager.Instance.swordGirl2.totalKillScore.ToString();
             }
             else if (DataManager.Instance.leon.bestScore == characterMaxScroe)
             {
                 bestScoreCharacterImage.sprite = leonSprite;
-                bestcharacterName.text = "Ä³¸¯ÅÍ :  Leon";
-                bestcharacterBestScore.text = "ÃÖ°í±â·Ï : " + DataManager.Instance.leon.bestScore.ToString();
-                bestcharacterKillCount.text = "Å³Ä«¿îÆ® : " + DataManager.Instance.leon.totalKillScore.ToString();
+                bestcharacterName.text = "Ä³ï¿½ï¿½ï¿½ï¿½ :  Leon";
+                bestcharacterBestScore.text = "ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ : " + DataManager.Instance.leon.bestScore.ToString();
+                bestcharacterKillCount.text = "Å³Ä«ï¿½ï¿½Æ® : " + DataManager.Instance.leon.totalKillScore.ToString();
             }
             else if (DataManager.Instance.swordGirl3.bestScore == characterMaxScroe)
             {
                 bestScoreCharacterImage.sprite = swordGirl3Sprite;
-                bestcharacterName.text = "Ä³¸¯ÅÍ :  Sword3";
-                bestcharacterBestScore.text = "ÃÖ°í±â·Ï : " + DataManager.Instance.swordGirl3.bestScore.ToString();
-                bestcharacterKillCount.text = "Å³Ä«¿îÆ® : " + DataManager.Instance.swordGirl3.totalKillScore.ToString();
+                bestcharacterName.text = "Ä³ï¿½ï¿½ï¿½ï¿½ :  Sword3";
+                bestcharacterBestScore.text = "ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ : " + DataManager.Instance.swordGirl3.bestScore.ToString();
+                bestcharacterKillCount.text = "Å³Ä«ï¿½ï¿½Æ® : " + DataManager.Instance.swordGirl3.totalKillScore.ToString();
             }
             else
             {
@@ -97,24 +95,24 @@ public class SelectCharacter : MonoBehaviour
         swordGirl3 = false;
         leon = false;
         //UpdateImage(swordGirl1Image);
-        characterName.text = "Ä³¸¯ÅÍ :  Sword1";
-        characterBestScore.text = "ÃÖ°í±â·Ï : " + DataManager.Instance.swordGirl1.bestScore.ToString();
-        characterKillCount.text = "Å³Ä«¿îÆ® : " + DataManager.Instance.swordGirl1.totalKillScore.ToString();
+        characterName.text = "Ä³ï¿½ï¿½ï¿½ï¿½ :  Sword1";
+        characterBestScore.text = "ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ : " + DataManager.Instance.swordGirl1.bestScore.ToString();
+        characterKillCount.text = "Å³Ä«ï¿½ï¿½Æ® : " + DataManager.Instance.swordGirl1.totalKillScore.ToString();
     }
 
     public void SelectSwordGirl2()
     {
         if (DataManager.Instance.playerData.SwordGirl2Get)
-        { // ½º¿öµå°É2¸¦ º¸À¯ÇÏ°í ÀÖ´Ù¸é
+        { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ö´Ù¸ï¿½
             swordGirl1 = false;
             swordGirl2 = true;
             swordGirl3 = false;
             leon = false;
         }
         //UpdateImage(swordGirl2Image);
-        characterName.text = "Ä³¸¯ÅÍ :  Sword2";
-        characterBestScore.text = "ÃÖ°í±â·Ï : " + DataManager.Instance.swordGirl2.bestScore.ToString();
-        characterKillCount.text = "Å³Ä«¿îÆ® : " + DataManager.Instance.swordGirl2.totalKillScore.ToString();
+        characterName.text = "Ä³ï¿½ï¿½ï¿½ï¿½ :  Sword2";
+        characterBestScore.text = "ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ : " + DataManager.Instance.swordGirl2.bestScore.ToString();
+        characterKillCount.text = "Å³Ä«ï¿½ï¿½Æ® : " + DataManager.Instance.swordGirl2.totalKillScore.ToString();
     }
 
     public void SelectSwordGirl3()
@@ -131,9 +129,9 @@ public class SelectCharacter : MonoBehaviour
             swordGirl3Purchase.gameObject.SetActive(true);
         }
         //UpdateImage(swordGirl2Image);
-        characterName.text = "Ä³¸¯ÅÍ :  Sword3";
-        characterBestScore.text = "ÃÖ°í±â·Ï : " + DataManager.Instance.swordGirl3.bestScore.ToString();
-        characterKillCount.text = "Å³Ä«¿îÆ® : " + DataManager.Instance.swordGirl3.totalKillScore.ToString();
+        characterName.text = "Ä³ï¿½ï¿½ï¿½ï¿½ :  Sword3";
+        characterBestScore.text = "ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ : " + DataManager.Instance.swordGirl3.bestScore.ToString();
+        characterKillCount.text = "Å³Ä«ï¿½ï¿½Æ® : " + DataManager.Instance.swordGirl3.totalKillScore.ToString();
     }
 
     public void SelectLeon()
@@ -150,9 +148,9 @@ public class SelectCharacter : MonoBehaviour
             leonPurchase.gameObject.SetActive(true);
         }
         //UpdateImage(leonImage);
-        characterName.text = "Ä³¸¯ÅÍ :  Leon";
-        characterBestScore.text = "ÃÖ°í±â·Ï : " + DataManager.Instance.leon.bestScore.ToString();
-        characterKillCount.text = "Å³Ä«¿îÆ® : " + DataManager.Instance.leon.totalKillScore.ToString();
+        characterName.text = "Ä³ï¿½ï¿½ï¿½ï¿½ :  Leon";
+        characterBestScore.text = "ï¿½Ö°ï¿½ï¿½ï¿½ï¿½ : " + DataManager.Instance.leon.bestScore.ToString();
+        characterKillCount.text = "Å³Ä«ï¿½ï¿½Æ® : " + DataManager.Instance.leon.totalKillScore.ToString();
     }
 
     void CharacterImageChange()
@@ -213,14 +211,14 @@ public class SelectCharacter : MonoBehaviour
     {
         swordGirl3PurchaseText.gameObject.SetActive(true);
         goldLackText.gameObject.SetActive(false);
-        swordGirl3PurchaseUi.SetActive(false);
+        swordGirl3Purchase.SetActive(false);
     }
 
     public void LeonPurchaseUiExit()
     {
         leonPurchaseText.gameObject.SetActive(true);
         goldLackText1.gameObject.SetActive(false);
-        leonPurchaseUi.SetActive(false);
+        leonPurchase.SetActive(false);
     }
 
     public void ExitUIButton()
