@@ -40,7 +40,7 @@ public class FadeScene : MonoBehaviour
 
         yield return new WaitForSeconds(TransitionTime);
 
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(5);
     }
 
     IEnumerator _LoadeSceneBattle()
@@ -51,7 +51,7 @@ public class FadeScene : MonoBehaviour
 
         yield return new WaitForSeconds(TransitionTime);
 
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(5);
     }
 
     IEnumerator _LoadeTutorialScene()
@@ -62,7 +62,7 @@ public class FadeScene : MonoBehaviour
 
         yield return new WaitForSeconds(TransitionTime);
 
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(5);
     }
 
     public void LoadBattleScene()
