@@ -127,4 +127,35 @@ public class BackEndManager : MonoBehaviour
             DataManager.Instance.SaveGameData();
         }
     }
+
+    public void DbSaveGameData()
+    {
+        Debug.Log("DbSaveGameData::serverStart");
+        Param param = new Param();
+        param.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+        param.Add("TutorialPlay", DataManager.Instance.playerData.TutorialPlay);
+        param.Add("MakeNickName", DataManager.Instance.playerData.MakeNickName);
+        param.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
+        param.Add("Gold", DataManager.Instance.playerData.Gold);
+        param.Add("AdsYn", DataManager.Instance.playerData.AdsYn);
+        param.Add("AdsDate", DataManager.Instance.playerData.AdsDate);
+        param.Add("SwordGirl2Get", DataManager.Instance.playerData.SwordGirl2Get);
+        param.Add("SwordGirl3Get", DataManager.Instance.playerData.SwordGirl3Get);
+        param.Add("LeonGet", DataManager.Instance.playerData.LeonGet);
+        param.Add("PlayerAttandence", DataManager.Instance.playerData.PlayerAttandence);
+
+        Debug.Log("DbSaveGameData::DataInputEnd");
+
+        var bro = Backend.GameData.Insert("playerData", param);
+
+        if(bro.IsSuccess())
+        {
+            string playerInfoIndate = bro.GetInDate();
+            Debug.Log("내 playerInfo의 indate : " + playerInfoIndate);
+        }
+        else
+        {
+            Debug.LogError("게임 정보 삽입 실패 : " + bro.ToString());
+        }
+    }
 }

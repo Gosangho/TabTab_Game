@@ -67,7 +67,7 @@ public class DataManager : MonoBehaviour
             playerData = JsonUtility.FromJson<PlayerData>(playerjsonData);
         }
 
-        Debug.Log("ºÒ·¯¿À±â ¿Ï·á");
+        Debug.Log("ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");
     }
 
     private void SaveCharacterData(string fileName, CharacterData character)
@@ -90,7 +90,16 @@ public class DataManager : MonoBehaviour
 
         File.WriteAllText(playerfilePath, playerjsonData);
 
-        Debug.Log("ÀúÀå ¿Ï·á");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");
+    }
+
+    public void DbSaveGameData() {
+        string playerfilePath = Path.Combine(Application.persistentDataPath, playerDataFileName);
+        string playerjsonData = JsonUtility.ToJson(playerData, true);
+
+        File.WriteAllText(playerfilePath, playerjsonData);
+        Debug.Log("DbSaveGameData::localSuccess");
+        BackEndManager.Instance.DbSaveGameData();
     }
 
     private void OnApplicationQuit()

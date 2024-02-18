@@ -87,6 +87,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
             DataManager.Instance.playerData.AdsYn = 1;
             DataManager.Instance.playerData.AdsDate = System.DateTime.Now.ToString();
             DataManager.Instance.playerData.Gold += 3000;
+            DataManager.Instance.DbSaveGameData();
         }
         else if (args.purchasedProduct.definition.id == productId_test_id2)
         {
@@ -96,6 +97,8 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
             DataManager.Instance.playerData.AdsYn = 1;
             DataManager.Instance.playerData.AdsDate = System.DateTime.Now.ToString();
             DataManager.Instance.playerData.Gold += 3000;
+            DataManager.Instance.DbSaveGameData();
+            
             Debug.Log("구매 성공:"+DataManager.Instance.playerData.Gold );
         }
 
