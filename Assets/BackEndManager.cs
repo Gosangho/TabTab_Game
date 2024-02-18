@@ -81,7 +81,7 @@ public class BackEndManager : MonoBehaviour
     {
           Debug.Log("version info - ");
           LoginGuestBackend();
-        Backend.Utils.GetLatestVersion(versionBRO =>
+       /* Backend.Utils.GetLatestVersion(versionBRO =>
         {
             if (versionBRO.IsSuccess())
             {
@@ -103,59 +103,111 @@ public class BackEndManager : MonoBehaviour
                 // 뒷끝 토큰 로그인 시도
                 LoginGuestBackend();
             }
-        });
+        });*/
     }
 
     public void LoginGuestBackend()
     {
         Debug.Log("로그인 callback - ");
         string id = ""; 
-        id = Backend.BMember.GetGuestID();
+       // id = Backend.BMember.GetGuestID();
         Debug.Log("로컬 기기에 저장된 아이디 :" + id);
-        
-        if("".Equals(id)) {            
-            Backend.BMember.GuestLogin("게스트 로그인으로 로그인함", callback => {
-                Debug.Log("로그인 callback111 - ");
-                if(callback.IsSuccess())
-                {
-                    DataManager.Instance.playerData.PlayerId = id;    
-                    DataManager.Instance.SaveGameData();
-                }
-            });
-        } else {
-            DataManager.Instance.playerData.PlayerId = id;    
-            DataManager.Instance.SaveGameData();
+
+        BackendReturnObject bro = Backend.BMember.GuestLogin("게스트 로그인으로 로그인함");
+        if(bro.IsSuccess())
+        {
+            DataManager.Instance.playerData.PlayerId = Backend.BMember.GetGuestID(); 
+            Debug.Log("로컬 기기에 저장된 아이디 :" + DataManager.Instance.playerData.PlayerId);
+            DBInitGetDate();
+        }   
+    }
+
+    public void DBInitGetDate() {
+        Where where = new Where();
+        where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
+
+        var bro = Backend.GameData.GetMyData("playerData", where, 1);
+        if(bro.IsSuccess() == false)
+        {
+            // 요청 실패 처리
+            Debug.Log(bro);
+            return;
+        }
+        if(bro.GetReturnValuetoJSON()["rows"].Count > 0)
+        {
+            DataManager.Instance.playerData.TutorialPlay = bool.Parse(bro.FlattenRows()[0]["TutorialPlay"].ToString());
+            DataManager.Instance.playerData.MakeNickName = bool.Parse(bro.FlattenRows()[0]["MakeNickName"].ToString());
+            DataManager.Instance.playerData.PlayerName = bro.FlattenRows()[0]["PlayerName"].ToString();
+            DataManager.Instance.playerData.Gold = int.Parse(bro.FlattenRows()[0]["Gold"].ToString());
+            DataManager.Instance.playerData.AdsYn = int.Parse(bro.FlattenRows()[0]["AdsYn"].ToString());
+            DataManager.Instance.playerData.AdsDate = bro.FlattenRows()[0]["AdsDate"].ToString();
+            DataManager.Instance.playerData.SwordGirl2Get = bool.Parse(bro.FlattenRows()[0]["SwordGirl2Get"].ToString());
+            DataManager.Instance.playerData.SwordGirl3Get = bool.Parse(bro.FlattenRows()[0]["SwordGirl3Get"].ToString());
+            DataManager.Instance.playerData.LeonGet = bool.Parse(bro.FlattenRows()[0]["LeonGet"].ToString());
+            Debug.Log("PlayerAttandence : " + bro.FlattenRows()[0]["PlayerAttandence"]);
+
+            // JsonData를 bool 배열로 변환
+            bool[] boolArray = new bool[bro.FlattenRows()[0]["PlayerAttandence"].Count];
+            for (int i = 0; i < bro.FlattenRows()[0]["PlayerAttandence"].Count; i++)
+            {
+                DataManager.Instance.playerData.PlayerAttandence[i] = (bool)bro.FlattenRows()[0]["PlayerAttandence"][i];
+            }
         }
     }
 
     public void DbSaveGameData()
     {
-        Debug.Log("DbSaveGameData::serverStart");
-        Param param = new Param();
-        param.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
-        param.Add("TutorialPlay", DataManager.Instance.playerData.TutorialPlay);
-        param.Add("MakeNickName", DataManager.Instance.playerData.MakeNickName);
-        param.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
-        param.Add("Gold", DataManager.Instance.playerData.Gold);
-        param.Add("AdsYn", DataManager.Instance.playerData.AdsYn);
-        param.Add("AdsDate", DataManager.Instance.playerData.AdsDate);
-        param.Add("SwordGirl2Get", DataManager.Instance.playerData.SwordGirl2Get);
-        param.Add("SwordGirl3Get", DataManager.Instance.playerData.SwordGirl3Get);
-        param.Add("LeonGet", DataManager.Instance.playerData.LeonGet);
-        param.Add("PlayerAttandence", DataManager.Instance.playerData.PlayerAttandence);
+        // 해당 계정의 기존 데이터가 있는지 확인
+        Where where = new Where();
+        where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
 
-        Debug.Log("DbSaveGameData::DataInputEnd");
+        Debug.Log("DbSaveGameData::serverwhereStart");
 
-        var bro = Backend.GameData.Insert("playerData", param);
-
-        if(bro.IsSuccess())
+        var bro = Backend.GameData.GetMyData("playerData", where, 1);
+        if(bro.IsSuccess() == false)
         {
-            string playerInfoIndate = bro.GetInDate();
-            Debug.Log("내 playerInfo의 indate : " + playerInfoIndate);
+            // 요청 실패 처리
+            Debug.Log(bro);
+            return;
         }
-        else
+        if(bro.GetReturnValuetoJSON()["rows"].Count <= 0)
         {
-            Debug.LogError("게임 정보 삽입 실패 : " + bro.ToString());
+            Debug.Log("DbSaveGameData::serveInsertrStart");
+            Param intParam = new Param();
+            intParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+            intParam.Add("TutorialPlay", DataManager.Instance.playerData.TutorialPlay);
+            intParam.Add("MakeNickName", DataManager.Instance.playerData.MakeNickName);
+            intParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
+            intParam.Add("Gold", DataManager.Instance.playerData.Gold);
+            intParam.Add("AdsYn", DataManager.Instance.playerData.AdsYn);
+            intParam.Add("AdsDate", DataManager.Instance.playerData.AdsDate);
+            intParam.Add("SwordGirl2Get", DataManager.Instance.playerData.SwordGirl2Get);
+            intParam.Add("SwordGirl3Get", DataManager.Instance.playerData.SwordGirl3Get);
+            intParam.Add("LeonGet", DataManager.Instance.playerData.LeonGet);
+            intParam.Add("PlayerAttandence", DataManager.Instance.playerData.PlayerAttandence);
+
+            Backend.GameData.Insert("playerData", intParam, (callback) => {
+                Debug.Log("내 playerInfo의 indate : " + callback);
+            });
+            return;
+        } else {
+            Debug.Log("DbSaveGameData::serverUpdateStart");
+            Param upParam = new Param();
+            upParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+            upParam.Add("TutorialPlay", DataManager.Instance.playerData.TutorialPlay);
+            upParam.Add("MakeNickName", DataManager.Instance.playerData.MakeNickName);
+            upParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
+            upParam.Add("Gold", DataManager.Instance.playerData.Gold);
+            upParam.Add("AdsYn", DataManager.Instance.playerData.AdsYn);
+            upParam.Add("AdsDate", DataManager.Instance.playerData.AdsDate);
+            upParam.Add("SwordGirl2Get", DataManager.Instance.playerData.SwordGirl2Get);
+            upParam.Add("SwordGirl3Get", DataManager.Instance.playerData.SwordGirl3Get);
+            upParam.Add("LeonGet", DataManager.Instance.playerData.LeonGet);
+            upParam.Add("PlayerAttandence", DataManager.Instance.playerData.PlayerAttandence);
+
+            Backend.GameData.Update("playerData", where, upParam, (callback) => {
+                Debug.Log("내 playerInfo의 update : " + callback);
+            });
         }
     }
 }

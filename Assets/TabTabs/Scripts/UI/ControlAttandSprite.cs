@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class ControlAttandSprite : MonoBehaviour
 {
     public Image currentImage;
-    [SerializeField] Sprite toDayAttand; // ¿À´ÃÀÇ Ãâ¼®º¸»ó
-    [SerializeField] Sprite lateAttand; // ¾ÆÁ÷ ³¯Â¥°¡ ¾ÈµÈ Ãâ¼®º¸»ó
-    [SerializeField] Sprite notGetAttand; // ³¯Â¥°¡ Áö³ª¼­ ¾òÁö¸øÇÑ Ãâ¼®º¸»ó
+    [SerializeField] Sprite toDayAttand; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½â¼®ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] Sprite lateAttand; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½Èµï¿½ ï¿½â¼®ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] Sprite notGetAttand; // ï¿½ï¿½Â¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½â¼®ï¿½ï¿½ï¿½ï¿½
     public Button attandRewardCharacterButton;
     public Button attandRewardGoldButton;
     public Sprite attandRewardCharacterSprite;
@@ -37,12 +37,13 @@ public class ControlAttandSprite : MonoBehaviour
             DataManager.Instance.playerData.Gold += 10;
             AttandManager.AttandInstance.attandCount++;
             DataManager.Instance.SaveGameData();
-            Debug.Log("¿À´ÃÀÇ Ãâ¼®º¸»ó ¼ö·É");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½â¼®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
             if (AttandManager.AttandInstance.attandCount >= 14)
             {
                 attandRewardCharacterButton.image.sprite = attandRewardCharacterSprite;
                 attandRewardGoldButton.image.sprite = attandRewardGoldSprite;
             }
+            BackEndManager.Instance.DbSaveGameData();
         }
     }
 }
