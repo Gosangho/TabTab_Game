@@ -79,6 +79,8 @@ public class BackEndManager : MonoBehaviour
 
     private void CheckApplicationVersion()
     {
+          Debug.Log("version info - ");
+          LoginGuestBackend();
         Backend.Utils.GetLatestVersion(versionBRO =>
         {
             if (versionBRO.IsSuccess())
@@ -106,11 +108,23 @@ public class BackEndManager : MonoBehaviour
 
     public void LoginGuestBackend()
     {
-       Enqueue(Backend.BMember.GuestLogin, "게스트 로그인으로 로그인함", callback => {
-            if(callback.IsSuccess())
-            {
-                Debug.Log("게스트 로그인에 성공했습니다");
-            }
-       });
+        Debug.Log("로그인 callback - ");
+        string id = ""; 
+        id = Backend.BMember.GetGuestID();
+        Debug.Log("로컬 기기에 저장된 아이디 :" + id);
+        
+        if("".Equals(id)) {            
+            Backend.BMember.GuestLogin("게스트 로그인으로 로그인함", callback => {
+                Debug.Log("로그인 callback111 - ");
+                if(callback.IsSuccess())
+                {
+                    DataManager.Instance.playerData.PlayerId = id;    
+                    DataManager.Instance.SaveGameData();
+                }
+            });
+        } else {
+            DataManager.Instance.playerData.PlayerId = id;    
+            DataManager.Instance.SaveGameData();
+        }
     }
 }

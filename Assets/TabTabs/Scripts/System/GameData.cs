@@ -15,6 +15,7 @@ using System;
   [System.Serializable]
   public class PlayerData
   {
+      public string PlayerId;
       public bool TutorialPlay;// Ʃ�丮���� �����ߴ����� ����(���� 1ȸ����)
       public bool MakeNickName;// ID�� ����������� ����(���� 1ȸ����)
       public string PlayerName;// �÷��̾��� ����
