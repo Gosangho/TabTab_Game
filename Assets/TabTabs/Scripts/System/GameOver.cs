@@ -17,7 +17,7 @@ namespace TabTabs.NamChanwoo
         public TextMeshProUGUI resultBestScore;
 
         private void OnEnable()
-        {// ¿ÀºêÁ§Æ®°¡ È°¼ºÈ­µÇ¸é ½ÇÇàµÇ´Â ÇÔ¼ö
+        {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
             test3BattleInstance = FindObjectOfType<Test3Battle>();
             scoreSystemInstance = FindObjectOfType<ScoreSystem>();
             dataManagerInstance = FindObjectOfType<DataManager>();
@@ -38,6 +38,8 @@ namespace TabTabs.NamChanwoo
                 {
                     newRecordObj.gameObject.SetActive(false);
                 }
+                DataManager.Instance.swordGirl1.characterName = "Sword1";
+                BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl1);
             }
             else if (SelectCharacter.swordGirl2)
             {
@@ -50,6 +52,8 @@ namespace TabTabs.NamChanwoo
                 {
                     newRecordObj.gameObject.SetActive(false);
                 }
+                DataManager.Instance.swordGirl2.characterName = "Sword2";
+                BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl2);
             }
             else if (SelectCharacter.swordGirl3)
             {
@@ -62,6 +66,8 @@ namespace TabTabs.NamChanwoo
                 {
                     newRecordObj.gameObject.SetActive(false);
                 }
+                DataManager.Instance.swordGirl3.characterName = "Sword3";
+                BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl3);
             }
             else
             {
@@ -74,6 +80,8 @@ namespace TabTabs.NamChanwoo
                 {
                     newRecordObj.gameObject.SetActive(false);
                 }
+                DataManager.Instance.leon.characterName = "leon";
+                BackEndManager.Instance.SaveBestScore(DataManager.Instance.leon);
             }
         }
     }

@@ -119,6 +119,7 @@ public class BackEndManager : MonoBehaviour
             DataManager.Instance.playerData.PlayerId = Backend.BMember.GetGuestID(); 
             Debug.Log("로컬 기기에 저장된 아이디 :" + DataManager.Instance.playerData.PlayerId);
             DBInitGetDate();
+            DBInitCharacterDate();
         }   
     }
 
@@ -151,6 +152,39 @@ public class BackEndManager : MonoBehaviour
             for (int i = 0; i < bro.FlattenRows()[0]["PlayerAttandence"].Count; i++)
             {
                 DataManager.Instance.playerData.PlayerAttandence[i] = (bool)bro.FlattenRows()[0]["PlayerAttandence"][i];
+            }
+        }
+    }
+
+    public void DBInitCharacterDate() {
+        Where where = new Where();
+        where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
+
+        var bro = Backend.GameData.GetMyData("CharacterData", where, 10);
+        if(bro.IsSuccess() == false)
+        {
+            // 요청 실패 처리
+            Debug.Log(bro);
+            return;
+        }
+        if(bro.GetReturnValuetoJSON()["rows"].Count > 0)
+        {
+            for (int i = 0; i < bro.GetReturnValuetoJSON()["rows"].Count; i++) {
+                string characterName = bro.FlattenRows()[i]["CharacterName"].ToString();
+
+                if("Sword1".Equals(characterName)) {
+                    DataManager.Instance.swordGirl1.bestScore = int.Parse(bro.FlattenRows()[i]["BestScore"].ToString());
+                    DataManager.Instance.swordGirl1.totalKillScore = int.Parse(bro.FlattenRows()[i]["TotalKillScore"].ToString());
+                } else if("Sword2".Equals(characterName)) {
+                    DataManager.Instance.swordGirl2.bestScore = int.Parse(bro.FlattenRows()[i]["BestScore"].ToString());
+                    DataManager.Instance.swordGirl2.totalKillScore = int.Parse(bro.FlattenRows()[i]["TotalKillScore"].ToString());
+                } else if("Sword3".Equals(characterName)) {
+                    DataManager.Instance.swordGirl3.bestScore = int.Parse(bro.FlattenRows()[i]["BestScore"].ToString());
+                    DataManager.Instance.swordGirl3.totalKillScore = int.Parse(bro.FlattenRows()[i]["TotalKillScore"].ToString());
+                } else if("Leon".Equals(characterName)) {
+                    DataManager.Instance.leon.bestScore = int.Parse(bro.FlattenRows()[i]["BestScore"].ToString());
+                    DataManager.Instance.leon.totalKillScore = int.Parse(bro.FlattenRows()[i]["TotalKillScore"].ToString());
+                }
             }
         }
     }
@@ -206,6 +240,46 @@ public class BackEndManager : MonoBehaviour
             upParam.Add("PlayerAttandence", DataManager.Instance.playerData.PlayerAttandence);
 
             Backend.GameData.Update("playerData", where, upParam, (callback) => {
+                Debug.Log("내 playerInfo의 update : " + callback);
+            });
+        }
+    }
+
+    public void SaveBestScore(CharacterData characterData)
+    {
+        // 해당 계정의 기존 데이터가 있는지 확인
+        Where where = new Where();
+        where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
+        where.Equal("CharacterName",  characterData.characterName);
+
+
+        var bro = Backend.GameData.GetMyData("CharacterData", where, 1);
+        if(bro.IsSuccess() == false)
+        {
+            // 요청 실패 처리
+            Debug.Log(bro);
+            return;
+        }
+        if(bro.GetReturnValuetoJSON()["rows"].Count <= 0)
+        {
+            Param intParam = new Param();
+            intParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+            intParam.Add("CharacterName", characterData.characterName);
+            intParam.Add("BestScore", characterData.bestScore);
+            intParam.Add("TotalKillScore", characterData.totalKillScore);
+
+            Backend.GameData.Insert("CharacterData", intParam, (callback) => {
+                Debug.Log("내 playerInfo의 indate : " + callback);
+            });
+            return;
+        } else {
+            Param upParam = new Param();
+            upParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+            upParam.Add("CharacterName", characterData.characterName);
+            upParam.Add("BestScore", characterData.bestScore);
+            upParam.Add("TotalKillScore", characterData.totalKillScore);
+
+            Backend.GameData.Update("CharacterData", where, upParam, (callback) => {
                 Debug.Log("내 playerInfo의 update : " + callback);
             });
         }

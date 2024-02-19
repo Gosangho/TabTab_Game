@@ -181,6 +181,7 @@ public class SelectCharacter : MonoBehaviour
             DataManager.Instance.SaveGameData();
             playerGold.text = DataManager.Instance.playerData.Gold.ToString();
             swordGirl3Image.sprite = swordGirl3Sprite;
+            BackEndManager.Instance.DbSaveGameData();
         }
         else
         {
@@ -199,6 +200,7 @@ public class SelectCharacter : MonoBehaviour
             DataManager.Instance.SaveGameData();
             playerGold.text = DataManager.Instance.playerData.Gold.ToString();
             leonImage.sprite = leonSprite;
+            BackEndManager.Instance.DbSaveGameData();
         }
         else
         {
