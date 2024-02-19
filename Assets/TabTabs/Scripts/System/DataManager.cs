@@ -98,7 +98,6 @@ public class DataManager : MonoBehaviour
         string playerjsonData = JsonUtility.ToJson(playerData, true);
 
         File.WriteAllText(playerfilePath, playerjsonData);
-        Debug.Log("DbSaveGameData::localSuccess");
         BackEndManager.Instance.DbSaveGameData();
     }
 
