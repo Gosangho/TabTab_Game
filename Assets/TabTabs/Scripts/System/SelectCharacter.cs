@@ -101,6 +101,8 @@ public class SelectCharacter : MonoBehaviour
         characterName.text = "캐릭터 :  Sword1";
         characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl1.bestScore.ToString();
         characterKillCount.text = "처치몬스터 : " + DataManager.Instance.swordGirl1.totalKillScore.ToString();
+
+        DataManager.Instance.selectCharacter("Sword1");
     }
 
     public void SelectSwordGirl2()
@@ -116,6 +118,8 @@ public class SelectCharacter : MonoBehaviour
         characterName.text = "캐릭터 :  Sword2";
         characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl2.bestScore.ToString();
         characterKillCount.text = "처치몬스터 : " + DataManager.Instance.swordGirl2.totalKillScore.ToString();
+
+        DataManager.Instance.selectCharacter("Sword2");
     }
 
     public void SelectSwordGirl3()
@@ -135,6 +139,8 @@ public class SelectCharacter : MonoBehaviour
         characterName.text = "캐릭터 :  Sword3";
         characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl3.bestScore.ToString();
         characterKillCount.text = "처치몬스터 : " + DataManager.Instance.swordGirl3.totalKillScore.ToString();
+
+        DataManager.Instance.selectCharacter("Sword3");
     }
 
     public void SelectLeon()
@@ -154,6 +160,8 @@ public class SelectCharacter : MonoBehaviour
         characterName.text = "캐릭터 :  Leon";
         characterBestScore.text = "최고기록 : " + DataManager.Instance.leon.bestScore.ToString();
         characterKillCount.text = "처치몬스터 : " + DataManager.Instance.leon.totalKillScore.ToString();
+
+        DataManager.Instance.selectCharacter("Leon");
     }
 
     void CharacterImageChange()

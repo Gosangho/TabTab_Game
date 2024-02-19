@@ -36,6 +36,8 @@ public class DataManager : MonoBehaviour
     public CharacterData leon = new CharacterData();
     public PlayerData playerData = new PlayerData();
 
+    string[] prefsList = {"selectCharacter"};
+
     private void Start()
     {
         LoadGameData();
@@ -104,6 +106,17 @@ public class DataManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         SaveGameData();
+    }
+
+    public void selectCharacter(string character)
+    {
+        PlayerPrefs.SetString(prefsList[0], character);
+        PlayerPrefs.Save(); 
+    }
+
+    public string getCharacter()
+    {
+        return PlayerPrefs.GetString(prefsList[0], "Sword1");
     }
 }
 
