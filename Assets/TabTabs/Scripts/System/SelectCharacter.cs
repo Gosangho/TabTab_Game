@@ -102,7 +102,7 @@ public class SelectCharacter : MonoBehaviour
         characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl1.bestScore.ToString();
         characterKillCount.text = "처치몬스터 : " + DataManager.Instance.swordGirl1.totalKillScore.ToString();
 
-        DataManager.Instance.selectCharacter("Sword1");
+        DataManager.Instance.selectCharacter(0, "Sword1");
     }
 
     public void SelectSwordGirl2()
@@ -113,13 +113,13 @@ public class SelectCharacter : MonoBehaviour
             swordGirl2 = true;
             swordGirl3 = false;
             leon = false;
+
+            DataManager.Instance.selectCharacter(0, "Sword2");
         }
         //UpdateImage(swordGirl2Image);
         characterName.text = "캐릭터 :  Sword2";
         characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl2.bestScore.ToString();
         characterKillCount.text = "처치몬스터 : " + DataManager.Instance.swordGirl2.totalKillScore.ToString();
-
-        DataManager.Instance.selectCharacter("Sword2");
     }
 
     public void SelectSwordGirl3()
@@ -130,6 +130,8 @@ public class SelectCharacter : MonoBehaviour
             swordGirl2 = false;
             swordGirl3 = true;
             leon = false;
+            
+            DataManager.Instance.selectCharacter(0, "Sword3");
         }
         else
         {
@@ -140,7 +142,6 @@ public class SelectCharacter : MonoBehaviour
         characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl3.bestScore.ToString();
         characterKillCount.text = "처치몬스터 : " + DataManager.Instance.swordGirl3.totalKillScore.ToString();
 
-        DataManager.Instance.selectCharacter("Sword3");
     }
 
     public void SelectLeon()
@@ -161,7 +162,7 @@ public class SelectCharacter : MonoBehaviour
         characterBestScore.text = "최고기록 : " + DataManager.Instance.leon.bestScore.ToString();
         characterKillCount.text = "처치몬스터 : " + DataManager.Instance.leon.totalKillScore.ToString();
 
-        DataManager.Instance.selectCharacter("Leon");
+        DataManager.Instance.selectCharacter(0, "Leon");
     }
 
     void CharacterImageChange()

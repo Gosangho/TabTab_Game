@@ -65,43 +65,9 @@ namespace TabTabs.NamChanwoo
         void Start()
         {
             selectCharacterInstance = FindObjectOfType<SelectCharacter>();
+            initGetCharacter();
 
-            string getCharacterName = DataManager.Instance.getCharacter();
-
-            if("Sword1".Equals(getCharacterName))
-            {
-                SelectCharacter.swordGirl1 = true;
-            }
-            else if("Sword2".Equals(getCharacterName))
-            {
-                SelectCharacter.swordGirl2 = true;
-            }
-            else if("Sword3".Equals(getCharacterName))
-            {
-                SelectCharacter.swordGirl3 = true;
-            }
-            else
-            {
-                SelectCharacter.leon = true;
-            }
-
-            if (SelectCharacter.leon)
-            {
-                leon.SetActive(true);
-            }
-            else if (SelectCharacter.swordGirl2)
-            {
-                swordGirl2.SetActive(true);
-            }
-            else if (SelectCharacter.swordGirl3)
-            {
-                swordGirl3.SetActive(true);
-            }
-            else
-            { // � ĳ���͵� �������� ������� �⺻ĳ���� : SwrodGirl1
-                swordGirl1.SetActive(true);
-                SelectCharacter.swordGirl1 = true;
-            }
+            initGetButton();
 
             ClickNode = ENodeType.Default;
 
@@ -126,6 +92,69 @@ namespace TabTabs.NamChanwoo
             TimebarInstance = FindObjectOfType<TImebar>();
             EffectInit();
             ContinueButton.continueButtonClick = false;
+        }
+
+        private void initGetCharacter() {
+            string getCharacterName = DataManager.Instance.getCharacter(0);
+
+            if("Leon".Equals(getCharacterName))
+            {
+                SelectCharacter.leon = true;
+            }
+            else if("Sword2".Equals(getCharacterName))
+            {
+                SelectCharacter.swordGirl2 = true;
+            }
+            else if("Sword3".Equals(getCharacterName))
+            {
+                SelectCharacter.swordGirl3 = true;
+            }
+            else
+            {
+                SelectCharacter.swordGirl1 = true;
+            }
+
+            if (SelectCharacter.leon)
+            {
+                leon.SetActive(true);
+            }
+            else if (SelectCharacter.swordGirl2)
+            {
+                swordGirl2.SetActive(true);
+            }
+            else if (SelectCharacter.swordGirl3)
+            {
+                swordGirl3.SetActive(true);
+            }
+            else
+            { // � ĳ���͵� �������� ������� �⺻ĳ���� : SwrodGirl1
+                swordGirl1.SetActive(true);
+                SelectCharacter.swordGirl1 = true;
+            }
+        }
+
+        private void initGetButton() {
+            string controlType = DataManager.Instance.getCharacter(1);
+
+            Transform AttackButtonTrans;
+            Transform DashButtonTrans;
+
+            if( AttackButton != null || SelectEnemyButton != null)
+            {
+                AttackButtonTrans = AttackButton.transform;
+                DashButtonTrans = SelectEnemyButton.transform;
+
+                if("B".Equals(controlType))
+                {
+                    Vector3 tempPosition = AttackButtonTrans.position;
+                    AttackButtonTrans.position = DashButtonTrans.position;
+                    DashButtonTrans.position = tempPosition;
+                } else {
+                    Vector3 tempPosition = DashButtonTrans.position;
+                    AttackButtonTrans.position = AttackButtonTrans.position;
+                    DashButtonTrans.position = tempPosition;
+                }
+            }
         }
 
         public override void OnSystemInit()

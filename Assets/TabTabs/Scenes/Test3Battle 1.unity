@@ -487,8 +487,6 @@ MonoBehaviour:
   goldLackText1: {fileID: 0}
   swordGirl3PurchaseText: {fileID: 0}
   leonPurchaseText: {fileID: 0}
-  swordGirl3PurchaseUi: {fileID: 0}
-  leonPurchaseUi: {fileID: 0}
   purchaseSuccess: {fileID: 0}
 --- !u!1 &89593150
 GameObject:
@@ -3123,6 +3121,8 @@ MonoBehaviour:
   DashButton: {fileID: 1488109284}
   AttackButtonTrans: {fileID: 0}
   DashButtonTrans: {fileID: 0}
+  controlTypeA: {fileID: 21300000, guid: ac34b0f7e8fb2684fb6074198912dcae, type: 3}
+  controlTypeB: {fileID: 21300000, guid: 22b40180619927b47b5dd7da3fe8d615, type: 3}
 --- !u!1 &717675106
 GameObject:
   m_ObjectHideFlags: 0
