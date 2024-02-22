@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Purchasing;
 using BackEnd;
 using static BackEnd.SendQueue;
 using LitJson;
@@ -11,6 +12,7 @@ public class BackEndManager : MonoBehaviour
 {
     public static BackEndManager Instance { get; private set; }
     private string currentVersion = "";
+    static string RANK_UUID = "9a99a7a0-cfdc-11ee-b948-17c19bb75403";
     //비동기로 가입, 로그인을 할때에는 Update()에서 처리를 해야합니다. 이 값은 Update에서 구현하기 위한 플래그 값 입니다.
     BackendReturnObject bro = new BackendReturnObject();
 
@@ -106,23 +108,42 @@ public class BackEndManager : MonoBehaviour
         });*/
     }
 
+
+    // 사용자 로그인 동기 방식으로 구현
     public void LoginGuestBackend()
     {
         Debug.Log("로그인 callback - ");
-        string id = ""; 
-       // id = Backend.BMember.GetGuestID();
-        Debug.Log("로컬 기기에 저장된 아이디 :" + id);
 
         BackendReturnObject bro = Backend.BMember.GuestLogin("게스트 로그인으로 로그인함");
+         Debug.Log("로그인 결과 :" + bro);
         if(bro.IsSuccess())
         {
             DataManager.Instance.playerData.PlayerId = Backend.BMember.GetGuestID(); 
+           
+            string originalString = DataManager.Instance.playerData.PlayerId;
+        
+            // 첫 번째 '-' 이후와 마지막 '-' 이전의 부분을 제거하기 위해 인덱스 찾기
+            int firstDashIndex = originalString.IndexOf('-');
+            int lastDashIndex = originalString.LastIndexOf('-');
+            
+            // 첫 번째 부분과 마지막 부분을 추출
+            string firstPart = originalString.Substring(0, firstDashIndex + 1); // 첫 번째 '-' 포함
+            string lastPart = originalString.Substring(lastDashIndex); // 마지막 '-' 포함
+            
+            // 새로운 형식으로 결합
+            string newString = firstPart + lastPart;
+            Backend.BMember.CreateNickname(newString);
+            DataManager.Instance.playerData.PlayerName = newString;
+
             Debug.Log("로컬 기기에 저장된 아이디 :" + DataManager.Instance.playerData.PlayerId);
+
             DBInitGetDate();
             DBInitCharacterDate();
         }   
     }
 
+    // 사용자 초기 정보 가져오기
+    // 동기 방식으로 구현
     public void DBInitGetDate() {
         Where where = new Where();
         where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
@@ -154,8 +175,12 @@ public class BackEndManager : MonoBehaviour
                 DataManager.Instance.playerData.PlayerAttandence[i] = (bool)bro.FlattenRows()[0]["PlayerAttandence"][i];
             }
         }
+        DataManager.Instance.DbSaveGameData();
+        AdsManager.Instance.InitAds();
     }
 
+    // 캐릭터 별 초기 정보 가져오기
+    // 동기 방식으로 구현
     public void DBInitCharacterDate() {
         Where where = new Where();
         where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
@@ -175,20 +200,32 @@ public class BackEndManager : MonoBehaviour
                 if("Sword1".Equals(characterName)) {
                     DataManager.Instance.swordGirl1.bestScore = int.Parse(bro.FlattenRows()[i]["BestScore"].ToString());
                     DataManager.Instance.swordGirl1.totalKillScore = int.Parse(bro.FlattenRows()[i]["TotalKillScore"].ToString());
+                    DataManager.Instance.SaveCharacterData("sword1.json", DataManager.Instance.swordGirl1);
                 } else if("Sword2".Equals(characterName)) {
                     DataManager.Instance.swordGirl2.bestScore = int.Parse(bro.FlattenRows()[i]["BestScore"].ToString());
                     DataManager.Instance.swordGirl2.totalKillScore = int.Parse(bro.FlattenRows()[i]["TotalKillScore"].ToString());
+                    DataManager.Instance.SaveCharacterData("sword2.json", DataManager.Instance.swordGirl2);
                 } else if("Sword3".Equals(characterName)) {
                     DataManager.Instance.swordGirl3.bestScore = int.Parse(bro.FlattenRows()[i]["BestScore"].ToString());
                     DataManager.Instance.swordGirl3.totalKillScore = int.Parse(bro.FlattenRows()[i]["TotalKillScore"].ToString());
-                } else if("Leon".Equals(characterName)) {
+                    DataManager.Instance.SaveCharacterData("sword3.json", DataManager.Instance.swordGirl3);
+                } else if("leon".Equals(characterName)) {
                     DataManager.Instance.leon.bestScore = int.Parse(bro.FlattenRows()[i]["BestScore"].ToString());
                     DataManager.Instance.leon.totalKillScore = int.Parse(bro.FlattenRows()[i]["TotalKillScore"].ToString());
+                    DataManager.Instance.SaveCharacterData("leon.json", DataManager.Instance.leon);
                 }
             }
         }
     }
 
+    public void GeyRankData()
+    {
+        
+    }
+
+
+    // 사용자 정보 저장하기
+    // 동기 방식으로 구현
     public void DbSaveGameData()
     {
         // 해당 계정의 기존 데이터가 있는지 확인
@@ -245,13 +282,15 @@ public class BackEndManager : MonoBehaviour
         }
     }
 
+
+    // 캐릭터 정보 저장하기
+    // 동기 방식으로 구현
     public void SaveBestScore(CharacterData characterData)
     {
         // 해당 계정의 기존 데이터가 있는지 확인
         Where where = new Where();
         where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
         where.Equal("CharacterName",  characterData.characterName);
-
 
         var bro = Backend.GameData.GetMyData("CharacterData", where, 1);
         if(bro.IsSuccess() == false)
@@ -260,6 +299,7 @@ public class BackEndManager : MonoBehaviour
             Debug.Log(bro);
             return;
         }
+
         if(bro.GetReturnValuetoJSON()["rows"].Count <= 0)
         {
             Param intParam = new Param();
@@ -271,6 +311,7 @@ public class BackEndManager : MonoBehaviour
             Backend.GameData.Insert("CharacterData", intParam, (callback) => {
                 Debug.Log("내 playerInfo의 indate : " + callback);
             });
+
             return;
         } else {
             Param upParam = new Param();
@@ -283,5 +324,72 @@ public class BackEndManager : MonoBehaviour
                 Debug.Log("내 playerInfo의 update : " + callback);
             });
         }
+
+              
+
+    }
+    public void RankInputdate(int bestScore, string characterName) {
+        Where where = new Where();
+        where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
+        where.Equal("CharacterName",  characterName);
+
+        var bro = Backend.GameData.GetMyData("CharacterData", where, 0);
+        if(bro.IsSuccess() ) 
+        {
+            string rowInDate = bro.FlattenRows()[0]["inDate"].ToString();
+
+            Param rankParam = new Param();
+            rankParam.Add("BestScore", bestScore);
+            rankParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+
+            var bros = Backend.URank.User.UpdateUserScore(RANK_UUID, "CharacterData", rowInDate, rankParam);
+            Debug.Log("랭킹 등록 결과 : " + bros);
+        } else {
+            Debug.Log("랭킹 등록 결과 : " + bro);
+        }
+           
+
+
+    }
+
+    public JsonData GetBestScore() {
+        // rankUuid 랭킹에서 1 ~ 100등 랭커 조회
+        LitJson.JsonData rankListJson = null;
+
+        BackendReturnObject bro = Backend.URank.User.GetRankList(RANK_UUID, 10);
+        // 이후 처리
+        if (bro.IsSuccess())
+        {
+            // 랭킹 조회 성공
+            rankListJson = bro.GetFlattenJSON();
+            Debug.Log("랭킹 조회 성공 : " + rankListJson["rows"].Count);
+        }
+
+        return rankListJson;
+    }
+
+    public JsonData GetMyBestScore() {
+        LitJson.JsonData rankListJson = null;
+        BackendReturnObject bro = Backend.URank.User.GetMyRank(RANK_UUID);
+        // 이후 처리
+        if (bro.IsSuccess())
+        {
+            // 랭킹 조회 성공
+            rankListJson = bro.GetFlattenJSON();
+
+            Debug.Log("내 랭킹 : " + rankListJson["rows"][0]["index"].ToString());
+            Debug.Log("내 랭킹 : " + rankListJson["rows"][0]["score"].ToString());
+        }
+
+        return rankListJson;
+    }
+
+    public void PurchaseBackend(PurchaseEventArgs args) {
+             /*
+        뒤끝 영수증 검증 처리
+        */
+        var bro = Backend.Receipt.IsValidateGooglePurchase(args.purchasedProduct.receipt , "receiptDescription", false);
+        Debug.Log("구매 영수증 검증 결과 : " + bro);
+
     }
 }

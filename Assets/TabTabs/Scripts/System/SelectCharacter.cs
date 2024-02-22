@@ -54,7 +54,6 @@ public class SelectCharacter : MonoBehaviour
             
             if (DataManager.Instance.swordGirl1.bestScore == characterMaxScroe)
             {// �������1�� ������ ���� ���ٸ�
-             Debug.Log("characterMaxScroe:::"+characterMaxScroe);
                 bestScoreCharacterImage.sprite = swordGirl1Sprite;
                 bestcharacterName.text = "캐릭터 :  Sword1"; 
                 bestcharacterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl1.bestScore.ToString();
@@ -62,7 +61,6 @@ public class SelectCharacter : MonoBehaviour
             }
             else if (DataManager.Instance.swordGirl2.bestScore == characterMaxScroe)
             {// �������2�� ������ ���� ���ٸ�
-             Debug.Log("characterMaxScroe:::"+characterMaxScroe);
                 bestScoreCharacterImage.sprite = swordGirl2Sprite;
                 bestcharacterName.text = "캐릭터 :  Sword2";
                 bestcharacterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl2.bestScore.ToString();
@@ -70,7 +68,6 @@ public class SelectCharacter : MonoBehaviour
             }
             else if (DataManager.Instance.leon.bestScore == characterMaxScroe)
             {
-                 Debug.Log("characterMaxScroe:::"+characterMaxScroe);
                 bestScoreCharacterImage.sprite = leonSprite;
                 bestcharacterName.text = "캐릭터 :  Leon";
                 bestcharacterBestScore.text = "최고기록 : " + DataManager.Instance.leon.bestScore.ToString();
@@ -78,7 +75,6 @@ public class SelectCharacter : MonoBehaviour
             }
             else if (DataManager.Instance.swordGirl3.bestScore == characterMaxScroe)
             {
-                 Debug.Log("characterMaxScroe:::"+characterMaxScroe);
                 bestScoreCharacterImage.sprite = swordGirl3Sprite;
                 bestcharacterName.text = "캐릭터 :  Sword3";
                 bestcharacterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl3.bestScore.ToString();

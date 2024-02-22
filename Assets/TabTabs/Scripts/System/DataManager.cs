@@ -72,7 +72,7 @@ public class DataManager : MonoBehaviour
         Debug.Log("�ҷ����� �Ϸ�");
     }
 
-    private void SaveCharacterData(string fileName, CharacterData character)
+    public void SaveCharacterData(string fileName, CharacterData character)
     {
         string filePath = Path.Combine(Application.persistentDataPath, fileName);
         string jsonData = JsonUtility.ToJson(character, true);
@@ -82,6 +82,11 @@ public class DataManager : MonoBehaviour
 
     public void SaveGameData()
     {
+        
+    //    Debug.Log("SaveGameData swordGirl1::"+swordGirl1.bestScore);
+    //    Debug.Log("SaveGameData swordGirl2::"+swordGirl2.bestScore);
+    //    Debug.Log("SaveGameData swordGirl3::"+swordGirl3.bestScore);
+    //    Debug.Log("SaveGameData leon::"+leon.bestScore);
         SaveCharacterData(swordGirl1FileName, swordGirl1);
         SaveCharacterData(swordGirl2FileName, swordGirl2);
         SaveCharacterData(swordGirl3FileName, swordGirl3);
@@ -92,7 +97,7 @@ public class DataManager : MonoBehaviour
 
         File.WriteAllText(playerfilePath, playerjsonData);
 
-        Debug.Log("���� �Ϸ�");
+     //   Debug.Log("���� �Ϸ�");
     }
 
     public void DbSaveGameData() {

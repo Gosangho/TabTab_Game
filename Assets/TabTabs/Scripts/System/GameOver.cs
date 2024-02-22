@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ namespace TabTabs.NamChanwoo
 
         private void OnEnable()
         {// ������Ʈ�� Ȱ��ȭ�Ǹ� ����Ǵ� �Լ�
+            int bestScore = 0;
+            string characterName = "";
             test3BattleInstance = FindObjectOfType<Test3Battle>();
             scoreSystemInstance = FindObjectOfType<ScoreSystem>();
             dataManagerInstance = FindObjectOfType<DataManager>();
@@ -39,6 +42,7 @@ namespace TabTabs.NamChanwoo
                     newRecordObj.gameObject.SetActive(false);
                 }
                 DataManager.Instance.swordGirl1.characterName = "Sword1";
+                characterName  = DataManager.Instance.swordGirl1.characterName;
                 BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl1);
             }
             else if (SelectCharacter.swordGirl2)
@@ -53,7 +57,10 @@ namespace TabTabs.NamChanwoo
                     newRecordObj.gameObject.SetActive(false);
                 }
                 DataManager.Instance.swordGirl2.characterName = "Sword2";
+                characterName  = DataManager.Instance.swordGirl2.characterName;
                 BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl2);
+         
+
             }
             else if (SelectCharacter.swordGirl3)
             {
@@ -67,6 +74,7 @@ namespace TabTabs.NamChanwoo
                     newRecordObj.gameObject.SetActive(false);
                 }
                 DataManager.Instance.swordGirl3.characterName = "Sword3";
+                characterName  = DataManager.Instance.swordGirl3.characterName;
                 BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl3);
             }
             else
@@ -81,8 +89,38 @@ namespace TabTabs.NamChanwoo
                     newRecordObj.gameObject.SetActive(false);
                 }
                 DataManager.Instance.leon.characterName = "leon";
+                characterName  = DataManager.Instance.leon.characterName;
                 BackEndManager.Instance.SaveBestScore(DataManager.Instance.leon);
             }
+
+            // 모든 캐릭터의 최대 스코어를 갱신 했는지 확인 
+            // user 테이블에 최고 점수를 저장하는 컬럼을 추가 예정
+            if(bestScore < scoreSystemInstance.swordGirl1PreviousBestScore)
+            {
+                bestScore = scoreSystemInstance.score;
+                characterName = "Sword1";
+            }
+            else if(bestScore < scoreSystemInstance.swordGirl2PreviousBestScore)
+            {
+                bestScore = scoreSystemInstance.score;
+                characterName = "Sword2";
+            }
+            else if(bestScore < scoreSystemInstance.swordGirl3PreviousBestScore)
+            {
+                bestScore = scoreSystemInstance.score;
+                characterName = "Sword3";
+            }
+            else if(bestScore < scoreSystemInstance.leonPreviousBestScore)
+            {
+                bestScore = scoreSystemInstance.score;
+                characterName = "leon";
+            }
+            
+            Debug.Log("bestScore : " + bestScore + "/ scoreSystemInstance.score : " + scoreSystemInstance.score);
+            if(bestScore <= scoreSystemInstance.score ) {
+                BackEndManager.Instance.RankInputdate(scoreSystemInstance.score, characterName);
+            }
+            
         }
     }
 }

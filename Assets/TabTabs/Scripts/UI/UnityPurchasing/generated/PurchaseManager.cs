@@ -9,7 +9,6 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     public readonly string productId_test_id = "test_id";
     public readonly string productId_test_id2 = "test_id2";
 
-    public SelectCharacter selectCharacter;
 
     [Header("Cache")]
     private IStoreController storeController; //구매 과정을 제어하는 함수 제공자
@@ -80,7 +79,9 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     {
         Debug.Log("구매에 성공했습니다");
         Debug.Log("productId_test_id:"+args.purchasedProduct.definition.id);
-
+        
+        BackEndManager.Instance.PurchaseBackend(args);
+   
         if (args.purchasedProduct.definition.id == productId_test_id)
         {
             /* test_id 구매 처리 */
@@ -93,6 +94,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
         {
             /* test_id2 구매 처리 */
             DataManager.Instance.playerData.Gold += 2000;
+             DataManager.Instance.DbSaveGameData();
         } else if (args.purchasedProduct.definition.id == "purchase_test") {
             DataManager.Instance.playerData.AdsYn = 1;
             DataManager.Instance.playerData.AdsDate = System.DateTime.Now.ToString();
@@ -101,7 +103,6 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
             
             Debug.Log("구매 성공:"+DataManager.Instance.playerData.Gold );
         }
-
         return PurchaseProcessingResult.Complete;
     }
     #endregion
