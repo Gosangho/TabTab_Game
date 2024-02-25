@@ -17,6 +17,10 @@ public class UiReSize : MonoBehaviour
     [SerializeField] public GameObject RankingUI;
     [SerializeField] public GameObject AttendanceUI;
 
+    [SerializeField] public GameObject purchaseImage1;
+    [SerializeField] public GameObject purchaseImage2;
+    [SerializeField] public GameObject purchaseImage3;
+
 
     // Start is called before the first frame update
     void Awake() {
@@ -26,6 +30,9 @@ public class UiReSize : MonoBehaviour
         StoreUI.SetActive(true);
         RankingUI.SetActive(true);
         AttendanceUI.SetActive(true);
+        purchaseImage1.SetActive(true);
+        purchaseImage2.SetActive(true);
+        purchaseImage3.SetActive(true);
         
         GameObject[] dynamicLayers = GameObject.FindGameObjectsWithTag("DynamicLayer");
         GameObject[] dynamicImages = GameObject.FindGameObjectsWithTag("DynamicImage");
@@ -67,23 +74,28 @@ public class UiReSize : MonoBehaviour
         RankingUI.SetActive(false);
         AttendanceUI.SetActive(false);
 
+        purchaseImage1.SetActive(false);
+        purchaseImage2.SetActive(false);
+        purchaseImage3.SetActive(false);
+
     }
 
 
 
     void BaseCanvsWidth(GameObject objectName) {
-        RectTransform canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();;
+        RectTransform canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
         rectTransform = objectName.GetComponent<RectTransform>();
 
         rectTransform.sizeDelta = new Vector2((float)canvasRect.rect.width, rectTransform.sizeDelta.y);
     }
 
     void FitFontSize(GameObject objectName) {
-    /*    TextMeshProUGUI text = objectName.GetComponent<TextMeshProUGUI>();
-        float rateWidth = (float)Screen.width / baseWidth;
+        RectTransform canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
+        TextMeshProUGUI text = objectName.GetComponent<TextMeshProUGUI>();
+        float rateWidth = (float)canvasRect.rect.width / baseWidth;
         float fontSize = (float)rateWidth * text.fontSize;
         text.fontSize = (int)fontSize;
-        FitImageAspectRatio(objectName);*/
+        FitImageAspectRatio(objectName);
     }
 
     void FitImageAspectRatio(GameObject objectName)

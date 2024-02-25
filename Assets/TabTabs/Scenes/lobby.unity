@@ -1124,7 +1124,7 @@ GameObject:
   - component: {fileID: 110736429}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: DynamicFont
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2248,7 +2248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 150}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &215402263
@@ -2604,7 +2604,7 @@ GameObject:
   - component: {fileID: 241921019}
   m_Layer: 5
   m_Name: PurChase_Button
-  m_TagString: Untagged
+  m_TagString: DynamicFont
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2761,7 +2761,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100.35002, y: 75.000015}
+  m_AnchoredPosition: {x: -100.35002, y: 0}
   m_SizeDelta: {x: 50.693, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &248694705
@@ -2995,7 +2995,7 @@ GameObject:
   - component: {fileID: 252696145}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: DynamicFont
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3369,7 +3369,7 @@ GameObject:
   - component: {fileID: 311814470}
   m_Layer: 5
   m_Name: Purchase_Button(1)
-  m_TagString: Untagged
+  m_TagString: DynamicImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5031,7 +5031,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100.35002, y: 450}
+  m_AnchoredPosition: {x: -100.35002, y: 0}
   m_SizeDelta: {x: 50.693, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &464291602
@@ -6113,7 +6113,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 102.49999, y: 75.000015}
+  m_AnchoredPosition: {x: 102.49999, y: 0}
   m_SizeDelta: {x: 55, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &539033364
@@ -6324,7 +6324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 450}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &547755092
@@ -6946,7 +6946,7 @@ GameObject:
   - component: {fileID: 583171645}
   m_Layer: 5
   m_Name: SwordGirl3_Purchase_BackGround_Image
-  m_TagString: Untagged
+  m_TagString: DynamicImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7026,7 +7026,7 @@ GameObject:
   - component: {fileID: 590027726}
   m_Layer: 5
   m_Name: GoldLack_Text
-  m_TagString: Untagged
+  m_TagString: DynamicFont
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8140,7 +8140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 9.5748005, y: 104.69006}
+  m_AnchoredPosition: {x: 9.5748005, y: 104.68994}
   m_SizeDelta: {x: 23.349632, y: 28.329468}
   m_Pivot: {x: 0.4100614, y: 0.010336301}
 --- !u!114 &700175543
@@ -8594,7 +8594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100.35002, y: 375.00003}
+  m_AnchoredPosition: {x: -100.35002, y: 0}
   m_SizeDelta: {x: 50.693, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &728936969
@@ -9926,7 +9926,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 102.49999, y: 450}
+  m_AnchoredPosition: {x: 102.49999, y: 0}
   m_SizeDelta: {x: 55, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &830315901
@@ -10231,7 +10231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 75.000015}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &872824919
@@ -11620,7 +11620,7 @@ GameObject:
   - component: {fileID: 956902249}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: DynamicFont
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12253,7 +12253,7 @@ GameObject:
   - component: {fileID: 969690040}
   m_Layer: 5
   m_Name: Exit_Button
-  m_TagString: Untagged
+  m_TagString: DynamicImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12386,7 +12386,7 @@ GameObject:
   - component: {fileID: 972938347}
   m_Layer: 5
   m_Name: Leon_Purchase_Text
-  m_TagString: Untagged
+  m_TagString: DynamicFont
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12925,7 +12925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 375.00003}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &996550079
@@ -13038,7 +13038,7 @@ GameObject:
   - component: {fileID: 997959115}
   m_Layer: 5
   m_Name: Leon_Purchase_BackGround_Image
-  m_TagString: Untagged
+  m_TagString: DynamicImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13118,7 +13118,7 @@ GameObject:
   - component: {fileID: 1008194151}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: DynamicFont
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14632,7 +14632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100.35002, y: 225}
+  m_AnchoredPosition: {x: -100.35002, y: 0}
   m_SizeDelta: {x: 50.693, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1363455546
@@ -14972,7 +14972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 102.49999, y: 300}
+  m_AnchoredPosition: {x: 102.49999, y: 0}
   m_SizeDelta: {x: 55, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1410937984
@@ -15107,7 +15107,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100.35002, y: 150}
+  m_AnchoredPosition: {x: -100.35002, y: 0}
   m_SizeDelta: {x: 50.693, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1415687882
@@ -15376,7 +15376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -2.025, y: 1.5999756}
+  m_AnchoredPosition: {x: -2.025, y: 1.6000977}
   m_SizeDelta: {x: 544.05, y: 3.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1437556090
@@ -15393,7 +15393,7 @@ GameObject:
   - component: {fileID: 1437556092}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: DynamicImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15683,7 +15683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100.35002, y: 300}
+  m_AnchoredPosition: {x: -100.35002, y: 0}
   m_SizeDelta: {x: 50.693, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1462666942
@@ -16121,7 +16121,7 @@ GameObject:
   - component: {fileID: 1503853106}
   m_Layer: 5
   m_Name: Exit_Button
-  m_TagString: Untagged
+  m_TagString: DynamicImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16947,7 +16947,7 @@ GameObject:
   - component: {fileID: 1565360869}
   m_Layer: 5
   m_Name: PurchaseSuccess_BackGround_Image
-  m_TagString: Untagged
+  m_TagString: DynamicImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17047,7 +17047,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1575947123
@@ -17486,7 +17486,7 @@ GameObject:
   - component: {fileID: 1647819364}
   m_Layer: 5
   m_Name: GoldLack_Text(1)
-  m_TagString: Untagged
+  m_TagString: DynamicFont
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18302,7 +18302,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 102.49999, y: 375.00003}
+  m_AnchoredPosition: {x: 102.49999, y: 0}
   m_SizeDelta: {x: 55, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1714289224
@@ -18532,7 +18532,7 @@ GameObject:
   - component: {fileID: 1759040018}
   m_Layer: 5
   m_Name: Purchase_Button
-  m_TagString: Untagged
+  m_TagString: DynamicImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19220,7 +19220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 102.49999, y: 225}
+  m_AnchoredPosition: {x: 102.49999, y: 0}
   m_SizeDelta: {x: 55, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1777530070
@@ -19353,7 +19353,7 @@ RectTransform:
   m_Father: {fileID: 906665490}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.38652053}
+  m_AnchorMin: {x: 0, y: 0.38652056}
   m_AnchorMax: {x: 1, y: 0.99702203}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 16.0374, y: 10}
@@ -20060,7 +20060,7 @@ GameObject:
   - component: {fileID: 1838552805}
   m_Layer: 5
   m_Name: SwordGirl3_PurChase_Text
-  m_TagString: Untagged
+  m_TagString: DynamicFont
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21081,7 +21081,7 @@ GameObject:
   - component: {fileID: 1928395289}
   m_Layer: 5
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: DynamicFont
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21238,7 +21238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 102.49999, y: 150}
+  m_AnchoredPosition: {x: 102.49999, y: 0}
   m_SizeDelta: {x: 55, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1929173452
@@ -21698,7 +21698,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 225}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1960154962
@@ -23628,6 +23628,9 @@ MonoBehaviour:
   StoreUI: {fileID: 656647608}
   RankingUI: {fileID: 82412135}
   AttendanceUI: {fileID: 194012654}
+  purchaseImage1: {fileID: 583171643}
+  purchaseImage2: {fileID: 997959113}
+  purchaseImage3: {fileID: 1565360867}
 --- !u!1001 &8285197995805342402
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -17,7 +17,8 @@ namespace TabTabs.NamChanwoo
         {
             ContinueButton.continueButtonClick = false;
             DataManager.Instance.SaveGameData();
-            Debug.Log("ÀúÀå¿Ï·á");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½Ï·ï¿½");
+      
             StartCoroutine(Loading());
         }
 
@@ -43,7 +44,7 @@ namespace TabTabs.NamChanwoo
             }
 
 
-            float duration = 5f; // º¯°æ¿¡ °É¸± ÃÑ ½Ã°£ (ÃÊ)
+            float duration = 5f; // ï¿½ï¿½ï¿½æ¿¡ ï¿½É¸ï¿½ ï¿½ï¿½ ï¿½Ã°ï¿½ (ï¿½ï¿½)
             float targetValue = 1f;
             float startTime = Time.time;
 
@@ -54,16 +55,18 @@ namespace TabTabs.NamChanwoo
 
                 float scaleValue = loadingSliderBar.value * 100f;
                 int intValue = Mathf.RoundToInt(scaleValue);
-                loadingNumberText.text = intValue.ToString(); // Á¤¼ö·Î º¯È¯ÇÏ¿© Ç¥½Ã
+                loadingNumberText.text = intValue.ToString(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¿ï¿½ Ç¥ï¿½ï¿½
 
                 yield return null;
             }
+            Camera.main.backgroundColor = Color.black;
+            GameObject.Find("Canvas").SetActive(false);
 
             loadingSliderBar.value = targetValue;
             int finalValue = Mathf.RoundToInt(targetValue * 100f);
-            loadingNumberText.text = finalValue.ToString(); // Á¤¼ö·Î º¯È¯ÇÏ¿© Ç¥½Ã
+            loadingNumberText.text = finalValue.ToString(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¿ï¿½ Ç¥ï¿½ï¿½
 
-            // ¾À È°¼ºÈ­ Çã¿ë
+            // ï¿½ï¿½ È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½
             asyncOperation.allowSceneActivation = true;
         }
     }
