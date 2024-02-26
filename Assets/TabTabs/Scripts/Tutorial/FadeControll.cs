@@ -45,10 +45,11 @@ public class FadeControll : MonoBehaviour
             current += Time.deltaTime;
             percent = current / FadeTime;
 
-            Color color = FadeImage.color;
-            color.a = Mathf.Lerp(start, end, percent);
-            FadeImage.color = color;
-
+            if(FadeImage != null) {
+                Color color = FadeImage.color;
+                color.a = Mathf.Lerp(start, end, percent);
+                FadeImage.color = color;
+            }
             yield return null;
         }
     }

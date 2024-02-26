@@ -8,12 +8,12 @@ namespace TabTabs.NamChanwoo
 {
     public class TutorialBattleSystem : MonoBehaviour
     {
-        // BattleSystem¿¡¼­ ±¸ÇöµÉ °Íµé
-        // 1. ÀüÅõ·ÎÁ÷
-        // 2. Timebar¿Í ¿¡³Ê¹ÌÀÇ Ã¼·Â --
-        // NodeSheetÅ¬·¡½ºÀÇ m_NodeType;(¹æÇâÅ°) => º¯¼ö·Î °¡Á®´Ù ¾¸
-        // SpawnSystemÅ¬·¡½ºÀÇ SpawnNode(GameObject enemy)ÇÔ¼ö => ½ÌÅ¬Åæ
-        // EnemyBaseÅ¬·¡½ºÀÇ m_nodeQueueº¯¼ö(Queue ºí·Ï) => GetownNodesÇÔ¼ö °¡Á®´Ù ¾¸
+        // BattleSystemï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Íµï¿½
+        // 1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // 2. Timebarï¿½ï¿½ ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ --
+        // NodeSheetÅ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_NodeType;(ï¿½ï¿½ï¿½ï¿½Å°) => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+        // SpawnSystemÅ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SpawnNode(GameObject enemy)ï¿½Ô¼ï¿½ => ï¿½ï¿½Å¬ï¿½ï¿½
+        // EnemyBaseÅ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ m_nodeQueueï¿½ï¿½ï¿½ï¿½(Queue ï¿½ï¿½ï¿½ï¿½) => GetownNodesï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         //NodeSheet NodeSheetInstance;
         
         public EnemyBase selectEnemy;
@@ -27,12 +27,12 @@ namespace TabTabs.NamChanwoo
         public PlayerBase PlayerBaseInstance;
         public GameObject Left_Ork;
         public GameObject Right_Ork;
-        public bool MonsterDie = false; // ¾î´À ÂÊ ¸ó½ºÅÍ°¡ Á×¾ú´ÂÁö È®ÀÎÇÏ´Â boolÇü º¯¼ö
+        public bool MonsterDie = false; // ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ boolï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         public Node NodeInstance;
         public GameObject Character_Effect;
-        bool FirstAttack; // °ÔÀÓ½ÃÀÛ½Ã °ø°Ý¹öÆ°À¸·Î ÃÖÃÊ ÇÑ¹ø¸¸ Àç»ýµÇ´Â ¾Ö´Ï¸ÞÀÌ¼Ç º¯¼ö
-        //public bool Right_TrainAttack; // ¿À¸¥ÂÊ ¸ó½ºÅÍ¸¦ ¿¬¼Ó°ø°ÝÇß´ÂÁö ÆÇ´ÜÇÏ´Â º¯¼ö
-        //public bool Left_TrainAttack; // ¿ÞÂÊ ¸ó½ºÅÍ¸¦ ¿¬¼Ó°ø°ÝÇß´ÂÁö ÆÇ´ÜÇÏ´Â º¯¼ö
+        bool FirstAttack; // ï¿½ï¿½ï¿½Ó½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½ï¿½Ý¹ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //public bool Right_TrainAttack; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //public bool Left_TrainAttack; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
         //public GameObject ReStartButton;
         //public ScoreSystem ScoreSystemInstance;
         public GameObject ScoreTextObj;
@@ -46,7 +46,7 @@ namespace TabTabs.NamChanwoo
         {
             ClickNode = ENodeType.Default;
             DialogTestInstance = FindObjectOfType<DialogTest>();
-            CharacterBaseInstance = FindObjectOfType<CharacterBase>();
+           // CharacterBaseInstance = FindObjectOfType<CharacterBase>();
             PlayerBaseInstance = FindObjectOfType<PlayerBase>();
             AttackButton.onClick.AddListener(Attack);
             SelectEnemyButton.onClick.AddListener(SelectEnemy);
@@ -65,42 +65,42 @@ namespace TabTabs.NamChanwoo
         void Update()
         {
             if (ClickNode != ENodeType.Default)
-            {// ClickNode°¡ Áß¸³ÀÌ ¾Æ´Ï¶ó¸é == (¹öÆ°À» Å¬¸¯Çß´Ù¸é)
+            {// ClickNodeï¿½ï¿½ ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½ == (ï¿½ï¿½Æ°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ß´Ù¸ï¿½)
 
                 if (selectEnemy == null) { return; }
 
                 if (ClickNode == selectEnemy.GetOwnNodes().Peek().nodeSheet.m_NodeType)
-                {//´ÙÀ½¿¡ ³ª°¥ ³ëµåÅ¸ÀÔ°ú ºñ±³(°°Àº NodeTypeÀ» Å¬¸¯Çß´Ù¸é)
+                {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å¸ï¿½Ô°ï¿½ ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ NodeTypeï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ß´Ù¸ï¿½)
 
                     GameManager.NotificationSystem.NodeHitSuccess?.Invoke();
-                    //ScoreSystemInstance.score += 1; // °ø°Ý¼º°ø½Ã Score +1
-                                                    // 1. ÇØ´çÇÏ´Â enemyÀÇ ºí·° destroy
-                                                    // 2. Ä³¸¯ÅÍ°¡ ÇØ´çÇÏ´Â enemyÀÇ ºí·°À§Ä¡·Î ÀÌµ¿ ÈÄ °ø°Ý ¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý ÈÄ ¿ø·¡À§Ä¡·Î ÀÌµ¿
+                    //ScoreSystemInstance.score += 1; // ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½ï¿½ï¿½ Score +1
+                                                    // 1. ï¿½Ø´ï¿½ï¿½Ï´ï¿½ enemyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ destroy
+                                                    // 2. Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ enemyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½
 
-                    TImebar.timebarImage.fillAmount += 0.1f; // ½Ã°£º¯¼ö +0.1f
+                    TImebar.timebarImage.fillAmount += 0.1f; // ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ +0.1f
 
-                    CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
+                    PlayerBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
                     , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f);
 
-                    Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // ³ëµåÀÇ À§Ä¡¸¦ °¡Á®¿È
-                    GameObject gameObject = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // ³ëµåÀ§Ä¡¿¡ »ý¼º
+                    Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    GameObject gameObject = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
                     //if (Right_TrainAttack == true || Left_TrainAttack == true)
-                    //{// ¿À¸¥ÂÊ ¸ó½ºÅÍ³ª ¿ÞÂÊ ¸ó½ºÅÍ¸¦ ¿¬¼ÓÀ¸·Î °ø°ÝÇß´Ù¸é
-                    // // °ÔÀÓ¿À¹ö -> °ÔÀÓ ´Ù½Ã½ÃÀÛ
-                    //    Debug.Log("°ÔÀÓ¿À¹ö");
+                    //{// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´Ù¸ï¿½
+                    // // ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½Ã½ï¿½ï¿½ï¿½
+                    //    Debug.Log("ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½");
                     //    ReStartButton.SetActive(true);
-                    //    Time.timeScale = 0.0f; // °ÔÀÓ¸ØÃã
+                    //    Time.timeScale = 0.0f; // ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½
                     //}
                     RandAttackAudio();
                     RandEnemyHitAudio();
                     RandAnim();
                     DialogTestInstance.FirstAttack = true;
                     if (FirstAttack)
-                    {// ÃÖÃÊ °ø°Ý½Ã¸¸ ¹ßµ¿µÇ´Â ¾Ö´Ï¸ÞÀÌ¼Ç
+                    {// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý½Ã¸ï¿½ ï¿½ßµï¿½ï¿½Ç´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
                         PlayerBase.PlayerAnim.SetTrigger("Atk_6");
                         FirstAttack = false;
-                        float RandAttackSound = Random.value; // 0~1»çÀÌÀÇ ¹«ÀÛÀ§ °ª
+                        float RandAttackSound = Random.value; // 0~1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
                         if (RandAttackSound < 0.4f)
                         {
                             audioManager.Instance.SfxAudioPlay("Char_Attack1");
@@ -156,11 +156,11 @@ namespace TabTabs.NamChanwoo
                         selectEnemy.Attack();
                     }
 
-                    // ¾Æ´Ï¶ó¸é
-                    // 1. Ä³¸¯ÅÍ Hp --
-                    // 2. Ä³¸¯ÅÍ ¿ø·¡À§Ä¡·Î ÀÌµ¿
-                    // 3. EnemyÀÇ Ä³¸¯ÅÍ °ø°Ý ¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý
-                    // 4. ³ëµå ´Ù½Ã »ý¼ºÇÏ´Â ÇÔ¼ö È£Ãâ
+                    // ï¿½Æ´Ï¶ï¿½ï¿½
+                    // 1. Ä³ï¿½ï¿½ï¿½ï¿½ Hp --
+                    // 2. Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½
+                    // 3. Enemyï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½
+                    // 4. ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½ È£ï¿½ï¿½
                     if (selectEnemy == RightEnemy)
                     {
                         Test3Spawn.Instance.Spawn_RightNode(selectEnemy);
@@ -177,7 +177,8 @@ namespace TabTabs.NamChanwoo
 
             if (RightMonsterDie == true && LeftMonsterDie == true)
             {
-                MonsterDie = true; // Æ©Åä¸®¾ó Å×½ºÆ®¿¡¼­ Wait for Until¾È¿¡ µé¾î°¥ º¯¼ö
+                PlayerBaseInstance.gameObject.transform.position = new Vector3(0.0f, 0.72f, 0.0f);
+                MonsterDie = true; // Æ©ï¿½ä¸®ï¿½ï¿½ ï¿½×½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ Wait for Untilï¿½È¿ï¿½ ï¿½ï¿½î°¥ ï¿½ï¿½ï¿½ï¿½
             }
         }
 
@@ -189,10 +190,10 @@ namespace TabTabs.NamChanwoo
         void SelectEnemy()
         {
             if (selectEnemy == RightEnemy && RightMonsterDie)
-            {// ÇöÀç ¼±ÅÃµÈ ¸ó½ºÅÍ°¡ ¿À¸¥ÂÊ ¸ó½ºÅÍÀÌ°í
+            {// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½
                 if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
-                {// ¿ÞÂÊ¸ó½ºÅÍ¿¡ »ý¼ºµÈ ³ëµåÀÇ ÃÑ¼ö°¡ °°´Ù¸é == ¸ó½ºÅÍÀÇ Ã¹¹øÂ° ³ëµå¶ó¸é
-                    //ScoreSystemInstance.score += 1; // °ø°Ý¼º°ø½Ã Score +1
+                {// ï¿½ï¿½ï¿½Ê¸ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ == ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½
+                    //ScoreSystemInstance.score += 1; // ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½ï¿½ï¿½ Score +1
                     RandDashAttackAudio();
                     RandEnemyHitAudio();
                     //Right_TrainAttack = false;
@@ -200,18 +201,18 @@ namespace TabTabs.NamChanwoo
 
                     selectEnemy = LeftEnemy;
 
-                    TImebar.timebarImage.fillAmount += 0.1f; // ½Ã°£º¯¼ö +0.1f
+                    TImebar.timebarImage.fillAmount += 0.1f; // ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ +0.1f
 
-                    CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
-                    , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // ¸ó½ºÅÍÀÇ Ã¹¹øÂ° ³ëµåÀ§Ä¡·Î ÀÌµ¿
+                    PlayerBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
+                    , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½
 
-                    Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // ³ëµåÀÇ À§Ä¡¸¦ °¡Á®¿È
-                    GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // ³ëµåÀ§Ä¡¿¡ »ý¼º
+                    Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-                    GameObject PlayerAfterImage = Instantiate(Player_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                    GameObject PlayerAfterImage = Instantiate(Player_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
                     spriteRenderer.flipX = true;
-                    PlayerBase.PlayerAnim.SetTrigger("Slide_Atk_1"); // ¿ÀÅ©ÀÇ À§Ä¡·Î ÀÌµ¿ÇØ °ø°Ý¸ð¼Ç
+                    PlayerBase.PlayerAnim.SetTrigger("Slide_Atk_1"); // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½
 
                     Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
 
@@ -247,7 +248,7 @@ namespace TabTabs.NamChanwoo
             {
                 if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
                 {
-                    //ScoreSystemInstance.score += 1; // °ø°Ý¼º°ø½Ã Score +1
+                    //ScoreSystemInstance.score += 1; // ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½ï¿½ï¿½ Score +1
                     RandDashAttackAudio();
                     RandEnemyHitAudio();
                     //Left_TrainAttack = false;
@@ -255,20 +256,20 @@ namespace TabTabs.NamChanwoo
 
                     selectEnemy = RightEnemy;
 
-                    TImebar.timebarImage.fillAmount += 0.1f; // ½Ã°£º¯¼ö +0.1f
+                    TImebar.timebarImage.fillAmount += 0.1f; // ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ +0.1f
 
-                    CharacterBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
-                    , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // ¸ó½ºÅÍÀÇ Ã¹¹øÂ° ³ëµåÀ§Ä¡·Î ÀÌµ¿
+                    PlayerBaseInstance.gameObject.transform.position = new Vector3(selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.x
+                    , selectEnemy.GetOwnNodes().Peek().gameObject.transform.position.y, 0.0f); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½
 
-                    Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // ³ëµåÀÇ À§Ä¡¸¦ °¡Á®¿È
-                    GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // ³ëµåÀ§Ä¡¿¡ »ý¼º
+                    Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    GameObject ScoreTextobj = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-                    GameObject PlayerAfterImage = Instantiate(Player_AfterImage, CharacterBaseInstance.gameObject.transform.position, Quaternion.identity);
+                    GameObject PlayerAfterImage = Instantiate(Player_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     SpriteRenderer spriteRenderer = PlayerAfterImage.GetComponent<SpriteRenderer>();
                     spriteRenderer.flipX = false;
-                    PlayerBase.PlayerAnim.SetTrigger("Slide_Atk_1"); // ¿ÀÅ©ÀÇ À§Ä¡·Î ÀÌµ¿ÇØ °ø°Ý¸ð¼Ç
+                    PlayerBase.PlayerAnim.SetTrigger("Slide_Atk_1"); // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½
 
-                    Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage"); // ¿ÀÅ©ÀÇ ÇÇ°Ý¸ð¼Ç Àç»ý
+                    Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage"); // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½Ç°Ý¸ï¿½ï¿½ ï¿½ï¿½ï¿½
 
                     Character_Effect.transform.localScale = new Vector3(1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
 
@@ -309,29 +310,29 @@ namespace TabTabs.NamChanwoo
             {
                 if (randAnim == 0)
                 {
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_1"); // ¿ÀÅ©ÀÇ À§Ä¡·Î ÀÌµ¿ÇØ °ø°Ý¸ð¼Ç
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_1"); // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½
                 }
                 else if (randAnim == 1)
                 {
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_2"); // ¿ÀÅ©ÀÇ À§Ä¡·Î ÀÌµ¿ÇØ °ø°Ý¸ð¼Ç
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_2"); // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½
                 }
                 else if (randAnim == 2)
                 {
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_3"); // ¿ÀÅ©ÀÇ À§Ä¡·Î ÀÌµ¿ÇØ °ø°Ý¸ð¼Ç
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_3"); // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½
                 }
                 else if (randAnim == 3)
                 {
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_4"); // ¿ÀÅ©ÀÇ À§Ä¡·Î ÀÌµ¿ÇØ °ø°Ý¸ð¼Ç
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_4"); // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½
                 }
                 else if (randAnim == 4)
                 {
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_5"); // ¿ÀÅ©ÀÇ À§Ä¡·Î ÀÌµ¿ÇØ °ø°Ý¸ð¼Ç
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_5"); // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½
                 }
                 else
                 {// 5
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_7"); // ¿ÀÅ©ÀÇ À§Ä¡·Î ÀÌµ¿ÇØ °ø°Ý¸ð¼Ç
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_7"); // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¸ï¿½ï¿½
                 }
-                // * Atk_6¾Ö´Ï¸ÞÀÌ¼ÇÀº °ÔÀÓ ÃÖÃÊ½ÃÀÛ½Ã¸¸ ¹ßµ¿µÇ´Â ¾Ö´Ï¸ÞÀÌ¼Ç
+                // * Atk_6ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Û½Ã¸ï¿½ ï¿½ßµï¿½ï¿½Ç´ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½
             }
 
         }
@@ -343,7 +344,7 @@ namespace TabTabs.NamChanwoo
             //Instantiate(Character_Effect, targetPosition, Quaternion.identity);
             float randEffect = Random.Range(0f, 100f);
             if (randEffect <= 20f)
-            {// randEffect : 20ÆÛ¼¾Æ® È®·ü
+            {// randEffect : 20ï¿½Û¼ï¿½Æ® È®ï¿½ï¿½
                 Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
                 Instantiate(Character_Effect, targetPosition, Quaternion.identity);
             }
@@ -352,29 +353,29 @@ namespace TabTabs.NamChanwoo
         public void StartSpawn()
         {
             GameObject RightMonster = Right_Ork;
-            GameObject RightSpawnMonster = Instantiate(RightMonster, new Vector3(4.0f, 0.72f, 0), Quaternion.identity);
+            GameObject RightSpawnMonster = Instantiate(RightMonster, new Vector3(0.3f, 0.72f, 0), Quaternion.identity);
             EnemyBase spawnEnemy = RightSpawnMonster.GetComponent<EnemyBase>();
             if (spawnEnemy != null)
             {
-                //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ¸ó½ºÅÍ°¡ ½ºÆùµÇ¾úÀ½À» ½Ã½ºÅÛ¿¡ ¾Ë¸³´Ï´Ù.
+                //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½Û¿ï¿½ ï¿½Ë¸ï¿½ï¿½Ï´ï¿½.
                 Test3Spawn.Instance.Spawn_RightNode(spawnEnemy);
             }
-            RightEnemy = spawnEnemy; // °ª ÀúÀå
-            selectEnemy = spawnEnemy; // ¿À¸¥ÂÊ ¸ó½ºÅÍ°¡ µðÆúÆ®°ª
+            RightEnemy = spawnEnemy; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            selectEnemy = spawnEnemy; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½
 
             GameObject LefttMonster = Left_Ork;
-            GameObject LeftSpawnMonster = Instantiate(LefttMonster, new Vector3(-4.0f, 0.72f, 0), Quaternion.identity);
+            GameObject LeftSpawnMonster = Instantiate(LefttMonster, new Vector3(-0.3f, 0.72f, 0), Quaternion.identity);
             EnemyBase spawnEnemy2 = LeftSpawnMonster.GetComponent<EnemyBase>();
             if (spawnEnemy2 != null)
             {
-                //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ¸ó½ºÅÍ°¡ ½ºÆùµÇ¾úÀ½À» ½Ã½ºÅÛ¿¡ ¾Ë¸³´Ï´Ù.
+                //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½Û¿ï¿½ ï¿½Ë¸ï¿½ï¿½Ï´ï¿½.
                 Test3Spawn.Instance.SpawnLeft_Node(spawnEnemy2);
             }
-            LeftEnemy = spawnEnemy2; // °ª ÀúÀå
+            LeftEnemy = spawnEnemy2; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
         public void RandAttackAudio()
         {
-            float RandAttackSound = Random.value; // 0~1»çÀÌÀÇ ¹«ÀÛÀ§ °ª
+            float RandAttackSound = Random.value; // 0~1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
             if (RandAttackSound < 0.4f)
             {
                 audioManager.Instance.SfxAudioPlay("Char_Attack1");

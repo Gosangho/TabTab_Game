@@ -59,15 +59,13 @@ namespace TabTabs.NamChanwoo
 
                 yield return null;
             }
-            Camera.main.backgroundColor = Color.black;
-            GameObject.Find("Canvas").SetActive(false);
-
             loadingSliderBar.value = targetValue;
             int finalValue = Mathf.RoundToInt(targetValue * 100f);
             loadingNumberText.text = finalValue.ToString(); // ������ ��ȯ�Ͽ� ǥ��
 
             // �� Ȱ��ȭ ���
             asyncOperation.allowSceneActivation = true;
+
         }
     }
 }
