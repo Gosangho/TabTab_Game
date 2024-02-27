@@ -47,7 +47,7 @@ public class SelectCharacter : MonoBehaviour
         characterScores.Add("Leon", DataManager.Instance.leon.bestScore);
 
         characterMaxScroe = characterScores.Values.Max();
-        if (SceneManager.GetActiveScene().buildIndex == 3)
+        if (SceneManager.GetActiveScene().buildIndex == 4)
         {
             CharacterImageChange();
             playerGold.text = DataManager.Instance.playerData.Gold.ToString();
@@ -146,12 +146,15 @@ public class SelectCharacter : MonoBehaviour
 
     public void SelectLeon()
     {
+        Debug.Log("SelectLeon"+DataManager.Instance.playerData.LeonGet);
         if (DataManager.Instance.playerData.LeonGet)
         {
             swordGirl1 = false;
             swordGirl2 = false;
             swordGirl3 = false;
             leon = true;
+
+             DataManager.Instance.selectCharacter(0, "Leon");
         }
         else
         {
@@ -161,8 +164,6 @@ public class SelectCharacter : MonoBehaviour
         characterName.text = "캐릭터 :  Leon";
         characterBestScore.text = "최고기록 : " + DataManager.Instance.leon.bestScore.ToString();
         characterKillCount.text = "처치몬스터 : " + DataManager.Instance.leon.totalKillScore.ToString();
-
-        DataManager.Instance.selectCharacter(0, "Leon");
     }
 
     void CharacterImageChange()
