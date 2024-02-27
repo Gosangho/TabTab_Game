@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Resolution : MonoBehaviour
+public class ResolutionBattle : MonoBehaviour
 {
     // 1. 기기의 해상도가 게임화면보다 "넓은" 경우
     //- 게임화면의 너비(W)가 감소해야 하고 X의 값이 변경되어야한다. 
@@ -22,20 +22,11 @@ public class Resolution : MonoBehaviour
 
     private void Awake()
     {
-        SetResolution(540, 860);
+        SetResolutionBattle(540, 860);
     }
 
-    void SetCanvasScaler(int _width = 540, int _height = 860)
+    void SetResolutionBattle(int width = 540, int height = 860)
     {
-        CanvasScaler canvasScaler = FindObjectOfType<CanvasScaler>();
-        // CanvasScaler 컴포넌트를 가진 오브젝트를 찾아서 저장
-        canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        canvasScaler.referenceResolution = new Vector2(_width, _height);
-        canvasScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand; // 확장
-    }
-    void SetResolution(int width = 540, int height = 860)
-    {
-        SetCanvasScaler(width, height);
 
         int deviceWidth = Screen.width; // 기기의 해상도 너비
         int deviceHeight = Screen.height; // 기기의 해상도 높이
