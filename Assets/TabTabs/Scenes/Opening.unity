@@ -2084,8 +2084,6 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: -8831470727611207908, guid: acb08fcc7eb32e146a80946afec487bb, type: 2}
-    value: {fileID: 893447470}
   - key: {fileID: -6046947386701267012, guid: acb08fcc7eb32e146a80946afec487bb, type: 2}
     value: {fileID: 892464442}
   - key: {fileID: -1726086243802291559, guid: acb08fcc7eb32e146a80946afec487bb, type: 2}
@@ -2285,7 +2283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &893447471
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -82,6 +82,10 @@ public class SelectCharacter : MonoBehaviour
             }
             else
             {
+                bestScoreCharacterImage.sprite = swordGirl1Sprite;
+                bestcharacterName.text = "캐릭터 :  Sword1"; 
+                bestcharacterBestScore.text = "최고기록 : 0";
+                bestcharacterKillCount.text = "처치몬스터 : 0" ;
                 return;
             }
         }

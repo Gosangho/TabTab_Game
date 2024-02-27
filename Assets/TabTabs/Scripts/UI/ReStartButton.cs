@@ -18,6 +18,6 @@ public class ReStartButton : MonoBehaviour
     }
     public void TutorialReStart()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(6);
     }
 }
