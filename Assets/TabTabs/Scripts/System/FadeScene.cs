@@ -11,6 +11,7 @@ public class FadeScene : MonoBehaviour
     public static bool isBattle = false;
     public static bool isLobby = false;
     public static bool isTutorial = false;
+    public GameObject loadingImage;
 
     public void Opennig()
     {
@@ -51,6 +52,9 @@ public class FadeScene : MonoBehaviour
 
         yield return new WaitForSeconds(TransitionTime);
 
+        loadingImage.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        
         SceneManager.LoadScene(6);
     }
 
