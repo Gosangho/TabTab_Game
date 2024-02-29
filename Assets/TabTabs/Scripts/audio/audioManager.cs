@@ -48,27 +48,47 @@ public class audioManager : MonoBehaviour
         SfxTutorial = GameObject.Find("SFX_audio_Tutorialsfx").GetComponent<AudioSource>();
 
         if (SceneManager.GetActiveScene().buildIndex == 3)
-        {// ¹èÆ²
+        {// ï¿½ï¿½Æ²
             int ranBGM = Random.Range(2, 5);
             BgmAudio.clip = BgmClip[ranBGM];
             BgmAudio.Play();
         }
         else if (SceneManager.GetActiveScene().buildIndex == 4)
-        {// ·Îºñ(·çÇÁ)
+        {// ï¿½Îºï¿½(ï¿½ï¿½ï¿½ï¿½)
             BgmAudio.clip = BgmClip[0];
             BgmAudio.Play();
         }
         else if (SceneManager.GetActiveScene().buildIndex == 5)
-        {// Æ©Åä¸®¾ó(·çÇÁ)
+        {// Æ©ï¿½ä¸®ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
             BgmAudio.clip = BgmClip[1];
             BgmAudio.Play();
         }
         //else
-        //{// ¿£µù(·çÇÁ)
+        //{// ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
         //    BgmAudio.clip = BgmClip[5];
         //    BgmAudio.Play();
         //}
+        string sfxGet = DataManager.Instance.getCharacter(2);
+        string bgmGet = DataManager.Instance.getCharacter(3);
+        float sfxVolume = 0.0f;
+        float bgmVolume = 0.0f;
+
+        if("default".Equals(sfxGet))
+        {
+            sfxVolume = 5.0f;
+        } else {
+            sfxVolume = float.Parse(sfxGet);
+        }
         
+        if("default".Equals(bgmGet))
+        {
+            bgmVolume = 5.0f;
+        } else {
+            bgmVolume = float.Parse(bgmGet);
+        }
+
+        GetSfxAudioVolume(sfxVolume);
+        GetBgmAudioVolume(bgmVolume);
     }
 
     
@@ -145,6 +165,7 @@ public class audioManager : MonoBehaviour
         SfxAudio_Char_AttackAudio.volume = volume;
         SfxAudio_Enemy_hitAudio.volume = volume;
         SfxTutorial.volume = volume;
+
         if (volume <= 0)
         {
             SfxImage.sprite = SfxSecondImage;
@@ -153,10 +174,44 @@ public class audioManager : MonoBehaviour
         {
             SfxImage.sprite = SfxFirstImage;
         }
+
+         DataManager.Instance.selectCharacter(2, volume.ToString());
     }
     public void SetBgmAudioVolume(float volume)
     {
         BgmAudio.volume = volume;
+       
+        if (volume <= 0)
+        {
+            BgmImage.sprite = BgmSecondImage;
+        }
+        else
+        {
+            BgmImage.sprite = BgmFirstImage;
+        }
+         DataManager.Instance.selectCharacter(3, volume.ToString());
+    }
+
+    void GetSfxAudioVolume(float volume)
+    {
+        SfxAudio_Char_AttackAudio.volume = volume;
+        SfxAudio_Enemy_hitAudio.volume = volume;
+        SfxTutorial.volume = volume;
+
+        if (volume <= 0)
+        {
+            SfxImage.sprite = SfxSecondImage;
+        }
+        else
+        {
+            SfxImage.sprite = SfxFirstImage;
+        }
+
+    }
+    void GetBgmAudioVolume(float volume)
+    {
+        BgmAudio.volume = volume;
+       
         if (volume <= 0)
         {
             BgmImage.sprite = BgmSecondImage;
@@ -166,6 +221,7 @@ public class audioManager : MonoBehaviour
             BgmImage.sprite = BgmFirstImage;
         }
     }
+
 
     public void PlayButtonClick()
     {
