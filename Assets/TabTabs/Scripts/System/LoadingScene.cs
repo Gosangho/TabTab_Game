@@ -13,6 +13,10 @@ namespace TabTabs.NamChanwoo
         public TextMeshProUGUI loadingNumberText;
         public AsyncOperation asyncOperation;
 
+        public GameObject loadingImage;
+
+        public Camera cam;
+
         void Start()
         {
             ContinueButton.continueButtonClick = false;
@@ -59,10 +63,19 @@ namespace TabTabs.NamChanwoo
 
                 yield return null;
             }
+
             loadingSliderBar.value = targetValue;
             int finalValue = Mathf.RoundToInt(targetValue * 100f);
             loadingNumberText.text = finalValue.ToString(); // ������ ��ȯ�Ͽ� ǥ��
 
+            
+            cam.rect = new Rect(0, 0, 1, 1);
+            cam.clearFlags = CameraClearFlags.SolidColor;
+            cam.backgroundColor = Color.black;
+
+            loadingImage.SetActive(true);
+
+            yield return new WaitForSeconds(0.1f);
             // �� Ȱ��ȭ ���
             asyncOperation.allowSceneActivation = true;
 
