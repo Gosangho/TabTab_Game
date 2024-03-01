@@ -36,7 +36,7 @@ public class DataManager : MonoBehaviour
     public CharacterData leon = new CharacterData();
     public PlayerData playerData = new PlayerData();
 
-    string[] prefsList = {"selectCharacter","controlType","soundSfx","soundBgm"};
+    string[] prefsList = {"selectCharacter","controlType","soundSfx","soundBgm","tutorialPlay"};
 
     private void Start()
     {

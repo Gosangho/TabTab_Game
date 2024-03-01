@@ -17,6 +17,7 @@ public class SkipButton : MonoBehaviour
     public void LobbyButton()
     {
         DataManager.Instance.playerData.TutorialPlay = true;
+        DataManager.Instance.selectCharacter(4,"true");
         FadeSceneInstance.LoadLobbyScene();
     }
 }

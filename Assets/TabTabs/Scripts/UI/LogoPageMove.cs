@@ -8,8 +8,8 @@ public class LogoPageMove : MonoBehaviour
 {
     
     public SkeletonAnimation skeletonAnimation; // Inspector에서 할당
-    public string sceneNameToLoad = "Opening"; // 여기에 이동하고자 하는 씬의 이름을 입력하세요
-
+    string sceneNameToLoad = "Opening"; // 여기에 이동하고자 하는 씬의 이름을 입력하세요
+    string sceneNameToLoby = "lobby"; 
 
     void Start()
     {
@@ -19,7 +19,12 @@ public class LogoPageMove : MonoBehaviour
 
     private void AnimationComplete(Spine.TrackEntry trackEntry)
     {
-        SceneManager.LoadScene(sceneNameToLoad);
+        if("default".Equals(DataManager.Instance.getCharacter(4))){
+            SceneManager.LoadScene(sceneNameToLoad);
+        } else {
+            SceneManager.LoadScene(sceneNameToLoby);
+        }
+     
     }
 
     void OnDestroy()

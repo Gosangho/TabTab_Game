@@ -13,10 +13,12 @@ public class Opening : MonoBehaviour
     {
         if (DataManager.Instance.playerData.TutorialPlay == true)
         {
+            DataManager.Instance.selectCharacter(4,"true");
             SceneManager.LoadScene(5);
         }
         else
         {
+            DataManager.Instance.selectCharacter(4,"true");
             SceneManager.LoadScene(6);
         }
     }

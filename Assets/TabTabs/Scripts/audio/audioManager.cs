@@ -202,15 +202,21 @@ public class audioManager : MonoBehaviour
         SfxAudio_Enemy_hitAudio.volume = volume;
         SfxTutorial.volume = volume;
 
-        sfxSlider.value = volume;
+        if(sfxSlider != null) {
+            sfxSlider.value = volume;
+        }
 
         if (volume <= 0)
         {
-            SfxImage.sprite = SfxSecondImage;
+            if(SfxImage != null) {
+                SfxImage.sprite = SfxSecondImage;
+            }
         }
         else
         {
-            SfxImage.sprite = SfxFirstImage;
+            if(SfxImage != null) {
+                SfxImage.sprite = SfxFirstImage;
+            }
         }
 
     }
@@ -218,15 +224,21 @@ public class audioManager : MonoBehaviour
     {
         BgmAudio.volume = volume;
 
-        BgmSlider.value = volume;
+        if(BgmSlider != null) {
+            BgmSlider.value = volume;
+        }
        
         if (volume <= 0)
         {
-            BgmImage.sprite = BgmSecondImage;
+            if(BgmImage != null) {
+                BgmImage.sprite = BgmSecondImage;
+            }
         }
         else
         {
-            BgmImage.sprite = BgmFirstImage;
+            if(BgmImage != null) {
+                BgmImage.sprite = BgmFirstImage;
+            }
         }
     }
 
