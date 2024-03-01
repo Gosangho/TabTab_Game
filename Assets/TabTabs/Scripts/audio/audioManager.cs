@@ -40,6 +40,10 @@ public class audioManager : MonoBehaviour
     public Sprite BgmFirstImage;
     public Sprite BgmSecondImage;
 
+    public Slider sfxSlider;
+
+    public Slider BgmSlider;
+
     private void Start()
     {
         BgmAudio = GameObject.Find("BGM_audio").GetComponent<AudioSource>();
@@ -75,18 +79,18 @@ public class audioManager : MonoBehaviour
 
         if("default".Equals(sfxGet))
         {
-            sfxVolume = 5.0f;
+            sfxVolume = 0.5f;
         } else {
             sfxVolume = float.Parse(sfxGet);
         }
         
         if("default".Equals(bgmGet))
         {
-            bgmVolume = 5.0f;
+            bgmVolume = 0.5f;
         } else {
             bgmVolume = float.Parse(bgmGet);
         }
-
+        Debug.Log("sfxVolume::"+sfxVolume+" bgmVolume::"+bgmVolume);
         GetSfxAudioVolume(sfxVolume);
         GetBgmAudioVolume(bgmVolume);
     }
@@ -198,6 +202,8 @@ public class audioManager : MonoBehaviour
         SfxAudio_Enemy_hitAudio.volume = volume;
         SfxTutorial.volume = volume;
 
+        sfxSlider.value = volume;
+
         if (volume <= 0)
         {
             SfxImage.sprite = SfxSecondImage;
@@ -211,6 +217,8 @@ public class audioManager : MonoBehaviour
     void GetBgmAudioVolume(float volume)
     {
         BgmAudio.volume = volume;
+
+        BgmSlider.value = volume;
        
         if (volume <= 0)
         {
