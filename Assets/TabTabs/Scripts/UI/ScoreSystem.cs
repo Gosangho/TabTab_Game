@@ -18,6 +18,7 @@ public class ScoreSystem : MonoBehaviour
     public int swordGirl2PreviousBestScore = 0;
     public int swordGirl3PreviousBestScore = 0;
     public int leonPreviousBestScore = 0;
+    public Image newScoreImage;
 
     void Start()
     {
@@ -31,31 +32,36 @@ public class ScoreSystem : MonoBehaviour
 
     void Update()
     {
-        scoreText.text = "Score : " + score.ToString();
+        scoreText.text = score.ToString();
 
         // score가 현재 캐릭터가 가지고있는 베스트스코어보다 크다면 score가 캐릭터의 베스트 스코어로 변경됨
         if (SelectCharacter.swordGirl1 && score > DataManager.Instance.swordGirl1.bestScore)
         {
+            newScoreImage.gameObject.SetActive(true);
             DataManager.Instance.swordGirl1.bestScore = score;
             DataManager.Instance.SaveGameData();
         }
         else if (SelectCharacter.swordGirl2 && score > DataManager.Instance.swordGirl2.bestScore)
         {
+            newScoreImage.gameObject.SetActive(true);
             DataManager.Instance.swordGirl2.bestScore = score;
             DataManager.Instance.SaveGameData();
         }
         else if (SelectCharacter.swordGirl3 && score > DataManager.Instance.swordGirl3.bestScore)
         {
+            newScoreImage.gameObject.SetActive(true);
             DataManager.Instance.swordGirl3.bestScore = score;
             DataManager.Instance.SaveGameData();
         }
         else if (SelectCharacter.leon && score > DataManager.Instance.leon.bestScore)
         {
+            newScoreImage.gameObject.SetActive(true);
             DataManager.Instance.leon.bestScore = score;
             DataManager.Instance.SaveGameData();
         }
         else
         {
+            newScoreImage.gameObject.SetActive(false);
             return;
         }
     }

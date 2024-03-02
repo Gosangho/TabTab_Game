@@ -1290,7 +1290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordGirl1:
     characterName: 
-    bestScore: 10
+    bestScore: 0
     totalKillScore: 0
   swordGirl2:
     characterName: 
@@ -3038,6 +3038,8 @@ MonoBehaviour:
   SfxSecondImage: {fileID: 21300000, guid: 85ecdb21892df094dba00a609c675b6f, type: 3}
   BgmFirstImage: {fileID: 21300000, guid: 3850f274d090bcb4ca67876eff81d8de, type: 3}
   BgmSecondImage: {fileID: 21300000, guid: 629a8486316674a4082f75d01a1fbce2, type: 3}
+  sfxSlider: {fileID: 0}
+  BgmSlider: {fileID: 0}
 --- !u!4 &735532532
 Transform:
   m_ObjectHideFlags: 0
