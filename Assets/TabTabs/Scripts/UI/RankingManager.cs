@@ -29,7 +29,7 @@ public class RankingManager : MonoBehaviour
                 bool hasNickname = firstRow["nickname"] != null;
 
                 if(hasNickname) {
-                    nickname = rankListJson["rows"][0]["nickname"].ToString().Length > 6 ? rankListJson["rows"][0]["nickname"].ToString().Substring(0, 6) + "..." : rankListJson["rows"][0]["nickname"].ToString() ;
+                    nickname = rankListJson["rows"][0]["nickname"].ToString().Length > 6 ? rankListJson["rows"][0]["nickname"].ToString().Substring(0, 5) + ".." : rankListJson["rows"][0]["nickname"].ToString() ;
                 }
                 string score = rankMyJson["rows"][0]["score"].ToString();
                 
@@ -69,7 +69,7 @@ public class RankingManager : MonoBehaviour
                         bool hasNickname = firstRow["nickname"] != null;
 
                         if(hasNickname) {
-                            nickname = rankListJson["rows"][0]["nickname"].ToString().Length > 6 ? rankListJson["rows"][0]["nickname"].ToString().Substring(0, 6) + "..." : rankListJson["rows"][0]["nickname"].ToString() ;
+                            nickname = rankListJson["rows"][0]["nickname"].ToString().Length > 6 ? rankListJson["rows"][0]["nickname"].ToString().Substring(0, 5) + ".." : rankListJson["rows"][0]["nickname"].ToString() ;
                         }
                         // TextMeshProUGUI의 텍스트를 rankListJson에서 가져온 값으로 설정합니다.
                         scoreRankText.text = rankListJson["rows"][i]["rank"].ToString(); 

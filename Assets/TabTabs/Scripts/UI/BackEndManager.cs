@@ -128,10 +128,10 @@ public class BackEndManager : MonoBehaviour
             
             // 첫 번째 부분과 마지막 부분을 추출
             string firstPart = originalString.Substring(0, firstDashIndex + 1); // 첫 번째 '-' 포함
-            string lastPart = originalString.Substring(lastDashIndex); // 마지막 '-' 포함
+            string lastPart = originalString.Substring(lastDashIndex + 1); // 마지막 '-' 포함
             
             // 새로운 형식으로 결합
-            string newString = firstPart + lastPart;
+            string newString = lastPart;
             Backend.BMember.CreateNickname(newString);
             DataManager.Instance.playerData.PlayerName = newString;
 
@@ -139,7 +139,33 @@ public class BackEndManager : MonoBehaviour
 
             DBInitGetDate();
             DBInitCharacterDate();
-        }   
+        } else {
+            Backend.BMember.DeleteGuestInfo(); 
+
+            BackendReturnObject bros = Backend.BMember.GuestLogin("게스트 로그인으로 로그인함");
+
+            DataManager.Instance.playerData.PlayerId = Backend.BMember.GetGuestID(); 
+           
+            string originalString = DataManager.Instance.playerData.PlayerId;
+        
+            // 첫 번째 '-' 이후와 마지막 '-' 이전의 부분을 제거하기 위해 인덱스 찾기
+            int firstDashIndex = originalString.IndexOf('-');
+            int lastDashIndex = originalString.LastIndexOf('-');
+            
+            // 첫 번째 부분과 마지막 부분을 추출
+            string firstPart = originalString.Substring(0, firstDashIndex + 1); // 첫 번째 '-' 포함
+            string lastPart = originalString.Substring(lastDashIndex + 1); // 마지막 '-' 포함
+            
+            // 새로운 형식으로 결합
+            string newString = lastPart;
+            Backend.BMember.CreateNickname(newString);
+            DataManager.Instance.playerData.PlayerName = newString;
+
+            Debug.Log("로컬 기기에 저장된 아이디 :" + DataManager.Instance.playerData.PlayerId);
+
+            DBInitGetDate();
+            DBInitCharacterDate();
+        }  
     }
 
     // 사용자 초기 정보 가져오기
@@ -288,6 +314,7 @@ public class BackEndManager : MonoBehaviour
     public void SaveBestScore(CharacterData characterData)
     {
         // 해당 계정의 기존 데이터가 있는지 확인
+
         Where where = new Where();
         where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
         where.Equal("CharacterName",  characterData.characterName);
@@ -308,9 +335,10 @@ public class BackEndManager : MonoBehaviour
             intParam.Add("BestScore", characterData.bestScore);
             intParam.Add("TotalKillScore", characterData.totalKillScore);
 
-            Backend.GameData.Insert("CharacterData", intParam, (callback) => {
-                Debug.Log("내 playerInfo의 indate : " + callback);
-            });
+           // Backend.GameData.Insert("CharacterData", intParam, (callback) => {
+           //     Debug.Log("내 playerInfo의 indate : " + callback);
+           // });
+            Backend.GameData.Insert("CharacterData", intParam);
 
             return;
         } else {
@@ -319,10 +347,7 @@ public class BackEndManager : MonoBehaviour
             upParam.Add("CharacterName", characterData.characterName);
             upParam.Add("BestScore", characterData.bestScore);
             upParam.Add("TotalKillScore", characterData.totalKillScore);
-
-            Backend.GameData.Update("CharacterData", where, upParam, (callback) => {
-                Debug.Log("내 playerInfo의 update : " + callback);
-            });
+            Backend.GameData.Update("CharacterData", where, upParam);
         }
 
               
@@ -332,11 +357,12 @@ public class BackEndManager : MonoBehaviour
         Where where = new Where();
         where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
         where.Equal("CharacterName",  characterName);
-
         var bro = Backend.GameData.GetMyData("CharacterData", where, 0);
         if(bro.IsSuccess() ) 
         {
             string rowInDate = bro.FlattenRows()[0]["inDate"].ToString();
+
+            Debug.Log("SaveBestScore::update:"+ rowInDate);
 
             Param rankParam = new Param();
             rankParam.Add("BestScore", bestScore);

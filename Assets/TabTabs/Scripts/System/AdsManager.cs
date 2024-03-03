@@ -41,7 +41,7 @@ public class AdsManager : MonoBehaviour
     // 구글 광고 초기화
     public void InitAds()
     {
-
+        Debug.Log("Interstitial ad loaded with response : start ");
         AdRequest request = new AdRequest.Builder().Build();
 
         if(bannerView != null) {
@@ -50,12 +50,12 @@ public class AdsManager : MonoBehaviour
         }
 
         if(DataManager.Instance.playerData.AdsYn == 0) {
-            Debug.Log("광고를 보지 않는 유저입니다.");
+            Debug.Log("광고를 보는 유저입니다.");
             bannerView = new BannerView(ADBANNER_ID, AdSize.Banner, AdPosition.Bottom);
             bannerView.LoadAd(request); 
             bannerView.Show();
         } else {
-            Debug.Log("광고를 보는 유저입니다.");
+            Debug.Log("광고를 보지 않는 유저입니다.");
         }
 
         RewardedAd.Load(ADUNIT_ID, request, LoadCallback);
@@ -110,14 +110,14 @@ public class AdsManager : MonoBehaviour
             }
             else
             {
-                if (this.interstitial.CanShowAd())
+                if (this.interstitial != null)
                 {
                     this.interstitial.Show();
                     continueButtonInstance.GetReward();
                 }
             }
         } else {
-            if (this.interstitial.CanShowAd())
+            if (this.interstitial != null)
             {
                 this.interstitial.Show();
                 continueButtonInstance.GetReward();

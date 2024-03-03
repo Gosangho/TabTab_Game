@@ -2,59 +2,92 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Resolution : MonoBehaviour
 {
-    // 1. ±â±âÀÇ ÇØ»óµµ°¡ °ÔÀÓÈ­¸éº¸´Ù "³ĞÀº" °æ¿ì
-    //- °ÔÀÓÈ­¸éÀÇ ³Êºñ(W)°¡ °¨¼ÒÇØ¾ß ÇÏ°í XÀÇ °ªÀÌ º¯°æµÇ¾î¾ßÇÑ´Ù. 
-    //- 1920x1080ÀÇ ÇØ»óµµ °ÔÀÓÀ» 200x100ÇØ»óµµ ±â±â¿¡ ´ëÀÀÇÑ´Ù¸é
+    // 1. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»óµµ°ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½éº¸ï¿½ï¿½ "ï¿½ï¿½ï¿½ï¿½" ï¿½ï¿½ï¿½
+    //- ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½Êºï¿½(W)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï°ï¿½ Xï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½Ñ´ï¿½. 
+    //- 1920x1080ï¿½ï¿½ ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 200x100ï¿½Ø»ï¿½ ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½
     //- X = [1-{(1920/1080)}/(200/100)}] / 2
-    //- Y = 0 // ¿òÁ÷ÀÌÁö ¾ÊÀ½
+    //- Y = 0 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     //- W = (1920/1080)/(200/100)
-    //- H = 1 // ³ôÀÌÀ¯Áö
+    //- H = 1 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    // 2. ±â±âÀÇ ÇØ»óµµ°¡ °ÔÀÓÈ­¸éº¸´Ù ´õ "³ôÀº"°æ¿ì
-    //- °ÔÀÓÈ­¸éÀÇ ³ôÀÌ°¡ °¨¼ÒÇØ¾ß ÇÏ¸ç YÀÇ °ªÀÌ º¯°æµÇ¾î¾ß ÇÑ´Ù.
-    //- X = 0 // ¿òÁ÷ÀÌÁö ¾ÊÀ½
+    // 2. ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»óµµ°ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½éº¸ï¿½ï¿½ ï¿½ï¿½ "ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½ï¿½
+    //- ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï¸ï¿½ Yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ ï¿½Ñ´ï¿½.
+    //- X = 0 // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     //- Y = [1-{(100/200)/(1920/1080)}] /2
-    //- W = 1 // °ÔÀÓÈ­¸éÀÇ ³Êºñ´Â À¯Áö
+    //- W = 1 // ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½Êºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     //- H = (100/200)/(1920/1080)
+
+    
+    public GameObject loadingImage;
 
     private void Awake()
     {
+       StartCoroutine(cameraFull());
+    }
+
+    void Start()
+    {
+        StartCoroutine(cameraFull());
+    }
+
+    IEnumerator cameraFull()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        // ì”¬ì˜ ì´ë¦„ì„ ì–»ê¸°
+        string sceneName = currentScene.name;
+
+        Camera.main.rect = new Rect(0, 0, 1, 1);
+        Camera.main.clearFlags = CameraClearFlags.SolidColor;
+
+        if("lobby".Equals(sceneName)) {
+            Camera.main.backgroundColor = new Color(85/255f, 74/255f, 166/255f);
+        } else {
+            Camera.main.backgroundColor = Color.black;
+        }
+
+        loadingImage.SetActive(true);
+
+        yield return new WaitForSeconds(0.3f);
         SetResolution(540, 860);
     }
 
     void SetCanvasScaler(int _width = 540, int _height = 860)
     {
         CanvasScaler canvasScaler = FindObjectOfType<CanvasScaler>();
-        // CanvasScaler ÄÄÆ÷³ÍÆ®¸¦ °¡Áø ¿ÀºêÁ§Æ®¸¦ Ã£¾Æ¼­ ÀúÀå
+        // CanvasScaler ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         canvasScaler.referenceResolution = new Vector2(_width, _height);
-        canvasScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand; // È®Àå
+        canvasScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand; // È®ï¿½ï¿½
     }
     void SetResolution(int width = 540, int height = 860)
     {
+        
         SetCanvasScaler(width, height);
 
-        int deviceWidth = Screen.width; // ±â±âÀÇ ÇØ»óµµ ³Êºñ
-        int deviceHeight = Screen.height; // ±â±âÀÇ ÇØ»óµµ ³ôÀÌ
+        int deviceWidth = Screen.width; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½ ï¿½Êºï¿½
+        int deviceHeight = Screen.height; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         Screen.SetResolution(width, (int)(((float)deviceHeight / deviceWidth) * width), true);
-        // ÇØ»óµµ º¯°æ
+        // ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         if ((float)width / height < (float)deviceWidth / deviceHeight)
-        {// ¸¸¾à ±â±âÀÇ ÇØ»óµµºñ°¡ ´õ Å©´Ù¸é
+        {// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»óµµºï¿½ ï¿½ï¿½ Å©ï¿½Ù¸ï¿½
             float newWidth = ((float)width / height) / ((float)deviceWidth / deviceHeight);
             Camera.main.rect = new Rect((1f - newWidth) / 2f, 0f, newWidth, 1f);
-            // ¸ŞÀÎÄ«¸Ş¶óÀÇ ViewPortRect°ª Á¶Àı
-            // Rect : X, Y, W, H °ª
+            // ï¿½ï¿½ï¿½ï¿½Ä«ï¿½Ş¶ï¿½ï¿½ï¿½ ViewPortRectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            // Rect : X, Y, W, H ï¿½ï¿½
         }
         else
-        {// °ÔÀÓÈ­¸éÀÇ ÇØ»óµµºñ°¡ ´õ Å©´Ù¸é
+        {// ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»óµµºï¿½ ï¿½ï¿½ Å©ï¿½Ù¸ï¿½
             float newHeight = ((float)deviceWidth / deviceHeight) / ((float)width / height);
             Camera.main.rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight);
 
         }
+        Debug.Log("ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + Screen.width + "x" + Screen.height);
+        loadingImage.SetActive(false);
     }
 }

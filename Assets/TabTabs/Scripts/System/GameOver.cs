@@ -32,10 +32,11 @@ namespace TabTabs.NamChanwoo
 
             if (SelectCharacter.swordGirl1)
             {
-                resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl1PreviousBestScore.ToString();
+                
                 if (test3BattleInstance.playerDie == true && scoreSystemInstance.swordGirl1PreviousBestScore < scoreSystemInstance.score)
                 {
                     newRecordObj.gameObject.SetActive(true);
+                    resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
                 }
                 else
                 {
@@ -47,10 +48,10 @@ namespace TabTabs.NamChanwoo
             }
             else if (SelectCharacter.swordGirl2)
             {
-                resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl2PreviousBestScore.ToString();
                 if (test3BattleInstance.playerDie == true && scoreSystemInstance.swordGirl2PreviousBestScore < scoreSystemInstance.score)
                 {
                     newRecordObj.gameObject.SetActive(true);
+                    resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
                 }
                 else
                 {
@@ -64,10 +65,10 @@ namespace TabTabs.NamChanwoo
             }
             else if (SelectCharacter.swordGirl3)
             {
-                resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl3PreviousBestScore.ToString();
                 if (test3BattleInstance.playerDie == true && scoreSystemInstance.swordGirl3PreviousBestScore < scoreSystemInstance.score)
                 {
                     newRecordObj.gameObject.SetActive(true);
+                    resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
                 }
                 else
                 {
@@ -79,10 +80,11 @@ namespace TabTabs.NamChanwoo
             }
             else
             {
-                resultBestScore.text = "Best Score : " + scoreSystemInstance.leonPreviousBestScore.ToString();
+                
                 if (test3BattleInstance.playerDie == true && scoreSystemInstance.leonPreviousBestScore < scoreSystemInstance.score)
                 {
                     newRecordObj.gameObject.SetActive(true);
+                    resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
                 }
                 else
                 {
@@ -98,25 +100,21 @@ namespace TabTabs.NamChanwoo
             if(bestScore < scoreSystemInstance.swordGirl1PreviousBestScore)
             {
                 bestScore = scoreSystemInstance.score;
-                characterName = "Sword1";
             }
             else if(bestScore < scoreSystemInstance.swordGirl2PreviousBestScore)
             {
                 bestScore = scoreSystemInstance.score;
-                characterName = "Sword2";
             }
             else if(bestScore < scoreSystemInstance.swordGirl3PreviousBestScore)
             {
                 bestScore = scoreSystemInstance.score;
-                characterName = "Sword3";
             }
             else if(bestScore < scoreSystemInstance.leonPreviousBestScore)
             {
                 bestScore = scoreSystemInstance.score;
-                characterName = "leon";
             }
             
-            Debug.Log("bestScore : " + bestScore + "/ scoreSystemInstance.score : " + scoreSystemInstance.score);
+
             if(bestScore <= scoreSystemInstance.score ) {
                 BackEndManager.Instance.RankInputdate(scoreSystemInstance.score, characterName);
             }

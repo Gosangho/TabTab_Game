@@ -3284,6 +3284,7 @@ GameObject:
   - component: {fileID: 274042627}
   - component: {fileID: 274042626}
   - component: {fileID: 274042625}
+  - component: {fileID: 274042628}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3357,6 +3358,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &274042628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274042624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e354c59937bf3d4fbe2137b49b041b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingImage: {fileID: 494877476}
 --- !u!1 &311814468
 GameObject:
   m_ObjectHideFlags: 0
@@ -10956,7 +10970,6 @@ Transform:
   - {fileID: 773347460}
   - {fileID: 1794729118}
   - {fileID: 150138261}
-  - {fileID: 2142258259}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14975,7 +14988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordGirl1:
     characterName: 
-    bestScore: 10
+    bestScore: 0
     totalKillScore: 0
   swordGirl2:
     characterName: 
@@ -23658,58 +23671,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128685090}
   m_CullTransparentMesh: 1
---- !u!1 &2142258258
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2142258259}
-  - component: {fileID: 2142258260}
-  m_Layer: 0
-  m_Name: UISizeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2142258259
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142258258}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 923940607}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2142258260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142258258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44af46f3ec477ee43b80dbb73f97e996, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameSetting: {fileID: 1803194176}
-  UserUI: {fileID: 654472249}
-  StoreUI: {fileID: 656647608}
-  RankingUI: {fileID: 82412135}
-  AttendanceUI: {fileID: 194012654}
-  purchaseImage1: {fileID: 583171643}
-  purchaseImage2: {fileID: 997959113}
-  purchaseImage3: {fileID: 1565360867}
 --- !u!1001 &8285197995805342402
 PrefabInstance:
   m_ObjectHideFlags: 0

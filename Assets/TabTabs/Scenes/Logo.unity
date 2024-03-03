@@ -840,7 +840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordGirl1:
     characterName: 
-    bestScore: 10
+    bestScore: 0
     totalKillScore: 0
   swordGirl2:
     characterName: 
