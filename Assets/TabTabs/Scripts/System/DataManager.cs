@@ -111,6 +111,7 @@ public class DataManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         SaveGameData();
+        Debug.Log("게임종료 및 저장완료");
     }
 
     public void selectCharacter(int prefsNum, string character)

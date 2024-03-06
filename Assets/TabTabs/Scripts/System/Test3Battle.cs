@@ -305,8 +305,7 @@ namespace TabTabs.NamChanwoo
 
                     if (selectEnemy.GetOwnNodes().Count <= 0)
                     {
-                        // ���ʹ� ����� �����ִ� ������ 0���� �۰ų� ���ٸ�
-                        // ���� ���� �� �ٽû���
+
                         float rand = Random.Range(0f, 1f);
                         if (rand <= 0.05f)
                         {// 5% Ȯ���� 1��� �߰�(���Ͱ� ����ҽ�)
@@ -317,6 +316,8 @@ namespace TabTabs.NamChanwoo
                         {// 0.05% Ȯ���� 10��带 �߰�(���Ͱ� ����ҽ�)
                             DataManager.Instance.playerData.Gold += 10;
                         }
+
+                        BackEndManager.Instance.DbSaveGameData();
 
                         selectEnemy.Die();
                         audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
@@ -524,7 +525,7 @@ namespace TabTabs.NamChanwoo
                     
                     if (selectEnemy.GetOwnNodes().Count <= 0)
                     {
-                        
+
                         float rand = Random.Range(0f, 1f);
                         if (rand <= 0.05f)
                         {// 5% Ȯ���� 1��� �߰�(���Ͱ� ����ҽ�)
@@ -535,6 +536,8 @@ namespace TabTabs.NamChanwoo
                         {// 0.05% Ȯ���� 10��带 �߰�(���Ͱ� ����ҽ�)
                             DataManager.Instance.playerData.Gold += 10;
                         }
+
+                        BackEndManager.Instance.DbSaveGameData();
 
                         FirstDashAttack = false;
                         selectEnemy.Die();
@@ -689,6 +692,8 @@ namespace TabTabs.NamChanwoo
                         {// 0.05% Ȯ���� 10��带 �߰�(���Ͱ� ����ҽ�)
                             DataManager.Instance.playerData.Gold += 10;
                         }
+
+                        BackEndManager.Instance.DbSaveGameData();
 
                         FirstDashAttack = false;
                         selectEnemy.Die();
