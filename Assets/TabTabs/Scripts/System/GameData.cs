@@ -10,6 +10,7 @@ using System;
       public string characterName;
       public int bestScore;
       public int totalKillScore;
+      public string PlayerName;
   }
 
   [System.Serializable]

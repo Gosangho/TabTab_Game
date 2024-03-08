@@ -17,6 +17,8 @@ namespace TabTabs.NamChanwoo
         private DialogSystem dialogSystem04;
         [SerializeField]
         private DialogSystem dialogSystem05;
+        [SerializeField]
+        private GameObject skipButton;
         public Image AttackImage;
         public Image AttackTextImage;
         public Image DashImage;
@@ -38,7 +40,7 @@ namespace TabTabs.NamChanwoo
         public bool MonsterSpawn = false;
         private void Start()
         {
-            SkipButtonInstance = FindObjectOfType<SkipButton>();
+            SkipButtonInstance = skipButton.GetComponent<SkipButton>();
             StartCoroutine(StartWarningAudio());
             StartCoroutine(StartDialog());
         }
@@ -95,11 +97,11 @@ namespace TabTabs.NamChanwoo
         }
         public IEnumerator StartDialog()
         {
-            // Ã¹ ¹øÂ° ´ë»çºÐ±â ½ÃÀÛ
+            // Ã¹ ï¿½ï¿½Â° ï¿½ï¿½ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½
             
             yield return new WaitUntil(() => dialogSystem01.UpdateDialog());
             yield return new WaitForSeconds(0.2f);
-            // ´ë»ç ºÐ±â »çÀÌ¿¡ ¿øÇÏ´Â Çàµ¿À» Ãß°¡
+            // ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ß°ï¿½
             //StartCoroutine(ChangeAlphaOverTime());
             AttackTextImage.gameObject.SetActive(true);
             StartCoroutine(ChangeAlphaOverTime(AttackImage, 1f, 0.1f));
@@ -109,7 +111,7 @@ namespace TabTabs.NamChanwoo
             StartCoroutine(ChangeAlphaOverTime(AttackTextImage, 0.1f, 1f));
             yield return new WaitForSeconds(2);
             AttackTextImage.gameObject.SetActive(false);
-            // µÎ ¹øÂ° ´ë»ç ºÐ±â ½ÃÀÛ
+            // ï¿½ï¿½ ï¿½ï¿½Â° ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½
             yield return new WaitUntil(() => dialogSystem02.UpdateDialog());
 
             yield return new WaitForSeconds(0.2f);
@@ -125,7 +127,7 @@ namespace TabTabs.NamChanwoo
             DashTextImage.gameObject.SetActive(false);
             yield return new WaitUntil(() => dialogSystem03.UpdateDialog());
 
-            Timebar.gameObject.SetActive(true); // Å¸ÀÓ¹Ù È°¼ºÈ­
+            Timebar.gameObject.SetActive(true); // Å¸ï¿½Ó¹ï¿½ È°ï¿½ï¿½È­
 
             StartCoroutine(ChangeAlphaOverTime(TimebarImage, 1f, 0.1f));
             StartCoroutine(ChangeAlphaOverTime(TimebarBackGroundImage, 1f, 0.1f));
@@ -137,7 +139,7 @@ namespace TabTabs.NamChanwoo
 
             yield return new WaitUntil(() => dialogSystem04.UpdateDialog());
 
-            // 1. ¸ó½ºÅÍ Á¨
+            // 1. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
             ObjActive = true;
             MonsterSpawn = true;
             BattleObj.gameObject.SetActive(true);
@@ -145,19 +147,19 @@ namespace TabTabs.NamChanwoo
             DashTextImage.gameObject.SetActive(true);
             GuideTextBackgroundImage.gameObject.SetActive(true);
             StartCoroutine(FadeObjectsRoutine());
-            yield return new WaitUntil(() => FirstAttack); // °ø°ÝÇÒ¶§±îÁö ¹Ýº¹
+            yield return new WaitUntil(() => FirstAttack); // ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½
 
             //TutorialBattleSystem = FindObjectOfType<TutorialBattleSystem>();
 
             //yield return new WaitUntil(() => TutorialBattleSystem.MonsterDie);
-            // 2. ¸ó½ºÅÍ ¾²·¯Æ®¸²
-            yield return new WaitUntil(()=>Istrue); // Istrueº¯¼ö°¡ trueÀÏ¶§±îÁö ´ë±â
+            // 2. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½
+            yield return new WaitUntil(()=>Istrue); // Istrueï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trueï¿½Ï¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
             AttackImage.gameObject.SetActive(false);
             AttackTextImage.gameObject.SetActive(false);
             DashImage.gameObject.SetActive(false);
             DashTextImage.gameObject.SetActive(false);
-            // 3. SkipButtonÀÇ Image¸¦ GoImage·Î º¯°æ
+            // 3. SkipButtonï¿½ï¿½ Imageï¿½ï¿½ GoImageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
             SkipButtonInstance.Image.sprite = SkipButtonInstance.GoImage;
 
@@ -194,17 +196,17 @@ namespace TabTabs.NamChanwoo
         {
             while (true)
             {
-                // Æ¯Á¤ Á¶°ÇÀ» ¸¸Á·ÇÒ ¶§ ÆäÀÌµå ÀÎ ¶Ç´Â ÆäÀÌµå ¾Æ¿ô ¼öÇà
+                // Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½
                 if (FirstAttack == false)
                 {
-                    float alpha = Mathf.PingPong(Time.time * fadeSpeed, 1f); // 0~1 »çÀÌÀÇ ¾ËÆÄ°ªÀ» ¹Ýº¹
+                    float alpha = Mathf.PingPong(Time.time * fadeSpeed, 1f); // 0~1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ ï¿½Ýºï¿½
 
-                    // Image ¿ÀºêÁ§Æ®ÀÇ ¾ËÆÄ°ª Á¶Àý
+                    // Image ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ä°ï¿½ ï¿½ï¿½ï¿½ï¿½
                     Color imageColor = GuideTextBackgroundImage.color;
                     imageColor.a = alpha;
                     GuideTextBackgroundImage.color = imageColor;
 
-                    // TextMeshProUGUI ¿ÀºêÁ§Æ®ÀÇ ¾ËÆÄ°ª Á¶Àý
+                    // TextMeshProUGUI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ä°ï¿½ ï¿½ï¿½ï¿½ï¿½
                     Color textColor = GuideText.color;
                     textColor.a = alpha;
                     GuideText.color = textColor;
@@ -214,7 +216,7 @@ namespace TabTabs.NamChanwoo
                     GuideTextBackgroundImage.gameObject.SetActive(false);
                 }
 
-                yield return null; // ÇÑ ÇÁ·¹ÀÓÀ» ±â´Ù¸³´Ï´Ù.
+                yield return null; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ù¸ï¿½ï¿½Ï´ï¿½.
             }
         }
     }
@@ -224,7 +226,7 @@ namespace TabTabs.NamChanwoo
         //{
         //    for (int iteration = 0; iteration < 3; iteration++)
         //    {
-        //        // Ã¹ ¹øÂ° ¹Ýº¹: ¾ËÆÄ°ªÀ» 1¿¡¼­ 0.1·Î º¯°æ
+        //        // Ã¹ ï¿½ï¿½Â° ï¿½Ýºï¿½: ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ 0.1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //        float currentTime = 0f;
         //        while (currentTime < halfAnimationTime)
         //        {
@@ -239,14 +241,14 @@ namespace TabTabs.NamChanwoo
         //            yield return null;
         //        }
 
-        //        // ÃÖÁ¾ ¾ËÆÄ°ªÀ» 0.1f·Î ¼³Á¤ (º¸Åë ÀÌ¹Ì 0.1f·Î µµ´ÞÇÏÁö¸¸ ¸í½ÃÀûÀ¸·Î ¼³Á¤)
+        //        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ 0.1fï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ 0.1fï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         //        Color finalColor = AttackImage.color;
         //        finalColor.a = 0.1f;
         //        AttackImage.color = finalColor;
 
         //        yield return new WaitForSeconds(halfAnimationTime);
 
-        //        // µÎ ¹øÂ° ¹Ýº¹: ¾ËÆÄ°ªÀ» 0.1¿¡¼­ 1·Î º¯°æ
+        //        // ï¿½ï¿½ ï¿½ï¿½Â° ï¿½Ýºï¿½: ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ 0.1ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //        currentTime = 0f;
         //        while (currentTime < halfAnimationTime)
         //        {
@@ -261,7 +263,7 @@ namespace TabTabs.NamChanwoo
         //            yield return null;
         //        }
 
-        //        // ÃÖÁ¾ ¾ËÆÄ°ªÀ» 1f·Î ¼³Á¤
+        //        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ 1fï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //        finalColor = AttackImage.color;
         //        finalColor.a = 1f;
         //        AttackImage.color = finalColor;
@@ -274,7 +276,7 @@ namespace TabTabs.NamChanwoo
         //{
         //    for (int iteration = 0; iteration < 3; iteration++)
         //    {
-        //        // Ã¹ ¹øÂ° ¹Ýº¹: ¾ËÆÄ°ªÀ» 1¿¡¼­ 0.1·Î º¯°æ
+        //        // Ã¹ ï¿½ï¿½Â° ï¿½Ýºï¿½: ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ 0.1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //        float currentTime = 0f;
         //        while (currentTime < halfAnimationTime)
         //        {
@@ -289,14 +291,14 @@ namespace TabTabs.NamChanwoo
         //            yield return null;
         //        }
 
-        //        // ÃÖÁ¾ ¾ËÆÄ°ªÀ» 0.1f·Î ¼³Á¤ (º¸Åë ÀÌ¹Ì 0.1f·Î µµ´ÞÇÏÁö¸¸ ¸í½ÃÀûÀ¸·Î ¼³Á¤)
+        //        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ 0.1fï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ 0.1fï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         //        Color finalColor = DashImage.color;
         //        finalColor.a = 0.1f;
         //        DashImage.color = finalColor;
 
         //        yield return new WaitForSeconds(halfAnimationTime);
 
-        //        // µÎ ¹øÂ° ¹Ýº¹: ¾ËÆÄ°ªÀ» 0.1¿¡¼­ 1·Î º¯°æ
+        //        // ï¿½ï¿½ ï¿½ï¿½Â° ï¿½Ýºï¿½: ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ 0.1ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //        currentTime = 0f;
         //        while (currentTime < halfAnimationTime)
         //        {
@@ -311,7 +313,7 @@ namespace TabTabs.NamChanwoo
         //            yield return null;
         //        }
 
-        //        // ÃÖÁ¾ ¾ËÆÄ°ªÀ» 1f·Î ¼³Á¤
+        //        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ 1fï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //        finalColor = DashImage.color;
         //        finalColor.a = 1f;
         //        DashImage.color = finalColor;

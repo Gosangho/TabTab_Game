@@ -308,6 +308,11 @@ public class BackEndManager : MonoBehaviour
         }
     }
 
+    public void DbSaveGameData(string newNickname)
+    {
+        Backend.BMember.CreateNickname(newNickname);
+    }
+
 
     // 캐릭터 정보 저장하기
     // 동기 방식으로 구현
@@ -332,6 +337,7 @@ public class BackEndManager : MonoBehaviour
             Param intParam = new Param();
             intParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
             intParam.Add("CharacterName", characterData.characterName);
+            intParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
             intParam.Add("BestScore", characterData.bestScore);
             intParam.Add("TotalKillScore", characterData.totalKillScore);
 
@@ -345,6 +351,7 @@ public class BackEndManager : MonoBehaviour
             Param upParam = new Param();
             upParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
             upParam.Add("CharacterName", characterData.characterName);
+            upParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
             upParam.Add("BestScore", characterData.bestScore);
             upParam.Add("TotalKillScore", characterData.totalKillScore);
             Backend.GameData.Update("CharacterData", where, upParam);
@@ -373,10 +380,8 @@ public class BackEndManager : MonoBehaviour
         } else {
             Debug.Log("랭킹 등록 결과 : " + bro);
         }
-           
-
-
     }
+   
 
     public JsonData GetBestScore() {
         // rankUuid 랭킹에서 1 ~ 100등 랭커 조회
@@ -417,5 +422,11 @@ public class BackEndManager : MonoBehaviour
         var bro = Backend.Receipt.IsValidateGooglePurchase(args.purchasedProduct.receipt , "receiptDescription", false);
         Debug.Log("구매 영수증 검증 결과 : " + bro);
 
+    }
+
+    
+    public bool DblanguageCheckData(string language) {
+        bool isFilterString = Backend.Chat.IsFilteredString(language);     
+        return isFilterString;
     }
 }
