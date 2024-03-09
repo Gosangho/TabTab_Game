@@ -6,8 +6,8 @@ using UnityEngine.Purchasing;
 public class PurchaseManager : MonoBehaviour, IStoreListener
 {
     [Header("Product ID")]
-    public readonly string productId_test_id = "test_id";
-    public readonly string productId_test_id2 = "test_id2";
+    public readonly string productId_test_id = "purchase_ads";
+    public readonly string productId_test_id2 = "purchase_gold";
 
 
     [Header("Cache")]
@@ -94,7 +94,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
         {
             /* test_id2 구매 처리 */
             DataManager.Instance.playerData.Gold += 2000;
-             DataManager.Instance.DbSaveGameData();
+            DataManager.Instance.DbSaveGameData();
         } else if (args.purchasedProduct.definition.id == "purchase_test") {
             DataManager.Instance.playerData.AdsYn = 1;
             DataManager.Instance.playerData.AdsDate = System.DateTime.Now.ToString();

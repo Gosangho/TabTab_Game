@@ -13,9 +13,9 @@ public class AdsManager : MonoBehaviour
     InterstitialAd interstitial;
 
     public ContinueButton continueButtonInstance;
-    static string ADUNIT_ID = "ca-app-pub-3940256099942544/5224354917";
-    static string ADINTERST_ID= "ca-app-pub-3940256099942544/1033173712";
-    static string ADBANNER_ID = "ca-app-pub-3940256099942544/6300978111";
+    static string ADUNIT_ID = "ca-app-pub-5689389106067343/7440498945";
+    static string ADINTERST_ID= "ca-app-pub-5689389106067343/1942945473";
+    static string ADBANNER_ID = "ca-app-pub-5689389106067343/5882190489";
 
     public static AdsManager  Instance { get; private set; }
 

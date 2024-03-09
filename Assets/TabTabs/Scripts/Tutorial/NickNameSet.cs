@@ -49,16 +49,22 @@ namespace TabTabs.NamChanwoo
       public void InputbuttonEvent()
       {
         if(displayText.text.Length > 1){
-          bool resultBool = BackEndManager.Instance.DblanguageCheckData(displayText.text);
-
-          if(resultBool) {
-            messageErrBox.SetActive(true);
-          } else {
+          string resultBool = BackEndManager.Instance.DblanguageCheckData(displayText.text);
+          
+          if("".Equals(resultBool)) {
             DataManager.Instance.playerData.MakeNickName = true;
             DataManager.Instance.playerData.PlayerName = displayText.text;
             BackEndManager.Instance.DbSaveGameData();
-            BackEndManager.Instance.DbSaveGameData(displayText.text);
+            BackEndManager.Instance.DbSaveNickname(displayText.text);
             messageBox.SetActive(true);
+          } else if ("filterFalse".Equals(resultBool)) {
+            messageErrBox.SetActive(true);
+            messageErrBox.GetComponent<TextMeshProUGUI>().text = "비속어가 포함되 있습니다.";
+          } else if ("existName".Equals(resultBool)) {
+            messageErrBox.SetActive(true);  
+            messageErrBox.GetComponent<TextMeshProUGUI>().text = "같은 이름이 존재합니다.";
+          } else {
+            messageErrBox.SetActive(true); 
           }
         }
         

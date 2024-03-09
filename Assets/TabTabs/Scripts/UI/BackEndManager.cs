@@ -162,8 +162,8 @@ public class BackEndManager : MonoBehaviour
             DataManager.Instance.playerData.MakeNickName = bool.Parse(bro.FlattenRows()[0]["MakeNickName"].ToString());
             DataManager.Instance.playerData.PlayerName = bro.FlattenRows()[0]["PlayerName"].ToString();
             DataManager.Instance.playerData.Gold = int.Parse(bro.FlattenRows()[0]["Gold"].ToString());
-            DataManager.Instance.playerData.AdsYn = int.Parse(bro.FlattenRows()[0]["AdsYn"].ToString());
             DataManager.Instance.playerData.AdsDate = bro.FlattenRows()[0]["AdsDate"].ToString();
+            DataManager.Instance.playerData.AdsYn = int.Parse(bro.FlattenRows()[0]["AdsYn"].ToString());
             DataManager.Instance.playerData.SwordGirl2Get = bool.Parse(bro.FlattenRows()[0]["SwordGirl2Get"].ToString());
             DataManager.Instance.playerData.SwordGirl3Get = bool.Parse(bro.FlattenRows()[0]["SwordGirl3Get"].ToString());
             DataManager.Instance.playerData.LeonGet = bool.Parse(bro.FlattenRows()[0]["LeonGet"].ToString());
@@ -283,7 +283,7 @@ public class BackEndManager : MonoBehaviour
         }
     }
 
-    public void DbSaveGameData(string newNickname)
+    public void DbSaveNickname(string newNickname)
     {
         Backend.BMember.CreateNickname(newNickname);
     }
@@ -401,8 +401,25 @@ public class BackEndManager : MonoBehaviour
     }
 
     
-    public bool DblanguageCheckData(string language) {
-        bool isFilterString = Backend.Chat.IsFilteredString(language);     
-        return isFilterString;
+    public string DblanguageCheckData(string language) {
+        string returnString = "";
+        bool isFilterString = Backend.Chat.IsFilteredString(language);
+
+        if(isFilterString) {
+            returnString = "filterFalse";
+        } else {
+            // 해당 계정의 기존 데이터가 있는지 확인
+            Where where = new Where();
+            where.Equal("PlayerName",  language);
+
+            var bro = Backend.GameData.GetMyData("playerData", where, 1);
+            
+            if(bro.GetReturnValuetoJSON()["rows"].Count > 0)
+            {
+                returnString = "existName";
+            }
+        }
+
+        return returnString;
     }
 }
