@@ -8,6 +8,8 @@ using LitJson;
 
 public class RankingManager : MonoBehaviour
 {
+    public TextMeshProUGUI bestRank;
+    public TextMeshProUGUI bestId;
     public TextMeshProUGUI bestScore;
     public GameObject rankScoreList;
     // Start is called before the first frame update
@@ -22,18 +24,18 @@ public class RankingManager : MonoBehaviour
                 string rank = rankMyJson["rows"][0]["rank"].ToString();
                 string nickname = "";
                  Debug.Log(rankMyJson["rows"][0].ToString());
-                // 첫 번째 'rows' 객체에 접근
-                LitJson.JsonData firstRow = rankListJson["rows"][0];
 
                 // 'nickname' 키가 있는지 확인
-                bool hasNickname = firstRow["nickname"] != null;
+                bool hasNickname = rankMyJson["rows"][0]["nickname"] != null;
 
                 if(hasNickname) {
-                    nickname = rankListJson["rows"][0]["nickname"].ToString().Length > 6 ? rankListJson["rows"][0]["nickname"].ToString().Substring(0, 5) + ".." : rankListJson["rows"][0]["nickname"].ToString() ;
+                    nickname = rankMyJson["rows"][0]["nickname"].ToString().Length > 6 ? rankMyJson["rows"][0]["nickname"].ToString().Substring(0, 5) + ".." : rankMyJson["rows"][0]["nickname"].ToString() ;
                 }
                 string score = rankMyJson["rows"][0]["score"].ToString();
                 
-                bestScore.text = rankMyJson["rows"][0]["rank"].ToString() + "  " + nickname + "  " +rankMyJson["rows"][0]["score"].ToString();
+                bestRank.text = rankMyJson["rows"][0]["rank"].ToString();
+                bestId.text = nickname ;
+                bestScore.text = rankMyJson["rows"][0]["score"].ToString();
             }
         }
 

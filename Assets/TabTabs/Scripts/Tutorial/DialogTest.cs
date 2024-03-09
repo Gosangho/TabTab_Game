@@ -19,6 +19,8 @@ namespace TabTabs.NamChanwoo
         private DialogSystem dialogSystem05;
         [SerializeField]
         private GameObject skipButton;
+        [SerializeField] private GameObject tutorialCanvas;  // 버튼 컴포넌트   
+
         public Image AttackImage;
         public Image AttackTextImage;
         public Image DashImage;
@@ -38,6 +40,9 @@ namespace TabTabs.NamChanwoo
         public bool FirstAttack = false;    
         float fadeSpeed = 1.5f;
         public bool MonsterSpawn = false;
+        bool tutorialStart = false;
+
+        
         private void Start()
         {
             SkipButtonInstance = skipButton.GetComponent<SkipButton>();
@@ -50,6 +55,7 @@ namespace TabTabs.NamChanwoo
             if (ObjActive)
             {
                 TutorialBattleSystem = FindObjectOfType<TutorialBattleSystem>();
+
                 if (TutorialBattleSystem.MonsterDie == true)
                 {
                     Istrue = true;
@@ -86,6 +92,7 @@ namespace TabTabs.NamChanwoo
                     }
                 }
             }
+
         }
 
         public IEnumerator StartWarningAudio()
@@ -98,7 +105,6 @@ namespace TabTabs.NamChanwoo
         public IEnumerator StartDialog()
         {
             // ù ��° ���б� ����
-            
             yield return new WaitUntil(() => dialogSystem01.UpdateDialog());
             yield return new WaitForSeconds(0.2f);
             // ��� �б� ���̿� ���ϴ� �ൿ�� �߰�
@@ -163,7 +169,7 @@ namespace TabTabs.NamChanwoo
 
             SkipButtonInstance.Image.sprite = SkipButtonInstance.GoImage;
 
-            yield return new WaitUntil(() => dialogSystem05.UpdateDialog());
+            yield return new WaitUntil(() => dialogSystem05.UpdateDialog());  
         }
 
         private IEnumerator ChangeAlphaOverTime(Image targetImage, float startAlpha, float endAlpha)

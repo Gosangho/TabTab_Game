@@ -122,18 +122,6 @@ public class BackEndManager : MonoBehaviour
            
             string originalString = DataManager.Instance.playerData.PlayerId;
         
-            // 첫 번째 '-' 이후와 마지막 '-' 이전의 부분을 제거하기 위해 인덱스 찾기
-            int firstDashIndex = originalString.IndexOf('-');
-            int lastDashIndex = originalString.LastIndexOf('-');
-            
-            // 첫 번째 부분과 마지막 부분을 추출
-            string firstPart = originalString.Substring(0, firstDashIndex + 1); // 첫 번째 '-' 포함
-            string lastPart = originalString.Substring(lastDashIndex + 1); // 마지막 '-' 포함
-            
-            // 새로운 형식으로 결합
-            string newString = lastPart;
-            Backend.BMember.CreateNickname(newString);
-            DataManager.Instance.playerData.PlayerName = newString;
 
             Debug.Log("로컬 기기에 저장된 아이디 :" + DataManager.Instance.playerData.PlayerId);
 
@@ -147,19 +135,6 @@ public class BackEndManager : MonoBehaviour
             DataManager.Instance.playerData.PlayerId = Backend.BMember.GetGuestID(); 
            
             string originalString = DataManager.Instance.playerData.PlayerId;
-        
-            // 첫 번째 '-' 이후와 마지막 '-' 이전의 부분을 제거하기 위해 인덱스 찾기
-            int firstDashIndex = originalString.IndexOf('-');
-            int lastDashIndex = originalString.LastIndexOf('-');
-            
-            // 첫 번째 부분과 마지막 부분을 추출
-            string firstPart = originalString.Substring(0, firstDashIndex + 1); // 첫 번째 '-' 포함
-            string lastPart = originalString.Substring(lastDashIndex + 1); // 마지막 '-' 포함
-            
-            // 새로운 형식으로 결합
-            string newString = lastPart;
-            Backend.BMember.CreateNickname(newString);
-            DataManager.Instance.playerData.PlayerName = newString;
 
             Debug.Log("로컬 기기에 저장된 아이디 :" + DataManager.Instance.playerData.PlayerId);
 
@@ -202,7 +177,7 @@ public class BackEndManager : MonoBehaviour
             }
         }
         DataManager.Instance.DbSaveGameData();
-        AdsManager.Instance.InitAds();
+      //  AdsManager.Instance.InitAds();
     }
 
     // 캐릭터 별 초기 정보 가져오기
@@ -409,6 +384,7 @@ public class BackEndManager : MonoBehaviour
             rankListJson = bro.GetFlattenJSON();
 
             Debug.Log("내 랭킹 : " + rankListJson["rows"][0]["index"].ToString());
+            Debug.Log("내 랭킹 : " + rankListJson["rows"][0]["nickname"].ToString());
             Debug.Log("내 랭킹 : " + rankListJson["rows"][0]["score"].ToString());
         }
 

@@ -36,6 +36,11 @@ public class AdsManager : MonoBehaviour
 
     }
 
+    void Start()
+    {
+        InitAds();
+    }
+
 
 
     // 구글 광고 초기화
