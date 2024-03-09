@@ -350,6 +350,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2075863357}
   - {fileID: 1702918281}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -663,7 +664,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 893447471}
-  sceneNameToLoad: Opening
 --- !u!1 &1193968913
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,7 +824,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 324162497}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1702918282
 MonoBehaviour:
@@ -842,18 +842,22 @@ MonoBehaviour:
     characterName: 
     bestScore: 0
     totalKillScore: 0
+    PlayerName: 
   swordGirl2:
     characterName: 
     bestScore: 0
     totalKillScore: 0
+    PlayerName: 
   swordGirl3:
     characterName: 
     bestScore: 0
     totalKillScore: 0
+    PlayerName: 
   leon:
     characterName: 
     bestScore: 0
     totalKillScore: 0
+    PlayerName: 
   playerData:
     PlayerId: 
     TutorialPlay: 0
@@ -882,3 +886,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa5d4682563eb44ba593ed4a2f267c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2075863355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2075863357}
+  - component: {fileID: 2075863356}
+  m_Layer: 0
+  m_Name: BackEndManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2075863356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075863355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5df3a7593b7c14da57934b0ef7e337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2075863357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075863355}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 102.086365, y: 216.70432, z: -9.598326}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 324162497}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

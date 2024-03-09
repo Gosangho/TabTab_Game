@@ -404,21 +404,17 @@ public class BackEndManager : MonoBehaviour
     public string DblanguageCheckData(string language) {
         string returnString = "";
         bool isFilterString = Backend.Chat.IsFilteredString(language);
-
+        Debug.Log("language:"+language);
         if(isFilterString) {
             returnString = "filterFalse";
         } else {
-            // 해당 계정의 기존 데이터가 있는지 확인
-            Where where = new Where();
-            where.Equal("PlayerName",  language);
-
-            var bro = Backend.GameData.GetMyData("playerData", where, 1);
-            
-            if(bro.GetReturnValuetoJSON()["rows"].Count > 0)
+            BackendReturnObject bro = Backend.BMember.CheckNicknameDuplication ( language );
+            if(!bro.IsSuccess())
             {
                 returnString = "existName";
             }
         }
+        Debug.Log("returnString:"+returnString);
 
         return returnString;
     }
