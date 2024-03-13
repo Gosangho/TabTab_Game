@@ -55,14 +55,14 @@ public class SelectCharacter : MonoBehaviour
             if (DataManager.Instance.swordGirl1.bestScore == characterMaxScroe)
             {// �������1�� ������ ���� ���ٸ�
                 bestScoreCharacterImage.sprite = swordGirl1Sprite;
-                bestcharacterName.text = "캐릭터 :  Sword1"; 
+                bestcharacterName.text = "캐릭터 :  Lana"; 
                 bestcharacterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl1.bestScore.ToString();
                 bestcharacterKillCount.text = "처치몬스터 : " + DataManager.Instance.swordGirl1.totalKillScore.ToString();
             }
             else if (DataManager.Instance.swordGirl2.bestScore == characterMaxScroe)
             {// �������2�� ������ ���� ���ٸ�
                 bestScoreCharacterImage.sprite = swordGirl2Sprite;
-                bestcharacterName.text = "캐릭터 :  Sword2";
+                bestcharacterName.text = "캐릭터 :  Sia";
                 bestcharacterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl2.bestScore.ToString();
                 bestcharacterKillCount.text = "처치몬스터 : " + DataManager.Instance.swordGirl2.totalKillScore.ToString();
             }
@@ -76,14 +76,14 @@ public class SelectCharacter : MonoBehaviour
             else if (DataManager.Instance.swordGirl3.bestScore == characterMaxScroe)
             {
                 bestScoreCharacterImage.sprite = swordGirl3Sprite;
-                bestcharacterName.text = "캐릭터 :  Sword3";
+                bestcharacterName.text = "캐릭터 :  Zena";
                 bestcharacterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl3.bestScore.ToString();
                 bestcharacterKillCount.text = "처치몬스터 : " + DataManager.Instance.swordGirl3.totalKillScore.ToString();
             }
             else
             {
                 bestScoreCharacterImage.sprite = swordGirl1Sprite;
-                bestcharacterName.text = "캐릭터 :  Sword1"; 
+                bestcharacterName.text = "캐릭터 :  Lana"; 
                 bestcharacterBestScore.text = "최고기록 : 0";
                 bestcharacterKillCount.text = "처치몬스터 : 0" ;
                 return;
@@ -98,7 +98,7 @@ public class SelectCharacter : MonoBehaviour
         swordGirl3 = false;
         leon = false;
         //UpdateImage(swordGirl1Image);
-        characterName.text = "캐릭터 :  Sword1";
+        characterName.text = "캐릭터 :  Lana";
         characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl1.bestScore.ToString();
         characterKillCount.text = "처치몬스터 : " + DataManager.Instance.swordGirl1.totalKillScore.ToString();
 
@@ -117,7 +117,7 @@ public class SelectCharacter : MonoBehaviour
             DataManager.Instance.selectCharacter(0, "Sword2");
         }
         //UpdateImage(swordGirl2Image);
-        characterName.text = "캐릭터 :  Sword2";
+        characterName.text = "캐릭터 :  Sia";
         characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl2.bestScore.ToString();
         characterKillCount.text = "처치몬스터 : " + DataManager.Instance.swordGirl2.totalKillScore.ToString();
     }
@@ -138,7 +138,7 @@ public class SelectCharacter : MonoBehaviour
             swordGirl3Purchase.gameObject.SetActive(true);
         }
         //UpdateImage(swordGirl2Image);
-        characterName.text = "캐릭터 :  Sword3";
+        characterName.text = "캐릭터 :  Zena";
         characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl3.bestScore.ToString();
         characterKillCount.text = "처치몬스터 : " + DataManager.Instance.swordGirl3.totalKillScore.ToString();
 

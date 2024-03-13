@@ -42,7 +42,7 @@ namespace TabTabs.NamChanwoo
                 {
                     newRecordObj.gameObject.SetActive(false);
                 }
-                DataManager.Instance.swordGirl1.characterName = "Sword1";
+                DataManager.Instance.swordGirl1.characterName = "Lana";
                 characterName  = DataManager.Instance.swordGirl1.characterName;
                 BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl1);
             }
@@ -57,7 +57,7 @@ namespace TabTabs.NamChanwoo
                 {
                     newRecordObj.gameObject.SetActive(false);
                 }
-                DataManager.Instance.swordGirl2.characterName = "Sword2";
+                DataManager.Instance.swordGirl2.characterName = "Sia";
                 characterName  = DataManager.Instance.swordGirl2.characterName;
                 BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl2);
          
@@ -74,7 +74,7 @@ namespace TabTabs.NamChanwoo
                 {
                     newRecordObj.gameObject.SetActive(false);
                 }
-                DataManager.Instance.swordGirl3.characterName = "Sword3";
+                DataManager.Instance.swordGirl3.characterName = "Zena";
                 characterName  = DataManager.Instance.swordGirl3.characterName;
                 BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl3);
             }
