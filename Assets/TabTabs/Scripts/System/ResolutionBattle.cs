@@ -45,7 +45,6 @@ public class ResolutionBattle : MonoBehaviour
         {// 게임화면의 해상도비가 더 크다면
             float newHeight = ((float)deviceWidth / deviceHeight) / ((float)width / height);
             Camera.main.rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight);
-
         }
     }
 }

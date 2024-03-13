@@ -26,7 +26,7 @@ public class Resolution : MonoBehaviour
 
     private void Awake()
     {
-       StartCoroutine(cameraFull());
+        StartCoroutine(cameraFull());
     }
 
     void Start()
@@ -61,7 +61,7 @@ public class Resolution : MonoBehaviour
         // CanvasScaler ������Ʈ�� ���� ������Ʈ�� ã�Ƽ� ����
         canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         canvasScaler.referenceResolution = new Vector2(_width, _height);
-        canvasScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand; // Ȯ��
+        canvasScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight; // Ȯ��
     }
     void SetResolution(int width = 540, int height = 860)
     {
@@ -90,4 +90,6 @@ public class Resolution : MonoBehaviour
         Debug.Log("�ػ� ������ ���� : " + Screen.width + "x" + Screen.height);
         loadingImage.SetActive(false);
     }
+
+    
 }
