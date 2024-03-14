@@ -24,14 +24,49 @@ public class Resolution : MonoBehaviour
     
     public GameObject loadingImage;
 
-    private void Awake()
-    {
-        StartCoroutine(cameraFull());
-    }
 
     void Start()
     {
-        StartCoroutine(cameraFull());
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        int targetWidth = 540;
+        int targetHeight  = 860;
+
+        float tolerance = 0.1f;
+        if("lobby".Equals(sceneName) || "Opening".Equals(sceneName)) {
+            if (IsScreenRatioClose(Screen.width, Screen.height, targetWidth, targetHeight, tolerance))
+            {
+                StartCoroutine(cameraFull());
+            }
+        } else {
+            StartCoroutine(cameraFull());
+        }
+    }
+
+    private bool IsScreenRatioClose(int width, int height, int targetWidth, int targetHeight , float tolerance)
+    {
+        bool isChange = false;
+        float fixedWidth = 540f;
+        float fixedHeight = 860f;
+
+        // 기기의 실제 화면 크기
+        float deviceWidth = Screen.width;
+        float deviceHeight = Screen.height;
+
+        // 고정 비율에 따라 확대된 height 계산
+        float scaledHeight = (fixedHeight / fixedWidth) * deviceWidth;
+
+        if (scaledHeight > deviceHeight)
+        {
+            isChange = true;
+        }
+        else
+        {
+            isChange = false;
+        }
+
+        Debug.Log("ratioDifference : " + scaledHeight+"/"+deviceHeight+"/"+isChange);
+        return isChange;
     }
 
     IEnumerator cameraFull()
