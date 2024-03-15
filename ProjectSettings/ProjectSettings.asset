@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: TabTabsGameText
+  productName: tabtabsgametest
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -65,7 +65,7 @@ PlayerSettings:
   preserveFramebufferAlpha: 0
   disableDepthAndStencilBuffers: 0
   androidStartInFullscreen: 1
-  androidRenderOutsideSafeArea: 1
+  androidRenderOutsideSafeArea: 0
   androidUseSwappy: 1
   androidBlitType: 0
   androidResizableWindow: 0
@@ -250,7 +250,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 2800000, guid: a0fc465d6cf04254a2938578735e2383, type: 3}
-  AndroidKeystoreName: '{dedicated}: unity/pixeldust.keystore'
+  AndroidKeystoreName: "C:/Users/a_h_l/Desktop/\uD53D\uC140\uB354\uC2A4\uD2B8key/pixeldust.keystore"
   AndroidKeyaliasName: pixeldustkey
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0

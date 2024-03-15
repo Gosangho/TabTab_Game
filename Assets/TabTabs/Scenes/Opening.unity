@@ -3391,10 +3391,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1193968913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e354c59937bf3d4fbe2137b49b041b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 73cd5936d1daf5f48a4842902845af76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingImage: {fileID: 1173202180}
 --- !u!1 &1232945834
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class Resolution : MonoBehaviour
     //- W = 1 // ����ȭ���� �ʺ�� ����
     //- H = (100/200)/(1920/1080)
 
-    
+
     public GameObject loadingImage;
 
 
@@ -30,20 +30,23 @@ public class Resolution : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
         int targetWidth = 540;
-        int targetHeight  = 860;
+        int targetHeight = 860;
 
         float tolerance = 0.1f;
-        if("lobby".Equals(sceneName) || "Opening".Equals(sceneName)) {
+        if ("lobby".Equals(sceneName) || "Opening".Equals(sceneName))
+        {
             if (IsScreenRatioClose(Screen.width, Screen.height, targetWidth, targetHeight, tolerance))
             {
                 StartCoroutine(cameraFull());
             }
-        } else {
+        }
+        else
+        {
             StartCoroutine(cameraFull());
         }
     }
 
-    private bool IsScreenRatioClose(int width, int height, int targetWidth, int targetHeight , float tolerance)
+    private bool IsScreenRatioClose(int width, int height, int targetWidth, int targetHeight, float tolerance)
     {
         bool isChange = false;
         float fixedWidth = 540f;
@@ -65,7 +68,7 @@ public class Resolution : MonoBehaviour
             isChange = false;
         }
 
-        Debug.Log("ratioDifference : " + scaledHeight+"/"+deviceHeight+"/"+isChange);
+        Debug.Log("ratioDifference : " + scaledHeight + "/" + deviceHeight + "/" + isChange);
         return isChange;
     }
 
@@ -78,9 +81,12 @@ public class Resolution : MonoBehaviour
         Camera.main.rect = new Rect(0, 0, 1, 1);
         Camera.main.clearFlags = CameraClearFlags.SolidColor;
 
-        if("lobby".Equals(sceneName)) {
-            Camera.main.backgroundColor = new Color(85/255f, 74/255f, 166/255f);
-        } else {
+        if ("lobby".Equals(sceneName))
+        {
+            Camera.main.backgroundColor = new Color(85 / 255f, 74 / 255f, 166 / 255f);
+        }
+        else
+        {
             Camera.main.backgroundColor = Color.black;
         }
 
@@ -100,7 +106,7 @@ public class Resolution : MonoBehaviour
     }
     void SetResolution(int width = 540, int height = 860)
     {
-        
+
         SetCanvasScaler(width, height);
 
         int deviceWidth = Screen.width; // ����� �ػ� �ʺ�
@@ -126,5 +132,4 @@ public class Resolution : MonoBehaviour
         loadingImage.SetActive(false);
     }
 
-    
 }
