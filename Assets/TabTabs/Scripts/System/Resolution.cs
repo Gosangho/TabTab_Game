@@ -29,7 +29,7 @@ public class Resolution : MonoBehaviour
     {
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
-        int targetWidth = 540;
+        int targetWidth = 540; 
         int targetHeight = 860;
 
         float tolerance = 0.1f;
