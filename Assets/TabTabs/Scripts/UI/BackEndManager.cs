@@ -291,7 +291,7 @@ public class BackEndManager : MonoBehaviour
 
     // 캐릭터 정보 저장하기
     // 동기 방식으로 구현
-    public void SaveBestScore(CharacterData characterData)
+    public void SaveBestScore(CharacterData characterData, int bestScore, int systemScore)
     {
         // 해당 계정의 기존 데이터가 있는지 확인
 
@@ -299,38 +299,43 @@ public class BackEndManager : MonoBehaviour
         where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
         where.Equal("CharacterName",  characterData.characterName);
 
-        var bro = Backend.GameData.GetMyData("CharacterData", where, 1);
-        if(bro.IsSuccess() == false)
+      //  var bro = Backend.GameData.GetMyData("CharacterData", where, 0);
+    
+        Backend.GameData.GetMyData("CharacterData", where, (callback) =>
         {
-            // 요청 실패 처리
-            Debug.Log(bro);
-            return;
-        }
+            if(callback.GetReturnValuetoJSON()["rows"].Count <= 0)
+            {
+                Param intParam = new Param();
+                intParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+                intParam.Add("CharacterName", characterData.characterName);
+                intParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
+                intParam.Add("BestScore", characterData.bestScore);
+                intParam.Add("TotalKillScore", characterData.totalKillScore);
 
-        if(bro.GetReturnValuetoJSON()["rows"].Count <= 0)
-        {
-            Param intParam = new Param();
-            intParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
-            intParam.Add("CharacterName", characterData.characterName);
-            intParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
-            intParam.Add("BestScore", characterData.bestScore);
-            intParam.Add("TotalKillScore", characterData.totalKillScore);
+                Backend.GameData.Insert("CharacterData", intParam, (insertback) => {
+                    Debug.Log("내 playerInfo의 indate : " + insertback);
+                    if(bestScore <= systemScore ) {
+                        RankInputdate(bestScore, characterData.characterName);
+                    }
+                });
 
-           // Backend.GameData.Insert("CharacterData", intParam, (callback) => {
-           //     Debug.Log("내 playerInfo의 indate : " + callback);
-           // });
-            Backend.GameData.Insert("CharacterData", intParam);
+            } else {
+                Param upParam = new Param();
+                upParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+                upParam.Add("CharacterName", characterData.characterName);
+                upParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
+                upParam.Add("BestScore", characterData.bestScore);
+                upParam.Add("TotalKillScore", characterData.totalKillScore);
+                Backend.GameData.Update("CharacterData", where, upParam, (updateback) => {
+                    Debug.Log("내 playerInfo의 Update : " + updateback);
+                    if(bestScore <= systemScore ) {
+                        RankInputdate(bestScore, characterData.characterName);
+                    }
+                });
+            }
+        });
 
-            return;
-        } else {
-            Param upParam = new Param();
-            upParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
-            upParam.Add("CharacterName", characterData.characterName);
-            upParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
-            upParam.Add("BestScore", characterData.bestScore);
-            upParam.Add("TotalKillScore", characterData.totalKillScore);
-            Backend.GameData.Update("CharacterData", where, upParam);
-        }
+
 
               
 
@@ -339,10 +344,11 @@ public class BackEndManager : MonoBehaviour
         Where where = new Where();
         where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
         where.Equal("CharacterName",  characterName);
-        var bro = Backend.GameData.GetMyData("CharacterData", where, 0);
-        if(bro.IsSuccess() ) 
+        //var bro = Backend.GameData.GetMyData("CharacterData", where, 0);
+
+        Backend.GameData.GetMyData("CharacterData", where, (callback) =>
         {
-            string rowInDate = bro.FlattenRows()[0]["inDate"].ToString();
+            string rowInDate = callback.FlattenRows()[0]["inDate"].ToString();
 
             Debug.Log("SaveBestScore::update:"+ rowInDate);
 
@@ -350,12 +356,12 @@ public class BackEndManager : MonoBehaviour
             rankParam.Add("BestScore", bestScore);
             rankParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
 
-            var bros = Backend.URank.User.UpdateUserScore(RANK_UUID, "CharacterData", rowInDate, rankParam);
-            Debug.Log("랭킹 등록 결과 : " + bros);
-        } else {
-            Debug.Log("랭킹 등록 결과 : " + bro);
-        }
+            Backend.URank.User.UpdateUserScore(RANK_UUID, "CharacterData", rowInDate, rankParam, (UserScoreback) => {
+                Debug.Log("랭킹 등록 결과 : " + UserScoreback);
+            });
+        });
     }
+
    
 
     public JsonData GetBestScore() {
