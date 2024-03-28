@@ -293,73 +293,63 @@ public class BackEndManager : MonoBehaviour
     // 동기 방식으로 구현
     public void SaveBestScore(CharacterData characterData, int bestScore, int systemScore)
     {
-        // 해당 계정의 기존 데이터가 있는지 확인
+        StartCoroutine(DoSaveBestScore(characterData, bestScore, systemScore));
+    }
 
+    IEnumerator DoSaveBestScore(CharacterData characterData, int bestScore, int systemScore) {
         Where where = new Where();
         where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
         where.Equal("CharacterName",  characterData.characterName);
-
-      //  var bro = Backend.GameData.GetMyData("CharacterData", where, 0);
-    
-        Backend.GameData.GetMyData("CharacterData", where, (callback) =>
+        Debug.Log("SaveBestScore::where:"+ bestScore + "/"+systemScore);
+        var bro = Backend.GameData.GetMyData("CharacterData", where, 0);
+        if(bro.GetReturnValuetoJSON()["rows"].Count <= 0)
         {
-            if(callback.GetReturnValuetoJSON()["rows"].Count <= 0)
-            {
-                Param intParam = new Param();
-                intParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
-                intParam.Add("CharacterName", characterData.characterName);
-                intParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
-                intParam.Add("BestScore", characterData.bestScore);
-                intParam.Add("TotalKillScore", characterData.totalKillScore);
+            Param intParam = new Param();
+            intParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+            intParam.Add("CharacterName", characterData.characterName);
+            intParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
+            intParam.Add("BestScore", characterData.bestScore);
+            intParam.Add("TotalKillScore", characterData.totalKillScore);
 
-                Backend.GameData.Insert("CharacterData", intParam, (insertback) => {
-                    Debug.Log("내 playerInfo의 indate : " + insertback);
-                    if(bestScore <= systemScore ) {
-                        RankInputdate(bestScore, characterData.characterName);
-                    }
-                });
+            Backend.GameData.Insert("CharacterData", intParam);
 
-            } else {
-                Param upParam = new Param();
-                upParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
-                upParam.Add("CharacterName", characterData.characterName);
-                upParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
-                upParam.Add("BestScore", characterData.bestScore);
-                upParam.Add("TotalKillScore", characterData.totalKillScore);
-                Backend.GameData.Update("CharacterData", where, upParam, (updateback) => {
-                    Debug.Log("내 playerInfo의 Update : " + updateback);
-                    if(bestScore <= systemScore ) {
-                        RankInputdate(bestScore, characterData.characterName);
-                    }
-                });
+            if(bestScore <= systemScore ) {
+                RankInputdate(bestScore, characterData.characterName);
             }
-        });
 
+        } else {
+            Param upParam = new Param();
+            upParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+            upParam.Add("CharacterName", characterData.characterName);
+            upParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
+            upParam.Add("BestScore", characterData.bestScore);
+            upParam.Add("TotalKillScore", characterData.totalKillScore);
 
+            Backend.GameData.Update("CharacterData", where, upParam);
+            if(bestScore <= systemScore ) {
+                RankInputdate(bestScore, characterData.characterName);
+            }
+        }
 
-              
-
+        yield return null;
     }
     public void RankInputdate(int bestScore, string characterName) {
         Where where = new Where();
         where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
         where.Equal("CharacterName",  characterName);
-        //var bro = Backend.GameData.GetMyData("CharacterData", where, 0);
+        var bro = Backend.GameData.GetMyData("CharacterData", where, 0);
 
-        Backend.GameData.GetMyData("CharacterData", where, (callback) =>
-        {
-            string rowInDate = callback.FlattenRows()[0]["inDate"].ToString();
+        string rowInDate = bro.FlattenRows()[0]["inDate"].ToString();
 
-            Debug.Log("SaveBestScore::update:"+ rowInDate);
+        Debug.Log("SaveBestScore::update:"+ rowInDate);
 
-            Param rankParam = new Param();
-            rankParam.Add("BestScore", bestScore);
-            rankParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+        Param rankParam = new Param();
+        rankParam.Add("BestScore", bestScore);
+        rankParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
 
-            Backend.URank.User.UpdateUserScore(RANK_UUID, "CharacterData", rowInDate, rankParam, (UserScoreback) => {
-                Debug.Log("랭킹 등록 결과 : " + UserScoreback);
-            });
-        });
+        Backend.URank.User.UpdateUserScore(RANK_UUID, "CharacterData", rowInDate, rankParam);
+        Debug.Log("랭킹 등록 결과 : " );
+    
     }
 
    
