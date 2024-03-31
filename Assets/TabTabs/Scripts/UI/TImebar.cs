@@ -11,10 +11,14 @@ namespace TabTabs.NamChanwoo
         public static Image timebarImage;
         public float TimebarImagefillAmount;
         public PlayerHeart PlayerHeart;
-        public float StartTimeGauge = 0.5f; // ½ÃÀÛ½Ã TimebarÀÇ °ÔÀÌÁö´Â 50%½ÃÀÛ
-        [SerializeField] public float depletionRate = 0.1f; // ÃÊ´ç TimebarÀÇ °ÔÀÌÁö 10% ÇÏ¶ô
-        [SerializeField] public float depletionRateIncrease = 0.01f; // ¸÷ 3¸¶¸® Ã³Ä¡ÇÒ¶§¸¶´Ù Å¸ÀÓ °ÔÀÌÁö ÇÏ¶ô°ª 1%¾¿ »ó½Â
+        public float StartTimeGauge = 0.5f; // ï¿½ï¿½ï¿½Û½ï¿½ Timebarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 50%ï¿½ï¿½ï¿½ï¿½
+        [SerializeField] public float depletionRate = 0.1f; // ï¿½Ê´ï¿½ Timebarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 10% ï¿½Ï¶ï¿½
+        [SerializeField] public float depletionRateIncrease = 0.01f; // ï¿½ï¿½ 3ï¿½ï¿½ï¿½ï¿½ Ã³Ä¡ï¿½Ò¶ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¶ï¿½ï¿½ï¿½ 1%ï¿½ï¿½ ï¿½ï¿½ï¿½
         public int KillCount = 0;
+
+        public SpriteRenderer backgroundSprite;
+        private bool isFlashing = false; // í˜„ì¬ ê¹œë°•ì´ê³  ìˆëŠ”ì§€ ì—¬ë¶€
+
         void Start()
         {
             TimebarImagefillAmount = 0.5f;
@@ -27,13 +31,36 @@ namespace TabTabs.NamChanwoo
         {
             TimebarImagefillAmount = timebarImage.fillAmount;
             
-            timebarImage.fillAmount -= Time.deltaTime * depletionRate; // TimebarGauge 1ÃÊ´ç 10%¾¿ ÇÏ¶ô
+            timebarImage.fillAmount -= Time.deltaTime * depletionRate; // TimebarGauge 1ï¿½Ê´ï¿½ 10%ï¿½ï¿½ ï¿½Ï¶ï¿½
 
             if (KillCount % 3 == 0 && KillCount > 0)
-            {// ¸÷À» 3¸¶¸® Ã³¸®ÇÒ¶§¸¶´Ù
-                depletionRate += depletionRateIncrease; // Å¸ÀÓ¹ÙÀÇ °ÔÀÌÁö ÇÏ¶ô¼Óµµ 1%¾¿ »ó½Â
+            {// ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ï¿½ï¿½
+                depletionRate += depletionRateIncrease; // Å¸ï¿½Ó¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¶ï¿½ï¿½Óµï¿½ 1%ï¿½ï¿½ ï¿½ï¿½ï¿½
                 KillCount = 0;
             }
+            if (timebarImage.fillAmount <= 0.3f && !isFlashing)
+            {
+                StartCoroutine(FlashBackground());
+            }
+            else if (timebarImage.fillAmount > 0.3f && isFlashing)
+            {
+                StopCoroutine(FlashBackground());
+                isFlashing = false;
+                backgroundSprite.color = Color.white; // ê¹œë°•ì„ ì¤‘ì§€ ì‹œ ì›ë˜ ìƒ‰ìƒìœ¼ë¡œ ë³µì›
+            }
+        }
+
+        IEnumerator FlashBackground()
+        {
+            isFlashing = true;
+            while (timebarImage.fillAmount <= 0.3f)
+            {
+                backgroundSprite.color = Color.red; // ë¹¨ê°„ìƒ‰ìœ¼ë¡œ ë³€ê²½
+                yield return new WaitForSeconds(0.5f); // 0.5ì´ˆ ëŒ€ê¸°
+                backgroundSprite.color = Color.white; // ì›ë˜ ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½
+                yield return new WaitForSeconds(0.5f); // 0.5ì´ˆ ëŒ€ê¸°
+            }
+            isFlashing = false;
         }
     }
 }
