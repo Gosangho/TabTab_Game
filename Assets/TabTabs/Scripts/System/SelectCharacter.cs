@@ -170,7 +170,7 @@ public class SelectCharacter : MonoBehaviour
     {
         if (DataManager.Instance.playerData.SwordGirl2Get)
         {
-            CharacterSelect(swordGirl2Image);
+            CharacterSelect(swordGirl2Image); 
         }
 
         if (DataManager.Instance.playerData.SwordGirl3Get)
@@ -235,12 +235,21 @@ public class SelectCharacter : MonoBehaviour
                 selectButtonImage.sprite = leonSprite;
             }
         }
-        Transform readingTransform = characterGameObject.transform.Find("Reading");
-        if (readingTransform != null)
+        if(characterGameObject.name == "SwordGirl2")
         {
-            // GameObject 활성화
-            readingTransform.gameObject.SetActive(true);
         }
+        else if(characterGameObject.name == "SwordGirl3_Button")
+        { 
+        } else {
+            Transform readingTransform = characterGameObject.transform.Find("Reading");
+            if (readingTransform != null)
+            {
+                // GameObject 활성화
+                readingTransform.gameObject.SetActive(true);
+            }
+        
+        }
+
     }
 
     public void SwordGirl3PurchaseUiExit()
