@@ -10,15 +10,15 @@ namespace TabTabs.NamChanwoo
 
     public class Test3Spawn : MonoBehaviour
     {
-        // ÀÎ½ºÅÏ½º¿¡ ´ëÇÑ Á¤Àû ÂüÁ¶
+        // ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         public static Test3Spawn Instance { get; private set; }
 
         [Header("Spawn Setting")]
         [SerializeField] bool IsSpawnAlignmentRandom = false;
         [SerializeField] public GameObject m_SpawnLocation_Right;
         [SerializeField] public GameObject m_SpawnLocation_Left;
-        [SerializeField] public List<GameObject> m_NodeList = new List<GameObject>(); // ¸ó½ºÅÍ¿¡ ºÎÂøµÉ ³ëµå¸®½ºÆ®
-        [SerializeField] private List<GameObject> m_monsterPrefabList; // »ý¼ºµÉ ¸ó½ºÅÍ ¸®½ºÆ®
+        [SerializeField] public List<GameObject> m_NodeList = new List<GameObject>(); // ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å¸®ï¿½ï¿½Æ®
+        [SerializeField] private List<GameObject> m_monsterPrefabList; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
         public Test3Battle BattleInstance;
         public GameObject AttackNode;
         public Vector2 SpawnNodePosition;
@@ -32,11 +32,11 @@ namespace TabTabs.NamChanwoo
 
         private void Awake()
         {
-            // NodeSpawnManager ÀÎ½ºÅÏ½º°¡ ÇÏ³ª¸¸ ÀÖ´ÂÁö È®ÀÎÇÏ½Ê½Ã¿À.
+            // NodeSpawnManager ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï½Ê½Ã¿ï¿½.
             if (Instance == null)
             {
                 Instance = this;
-                //DontDestroyOnLoad(gameObject); // ¼±ÅÃ »çÇ×: ÀÌ °ü¸®ÀÚ°¡ Àå¸é ·Îµå °£¿¡ Áö¼ÓµÇµµ·Ï ÇÏ·Á¸é
+                //DontDestroyOnLoad(gameObject); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÓµÇµï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½
             }
             else
             {
@@ -48,12 +48,12 @@ namespace TabTabs.NamChanwoo
         {
             GameManager.NotificationSystem.SceneMonsterDeath.AddListener(HandleSceneMonsterDeath);
             BattleInstance = FindObjectOfType<Test3Battle>();
-            // SpawnLocation ÀÚ½Ä °³Ã¼ Ã£±â
+            // SpawnLocation ï¿½Ú½ï¿½ ï¿½ï¿½Ã¼ Ã£ï¿½ï¿½
             m_SpawnLocation_Right = transform.Find("SpawnLocation_Right").gameObject;
             m_SpawnLocation_Left = transform.Find("SpawnLocation_Left").gameObject;
             //if (m_SpawnLocation == null)
             //{
-            //    Debug.LogError("ÇÏÀ§ °³Ã¼·Î SpawnLocationÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            //    Debug.LogError("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ SpawnLocationï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             //    return;
             //}
 
@@ -77,7 +77,7 @@ namespace TabTabs.NamChanwoo
 
         public void Spawn_RightNode(EnemyBase enemyBase)
         {
-            //³ëµå°¡ 0°³°¡ ¾Æ´Ï¶ó¸é »ý¼º µÈ ³ëµå¸¦ »èÁ¦ÇÏ°í Queue¸¦ ºñ¿ó´Ï´Ù.
+            //ï¿½ï¿½å°¡ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ Queueï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½.
             if (enemyBase.GetOwnNodes().Count != 0)
             {
                 foreach (Node ownNode in enemyBase.GetOwnNodes())
@@ -89,52 +89,52 @@ namespace TabTabs.NamChanwoo
 
             NodeArea nodeArea = enemyBase.nodeArea;
 
-            // NodeArea°¡ ¹ß°ßµÇ¾ú´ÂÁö È®ÀÎÇÏ½Ê½Ã¿À.
+            // NodeAreaï¿½ï¿½ ï¿½ß°ßµÇ¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï½Ê½Ã¿ï¿½.
             if (nodeArea == null)
             {
-                Debug.LogError("Àû ¶Ç´Â ÀûÀÇ ÀÚ½Ä¿¡¼­ NodeArea¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+                Debug.LogError("ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½Ä¿ï¿½ï¿½ï¿½ NodeAreaï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
                 return;
             }
 
-            // ½ºÆùÇÒ ³ëµå ¼ö´Â Çà ¼ö¿Í °°½À´Ï´Ù.
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
             int spawnNodeNum = nodeArea.Rows;
-            // 7Çà 3¿­ÀÇ ±¸Á¶ -> °¢ Çà¿¡¼­ 3¿­ÀÇ °ø°£¿¡ °ø°ÝÆ÷ÀÎÆ®¸¦ »ý¼ºÇÒÁö ¾ÈÇÒÁö È®·ü·Î »ý¼º
+            // 7ï¿½ï¿½ 3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -> ï¿½ï¿½ ï¿½à¿¡ï¿½ï¿½ 3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             for (RightRow = 0; RightRow < spawnNodeNum; RightRow++)
             {
-                int ranAttackNode = Random.Range(0, 2); // 50ÆÛ¼¾Æ® È®·ü
+                int ranAttackNode = Random.Range(0, 2); // 50ï¿½Û¼ï¿½Æ® È®ï¿½ï¿½
                 if (ranAttackNode == 0)
                 {
-                    // ÀÌ Çà¿¡¼­ ÀÓÀÇ·Î ¿­À» ¼±ÅÃÇÕ´Ï´Ù.
+                    // ï¿½ï¿½ ï¿½à¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
                     int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
 
-                    // ¸ñ·Ï¿¡¼­ ¿­¿¡ ÇØ´çÇÏ´Â ³ëµå ÇÁ¸®ÆÕÀ» °¡Á®¿É´Ï´Ù.
+                    // ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
                     GameObject nodePrefab = GetNodePrefab(randColumn);
 
-                    // NodeArea¿¡¼­ ÀÌ ³ëµåÀÇ À§Ä¡¸¦ °¡Á®¿É´Ï´Ù.
+                    // NodeAreaï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
                     Vector2 spawnPosition = nodeArea.GetGridPosition(RightRow, randColumn);
 
-                    // °è»êµÈ À§Ä¡¿¡ ³ëµå¸¦ ÀÎ½ºÅÏ½ºÈ­ÇÏ°í nodeAreaÀÇ ÀÚ½ÄÀ¸·Î ¼³Á¤ÇÕ´Ï´Ù.
+                    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½å¸¦ ï¿½Î½ï¿½ï¿½Ï½ï¿½È­ï¿½Ï°ï¿½ nodeAreaï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
                     GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
 
-                    // ³ëµåÀÇ ÀÌ¸§À» ¼³Á¤ÇÕ´Ï´Ù.
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
                     spawnedNode.name = $"Node_{RightRow}_{randColumn}";
 
-                    // NodeSheet·Î ³ëµå¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù.
+                    // NodeSheetï¿½ï¿½ ï¿½ï¿½å¸¦ ï¿½Ê±ï¿½È­ï¿½Õ´Ï´ï¿½.
                     Node nodeComponent = spawnedNode.GetComponent<Node>();
 
                     nodeComponent.Init_Right();
 
-                    //¿¡³Ê¹Ì°¡ ¼ÒÀ¯ÇÏ´Â ³ëµå¿¡ Ãß°¡ÇÕ´Ï´Ù.
+                    //ï¿½ï¿½ï¿½Ê¹Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½å¿¡ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½.
                     enemyBase.AddNodes(nodeComponent);
-                    RightAttackNum++; // ¿À¸¥ÂÊ ¸ó½ºÅÍ¿¡ ¸î°³ÀÇ °ø°ÝÆ÷ÀÎÆ®°¡ »ý¼ºµÇ¾ú´ÂÁö ¾Ë·ÁÁÖ´Â º¯¼ö
+                    RightAttackNum++; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½î°³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
                 }
                 else
                 {
-                    Debug.Log("¿À¸¥ÂÊ ¸ó½ºÅÍÀÇ °ø°ÝÆ÷ÀÎÆ®¸¦ »ý¼ºÇÏÁö ¾Ê½À´Ï´Ù.");
+                    Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
                 }
 
                 if (RightRow == 6 && RightAttackNum == 0)
-                {// for¹®ÀÌ 7¹ø µ¹¾ÒÀ»¶§±îÁö »ý¼ºµÈ °ø°ÝÆ÷ÀÎÆ®°¡ 0°³ ÀÏ°æ¿ì(¿¹¿Ü¼³Á¤)
+                {// forï¿½ï¿½ï¿½ï¿½ 7ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 0ï¿½ï¿½ ï¿½Ï°ï¿½ï¿½(ï¿½ï¿½ï¿½Ü¼ï¿½ï¿½ï¿½)
                     int randColumn2 = UnityEngine.Random.Range(0, nodeArea.Columns);
                     int randRow = UnityEngine.Random.Range(0, 7);
                     GameObject nodePrefab2 = GetNodePrefab(randColumn2);
@@ -142,7 +142,7 @@ namespace TabTabs.NamChanwoo
                     GameObject spawnedNode2 = Instantiate(nodePrefab2, spawnPosition2, Quaternion.identity, nodeArea.transform);
                     Node nodeComponent2 = spawnedNode2.GetComponent<Node>();
                     nodeComponent2.Init_Right();
-                    //¿¡³Ê¹Ì°¡ ¼ÒÀ¯ÇÏ´Â ³ëµå¿¡ Ãß°¡ÇÕ´Ï´Ù.
+                    //ï¿½ï¿½ï¿½Ê¹Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½å¿¡ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½.
                     enemyBase.AddNodes(nodeComponent2);
                     RightAttackNum++;
                 }
@@ -151,7 +151,7 @@ namespace TabTabs.NamChanwoo
         }
         public void SpawnLeft_Node(EnemyBase enemyBase)
         {
-            //³ëµå°¡ 0°³°¡ ¾Æ´Ï¶ó¸é »ý¼º µÈ ³ëµå¸¦ »èÁ¦ÇÏ°í Queue¸¦ ºñ¿ó´Ï´Ù.
+            //ï¿½ï¿½å°¡ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ Queueï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½.
             if (enemyBase.GetOwnNodes().Count != 0)
             {
                 foreach (Node ownNode in enemyBase.GetOwnNodes())
@@ -163,53 +163,53 @@ namespace TabTabs.NamChanwoo
 
             NodeArea nodeArea = enemyBase.nodeArea;
 
-            // NodeArea°¡ ¹ß°ßµÇ¾ú´ÂÁö È®ÀÎÇÏ½Ê½Ã¿À.
+            // NodeAreaï¿½ï¿½ ï¿½ß°ßµÇ¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï½Ê½Ã¿ï¿½.
             if (nodeArea == null)
             {
-                Debug.LogError("Àû ¶Ç´Â ÀûÀÇ ÀÚ½Ä¿¡¼­ NodeArea¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+                Debug.LogError("ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½Ä¿ï¿½ï¿½ï¿½ NodeAreaï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
                 return;
             }
 
-            // ½ºÆùÇÒ ³ëµå ¼ö´Â Çà ¼ö¿Í °°½À´Ï´Ù.
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
             int spawnNodeNum = nodeArea.Rows;
             // spawnNodeNum = 7; 0,1,2,3,4,5,6
             for (LeftRow = 0; LeftRow < spawnNodeNum; LeftRow++)
             {
-                int ranAttackNodeNum = Random.Range(0, 2); // ¿ì¼±Àº 50ÆÛ¼¾Æ® È®·ü
+                int ranAttackNodeNum = Random.Range(0, 2); // ï¿½ì¼±ï¿½ï¿½ 50ï¿½Û¼ï¿½Æ® È®ï¿½ï¿½
 
                 if (ranAttackNodeNum == 0)
-                {// »ý¼ºµÇ´Â È®·üÀÌ »ÌÇû´Ù¸é
-                 // ÀÌ Çà¿¡¼­ ÀÓÀÇ·Î ¿­À» ¼±ÅÃÇÕ´Ï´Ù.
+                {// ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ù¸ï¿½
+                 // ï¿½ï¿½ ï¿½à¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
                     int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
 
-                    // ¸ñ·Ï¿¡¼­ ¿­¿¡ ÇØ´çÇÏ´Â ³ëµå ÇÁ¸®ÆÕÀ» °¡Á®¿É´Ï´Ù.
+                    // ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
                     GameObject nodePrefab = GetNodePrefab(randColumn);
 
-                    // NodeArea¿¡¼­ ÀÌ ³ëµåÀÇ À§Ä¡¸¦ °¡Á®¿É´Ï´Ù.
+                    // NodeAreaï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
                     Vector2 spawnPosition = nodeArea.GetGridPosition(LeftRow, randColumn);
 
-                    // °è»êµÈ À§Ä¡¿¡ ³ëµå¸¦ ÀÎ½ºÅÏ½ºÈ­ÇÏ°í nodeAreaÀÇ ÀÚ½ÄÀ¸·Î ¼³Á¤ÇÕ´Ï´Ù.
+                    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½å¸¦ ï¿½Î½ï¿½ï¿½Ï½ï¿½È­ï¿½Ï°ï¿½ nodeAreaï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
                     GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
 
-                    // ³ëµåÀÇ ÀÌ¸§À» ¼³Á¤ÇÕ´Ï´Ù.
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
                     spawnedNode.name = $"Node_{LeftRow}_{randColumn}";
 
-                    // NodeSheet·Î ³ëµå¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù.
+                    // NodeSheetï¿½ï¿½ ï¿½ï¿½å¸¦ ï¿½Ê±ï¿½È­ï¿½Õ´Ï´ï¿½.
                     Node nodeComponent = spawnedNode.GetComponent<Node>();
 
                     nodeComponent.Init_Left();
 
-                    //¿¡³Ê¹Ì°¡ ¼ÒÀ¯ÇÏ´Â ³ëµå¿¡ Ãß°¡ÇÕ´Ï´Ù.
+                    //ï¿½ï¿½ï¿½Ê¹Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½å¿¡ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½.
                     enemyBase.AddNodes(nodeComponent);
-                    LeftAttackNum++; // ¿ÞÂÊ¸ó½ºÅÍ¿¡ ¸î°³ÀÇ °ø°ÝÆ÷ÀÎÆ®°¡ »ý¼ºµÇ¾ú´ÂÁö ¾Ë·ÁÁÖ´Â º¯¼ö
+                    LeftAttackNum++; // ï¿½ï¿½ï¿½Ê¸ï¿½ï¿½Í¿ï¿½ ï¿½î°³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
                 }
                 else
-                {// »ÌÈ÷Áö ¾Ê¾Ò´Ù¸é °ø°ÝÆ÷ÀÎÆ®¸¦ »ý¼ºÇÏÁö ¾ÊÀ½
-                    Debug.Log("¿ÞÂÊ ¸ó½ºÅÍÀÇ °ø°ÝÆ÷ÀÎÆ®¸¦ »ý¼ºÇÏÁö ¾Ê½À´Ï´Ù.");
+                {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                    Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
                 }
 
                 if (LeftRow == 6 && LeftAttackNum == 0)
-                {// for¹®ÀÌ 7¹ø µ¹¾ÒÀ»¶§±îÁö »ý¼ºµÈ °ø°ÝÆ÷ÀÎÆ®°¡ 0°³ ÀÏ°æ¿ì(¿¹¿Ü¼³Á¤)
+                {// forï¿½ï¿½ï¿½ï¿½ 7ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 0ï¿½ï¿½ ï¿½Ï°ï¿½ï¿½(ï¿½ï¿½ï¿½Ü¼ï¿½ï¿½ï¿½)
                     int randColumn2 = UnityEngine.Random.Range(0, nodeArea.Columns);
                     int randRow = UnityEngine.Random.Range(0, 7);
                     GameObject nodePrefab2 = GetNodePrefab(randColumn2);
@@ -217,16 +217,101 @@ namespace TabTabs.NamChanwoo
                     GameObject spawnedNode2 = Instantiate(nodePrefab2, spawnPosition2, Quaternion.identity, nodeArea.transform);
                     Node nodeComponent2 = spawnedNode2.GetComponent<Node>();
                     nodeComponent2.Init_Right();
-                    //¿¡³Ê¹Ì°¡ ¼ÒÀ¯ÇÏ´Â ³ëµå¿¡ Ãß°¡ÇÕ´Ï´Ù.
+                    //ï¿½ï¿½ï¿½Ê¹Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½å¿¡ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½.
                     enemyBase.AddNodes(nodeComponent2);
                     LeftAttackNum++;
                 }
             }
             LeftRow = 0;
         }
+
+
+        public void SpawnMode_B_Node(EnemyBase enemyBase)
+        {
+            if (enemyBase.GetOwnNodes().Count != 0)
+            {
+                foreach (Node ownNode in enemyBase.GetOwnNodes())
+                {
+                    Destroy(ownNode.gameObject);
+                }
+                enemyBase.GetOwnNodes().Clear();
+            }
+
+            NodeArea nodeArea = enemyBase.nodeArea;
+
+            if (nodeArea == null)
+            {
+                Debug.LogError("NodeArea LogError.");
+                return;
+            }
+
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
+            int spawnNodeNum = nodeArea.Rows;
+            Debug.Log("spawnNodeNum : " + spawnNodeNum);
+
+            int[,] monsterTarget = {
+                {0, 0, 1},
+                {0, 0, 1},
+                {0, 1, 0},
+                {1, 0, 0},
+                {1, 0, 0},
+                {0, 1, 0}
+            };
+
+            // spawnNodeNum = 7; 0,1,2,3,4,5,6
+            for (LeftRow = 0; LeftRow < monsterTarget.GetLength(0); LeftRow++)
+            {
+                 Debug.Log("LeftRow : " + LeftRow);
+                for(int k=0 ; k < monsterTarget.GetLength(1); k++ ){
+                    Debug.Log("k : " + k);
+                    Debug.Log("monsterTarget[LeftRow, k] : " + monsterTarget[LeftRow, k]);
+                    if (monsterTarget[LeftRow, k] == 1)
+                    {
+                       int randColumn = k;
+
+                        GameObject nodePrefab = GetNodePrefab(randColumn);
+
+                        Vector2 spawnPosition = nodeArea.GetGridPosition(LeftRow, randColumn);
+
+                        GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+
+                        spawnedNode.name = $"Node_{LeftRow}_{randColumn}";
+
+                        Node nodeComponent = spawnedNode.GetComponent<Node>();
+
+                        nodeComponent.Init_Left();
+
+                        enemyBase.AddNodes(nodeComponent);
+                        LeftAttackNum++; 
+                    }
+                    else
+                    {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
+                    }
+                }
+
+                
+
+                if (LeftRow == 6 && LeftAttackNum == 0)
+                {// forï¿½ï¿½ï¿½ï¿½ 7ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 0ï¿½ï¿½ ï¿½Ï°ï¿½ï¿½(ï¿½ï¿½ï¿½Ü¼ï¿½ï¿½ï¿½)
+                    int randColumn2 = UnityEngine.Random.Range(0, nodeArea.Columns);
+                    int randRow = UnityEngine.Random.Range(0, 7);
+                    GameObject nodePrefab2 = GetNodePrefab(randColumn2);
+                    Vector2 spawnPosition2 = nodeArea.GetGridPosition(randRow, randColumn2);
+                    GameObject spawnedNode2 = Instantiate(nodePrefab2, spawnPosition2, Quaternion.identity, nodeArea.transform);
+                    Node nodeComponent2 = spawnedNode2.GetComponent<Node>();
+                    nodeComponent2.Init_Right();
+                    //ï¿½ï¿½ï¿½Ê¹Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½å¿¡ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½.
+                    enemyBase.AddNodes(nodeComponent2);
+                    LeftAttackNum++;
+                }
+            }
+            LeftRow = 0;
+        }
+
         private GameObject GetNodePrefab(int Column)
         {
-            //·£´ý ½ºÆùÀÌ ¾Æ´Ï¶ó¸é
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½
             if (!IsSpawnAlignmentRandom)
             {
                 if (Column == 0)
@@ -239,7 +324,7 @@ namespace TabTabs.NamChanwoo
                 return null;
             }
 
-            //else ·£´ý ½ºÆùÀÌ¶ó¸é
+            //else ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½
             return m_NodeList[UnityEngine.Random.Range(0, m_NodeList.Count)];
         }
 
@@ -266,13 +351,13 @@ namespace TabTabs.NamChanwoo
         //    EnemyBase spawnEnemy2 = spawnMonster_Left.GetComponent<EnemyBase>();
         //    if (spawnEnemy != null)
         //    {
-        //        GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ¸ó½ºÅÍ°¡ ½ºÆùµÇ¾úÀ½À» ½Ã½ºÅÛ¿¡ ¾Ë¸³´Ï´Ù.
+        //        GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½Û¿ï¿½ ï¿½Ë¸ï¿½ï¿½Ï´ï¿½.
         //        SpawnNode(spawnEnemy);
         //    }
 
         //    if (spawnEnemy2 != null)
         //    {
-        //        GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy2); // ¸ó½ºÅÍ°¡ ½ºÆùµÇ¾úÀ½À» ½Ã½ºÅÛ¿¡ ¾Ë¸³´Ï´Ù.
+        //        GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy2); // ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½Û¿ï¿½ ï¿½Ë¸ï¿½ï¿½Ï´ï¿½.
         //        SpawnNode(spawnEnemy2);
         //    }
         //}
@@ -283,7 +368,7 @@ namespace TabTabs.NamChanwoo
         //    EnemyBase spawnEnemy = spawnMonster.GetComponent<EnemyBase>();
         //    if (spawnEnemy != null)
         //    {
-        //        //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ¸ó½ºÅÍ°¡ ½ºÆùµÇ¾úÀ½À» ½Ã½ºÅÛ¿¡ ¾Ë¸³´Ï´Ù.
+        //        //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½Û¿ï¿½ ï¿½Ë¸ï¿½ï¿½Ï´ï¿½.
         //        SpawnNode(spawnEnemy);
         //    }
         //}
