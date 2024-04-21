@@ -12,6 +12,7 @@ namespace TabTabs.NamChanwoo
         
         [SerializeField] private GameObject m_button;
         public GameObject nodeButton => m_button;
+        public Sprite[] m_sprite;
         
 
         public override void Init_Right()
@@ -71,6 +72,21 @@ namespace TabTabs.NamChanwoo
         public void SetLocalScale(Vector3 scale)
         {
             transform.localScale = scale;
+        }
+
+        public void SetSpriteNode(int index)
+        {
+            SpriteRenderer nodeSprite = m_button.GetComponent<SpriteRenderer>();
+            if(index == 1) {
+                nodeSprite.color = Color.red;
+            } else if(index == 2) {
+                nodeSprite.color = Color.blue;
+            } else if(index == 3) {
+                nodeSprite.color = Color.yellow;
+            } else if(index == 4) {
+                nodeSprite.color = Color.green;
+                nodeSprite.sprite = m_sprite[0];
+            }
         }
     }
 

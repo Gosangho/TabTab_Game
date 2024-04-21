@@ -226,7 +226,7 @@ namespace TabTabs.NamChanwoo
         }
 
 
-        public void SpawnMode_B_Node(EnemyBase enemyBase)
+        public void SpawnMode_B_NodeLeft(EnemyBase enemyBase)
         {
             if (enemyBase.GetOwnNodes().Count != 0)
             {
@@ -252,10 +252,10 @@ namespace TabTabs.NamChanwoo
             int[,] monsterTarget = {
                 {0, 0, 1},
                 {0, 0, 1},
-                {0, 1, 0},
-                {1, 0, 0},
-                {1, 0, 0},
-                {0, 1, 0}
+                {0, 2, 0},
+                {3, 0, 0},
+                {3, 0, 0},
+                {0, 4, 0}
             };
 
             // spawnNodeNum = 7; 0,1,2,3,4,5,6
@@ -265,7 +265,7 @@ namespace TabTabs.NamChanwoo
                 for(int k=0 ; k < monsterTarget.GetLength(1); k++ ){
                     Debug.Log("k : " + k);
                     Debug.Log("monsterTarget[LeftRow, k] : " + monsterTarget[LeftRow, k]);
-                    if (monsterTarget[LeftRow, k] == 1)
+                    if (monsterTarget[LeftRow, k] != 0)
                     {
                        int randColumn = k;
 
@@ -274,6 +274,98 @@ namespace TabTabs.NamChanwoo
                         Vector2 spawnPosition = nodeArea.GetGridPosition(LeftRow, randColumn);
 
                         GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+
+                        Node node =  spawnedNode.GetComponent<Node>();
+
+                        node.SetSpriteNode(monsterTarget[LeftRow, k]);
+                     
+
+                        spawnedNode.name = $"Node_{LeftRow}_{randColumn}";
+
+                        Node nodeComponent = spawnedNode.GetComponent<Node>();
+
+                        nodeComponent.Init_Left();
+
+                        enemyBase.AddNodes(nodeComponent);
+                        LeftAttackNum++; 
+                    }
+                    else
+                    {// ������ �ʾҴٸ� ��������Ʈ�� �������� ����
+                        Debug.Log("���� ������ ��������Ʈ�� �������� �ʽ��ϴ�.");
+                    }
+                }
+
+                
+
+                if (LeftRow == 6 && LeftAttackNum == 0)
+                {// for���� 7�� ������������ ������ ��������Ʈ�� 0�� �ϰ��(���ܼ���)
+                    int randColumn2 = UnityEngine.Random.Range(0, nodeArea.Columns);
+                    int randRow = UnityEngine.Random.Range(0, 7);
+                    GameObject nodePrefab2 = GetNodePrefab(randColumn2);
+                    Vector2 spawnPosition2 = nodeArea.GetGridPosition(randRow, randColumn2);
+                    GameObject spawnedNode2 = Instantiate(nodePrefab2, spawnPosition2, Quaternion.identity, nodeArea.transform);
+                    Node nodeComponent2 = spawnedNode2.GetComponent<Node>();
+                    nodeComponent2.Init_Right();
+                    //���ʹ̰� �����ϴ� ��忡 �߰��մϴ�.
+                    enemyBase.AddNodes(nodeComponent2);
+                    LeftAttackNum++;
+                }
+            }
+            LeftRow = 0;
+        }
+        public void SpawnMode_B_NodeRight(EnemyBase enemyBase)
+        {
+            if (enemyBase.GetOwnNodes().Count != 0)
+            {
+                foreach (Node ownNode in enemyBase.GetOwnNodes())
+                {
+                    Destroy(ownNode.gameObject);
+                }
+                enemyBase.GetOwnNodes().Clear();
+            }
+
+            NodeArea nodeArea = enemyBase.nodeArea;
+
+            if (nodeArea == null)
+            {
+                Debug.LogError("NodeArea LogError.");
+                return;
+            }
+
+            // ������ ��� ���� �� ���� �����ϴ�.
+            int spawnNodeNum = nodeArea.Rows;
+            Debug.Log("spawnNodeNum : " + spawnNodeNum);
+
+            int[,] monsterTarget = {
+                {1, 0, 0},
+                {1, 0, 0},
+                {0, 2, 0},
+                {0, 0, 3},
+                {0, 0, 3},
+                {0, 4, 0}
+            };
+
+            // spawnNodeNum = 7; 0,1,2,3,4,5,6
+            for (LeftRow = 0; LeftRow < monsterTarget.GetLength(0); LeftRow++)
+            {
+                 Debug.Log("LeftRow : " + LeftRow);
+                for(int k=0 ; k < monsterTarget.GetLength(1); k++ ){
+                    Debug.Log("k : " + k);
+                    Debug.Log("monsterTarget[LeftRow, k] : " + monsterTarget[LeftRow, k]);
+                    if (monsterTarget[LeftRow, k] != 0)
+                    {
+                       int randColumn = k;
+
+                        GameObject nodePrefab = GetNodePrefab(randColumn);
+
+                        Vector2 spawnPosition = nodeArea.GetGridPosition(LeftRow, randColumn);
+
+                        GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+
+                        Node node =  spawnedNode.GetComponent<Node>();
+
+                        node.SetSpriteNode(monsterTarget[LeftRow, k]);
+                     
 
                         spawnedNode.name = $"Node_{LeftRow}_{randColumn}";
 

@@ -372,12 +372,12 @@ namespace TabTabs.NamChanwoo
                     // 4. ��� �ٽ� �����ϴ� �Լ� ȣ��
                     if (selectEnemy == RightEnemy)
                     {
-                        Test3Spawn.Instance.Spawn_RightNode(selectEnemy);
+                        Test3Spawn.Instance.SpawnMode_B_NodeRight(selectEnemy);
                     }
                     else if (selectEnemy == LeftEnemy)
                     {
                         Debug.Log("SpawnMode_B_Node");
-                        Test3Spawn.Instance.SpawnMode_B_Node(selectEnemy);
+                        Test3Spawn.Instance.SpawnMode_B_NodeLeft(selectEnemy);
                     }
                 }
 
@@ -868,7 +868,7 @@ namespace TabTabs.NamChanwoo
             if (spawnEnemy != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.
-                Test3Spawn.Instance.Spawn_RightNode(spawnEnemy);
+                Test3Spawn.Instance.SpawnMode_B_NodeRight(spawnEnemy);
             }
             RightEnemy = spawnEnemy; // �� ����
             selectEnemy = spawnEnemy; // ������ ���Ͱ� ����Ʈ��
@@ -879,7 +879,7 @@ namespace TabTabs.NamChanwoo
             if (spawnEnemy2 != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.
-                Test3Spawn.Instance.SpawnMode_B_Node(spawnEnemy2);
+                Test3Spawn.Instance.SpawnMode_B_NodeLeft(spawnEnemy2);
             }
             LeftEnemy = spawnEnemy2; // �� ����
         }
@@ -891,7 +891,7 @@ namespace TabTabs.NamChanwoo
             if (spawnEnemy != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.
-                Test3Spawn.Instance.Spawn_RightNode(spawnEnemy);
+                Test3Spawn.Instance.SpawnMode_B_NodeRight(spawnEnemy);
             }
             selectEnemy = spawnEnemy;
             RightEnemy = spawnEnemy;
@@ -904,7 +904,7 @@ namespace TabTabs.NamChanwoo
             if (spawnEnemy2 != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.
-                Test3Spawn.Instance.SpawnMode_B_Node(spawnEnemy2);
+                Test3Spawn.Instance.SpawnMode_B_NodeLeft(spawnEnemy2);
             }
             selectEnemy = spawnEnemy2;
             LeftEnemy = spawnEnemy2;
