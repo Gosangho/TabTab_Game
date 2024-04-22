@@ -362,10 +362,7 @@ namespace TabTabs.NamChanwoo
 
                         GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
 
-                        Node node =  spawnedNode.GetComponent<Node>();
-
-                        node.SetSpriteNode(monsterTarget[LeftRow, k]);
-                     
+                        spawnedNode.GetComponent<Node>().SetSpriteNode(monsterTarget[LeftRow, k]);
 
                         spawnedNode.name = $"Node_{LeftRow}_{randColumn}";
 

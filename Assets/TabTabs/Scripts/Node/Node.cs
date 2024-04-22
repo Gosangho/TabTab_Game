@@ -13,15 +13,21 @@ namespace TabTabs.NamChanwoo
         [SerializeField] private GameObject m_button;
         public GameObject nodeButton => m_button;
         public Sprite[] m_sprite;
+
+        private SpriteRenderer nodeSprite;
         
+
+        private void Awake()
+        {
+            nodeSprite = m_button.GetComponent<SpriteRenderer>();
+            nodeSprite.sprite = m_sheet.m_NodeImage;
+        }
 
         public override void Init_Right()
         {
-            // SpriteRenderer 컴포넌트를 얻습니다.
-            SpriteRenderer nodeSprite = m_button.GetComponent<SpriteRenderer>();
             // Node의 스프라이트를 설정합니다.
-            nodeSprite.sprite = m_sheet.m_NodeImage;
             
+            Debug.Log("SetSpriteNode3");
             
             // 부모 오브젝트인 NodeArea를 얻습니다.
             NodeArea nodeArea = GetComponentInParent<NodeArea>();
@@ -44,11 +50,7 @@ namespace TabTabs.NamChanwoo
 
         public override void Init_Left()
         {
-            // SpriteRenderer 컴포넌트를 얻습니다.
-            SpriteRenderer nodeSprite = m_button.GetComponent<SpriteRenderer>();
             // Node의 스프라이트를 설정합니다.
-            nodeSprite.sprite = m_sheet.m_NodeImage;
-
 
             // 부모 오브젝트인 NodeArea를 얻습니다.
             NodeArea nodeArea = GetComponentInParent<NodeArea>();
@@ -76,7 +78,6 @@ namespace TabTabs.NamChanwoo
 
         public void SetSpriteNode(int index)
         {
-            SpriteRenderer nodeSprite = m_button.GetComponent<SpriteRenderer>();
             if(index == 1) {
                 nodeSprite.color = Color.red;
             } else if(index == 2) {
@@ -84,8 +85,7 @@ namespace TabTabs.NamChanwoo
             } else if(index == 3) {
                 nodeSprite.color = Color.yellow;
             } else if(index == 4) {
-                nodeSprite.color = Color.green;
-                nodeSprite.sprite = m_sprite[0];
+                nodeSprite.sprite = m_sprite[1];
             }
         }
     }
