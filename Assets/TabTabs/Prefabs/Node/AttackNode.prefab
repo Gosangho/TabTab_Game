@@ -131,3 +131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_sheet: {fileID: 11400000, guid: c34b88911a1d6114ab0be7593b9bcd21, type: 2}
   m_button: {fileID: 1939310831789647566}
+  m_sprite:
+  - {fileID: 21300000, guid: 6ba6005d67a3ddc40850458d1fc9288f, type: 3}
+  - {fileID: 21300000, guid: 0444b8c7aa7e18d46a8cb13754910491, type: 3}

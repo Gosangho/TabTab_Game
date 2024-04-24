@@ -20,6 +20,8 @@ public class LogoPageMove : MonoBehaviour
     private void AnimationComplete(Spine.TrackEntry trackEntry)
     {
         Debug.Log("DataManager.Instance.playerData.PlayerName::"+DataManager.Instance.playerData.PlayerName);
+        Debug.Log("DataManager.Instance.playerData.PlayerName::"+DataManager.Instance.getCharacter(4));
+         Debug.Log("DataManager.Instance.playerData.PlayerName::"+DataManager.Instance.playerData.MakeNickName);
         
         if("default".Equals(DataManager.Instance.getCharacter(4)) && DataManager.Instance.playerData.MakeNickName != true){
             SceneManager.LoadScene(sceneNameToLoad);
