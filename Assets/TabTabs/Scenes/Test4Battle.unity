@@ -530,7 +530,9 @@ MonoBehaviour:
   CharacterBaseInstance: {fileID: 0}
   SceneEnemyList: []
   ClickNode: 0
-  AttackButton: {fileID: 1543762234}
+  RedAttackButton: {fileID: 0}
+  YellowAttackButton: {fileID: 0}
+  BlueAttackButton: {fileID: 0}
   SelectEnemyButton: {fileID: 1488109284}
   PlayerBaseInstance: {fileID: 0}
   Left_Ork: {fileID: 1641563902055648439, guid: d5fd64cc2af4fcc48a7cec2237b0234d, type: 3}

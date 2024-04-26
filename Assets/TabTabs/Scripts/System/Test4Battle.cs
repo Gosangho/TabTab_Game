@@ -25,7 +25,9 @@ namespace TabTabs.NamChanwoo
         public CharacterBase CharacterBaseInstance;
         public List<EnemyBase> SceneEnemyList = new List<EnemyBase>();
         public ENodeType ClickNode;
-        public Button AttackButton;
+        public Button RedAttackButton;
+        public Button YellowAttackButton;
+        public Button BlueAttackButton;
         public Button SelectEnemyButton;
         public PlayerBase PlayerBaseInstance;
         public GameObject Left_Ork;
@@ -77,7 +79,9 @@ namespace TabTabs.NamChanwoo
                 PlayerBaseInstance = character2Object.GetComponent<PlayerBase>();
             }
             
-            AttackButton.onClick.AddListener(Attack);
+            RedAttackButton.onClick.AddListener(RedAttack);
+            YellowAttackButton.onClick.AddListener(YellowAttack);
+            BlueAttackButton.onClick.AddListener(BlueAttack);
             SelectEnemyButton.onClick.AddListener(SelectEnemy);
             StartSpawn();
             Right_MonsterDie = false;
@@ -139,9 +143,9 @@ namespace TabTabs.NamChanwoo
             Transform AttackButtonTrans;
             Transform DashButtonTrans;
 
-            if( AttackButton != null || SelectEnemyButton != null)
+            if( RedAttackButton != null || SelectEnemyButton != null)
             {
-                AttackButtonTrans = AttackButton.transform;
+                AttackButtonTrans = RedAttackButton.transform;
                 DashButtonTrans = SelectEnemyButton.transform;
 
                 if("B".Equals(controlType))
@@ -408,7 +412,15 @@ namespace TabTabs.NamChanwoo
             }
         }
 
-        void Attack()
+        void YellowAttack() {
+
+        }
+        
+        void BlueAttack() {
+
+        }
+
+        void RedAttack()
         {
             ClickNode = ENodeType.Attack;
             if (playerDie == true)
