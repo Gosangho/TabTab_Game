@@ -278,9 +278,22 @@ namespace TabTabs.NamChanwoo
                         Node node =  spawnedNode.GetComponent<Node>();
 
                         node.SetSpriteNode(monsterTarget[LeftRow, k]);
+
+                        string color = "";
+                        if( monsterTarget[LeftRow, k] == 1) {
+                            color = "Red";
+                        } else if(monsterTarget[LeftRow, k] == 2) {
+                            color = "Blue";
+                        } else if( monsterTarget[LeftRow, k] == 3) {
+                            color = "Yellow";
+                        } else if( monsterTarget[LeftRow, k]== 4) {
+                            color = "Green";
+                        } else {
+                            color = "White";
+                        }
                      
 
-                        spawnedNode.name = $"Node_{LeftRow}_{randColumn}";
+                        spawnedNode.name = $"Node_{color}_{LeftRow}_{randColumn}";
 
                         Node nodeComponent = spawnedNode.GetComponent<Node>();
 
@@ -364,7 +377,22 @@ namespace TabTabs.NamChanwoo
 
                         spawnedNode.GetComponent<Node>().SetSpriteNode(monsterTarget[LeftRow, k]);
 
-                        spawnedNode.name = $"Node_{LeftRow}_{randColumn}";
+                        string color = "";
+                        if( monsterTarget[LeftRow, k] == 1) {
+                            color = "Red";
+                        } else if(monsterTarget[LeftRow, k] == 2) {
+                            color = "Blue";
+                        } else if( monsterTarget[LeftRow, k] == 3) {
+                            color = "Yellow";
+                        } else if( monsterTarget[LeftRow, k]== 4) {
+                            color = "Green";
+                        } else {
+                            color = "White";
+                        }
+                     
+
+                        spawnedNode.name = $"Node_{color}_{LeftRow}_{randColumn}";
+
 
                         Node nodeComponent = spawnedNode.GetComponent<Node>();
 

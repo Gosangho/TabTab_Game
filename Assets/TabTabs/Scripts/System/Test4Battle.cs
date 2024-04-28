@@ -64,6 +64,8 @@ namespace TabTabs.NamChanwoo
         public GameObject resultObj;
         public Button continue_Button;
         public bool repetition;
+
+        private string inputButton = "none";
         void Start()
         {
             selectCharacterInstance = FindObjectOfType<SelectCharacter>();
@@ -181,6 +183,11 @@ namespace TabTabs.NamChanwoo
             {// ClickNode�� �߸��� �ƴ϶��(��ư�� Ŭ���ߴٸ�)
 
                 if (selectEnemy == null) { return; }
+                Debug.Log(ClickNode);
+                Debug.Log(inputButton);
+                Debug.Log("object"+selectEnemy.GetOwnNodes().Peek().gameObject);
+
+                //if(inputButton)
 
                 if (ClickNode == selectEnemy.GetOwnNodes().Peek().nodeSheet.m_NodeType)
                 {//������ ���� ���Ÿ�԰� ��(���� NodeType�� Ŭ���ߴٸ�)
@@ -300,7 +307,7 @@ namespace TabTabs.NamChanwoo
                     {
                         Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
                     }
-
+                    Debug.Log("object"+selectEnemy.GetOwnNodes().Peek().gameObject);
                     Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
 
@@ -366,6 +373,7 @@ namespace TabTabs.NamChanwoo
 
                     if (selectEnemy != null)
                     {
+                         Debug.Log("SpawnMode_B_Node0");
                         selectEnemy.Attack();
                     }
 
@@ -376,11 +384,12 @@ namespace TabTabs.NamChanwoo
                     // 4. ��� �ٽ� �����ϴ� �Լ� ȣ��
                     if (selectEnemy == RightEnemy)
                     {
+                         Debug.Log("SpawnMode_B_Node1");
                         Test3Spawn.Instance.SpawnMode_B_NodeRight(selectEnemy);
                     }
                     else if (selectEnemy == LeftEnemy)
                     {
-                        Debug.Log("SpawnMode_B_Node");
+                        Debug.Log("SpawnMode_B_Node2");
                         Test3Spawn.Instance.SpawnMode_B_NodeLeft(selectEnemy);
                     }
                 }
@@ -413,11 +422,21 @@ namespace TabTabs.NamChanwoo
         }
 
         void YellowAttack() {
-
+            ClickNode = ENodeType.Attack;
+            if (playerDie == true)
+            {
+                ClickNode = ENodeType.Default;
+            }
+            inputButton = "Yellow";
         }
         
         void BlueAttack() {
-
+            ClickNode = ENodeType.Attack;
+            if (playerDie == true)
+            {
+                ClickNode = ENodeType.Default;
+            }
+            inputButton = "Blue";
         }
 
         void RedAttack()
@@ -427,6 +446,7 @@ namespace TabTabs.NamChanwoo
             {
                 ClickNode = ENodeType.Default;
             }
+            inputButton = "Red";
         }
 
         void SelectEnemy()
