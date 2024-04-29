@@ -287,7 +287,7 @@ namespace TabTabs.NamChanwoo
                         } else if( monsterTarget[LeftRow, k] == 3) {
                             color = "Yellow";
                         } else if( monsterTarget[LeftRow, k]== 4) {
-                            color = "Green";
+                            color = "Dash";
                         } else {
                             color = "White";
                         }
@@ -385,7 +385,7 @@ namespace TabTabs.NamChanwoo
                         } else if( monsterTarget[LeftRow, k] == 3) {
                             color = "Yellow";
                         } else if( monsterTarget[LeftRow, k]== 4) {
-                            color = "Green";
+                            color = "Dash";
                         } else {
                             color = "White";
                         }

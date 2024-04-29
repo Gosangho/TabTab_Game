@@ -65,7 +65,6 @@ namespace TabTabs.NamChanwoo
         public Button continue_Button;
         public bool repetition;
 
-        private string inputButton = "none";
         void Start()
         {
             selectCharacterInstance = FindObjectOfType<SelectCharacter>();
@@ -84,7 +83,7 @@ namespace TabTabs.NamChanwoo
             RedAttackButton.onClick.AddListener(RedAttack);
             YellowAttackButton.onClick.AddListener(YellowAttack);
             BlueAttackButton.onClick.AddListener(BlueAttack);
-            SelectEnemyButton.onClick.AddListener(SelectEnemy);
+            SelectEnemyButton.onClick.AddListener(DashAttack);
             StartSpawn();
             Right_MonsterDie = false;
             Left_MonsterDie = false;
@@ -184,10 +183,7 @@ namespace TabTabs.NamChanwoo
 
                 if (selectEnemy == null) { return; }
                 Debug.Log(ClickNode);
-                Debug.Log(inputButton);
-                Debug.Log("object"+selectEnemy.GetOwnNodes().Peek().gameObject);
-
-                //if(inputButton)
+               
 
                 if (ClickNode == selectEnemy.GetOwnNodes().Peek().nodeSheet.m_NodeType)
                 {//������ ���� ���Ÿ�԰� ��(���� NodeType�� Ŭ���ߴٸ�)
@@ -328,7 +324,7 @@ namespace TabTabs.NamChanwoo
                             DataManager.Instance.playerData.Gold += 10;
                         }
 
-                        BackEndManager.Instance.DbSaveGameData();
+                        //BackEndManager.Instance.DbSaveGameData(); //뒤끝 서버 임시 주석
 
                         selectEnemy.Die();
                         audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
@@ -422,31 +418,61 @@ namespace TabTabs.NamChanwoo
         }
 
         void YellowAttack() {
-            ClickNode = ENodeType.Attack;
-            if (playerDie == true)
-            {
-                ClickNode = ENodeType.Default;
+            string nodeName = selectEnemy.GetOwnNodes().Peek().gameObject.name;
+
+            bool containsRed = nodeName.IndexOf("Yellow") >= 0;
+            if(containsRed) {
+                ClickNode = ENodeType.Attack;
+
+                if (playerDie == true)
+                {
+                    ClickNode = ENodeType.Default;
+                }
             }
-            inputButton = "Yellow";
         }
         
         void BlueAttack() {
-            ClickNode = ENodeType.Attack;
-            if (playerDie == true)
-            {
-                ClickNode = ENodeType.Default;
+            string nodeName = selectEnemy.GetOwnNodes().Peek().gameObject.name;
+
+            bool containsRed = nodeName.IndexOf("Blue") >= 0;
+            if(containsRed) {
+                ClickNode = ENodeType.Attack;
+
+                if (playerDie == true)
+                {
+                    ClickNode = ENodeType.Default;
+                }
             }
-            inputButton = "Blue";
         }
 
-        void RedAttack()
-        {
-            ClickNode = ENodeType.Attack;
-            if (playerDie == true)
-            {
-                ClickNode = ENodeType.Default;
+        void RedAttack() {
+            string nodeName = selectEnemy.GetOwnNodes().Peek().gameObject.name;
+
+            bool containsRed = nodeName.IndexOf("Red") >= 0;
+            if(containsRed) {
+                ClickNode = ENodeType.Attack;
+
+                if (playerDie == true)
+                {
+                    ClickNode = ENodeType.Default;
+                }
             }
-            inputButton = "Red";
+        }
+
+        void DashAttack() {
+            string nodeName = selectEnemy.GetOwnNodes().Peek().gameObject.name;
+
+            bool containsRed = nodeName.IndexOf("Dash") >= 0;
+            if(containsRed) {
+                ClickNode = ENodeType.Attack;
+
+                if (playerDie == true)
+                {
+                    ClickNode = ENodeType.Default;
+                }
+                
+                SelectEnemy();
+            }
         }
 
         void SelectEnemy()
