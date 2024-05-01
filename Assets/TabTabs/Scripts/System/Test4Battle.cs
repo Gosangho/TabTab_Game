@@ -361,6 +361,9 @@ namespace TabTabs.NamChanwoo
                             // ���� ��
                             Left_MonsterDie = false;
                         }
+                        Test3Spawn.Instance.LeftAttackNum = 6;
+                        Test3Spawn.Instance.RightAttackNum = 6;
+                        SelectEnemy();
                     }
                 }
                 else
@@ -470,15 +473,26 @@ namespace TabTabs.NamChanwoo
                 {
                     ClickNode = ENodeType.Default;
                 }
-                
-                SelectEnemy();
             }
         }
 
         void SelectEnemy()
         {
+            Debug.Log("SelectEnemy");
+            Debug.Log(selectEnemy);
+            Debug.Log(playerDie);
+            Debug.Log(LeftEnemy);
+            Debug.Log(LeftEnemy.GetOwnNodes().Count);
+            Debug.Log(Test3Spawn.Instance.LeftAttackNum);
+            Debug.Log(Test3Spawn.Instance.RightAttackNum);
+
+            Debug.Log(playerDie);
             if (selectEnemy == RightEnemy && playerDie == false)
-            {// ���� ���õ� ���Ͱ� ������ �����̰�
+            {
+                 Debug.Log("RightEnemy");
+                Debug.Log(LeftEnemy.GetOwnNodes().Count);
+                Debug.Log(Test3Spawn.Instance.LeftAttackNum);
+                Debug.Log(FirstDashAttack+"/"+FirstAttack);
                 if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
                 {// ���ʸ��Ϳ� ������ ����� �Ѽ��� ���ٸ� == ������ ù��° �����
 
@@ -636,9 +650,12 @@ namespace TabTabs.NamChanwoo
             }
             else if (selectEnemy == LeftEnemy && playerDie == false)
             {
+                Debug.Log("LeftEnemy");
+                Debug.Log(RightEnemy.GetOwnNodes().Count);
+                Debug.Log(Test3Spawn.Instance.RightAttackNum);
                 if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
                 {
-
+                    Debug.Log(FirstDashAttack+"/"+FirstAttack);
                     if (FirstDashAttack || FirstAttack)
                     {// FirstAttack : ���ӽ��۽� ù ������ �뽬��ư�� ��� GameOver
                         //Time.timeScale = 0.0f; // ���Ӹ���

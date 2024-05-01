@@ -13,6 +13,7 @@ namespace TabTabs.NamChanwoo
         public GameObject newRecordObj;
         ScoreSystem scoreSystemInstance;
         Test3Battle test3BattleInstance;
+        Test4Battle test4BattleInstance;
         DataManager dataManagerInstance;
         public TextMeshProUGUI resultScore;
         public TextMeshProUGUI resultBestScore;
@@ -24,6 +25,7 @@ namespace TabTabs.NamChanwoo
 
             string characterName = "";
             test3BattleInstance = FindObjectOfType<Test3Battle>();
+            test4BattleInstance = FindObjectOfType<Test4Battle>();
             scoreSystemInstance = FindObjectOfType<ScoreSystem>();
             dataManagerInstance = FindObjectOfType<DataManager>();
 
@@ -54,37 +56,69 @@ namespace TabTabs.NamChanwoo
 
             if (SelectCharacter.swordGirl1)
             {
-                if (test3BattleInstance.playerDie == true && scoreSystemInstance.swordGirl1PreviousBestScore < scoreSystemInstance.score)
-                {
-                    newRecordObj.gameObject.SetActive(true);
-                    resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
-                    inputScore = scoreSystemInstance.score;
+                if(test3BattleInstance != null) {
+                    if (test3BattleInstance.playerDie == true && scoreSystemInstance.swordGirl1PreviousBestScore < scoreSystemInstance.score)
+                    {
+                        newRecordObj.gameObject.SetActive(true);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
+                        inputScore = scoreSystemInstance.score;
+                    }
+                    else
+                    {
+                        newRecordObj.gameObject.SetActive(false);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl1PreviousBestScore;
+                        inputScore = scoreSystemInstance.swordGirl1PreviousBestScore;
+                    }
                 }
-                else
-                {
-                    newRecordObj.gameObject.SetActive(false);
-                    resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl1PreviousBestScore;
-                    inputScore = scoreSystemInstance.swordGirl1PreviousBestScore;
+                if(test4BattleInstance != null) {
+                    if (test4BattleInstance.playerDie == true && scoreSystemInstance.swordGirl1PreviousBestScore < scoreSystemInstance.score)
+                    {
+                        newRecordObj.gameObject.SetActive(true);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
+                        inputScore = scoreSystemInstance.score;
+                    }
+                    else
+                    {
+                        newRecordObj.gameObject.SetActive(false);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl1PreviousBestScore;
+                        inputScore = scoreSystemInstance.swordGirl1PreviousBestScore;
+                    }
                 }
 
                 DataManager.Instance.swordGirl1.characterName = "Lana";
                 characterName  = DataManager.Instance.swordGirl1.characterName;
-                BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl1, inputScore, isRecord);
+              //  BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl1, inputScore, isRecord);
               
             }
             else if (SelectCharacter.swordGirl2)
             {
-                if (test3BattleInstance.playerDie == true && scoreSystemInstance.swordGirl2PreviousBestScore < scoreSystemInstance.score)
-                {
-                    newRecordObj.gameObject.SetActive(true);
-                    resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
-                    inputScore = scoreSystemInstance.score;
+                if(test3BattleInstance != null) {
+                    if (test3BattleInstance.playerDie == true && scoreSystemInstance.swordGirl2PreviousBestScore < scoreSystemInstance.score)
+                    {
+                        newRecordObj.gameObject.SetActive(true);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
+                        inputScore = scoreSystemInstance.score;
+                    }
+                    else
+                    {
+                        newRecordObj.gameObject.SetActive(false);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl2PreviousBestScore;
+                        inputScore = scoreSystemInstance.swordGirl2PreviousBestScore;
+                    }
                 }
-                else
-                {
-                    newRecordObj.gameObject.SetActive(false);
-                    resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl2PreviousBestScore;
-                    inputScore = scoreSystemInstance.swordGirl2PreviousBestScore;
+                if(test4BattleInstance != null) {
+                    if (test4BattleInstance.playerDie == true && scoreSystemInstance.swordGirl2PreviousBestScore < scoreSystemInstance.score)
+                    {
+                        newRecordObj.gameObject.SetActive(true);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
+                        inputScore = scoreSystemInstance.score;
+                    }
+                    else
+                    {
+                        newRecordObj.gameObject.SetActive(false);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl2PreviousBestScore;
+                        inputScore = scoreSystemInstance.swordGirl2PreviousBestScore;
+                    }
                 }
                 
                 DataManager.Instance.swordGirl2.characterName = "Sia";
@@ -94,17 +128,33 @@ namespace TabTabs.NamChanwoo
             }
             else if (SelectCharacter.swordGirl3)
             {
-                if (test3BattleInstance.playerDie == true && scoreSystemInstance.swordGirl3PreviousBestScore < scoreSystemInstance.score)
-                {
-                    newRecordObj.gameObject.SetActive(true);
-                    resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
-                    inputScore = scoreSystemInstance.score;
-                }
-                else
-                {
-                    newRecordObj.gameObject.SetActive(false);
-                    resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl3PreviousBestScore;
-                    inputScore = scoreSystemInstance.swordGirl3PreviousBestScore;
+                if(test3BattleInstance != null) {
+                    if (test3BattleInstance.playerDie == true && scoreSystemInstance.swordGirl3PreviousBestScore < scoreSystemInstance.score)
+                    {
+                        newRecordObj.gameObject.SetActive(true);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
+                        inputScore = scoreSystemInstance.score;
+                    }
+                    else
+                    {
+                        newRecordObj.gameObject.SetActive(false);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl3PreviousBestScore;
+                        inputScore = scoreSystemInstance.swordGirl3PreviousBestScore;
+                    }
+                }                 
+                if(test4BattleInstance != null) {
+                    if (test4BattleInstance.playerDie == true && scoreSystemInstance.swordGirl3PreviousBestScore < scoreSystemInstance.score)
+                    {
+                        newRecordObj.gameObject.SetActive(true);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
+                        inputScore = scoreSystemInstance.score;
+                    }
+                    else
+                    {
+                        newRecordObj.gameObject.SetActive(false);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.swordGirl3PreviousBestScore;
+                        inputScore = scoreSystemInstance.swordGirl3PreviousBestScore;
+                    }
                 }
 
                 DataManager.Instance.swordGirl3.characterName = "Zena";
@@ -113,17 +163,33 @@ namespace TabTabs.NamChanwoo
             }
             else
             {
-                if (test3BattleInstance.playerDie == true && scoreSystemInstance.leonPreviousBestScore < scoreSystemInstance.score)
-                {
-                    newRecordObj.gameObject.SetActive(true);
-                    resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
-                    inputScore = scoreSystemInstance.score;
-                }
-                else
-                {
-                    newRecordObj.gameObject.SetActive(false);
-                    resultBestScore.text = "Best Score : " + scoreSystemInstance.leonPreviousBestScore;
-                    inputScore = scoreSystemInstance.leonPreviousBestScore;
+                if(test3BattleInstance != null) {
+                    if (test3BattleInstance.playerDie == true && scoreSystemInstance.leonPreviousBestScore < scoreSystemInstance.score)
+                    {
+                        newRecordObj.gameObject.SetActive(true);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
+                        inputScore = scoreSystemInstance.score;
+                    }
+                    else
+                    {
+                        newRecordObj.gameObject.SetActive(false);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.leonPreviousBestScore;
+                        inputScore = scoreSystemInstance.leonPreviousBestScore;
+                    }
+                } 
+                if(test4BattleInstance != null) {
+                    if (test4BattleInstance.playerDie == true && scoreSystemInstance.leonPreviousBestScore < scoreSystemInstance.score)
+                    {
+                        newRecordObj.gameObject.SetActive(true);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.score;
+                        inputScore = scoreSystemInstance.score;
+                    }
+                    else
+                    {
+                        newRecordObj.gameObject.SetActive(false);
+                        resultBestScore.text = "Best Score : " + scoreSystemInstance.leonPreviousBestScore;
+                        inputScore = scoreSystemInstance.leonPreviousBestScore;
+                    }
                 }
                 DataManager.Instance.leon.characterName = "leon";
                 characterName  = DataManager.Instance.leon.characterName;
