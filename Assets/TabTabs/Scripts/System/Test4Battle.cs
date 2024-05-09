@@ -65,6 +65,9 @@ namespace TabTabs.NamChanwoo
         public Button continue_Button;
         public bool repetition;
 
+        public GameObject butSheild;
+
+
         void Start()
         {
             selectCharacterInstance = FindObjectOfType<SelectCharacter>();
@@ -97,6 +100,7 @@ namespace TabTabs.NamChanwoo
             TimebarInstance = FindObjectOfType<TImebar>();
             EffectInit();
             ContinueButton.continueButtonClick = false;
+
         }
 
         private void initGetCharacter() {
@@ -178,6 +182,7 @@ namespace TabTabs.NamChanwoo
 
         void Update()
         {
+
             if (ClickNode != ENodeType.Default)
             {// ClickNode�� �߸��� �ƴ϶��(��ư�� Ŭ���ߴٸ�)
 
@@ -229,6 +234,7 @@ namespace TabTabs.NamChanwoo
 
                     Vector3 scorePosition = selectEnemy.GetOwnNodes().Peek().transform.position; // ����� ��ġ�� ������
                     GameObject gameObject = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // �����ġ�� ����
+
 
                     if (Right_TrainAttack == true || Left_TrainAttack == true)
                     {// �������̳� ���� ���͸� ���̰� �ٽ� �� �Ȼ��¿��� ���ݹ�ư�� �������(GameOver)
@@ -306,6 +312,8 @@ namespace TabTabs.NamChanwoo
                     Debug.Log("object"+selectEnemy.GetOwnNodes().Peek().gameObject);
                     Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
+
+
 
                     selectEnemy.GetOwnNodes().Dequeue();
                     selectEnemy.Hit();
@@ -478,21 +486,8 @@ namespace TabTabs.NamChanwoo
 
         void SelectEnemy()
         {
-            Debug.Log("SelectEnemy");
-            Debug.Log(selectEnemy);
-            Debug.Log(playerDie);
-            Debug.Log(LeftEnemy);
-            Debug.Log(LeftEnemy.GetOwnNodes().Count);
-            Debug.Log(Test3Spawn.Instance.LeftAttackNum);
-            Debug.Log(Test3Spawn.Instance.RightAttackNum);
-
-            Debug.Log(playerDie);
             if (selectEnemy == RightEnemy && playerDie == false)
             {
-                 Debug.Log("RightEnemy");
-                Debug.Log(LeftEnemy.GetOwnNodes().Count);
-                Debug.Log(Test3Spawn.Instance.LeftAttackNum);
-                Debug.Log(FirstDashAttack+"/"+FirstAttack);
                 if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
                 {// ���ʸ��Ϳ� ������ ����� �Ѽ��� ���ٸ� == ������ ù��° �����
 
@@ -650,12 +645,8 @@ namespace TabTabs.NamChanwoo
             }
             else if (selectEnemy == LeftEnemy && playerDie == false)
             {
-                Debug.Log("LeftEnemy");
-                Debug.Log(RightEnemy.GetOwnNodes().Count);
-                Debug.Log(Test3Spawn.Instance.RightAttackNum);
                 if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
                 {
-                    Debug.Log(FirstDashAttack+"/"+FirstAttack);
                     if (FirstDashAttack || FirstAttack)
                     {// FirstAttack : ���ӽ��۽� ù ������ �뽬��ư�� ��� GameOver
                         //Time.timeScale = 0.0f; // ���Ӹ���
@@ -951,6 +942,8 @@ namespace TabTabs.NamChanwoo
             GameObject LefttMonster = Left_Ork;
             GameObject LeftSpawnMonster = Instantiate(LefttMonster, new Vector3(-4.0f, 0.72f, 0), Quaternion.identity);
             EnemyBase spawnEnemy2 = LeftSpawnMonster.GetComponent<EnemyBase>();
+            LeftSpawnMonster.transform.Find("Timebar/Timebar_Image").GetComponent<MonsterTimebar>().userShield = butSheild;
+            LeftSpawnMonster.transform.Find("Timebar/Timebar_Image").GetComponent<MonsterTimebar>().buttonInit();
             if (spawnEnemy2 != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.
@@ -976,6 +969,8 @@ namespace TabTabs.NamChanwoo
             GameObject LefttMonster = Left_Ork;
             GameObject LeftSpawnMonster = Instantiate(LefttMonster, new Vector3(-4.0f, 0.72f, 0), Quaternion.identity);
             EnemyBase spawnEnemy2 = LeftSpawnMonster.GetComponent<EnemyBase>();
+            LeftSpawnMonster.transform.Find("Timebar/Timebar_Image").GetComponent<MonsterTimebar>().userShield = butSheild;
+            LeftSpawnMonster.transform.Find("Timebar/Timebar_Image").GetComponent<MonsterTimebar>().buttonInit();
             if (spawnEnemy2 != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.
