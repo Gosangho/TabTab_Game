@@ -19,39 +19,80 @@ namespace TabTabs.NamChanwoo
         public GameObject userShield;
         public Button shieldButton;
 
+        Test4Battle test4Battle;
+        public int wayOrc;
 
         void Start()
         {
             PlayerHeart = FindObjectOfType<PlayerHeart>();
             originalScale = spriteRenderer.transform.localScale;
+            test4Battle = FindObjectOfType<Test4Battle>();
         }
 
 
         void Update()
         {
-            currentHealth -= depletionRate * Time.deltaTime;
-            if (currentHealth <= 99.80f)
-            {
-                userShield.SetActive(true);
-            }
+            //if(wayOrc == 0) {
+                currentHealth -= depletionRate * Time.deltaTime;
+                if (currentHealth <= 99.80f)
+                {
+                    userShield.SetActive(true);
+                }
+                if(currentHealth > 0)
+                {    
+                    float width = currentHealth / maxHealth * spriteRenderer.size.x;
+                    spriteRenderer.size = new Vector2(width, spriteRenderer.size.y);
+                }
 
-            if(currentHealth > 0)
-            {
-                float width = currentHealth / maxHealth * spriteRenderer.size.x;
-                spriteRenderer.size = new Vector2(width, spriteRenderer.size.y);
-                if(width <= 0.0f) {
+                if(currentHealth <= 99.0f) {
+                    if(wayOrc == 0) {
+                        Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Attack");
+                    } else {
+                        Right_Orc2_Anim.RightAnim.SetTrigger("Right_Attack");
+                    }
+                    PlayerHeart.PlayerHeartGauge -= 1;
                     currentHealth = 100f;
                     spriteRenderer.size = new Vector2( 0.94f, spriteRenderer.size.y);
-                    // Timebar가 0되면 몬스터 공격 
                 }
+            // } else {
+            //     Debug.Log("currentRightHealth::"+currentRightHealth);
+    
+            //     currentRightHealth -= depletionRate * Time.deltaTime;
+              
+            //     if (currentRightHealth <= 99.80f)
+            //     {
+            //         rightUserShield.SetActive(true);
+            //     }
+            //     if(currentRightHealth > 0)
+            //     {
+            //         float width = currentRightHealth / maxHealth * spriteRenderer.size.x;
+            //         spriteRenderer.size = new Vector2(width, spriteRenderer.size.y);
+            //     }
+            //     if(currentRightHealth <= 99.0f) {
+            //         Right_Orc2_Anim.RightAnim.SetTrigger("Right_Attack");
+
+            //         PlayerHeart.PlayerHeartGauge -= 1;
+            //         currentRightHealth = 100f;
+            //         spriteRenderer.size = new Vector2( 0.94f, spriteRenderer.size.y);
+            //     }
+            // }
+
+            if(PlayerHeart.PlayerHeartGauge == 0)
+            {
+                test4Battle.GameOverProcess();
             }
            
         }
 
         public void buttonInit()
         {
-            shieldButton = userShield.GetComponent<Button>();
-            shieldButton.onClick.AddListener(shieldEvent);
+            if(wayOrc == 0) {
+                shieldButton = userShield.GetComponent<Button>();
+                shieldButton.onClick.AddListener(shieldEvent);
+            } else {
+                shieldButton = userShield.GetComponent<Button>();
+                shieldButton.onClick.AddListener(shieldEvent);
+            }
         }
 
         public void shieldEvent() {
@@ -59,6 +100,12 @@ namespace TabTabs.NamChanwoo
             spriteRenderer.size = new Vector2( 0.94f, spriteRenderer.size.y);
             userShield.SetActive(false);
         }
+
+      //  public void rightShieldEvent() {
+      //      currentRightHealth = 100f;
+      //      spriteRenderer.size = new Vector2( 0.94f, spriteRenderer.size.y);
+      //      userShield.SetActive(false);
+     //   }
 
     }
 }

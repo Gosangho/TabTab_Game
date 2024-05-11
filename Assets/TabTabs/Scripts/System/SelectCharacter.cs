@@ -231,16 +231,31 @@ public class SelectCharacter : MonoBehaviour
             Image selectButtonImage = selectButtonTransform.GetComponent<Image>();
             if (selectButtonImage != null)
             {
-                // 이미지 변경
-                selectButtonImage.sprite = leonSprite;
+                
+                if(characterGameObject.name == "Leon_Button")
+                {
+                     // 이미지 변경
+                    selectButtonImage.sprite = leonSprite;
+                }
+                if(characterGameObject.name == "SwordGirl2")
+                {
+                     selectButtonImage.sprite = swordGirl2Sprite;
+                }
+                if(characterGameObject.name == "SwordGirl3_Button")
+                { 
+                     selectButtonImage.sprite = swordGirl3Sprite;
+                } 
+               
             }
         }
+
         if(characterGameObject.name == "SwordGirl2")
         {
         }
         else if(characterGameObject.name == "SwordGirl3_Button")
         { 
-        } else {
+        } 
+        else {
             Transform readingTransform = characterGameObject.transform.Find("Reading");
             if (readingTransform != null)
             {

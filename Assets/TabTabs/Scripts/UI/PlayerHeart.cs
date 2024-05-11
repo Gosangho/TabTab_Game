@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHeart : MonoBehaviour
 {
-    public int PlayerHeartGauge = 1; // ÇÃ·¹ÀÌ¾î ÇÏÆ® °¹¼ö
+    public int PlayerHeartGauge = 3; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     PlayerBase PlayerBaseInstance;
     void Start()
     {
@@ -18,9 +18,10 @@ public class PlayerHeart : MonoBehaviour
     
     void Update()
     {
-        if (PlayerHeartGauge <= 0)
+        if (PlayerHeartGauge == 0)
         {
             PlayerBase.PlayerAnim.SetTrigger("Die");
+            PlayerHeartGauge = -1;
             //Destroy(gameObject);
         }
     }

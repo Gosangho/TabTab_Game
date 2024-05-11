@@ -347,7 +347,6 @@ namespace TabTabs.NamChanwoo
 
             // ������ ��� ���� �� ���� �����ϴ�.
             int spawnNodeNum = nodeArea.Rows;
-            Debug.Log("spawnNodeNum : " + spawnNodeNum);
 
             int[,] monsterTarget = {
                 {1, 0, 0},
@@ -361,10 +360,7 @@ namespace TabTabs.NamChanwoo
             // spawnNodeNum = 7; 0,1,2,3,4,5,6
             for (LeftRow = 0; LeftRow < monsterTarget.GetLength(0); LeftRow++)
             {
-                 Debug.Log("LeftRow : " + LeftRow);
                 for(int k=0 ; k < monsterTarget.GetLength(1); k++ ){
-                    Debug.Log("k : " + k);
-                    Debug.Log("monsterTarget[LeftRow, k] : " + monsterTarget[LeftRow, k]);
                     if (monsterTarget[LeftRow, k] != 0)
                     {
                        int randColumn = k;
