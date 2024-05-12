@@ -39,6 +39,8 @@ public class SelectCharacter : MonoBehaviour
     public TextMeshProUGUI leonPurchaseText;
     public GameObject purchaseSuccess;
 
+    public TextMeshProUGUI appVersionText;
+
     void Start()
     {
         characterScores.Add("SwordGirl1", DataManager.Instance.swordGirl1.bestScore);
@@ -47,6 +49,9 @@ public class SelectCharacter : MonoBehaviour
         characterScores.Add("Leon", DataManager.Instance.leon.bestScore);
 
         characterMaxScroe = characterScores.Values.Max();
+        
+        appVersionText.text = "Ver " + Application.version;
+
         if (SceneManager.GetActiveScene().buildIndex == 4)
         {
             CharacterImageChange();
