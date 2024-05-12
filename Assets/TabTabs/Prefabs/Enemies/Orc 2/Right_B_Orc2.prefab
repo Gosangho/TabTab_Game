@@ -532,13 +532,12 @@ MonoBehaviour:
   PlayerHeart: {fileID: 0}
   depletionRate: 0.1
   maxHealth: 100
-  currentLeftHealth: 100
-  currentRightHealth: 100
-  leftUserShield: {fileID: 0}
-  rightUserShield: {fileID: 0}
-  leftShieldButton: {fileID: 0}
-  rightShieldButton: {fileID: 0}
+  currentHealth: 100
+  userShield: {fileID: 0}
+  shieldButton: {fileID: 0}
   wayOrc: 1
+  timebarObject: {fileID: 7740049874800493830}
+  isTimebar: 0
 --- !u!1 &7740049874800493830
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8795384769855150339
 Transform:
   m_ObjectHideFlags: 0
