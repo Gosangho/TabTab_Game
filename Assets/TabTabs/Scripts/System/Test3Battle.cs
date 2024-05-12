@@ -173,6 +173,42 @@ namespace TabTabs.NamChanwoo
 
         void Update()
         {
+            if (TImebar.timebarImage.fillAmount <=0 && repetition == false)
+            {// Time�� �� �����ٸ�(GameOver) timeOver
+                repetition = true;
+
+                Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Attack");
+
+                Right_Orc2_Anim.RightAnim.SetTrigger("Right_Attack");
+                playerDie = true;
+
+                if (playerDie == true)
+                {
+                    ClickNode = ENodeType.Default;
+                }
+
+                PlayerBase.PlayerAnim.SetTrigger("Die");
+
+                resultObj.gameObject.SetActive(true);
+
+                reStartObj.gameObject.SetActive(true);
+
+                if (ContinueButton.continueButtonClick == true)
+                {
+                    continue_Button.gameObject.SetActive(false);
+                }
+                else
+                {
+                    continue_Button.gameObject.SetActive(true);
+                }
+                //Time.timeScale = 0.0f; // ���Ӹ���
+            }
+        }
+
+        void Attack()
+        {
+            ClickNode = ENodeType.Attack;
+
             if (ClickNode != ENodeType.Default)
             {// ClickNode�� �߸��� �ƴ϶��(��ư�� Ŭ���ߴٸ�)
 
@@ -381,38 +417,6 @@ namespace TabTabs.NamChanwoo
                 }
 
                 ClickNode = ENodeType.Default; // reset
-                Debug.Log(ClickNode);
-            }
-
-            if (TImebar.timebarImage.fillAmount <=0 && repetition == false)
-            {// Time�� �� �����ٸ�(GameOver) timeOver
-                repetition = true;
-                Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Attack");
-                Right_Orc2_Anim.RightAnim.SetTrigger("Right_Attack");
-                playerDie = true;
-                PlayerBase.PlayerAnim.SetTrigger("Die");
-                resultObj.gameObject.SetActive(true);
-                reStartObj.gameObject.SetActive(true);
-                //continue_Button.gameObject.SetActive(true);
-
-                if (ContinueButton.continueButtonClick == true)
-                {
-                    continue_Button.gameObject.SetActive(false);
-                }
-                else
-                {
-                    continue_Button.gameObject.SetActive(true);
-                }
-                //Time.timeScale = 0.0f; // ���Ӹ���
-            }
-        }
-
-        void Attack()
-        {
-            ClickNode = ENodeType.Attack;
-            if (playerDie == true)
-            {
-                ClickNode = ENodeType.Default;
             }
         }
 
