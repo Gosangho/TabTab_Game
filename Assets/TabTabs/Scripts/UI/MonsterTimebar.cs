@@ -21,6 +21,8 @@ namespace TabTabs.NamChanwoo
 
         Test4Battle test4Battle;
         public int wayOrc;
+        public GameObject timebarObject;
+        public bool isTimebar = false;
 
         void Start()
         {
@@ -32,9 +34,10 @@ namespace TabTabs.NamChanwoo
 
         void Update()
         {
-            //if(wayOrc == 0) {
+            if(isTimebar) {
                 currentHealth -= depletionRate * Time.deltaTime;
-                if (currentHealth <= 99.80f)
+                Debug.Log(currentHealth);
+                if (currentHealth <= 99.65f)
                 {
                     userShield.SetActive(true);
                 }
@@ -44,7 +47,7 @@ namespace TabTabs.NamChanwoo
                     spriteRenderer.size = new Vector2(width, spriteRenderer.size.y);
                 }
 
-                if(currentHealth <= 99.0f) {
+                if(currentHealth <= 99.4f) {
                     if(wayOrc == 0) {
                         Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Attack");
                     } else {
@@ -54,38 +57,18 @@ namespace TabTabs.NamChanwoo
                     currentHealth = 100f;
                     spriteRenderer.size = new Vector2( 0.94f, spriteRenderer.size.y);
                 }
-            // } else {
-            //     Debug.Log("currentRightHealth::"+currentRightHealth);
-    
-            //     currentRightHealth -= depletionRate * Time.deltaTime;
-              
-            //     if (currentRightHealth <= 99.80f)
-            //     {
-            //         rightUserShield.SetActive(true);
-            //     }
-            //     if(currentRightHealth > 0)
-            //     {
-            //         float width = currentRightHealth / maxHealth * spriteRenderer.size.x;
-            //         spriteRenderer.size = new Vector2(width, spriteRenderer.size.y);
-            //     }
-            //     if(currentRightHealth <= 99.0f) {
-            //         Right_Orc2_Anim.RightAnim.SetTrigger("Right_Attack");
-
-            //         PlayerHeart.PlayerHeartGauge -= 1;
-            //         currentRightHealth = 100f;
-            //         spriteRenderer.size = new Vector2( 0.94f, spriteRenderer.size.y);
-            //     }
-            // }
-
-            if(PlayerHeart.PlayerHeartGauge == 0)
-            {
-                test4Battle.GameOverProcess();
+                if(PlayerHeart.PlayerHeartGauge == 0)
+                {
+                    test4Battle.GameOverProcess();
+                }
             }
-           
         }
+
 
         public void buttonInit()
         {
+            currentHealth = 100f;
+            userShield.SetActive(false);
             if(wayOrc == 0) {
                 shieldButton = userShield.GetComponent<Button>();
                 shieldButton.onClick.AddListener(shieldEvent);
@@ -101,11 +84,15 @@ namespace TabTabs.NamChanwoo
             userShield.SetActive(false);
         }
 
-      //  public void rightShieldEvent() {
-      //      currentRightHealth = 100f;
-      //      spriteRenderer.size = new Vector2( 0.94f, spriteRenderer.size.y);
-      //      userShield.SetActive(false);
-     //   }
+        
+        void OnDestroy()
+        {
+            currentHealth = 100f;
+            spriteRenderer.size = new Vector2( 0.94f, spriteRenderer.size.y);
+            if(userShield != null) {
+                userShield.SetActive(false);
+            }
+        }
 
     }
 }
