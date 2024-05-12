@@ -81,8 +81,31 @@ public class BackEndManager : MonoBehaviour
 
     private void CheckApplicationVersion()
     {
-          Debug.Log("version info - ");
-          LoginGuestBackend();
+        Debug.Log("version info - ");
+        LoginGuestBackend();
+       /* Backend.Utils.GetLatestVersion(versionBRO =>
+        {
+            if (versionBRO.IsSuccess())
+            {
+                string latest = versionBRO.GetReturnValuetoJSON()["version"].ToString();
+                Debug.Log("version info - current: " + currentVersion + " latest: " + latest);
+                if (currentVersion != latest)
+                {
+                    int type = (int)versionBRO.GetReturnValuetoJSON()["type"];
+                    // type = 1 : 선택, type = 2 : 강제
+                }
+                else
+                {
+                    // 뒷끝 게스트 로그인 시도
+                    LoginGuestBackend();
+                }
+            }
+            else
+            {
+                // 뒷끝 토큰 로그인 시도
+                LoginGuestBackend();
+            }
+        });*/
     }
 
 
@@ -217,7 +240,6 @@ public class BackEndManager : MonoBehaviour
         {
             // 요청 실패 처리
             Debug.Log(bro);
-            return;
         }
         if(bro.GetReturnValuetoJSON()["rows"].Count <= 0)
         {
@@ -238,7 +260,6 @@ public class BackEndManager : MonoBehaviour
             Backend.GameData.Insert("playerData", intParam, (callback) => {
                 Debug.Log("내 playerInfo의 indate : " + callback);
             });
-            return;
         } else {
             Debug.Log("DbSaveGameData::serverUpdateStart");
             Param upParam = new Param();
@@ -258,6 +279,7 @@ public class BackEndManager : MonoBehaviour
                 Debug.Log("내 playerInfo의 update : " + callback);
             });
         }
+        yield return null;
     }
 
 
