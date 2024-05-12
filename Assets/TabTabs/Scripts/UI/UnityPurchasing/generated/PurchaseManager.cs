@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
+using TMPro; 
 
 public class PurchaseManager : MonoBehaviour, IStoreListener
 {
@@ -13,6 +14,8 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
     [Header("Cache")]
     private IStoreController storeController; //구매 과정을 제어하는 함수 제공자
     private IExtensionProvider storeExtensionProvider; //여러 플랫폼을 위한 확장 처리 제공자
+
+    [SerializeField] private GameObject popMessage; //튜토리얼 캔버스
 
     private void Start()
     {
@@ -89,19 +92,40 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
             DataManager.Instance.playerData.AdsDate = System.DateTime.Now.ToString();
             DataManager.Instance.playerData.Gold += 3000;
             DataManager.Instance.DbSaveGameData();
+
+            popMessage.SetActive(true);
+             // "Purchase_message" GameObject 내부의 "Purchase_Text" GameObject를 찾음
+            Transform purchaseTextTransform = popMessage.transform.Find("Purchase_Text");
+            Debug.Log("purchaseTextTransform:"+purchaseTextTransform);
+
+                // TextMeshPro 컴포넌트를 얻음
+            TextMeshProUGUI purchaseText = popMessage.GetComponentInChildren<TextMeshProUGUI>(true);
+            purchaseText.text = "광고 제거 상품 및 3000 Gold구매 완료 되었습니다.";
+        
+
         }
         else if (args.purchasedProduct.definition.id == productId_test_id2)
         {
             /* test_id2 구매 처리 */
             DataManager.Instance.playerData.Gold += 2000;
             DataManager.Instance.DbSaveGameData();
+
+            popMessage.SetActive(true);
+             // "Purchase_message" GameObject 내부의 "Purchase_Text" GameObject를 찾음
+            Transform purchaseTextTransform = popMessage.transform.Find("Purchase_Text");
+
+                // TextMeshPro 컴포넌트를 얻음
+            TextMeshProUGUI purchaseText = popMessage.GetComponentInChildren<TextMeshProUGUI>(true);
+            purchaseText.text = "2000 Gold구매 완료 되었습니다.";
+         
+
         } else if (args.purchasedProduct.definition.id == "purchase_test") {
             DataManager.Instance.playerData.AdsYn = 1;
             DataManager.Instance.playerData.AdsDate = System.DateTime.Now.ToString();
             DataManager.Instance.playerData.Gold += 3000;
             DataManager.Instance.DbSaveGameData();
-            
-            Debug.Log("구매 성공:"+DataManager.Instance.playerData.Gold );
+
+   
         }
         return PurchaseProcessingResult.Complete;
     }

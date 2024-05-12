@@ -5817,6 +5817,7 @@ MonoBehaviour:
   depletionRate: 0.1
   depletionRateIncrease: 0.01
   KillCount: 0
+  backgroundSprite: {fileID: 542702085}
 --- !u!114 &1299366705
 MonoBehaviour:
   m_ObjectHideFlags: 0

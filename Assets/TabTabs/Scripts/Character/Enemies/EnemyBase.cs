@@ -18,6 +18,7 @@ namespace TabTabs.NamChanwoo
         private Queue<Node> m_nodeQueue = new Queue<Node>();
         //public Test2BattleSystem BattleInstance2;
         public Test3Battle BattleInstance3;
+        public Test4Battle BattleInstance4;
         [Header("Attack Properties")]
         public Slider m_attackGaugeSlider;
         [FormerlySerializedAs("m_chargAttackGauge")] [SerializeField] private float m_maxAttackGauge = 10.0f; 
@@ -52,6 +53,7 @@ namespace TabTabs.NamChanwoo
                 m_rigidbody = GetComponent<Rigidbody2D>();
             }
             BattleInstance3 = FindObjectOfType<Test3Battle>();
+            BattleInstance4 = FindObjectOfType<Test4Battle>();
             //BattleInstance2= FindObjectOfType<Test2BattleSystem>();
         }
 
@@ -157,28 +159,57 @@ namespace TabTabs.NamChanwoo
             //}
             //if (SceneManager.GetActiveScene().buildIndex == 3)
             //{
-            if (BattleInstance3.selectEnemy == BattleInstance3.RightEnemy)
-            {
-                BattleInstance3.Right_MonsterDie = true;
-                BattleInstance3.Right_TrainAttack = true;
-                BattleInstance3.FirstDashAttack = false;
-                Destroy(gameObject);
-                Test3Spawn.Instance.RightAttackNum = 0; // 리셋
-                GameObject DieEffect = Instantiate(RightOrc2Die);
-                //Right_Orc2_Anim.RightAnim.SetTrigger("Right_Die");
-                //StartCoroutine(Right_MonsterDie());
+
+            if(BattleInstance3 != null) {
+                if (BattleInstance3.selectEnemy == BattleInstance3.RightEnemy)
+                {
+                    BattleInstance3.Right_MonsterDie = true;
+                    BattleInstance3.Right_TrainAttack = true;
+                    BattleInstance3.FirstDashAttack = false;
+                    Destroy(gameObject);
+                    Test3Spawn.Instance.RightAttackNum = 0; // 리셋
+                    GameObject DieEffect = Instantiate(RightOrc2Die);
+                    //Right_Orc2_Anim.RightAnim.SetTrigger("Right_Die");
+                    //StartCoroutine(Right_MonsterDie());
+                }
+                else
+                {
+                    BattleInstance3.Left_MonsterDie = true;
+                    BattleInstance3.Left_TrainAttack = true;
+                    BattleInstance3.FirstDashAttack = false;
+                    Destroy(gameObject);
+                    Test3Spawn.Instance.LeftAttackNum = 0; // 리셋
+                    GameObject DieEffect = Instantiate(LeftOrc2Die);
+                    //Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Die");
+                    //StartCoroutine(Left_MonsterDie());
+                }    
             }
-            else
-            {
-                BattleInstance3.Left_MonsterDie = true;
-                BattleInstance3.Left_TrainAttack = true;
-                BattleInstance3.FirstDashAttack = false;
-                Destroy(gameObject);
-                Test3Spawn.Instance.LeftAttackNum = 0; // 리셋
-                GameObject DieEffect = Instantiate(LeftOrc2Die);
-                //Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Die");
-                //StartCoroutine(Left_MonsterDie());
+
+            if(BattleInstance4 != null) {
+                if (BattleInstance4.selectEnemy == BattleInstance4.RightEnemy)
+                {
+                    BattleInstance4.Right_MonsterDie = true;
+                    BattleInstance4.Right_TrainAttack = true;
+                    BattleInstance4.FirstDashAttack = false;
+                    Destroy(gameObject);
+                    Test3Spawn.Instance.RightAttackNum = 0; // 리셋
+                    GameObject DieEffect = Instantiate(RightOrc2Die);
+                    //Right_Orc2_Anim.RightAnim.SetTrigger("Right_Die");
+                    //StartCoroutine(Right_MonsterDie());
+                }
+                else
+                {
+                    BattleInstance4.Left_MonsterDie = true;
+                    BattleInstance4.Left_TrainAttack = true;
+                    BattleInstance4.FirstDashAttack = false;
+                    Destroy(gameObject);
+                    Test3Spawn.Instance.LeftAttackNum = 0; // 리셋
+                    GameObject DieEffect = Instantiate(LeftOrc2Die);
+                    //Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Die");
+                    //StartCoroutine(Left_MonsterDie());
+                }    
             }
+            
             //}
             
             //StartCoroutine(Right_MonsterDie());
