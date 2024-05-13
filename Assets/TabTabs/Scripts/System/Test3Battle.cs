@@ -62,6 +62,7 @@ namespace TabTabs.NamChanwoo
         public GameObject resultObj;
         public Button continue_Button;
         public bool repetition;
+        public bool serverUpdate = true;
         void Start()
         {
             selectCharacterInstance = FindObjectOfType<SelectCharacter>();
@@ -173,6 +174,12 @@ namespace TabTabs.NamChanwoo
 
         void Update()
         {
+            if (serverUpdate && playerDie)
+            {
+                BackEndManager.Instance.DbSaveGameData();
+                serverUpdate = false;
+            }
+            
             if (TImebar.timebarImage.fillAmount <=0 && repetition == false)
             {// Time�� �� �����ٸ�(GameOver) timeOver
                 repetition = true;
@@ -201,7 +208,6 @@ namespace TabTabs.NamChanwoo
                 {
                     continue_Button.gameObject.SetActive(true);
                 }
-                //Time.timeScale = 0.0f; // ���Ӹ���
             }
         }
 
@@ -353,7 +359,7 @@ namespace TabTabs.NamChanwoo
                             DataManager.Instance.playerData.Gold += 10;
                         }
 
-                        BackEndManager.Instance.DbSaveGameData();
+                        //BackEndManager.Instance.DbSaveGameData();
 
                         selectEnemy.Die();
                         audioManager.Instance.SfxAudioPlay_Enemy("Enemy_Dead");
@@ -541,7 +547,7 @@ namespace TabTabs.NamChanwoo
                             DataManager.Instance.playerData.Gold += 10;
                         }
 
-                        BackEndManager.Instance.DbSaveGameData();
+                        //BackEndManager.Instance.DbSaveGameData();
 
                         FirstDashAttack = false;
                         selectEnemy.Die();
@@ -697,7 +703,7 @@ namespace TabTabs.NamChanwoo
                             DataManager.Instance.playerData.Gold += 10;
                         }
 
-                        BackEndManager.Instance.DbSaveGameData();
+                        //BackEndManager.Instance.DbSaveGameData();
 
                         FirstDashAttack = false;
                         selectEnemy.Die();

@@ -529,6 +529,7 @@ MonoBehaviour:
   resultObj: {fileID: 1957415488}
   continue_Button: {fileID: 1420751878}
   repetition: 0
+  serverUpdate: 1
 --- !u!114 &85092729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1822,8 +1823,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 14cdca32251c6874cb40cb44531c31a5, type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: e63cacb4878a45f42aa2ff88d55b5cb9, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 162e577d27db1d445b639829a7aed2f0, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 86a2cf1ed101a664483d7a51ddcf7e11, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -1857,7 +1858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 14cdca32251c6874cb40cb44531c31a5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73395d27dad13ef4da32f3c3196400bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2400,7 +2401,7 @@ SpriteRenderer:
   m_SortingLayerID: 1144447055
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c522fe49d29d38a41ab025031a3e49d5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 689efbac86a29d34384589375debf6ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4999,8 +5000,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 78.46, y: 120.1}
-  m_SizeDelta: {x: 213.87, y: 50}
+  m_AnchoredPosition: {x: 0.00048828, y: 120.1}
+  m_SizeDelta: {x: 303.18, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1161599609
 MonoBehaviour:
@@ -5075,7 +5076,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6227,7 +6228,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -6605,8 +6606,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 08238727629d031428d55748198133fd, type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: c009c2fb23f7d61478d9f84016078150, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 909285cbb4ec57f46a0dd8e8973b1c63, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 2fc651fb511364845aa69a0091702baa, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -6640,7 +6641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 08238727629d031428d55748198133fd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 24d6ca19838c4f54899559319dd95c24, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
