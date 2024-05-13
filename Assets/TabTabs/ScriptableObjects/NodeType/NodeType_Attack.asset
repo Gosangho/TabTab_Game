@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: NodeType_Attack
   m_EditorClassIdentifier: 
   m_NodeType: 3
-  m_NodeImage: {fileID: 21300000, guid: 6ba6005d67a3ddc40850458d1fc9288f, type: 3}
+  m_NodeImage: {fileID: 21300000, guid: 8508aa9999e320949be4c94e3e27b3c3, type: 3}
