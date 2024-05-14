@@ -9,6 +9,7 @@ public class FadeScene : MonoBehaviour
     public Animator Transition;
     public float TransitionTime = 0.1f;
     public static bool isBattle = false;
+    public static bool isBattle2 = false;
     public static bool isLobby = false;
     public static bool isTutorial = false;
     public GameObject loadingImage;
@@ -74,6 +75,13 @@ public class FadeScene : MonoBehaviour
         isBattle = true;
         StartCoroutine(_LoadeSceneBattle());
     }
+
+    public void LoadBattleScene2()
+    {
+        isBattle2 = true;
+        StartCoroutine(_LoadeSceneBattle());
+    }
+    
 
     public void LoadTutorialScene()
     {

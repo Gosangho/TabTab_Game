@@ -241,43 +241,45 @@ public class BackEndManager : MonoBehaviour
             // 요청 실패 처리
             Debug.Log(bro);
         }
-        if(bro.GetReturnValuetoJSON()["rows"].Count <= 0)
-        {
-            Debug.Log("DbSaveGameData::serveInsertrStart");
-            Param intParam = new Param();
-            intParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
-            intParam.Add("TutorialPlay", DataManager.Instance.playerData.TutorialPlay);
-            intParam.Add("MakeNickName", DataManager.Instance.playerData.MakeNickName);
-            intParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
-            intParam.Add("Gold", DataManager.Instance.playerData.Gold);
-            intParam.Add("AdsYn", DataManager.Instance.playerData.AdsYn);
-            intParam.Add("AdsDate", DataManager.Instance.playerData.AdsDate);
-            intParam.Add("SwordGirl2Get", DataManager.Instance.playerData.SwordGirl2Get);
-            intParam.Add("SwordGirl3Get", DataManager.Instance.playerData.SwordGirl3Get);
-            intParam.Add("LeonGet", DataManager.Instance.playerData.LeonGet);
-            intParam.Add("PlayerAttandence", DataManager.Instance.playerData.PlayerAttandence);
+        if(bro.GetReturnValuetoJSON() != null) {
+            if(bro.GetReturnValuetoJSON()["rows"].Count <= 0)
+            {
+                Debug.Log("DbSaveGameData::serveInsertrStart");
+                Param intParam = new Param();
+                intParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+                intParam.Add("TutorialPlay", DataManager.Instance.playerData.TutorialPlay);
+                intParam.Add("MakeNickName", DataManager.Instance.playerData.MakeNickName);
+                intParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
+                intParam.Add("Gold", DataManager.Instance.playerData.Gold);
+                intParam.Add("AdsYn", DataManager.Instance.playerData.AdsYn);
+                intParam.Add("AdsDate", DataManager.Instance.playerData.AdsDate);
+                intParam.Add("SwordGirl2Get", DataManager.Instance.playerData.SwordGirl2Get);
+                intParam.Add("SwordGirl3Get", DataManager.Instance.playerData.SwordGirl3Get);
+                intParam.Add("LeonGet", DataManager.Instance.playerData.LeonGet);
+                intParam.Add("PlayerAttandence", DataManager.Instance.playerData.PlayerAttandence);
 
-            Backend.GameData.Insert("playerData", intParam, (callback) => {
-                Debug.Log("내 playerInfo의 indate : " + callback);
-            });
-        } else {
-            Debug.Log("DbSaveGameData::serverUpdateStart");
-            Param upParam = new Param();
-            upParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
-            upParam.Add("TutorialPlay", DataManager.Instance.playerData.TutorialPlay);
-            upParam.Add("MakeNickName", DataManager.Instance.playerData.MakeNickName);
-            upParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
-            upParam.Add("Gold", DataManager.Instance.playerData.Gold);
-            upParam.Add("AdsYn", DataManager.Instance.playerData.AdsYn);
-            upParam.Add("AdsDate", DataManager.Instance.playerData.AdsDate);
-            upParam.Add("SwordGirl2Get", DataManager.Instance.playerData.SwordGirl2Get);
-            upParam.Add("SwordGirl3Get", DataManager.Instance.playerData.SwordGirl3Get);
-            upParam.Add("LeonGet", DataManager.Instance.playerData.LeonGet);
-            upParam.Add("PlayerAttandence", DataManager.Instance.playerData.PlayerAttandence);
+                Backend.GameData.Insert("playerData", intParam, (callback) => {
+                    Debug.Log("내 playerInfo의 indate : " + callback);
+                });
+            } else {
+                Debug.Log("DbSaveGameData::serverUpdateStart");
+                Param upParam = new Param();
+                upParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+                upParam.Add("TutorialPlay", DataManager.Instance.playerData.TutorialPlay);
+                upParam.Add("MakeNickName", DataManager.Instance.playerData.MakeNickName);
+                upParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
+                upParam.Add("Gold", DataManager.Instance.playerData.Gold);
+                upParam.Add("AdsYn", DataManager.Instance.playerData.AdsYn);
+                upParam.Add("AdsDate", DataManager.Instance.playerData.AdsDate);
+                upParam.Add("SwordGirl2Get", DataManager.Instance.playerData.SwordGirl2Get);
+                upParam.Add("SwordGirl3Get", DataManager.Instance.playerData.SwordGirl3Get);
+                upParam.Add("LeonGet", DataManager.Instance.playerData.LeonGet);
+                upParam.Add("PlayerAttandence", DataManager.Instance.playerData.PlayerAttandence);
 
-            Backend.GameData.Update("playerData", where, upParam, (callback) => {
-                Debug.Log("내 playerInfo의 update : " + callback);
-            });
+                Backend.GameData.Update("playerData", where, upParam, (callback) => {
+                    Debug.Log("내 playerInfo의 update : " + callback);
+                });
+            }
         }
         yield return null;
     }
@@ -301,35 +303,37 @@ public class BackEndManager : MonoBehaviour
         where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
         where.Equal("CharacterName",  characterData.characterName);
         var bro = Backend.GameData.GetMyData("CharacterData", where, 0);
-        if(bro.GetReturnValuetoJSON()["rows"].Count <= 0)
-        {
-            Param intParam = new Param();
-            intParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
-            intParam.Add("CharacterName", characterData.characterName);
-            intParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
-            intParam.Add("BestScore", inputScore);
-            intParam.Add("TotalKillScore", characterData.totalKillScore);
+        Debug.Log("SaveBestScore::serverwhereStart"+bro);
+        if(bro.GetReturnValuetoJSON() != null ) {
+            if(bro.GetReturnValuetoJSON()["rows"].Count <= 0)
+            {
+                Param intParam = new Param();
+                intParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+                intParam.Add("CharacterName", characterData.characterName);
+                intParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
+                intParam.Add("BestScore", inputScore);
+                intParam.Add("TotalKillScore", characterData.totalKillScore);
 
-            Backend.GameData.Insert("CharacterData", intParam);
+                Backend.GameData.Insert("CharacterData", intParam);
 
-            if(isRecord) {
-                RankInputdate(inputScore, characterData.characterName);
-            }
+                if(isRecord) {
+                    RankInputdate(inputScore, characterData.characterName);
+                }
 
-        } else {
-            Param upParam = new Param();
-            upParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
-            upParam.Add("CharacterName", characterData.characterName);
-            upParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
-            upParam.Add("BestScore", inputScore);
-            upParam.Add("TotalKillScore", characterData.totalKillScore);
+            } else {
+                Param upParam = new Param();
+                upParam.Add("PlayerId", DataManager.Instance.playerData.PlayerId);
+                upParam.Add("CharacterName", characterData.characterName);
+                upParam.Add("PlayerName", DataManager.Instance.playerData.PlayerName);
+                upParam.Add("BestScore", inputScore);
+                upParam.Add("TotalKillScore", characterData.totalKillScore);
 
-            Backend.GameData.Update("CharacterData", where, upParam);
-            if(isRecord) {
-                RankInputdate(inputScore, characterData.characterName);
+                Backend.GameData.Update("CharacterData", where, upParam);
+                if(isRecord) {
+                    RankInputdate(inputScore, characterData.characterName);
+                }
             }
         }
-
         yield return null;
     }
     public void RankInputdate(int inputScore, string characterName) {

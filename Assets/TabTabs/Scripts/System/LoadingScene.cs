@@ -40,6 +40,12 @@ namespace TabTabs.NamChanwoo
                 asyncOperation.allowSceneActivation = false;
                 FadeScene.isBattle = false;
             }
+            else if (FadeScene.isBattle2)
+            {
+                asyncOperation = SceneManager.LoadSceneAsync("TabTabs/Scenes/Test4Battle");
+                asyncOperation.allowSceneActivation = false;
+                FadeScene.isBattle = false;
+            }
             else if (FadeScene.isTutorial)
             {
                 asyncOperation = SceneManager.LoadSceneAsync("TabTabs/Scenes/Tutorial");

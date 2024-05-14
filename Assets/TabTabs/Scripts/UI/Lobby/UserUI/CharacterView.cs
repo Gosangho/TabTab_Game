@@ -22,9 +22,9 @@ public class CharacterView : MonoBehaviour
         if("Rana".Equals(characterName)) {
             characterImage.sprite = characterSprite[0];
         } else if("Sia".Equals(characterName)) {
-            characterImage.sprite = null; 
-        } else if("Leon".Equals(characterName)) {
             characterImage.sprite = characterSprite[1];
+        } else if("Leon".Equals(characterName)) {
+            characterImage.sprite = characterSprite[2];
         } else if("Jena".Equals(characterName)) {
             characterImage.sprite = null; 
         }

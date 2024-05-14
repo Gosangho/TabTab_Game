@@ -50,7 +50,9 @@ public class SelectCharacter : MonoBehaviour
 
         characterMaxScroe = characterScores.Values.Max();
         
-        appVersionText.text = "Ver " + Application.version;
+        if(appVersionText != null) {
+            appVersionText.text = "Ver " + Application.version;
+        }
 
         if (SceneManager.GetActiveScene().buildIndex == 4)
         {
@@ -253,11 +255,7 @@ public class SelectCharacter : MonoBehaviour
                
             }
         }
-
-        if(characterGameObject.name == "SwordGirl2")
-        {
-        }
-        else if(characterGameObject.name == "SwordGirl3_Button")
+        if(characterGameObject.name == "SwordGirl3_Button")
         { 
         } 
         else {

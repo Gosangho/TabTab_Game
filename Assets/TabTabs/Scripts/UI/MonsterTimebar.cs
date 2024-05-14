@@ -36,7 +36,7 @@ namespace TabTabs.NamChanwoo
         {
             if(isTimebar) {
                 currentHealth -= depletionRate * Time.deltaTime;
-                Debug.Log(currentHealth);
+               // Debug.Log(currentHealth);
                 if (currentHealth <= 99.65f)
                 {
                     userShield.SetActive(true);
