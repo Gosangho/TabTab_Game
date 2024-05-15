@@ -26,7 +26,7 @@ public class CharacterView : MonoBehaviour
         } else if("Leon".Equals(characterName)) {
             characterImage.sprite = characterSprite[2];
         } else if("Jena".Equals(characterName)) {
-            characterImage.sprite = null; 
+            characterImage.sprite = characterSprite[3];
         }
     }
 

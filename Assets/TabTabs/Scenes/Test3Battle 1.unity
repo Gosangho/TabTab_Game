@@ -495,8 +495,8 @@ MonoBehaviour:
   AttackButton: {fileID: 337069148}
   SelectEnemyButton: {fileID: 1488109284}
   PlayerBaseInstance: {fileID: 0}
-  Left_Ork: {fileID: 1641563902055648439, guid: d4eef8e6923e3754a9e75a3e2ce988c4, type: 3}
-  Right_Ork: {fileID: 1641563902055648439, guid: 3ae824eb34b928f498f324d115a56a98, type: 3}
+  Left_Ork: {fileID: 1641563902055648439, guid: d5fd64cc2af4fcc48a7cec2237b0234d, type: 3}
+  Right_Ork: {fileID: 1641563902055648439, guid: 96446a473ed46984e9909589253bde5a, type: 3}
   Right_MonsterDie: 0
   Left_MonsterDie: 0
   NodeInstance: {fileID: 0}
@@ -566,6 +566,7 @@ MonoBehaviour:
   swordGirl3PurchaseText: {fileID: 0}
   leonPurchaseText: {fileID: 0}
   purchaseSuccess: {fileID: 0}
+  appVersionText: {fileID: 0}
 --- !u!1 &89593150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,7 +1793,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 55, y: -246}
-  m_SizeDelta: {x: 140, y: 132}
+  m_SizeDelta: {x: 65, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &337069148
 MonoBehaviour:
@@ -1859,7 +1860,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 73395d27dad13ef4da32f3c3196400bc, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6574,8 +6575,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -55.1, y: -246}
-  m_SizeDelta: {x: 140, y: 132}
+  m_AnchoredPosition: {x: -57.4, y: -244.3}
+  m_SizeDelta: {x: 65, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1488109284
 MonoBehaviour:
@@ -6642,7 +6643,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 24d6ca19838c4f54899559319dd95c24, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

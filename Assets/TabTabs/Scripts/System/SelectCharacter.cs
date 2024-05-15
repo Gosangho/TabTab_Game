@@ -255,19 +255,13 @@ public class SelectCharacter : MonoBehaviour
                
             }
         }
-        if(characterGameObject.name == "SwordGirl3_Button")
-        { 
-        } 
-        else {
-            Transform readingTransform = characterGameObject.transform.Find("Reading");
-            if (readingTransform != null)
-            {
-                // GameObject 활성화
-                readingTransform.gameObject.SetActive(true);
-            }
-        
+    
+        Transform readingTransform = characterGameObject.transform.Find("Reading");
+        if (readingTransform != null)
+        {
+            // GameObject 활성화
+            readingTransform.gameObject.SetActive(true);
         }
-
     }
 
     public void SwordGirl3PurchaseUiExit()

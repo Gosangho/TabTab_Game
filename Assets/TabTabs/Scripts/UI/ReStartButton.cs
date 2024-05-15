@@ -8,14 +8,21 @@ public class ReStartButton : MonoBehaviour
 {
     public void ReStartButton2()
     {
-        StartCoroutine(ReStart());
+        StartCoroutine(ReStart(3));
     }
-    IEnumerator ReStart()
+
+    public void ReStartButton3()
+    {
+        StartCoroutine(ReStart(7));
+    }
+
+    IEnumerator ReStart(int sceneIndex)
     {
         Time.timeScale = 1.0f;
         yield return new WaitForSeconds(0.1f);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(sceneIndex);
     }
+
     public void TutorialReStart()
     {
         SceneManager.LoadScene(6);

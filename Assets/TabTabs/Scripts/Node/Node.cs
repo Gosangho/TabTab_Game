@@ -79,11 +79,11 @@ namespace TabTabs.NamChanwoo
         public void SetSpriteNode(int index)
         {
             if(index == 1) {
-                nodeSprite.color = Color.red;
+                nodeSprite.sprite = m_sprite[4];
             } else if(index == 2) {
-                nodeSprite.color = Color.blue;
+                nodeSprite.sprite = m_sprite[3];
             } else if(index == 3) {
-                nodeSprite.color = Color.yellow;
+                nodeSprite.sprite = m_sprite[2];
             } else if(index == 4) {
                 nodeSprite.sprite = m_sprite[1];
             }
