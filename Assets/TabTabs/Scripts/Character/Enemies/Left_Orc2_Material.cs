@@ -7,7 +7,7 @@ namespace TabTabs.NamChanwoo
     public class Left_Orc2_Material : MonoBehaviour
     {
         public Material newMaterial;
-        public float Left_brightnessValue1; // °³º° °´Ã¼ÀÇ ¸í¾Ï°ª
+        public float Left_brightnessValue1; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½
         Test3Battle Test3BattleInstance1;
         TutorialBattleSystem TutorialBattleSystem;
         int currentSceneIndex;
@@ -24,7 +24,7 @@ namespace TabTabs.NamChanwoo
         {
             yield return null;
 
-            // Material º¯°æ ÄÚµå
+            // Material ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
             GetComponent<Renderer>().material = newMaterial;
             newMaterial.SetFloat("_Brightness", Left_brightnessValue1);
         }
@@ -55,12 +55,12 @@ namespace TabTabs.NamChanwoo
             }
             newMaterial.SetFloat("_Brightness", Left_brightnessValue1);
         }
-        // MaterialÀÌ °ÔÀÓ ½ÃÀÛÀü¿¡´Â º¯°æÀÌ ¾ÈµÅ´Â ¹®Á¦ -> start¿Í awakeµîÀÇ ¹®Á¦ÀÎµíÇÔ.
-        // °ÔÀÓÀÌ runtimeÁß¿¡´Â º¯°æÀÌ °¡´ÉÇÔ
-        // ÇØ°áÇØ¾ßÇÔ
-        // ÀÌ¸¦ ÀÌ¿ëÇØ¼­ ÀÓ½Ã·Î runtimeÁß¿¡ ÇÑ ÇÁ·¹ÀÓ ´ë±âÈÄ¿¡ mesh rendererÀÇ materialÀ» º¹Á¦ÇÑ material·Î º¯°æ
-        // -> ÀÌ¸¦ÅëÇØ °¢ °´Ã¼°¡ °¢°¢ÀÇ ¸í¾Ï°ªÀ» °¡Áú ¼ö ÀÖ´Ù.
-        // but °ÔÀÓ ½ÃÀÛÀü¿¡ º¯°æÇØ¼­ ÇÏ´Â ¹æ¹ýÀ» ÇØ°áÇØº¸ÀÚ.
+        // Materialï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÅ´ï¿½ ï¿½ï¿½ï¿½ï¿½ -> startï¿½ï¿½ awakeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½.
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ runtimeï¿½ß¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // ï¿½Ø°ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
+        // ï¿½Ì¸ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ ï¿½Ó½Ã·ï¿½ runtimeï¿½ß¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ mesh rendererï¿½ï¿½ materialï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ materialï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // -> ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.
+        // but ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø°ï¿½ï¿½Øºï¿½ï¿½ï¿½.
     }
 }
 

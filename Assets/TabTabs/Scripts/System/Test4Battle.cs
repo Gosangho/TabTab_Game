@@ -32,8 +32,8 @@ namespace TabTabs.NamChanwoo
         public Button BlueAttackButton;
         public Button SelectEnemyButton;
         public PlayerBase PlayerBaseInstance;
-        public GameObject Left_Ork;
-        public GameObject Right_Ork;
+        public List<GameObject> Left_Ork  = new List<GameObject>();
+        public List<GameObject> Right_Ork  = new List<GameObject>();
         public bool Right_MonsterDie; // ������ ���Ͱ� �׾������ true�� ���� -> ���� �� false�� ����
         public bool Left_MonsterDie;
         public Node NodeInstance;
@@ -306,11 +306,11 @@ namespace TabTabs.NamChanwoo
                     RandEnemyHitAudio();
                     if (selectEnemy == RightEnemy)
                     {
-                        Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage");
+                        Right_Orc2_Anim.RightAnim.SetTrigger("Damage");
                     }
                     else
                     {
-                        Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
+                        Left_Orc2_Anim.LeftAnim.SetTrigger("Damage");
                     }
 
                     Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
@@ -361,6 +361,7 @@ namespace TabTabs.NamChanwoo
                         if (Right_MonsterDie)
                         {// ������ ���Ͱ� �������¶��
                             //Invoke("RightMonsterSpawn", 0.7f);
+                            
                             RightMonsterSpawn();
                             // ���� ��
                             Right_MonsterDie = false;
@@ -372,8 +373,8 @@ namespace TabTabs.NamChanwoo
                             // ���� ��
                             Left_MonsterDie = false;
                         }
-                        Test3Spawn.Instance.LeftAttackNum = 6;
-                        Test3Spawn.Instance.RightAttackNum = 6;
+                        Test3Spawn.Instance.LeftAttackNum = LeftEnemy.GetOwnNodes().Count;
+                        Test3Spawn.Instance.RightAttackNum = RightEnemy.GetOwnNodes().Count;
                         SelectEnemy();
                     }
                 }
@@ -383,7 +384,6 @@ namespace TabTabs.NamChanwoo
 
                     if (selectEnemy != null)
                     {
-                         Debug.Log("SpawnMode_B_Node0");
                         selectEnemy.Attack();
                     }
 
@@ -394,11 +394,11 @@ namespace TabTabs.NamChanwoo
                     // 4. ��� �ٽ� �����ϴ� �Լ� ȣ��
                     if (selectEnemy == RightEnemy)
                     {
-                        Test3Spawn.Instance.SpawnMode_B_NodeRight(selectEnemy);
+                     //   Test3Spawn.Instance.SpawnMode_B_NodeRight(selectEnemy);
                     }
                     else if (selectEnemy == LeftEnemy)
                     {
-                        Test3Spawn.Instance.SpawnMode_B_NodeLeft(selectEnemy);
+                      //  Test3Spawn.Instance.SpawnMode_B_NodeLeft(selectEnemy);
                     }
                 }
 
@@ -414,8 +414,8 @@ namespace TabTabs.NamChanwoo
 
         public void GameOverProcess() {
             repetition = true;
-            Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Attack");
-            Right_Orc2_Anim.RightAnim.SetTrigger("Right_Attack");
+            Left_Orc2_Anim.LeftAnim.SetTrigger("Attack");
+            Right_Orc2_Anim.RightAnim.SetTrigger("Attack");
             playerDie = true;
             PlayerBase.PlayerAnim.SetTrigger("Die");
             resultObj.gameObject.SetActive(true);
@@ -492,6 +492,7 @@ namespace TabTabs.NamChanwoo
         {
             if (selectEnemy == RightEnemy && playerDie == false)
             {
+                Debug.Log("RightEnemy"+LeftEnemy.GetOwnNodes().Count+"/"+Test3Spawn.Instance.LeftAttackNum);
                 if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
                 {// ���ʸ��Ϳ� ������ ����� �Ѽ��� ���ٸ� == ������ ù��° �����
 
@@ -581,7 +582,7 @@ namespace TabTabs.NamChanwoo
                         Instantiate(leon_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
 
-                    Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
+                    Left_Orc2_Anim.LeftAnim.SetTrigger("Damage");
 
     
                     LeftSpawnMonster.transform.Find("Timebar/Timebar_Image").GetComponent<MonsterTimebar>().timebarObject.SetActive(true);
@@ -655,6 +656,7 @@ namespace TabTabs.NamChanwoo
             }
             else if (selectEnemy == LeftEnemy && playerDie == false)
             {
+                Debug.Log("LeftEnemy"+RightEnemy.GetOwnNodes().Count+"/"+Test3Spawn.Instance.RightAttackNum);
                 if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
                 {
                     if (FirstDashAttack || FirstAttack)
@@ -743,7 +745,7 @@ namespace TabTabs.NamChanwoo
                         Instantiate(leon_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
 
-                    Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage"); // ��ũ�� �ǰݸ�� ���
+                    Right_Orc2_Anim.RightAnim.SetTrigger("Damage"); // ��ũ�� �ǰݸ�� ���
                    
                     RightSpawnMonster.transform.Find("Timebar/Timebar_Image").GetComponent<MonsterTimebar>().timebarObject.SetActive(true);
                     RightSpawnMonster.transform.Find("Timebar/Timebar_Image").GetComponent<MonsterTimebar>().isTimebar= true;
@@ -942,7 +944,9 @@ namespace TabTabs.NamChanwoo
             
         public void StartSpawn()
         {
-            GameObject RightMonster = Right_Ork;
+            int randomValue = 0;
+            randomValue = Random.Range(0, 2);
+            GameObject RightMonster = Right_Ork[randomValue];
             RightSpawnMonster = Instantiate(RightMonster, new Vector3(4.0f, 0.72f, 0), Quaternion.identity);
             EnemyBase spawnEnemy = RightSpawnMonster.GetComponent<EnemyBase>();
             RightSpawnMonster.transform.Find("Timebar/Timebar_Image").GetComponent<MonsterTimebar>().userShield = rightButSheild;
@@ -952,11 +956,12 @@ namespace TabTabs.NamChanwoo
             if (spawnEnemy != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.
-                Test3Spawn.Instance.SpawnMode_B_NodeRight(spawnEnemy);
+                Test3Spawn.Instance.SpawnMode_B_NodeRight(spawnEnemy,randomValue);
             }
             RightEnemy = spawnEnemy; 
             selectEnemy = spawnEnemy; 
-            GameObject LefttMonster = Left_Ork;
+            randomValue = Random.Range(0, 2);
+            GameObject LefttMonster = Left_Ork[randomValue];
             LeftSpawnMonster = Instantiate(LefttMonster, new Vector3(-4.0f, 0.72f, 0), Quaternion.identity);
             EnemyBase spawnEnemy2 = LeftSpawnMonster.GetComponent<EnemyBase>();
             LeftSpawnMonster.transform.Find("Timebar/Timebar_Image").GetComponent<MonsterTimebar>().userShield = leftButSheild;
@@ -964,13 +969,14 @@ namespace TabTabs.NamChanwoo
             if (spawnEnemy2 != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); 
-                Test3Spawn.Instance.SpawnMode_B_NodeLeft(spawnEnemy2);
+                Test3Spawn.Instance.SpawnMode_B_NodeLeft(spawnEnemy2,randomValue);
             }
             LeftEnemy = spawnEnemy2; // �� ����
         }
         public void RightMonsterSpawn()
         {
-            GameObject RightMonster = Right_Ork;
+            int randomValue = Random.Range(0, 2);
+            GameObject RightMonster = Right_Ork[randomValue];
             RightSpawnMonster = Instantiate(RightMonster, new Vector3(4.0f, 0.72f, 0), Quaternion.identity);
             EnemyBase spawnEnemy = RightSpawnMonster.GetComponent<EnemyBase>();
 
@@ -982,14 +988,15 @@ namespace TabTabs.NamChanwoo
             if (spawnEnemy != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.
-                Test3Spawn.Instance.SpawnMode_B_NodeRight(spawnEnemy);
+                Test3Spawn.Instance.SpawnMode_B_NodeRight(spawnEnemy,randomValue);
             }
             selectEnemy = spawnEnemy;
             RightEnemy = spawnEnemy;
         }
         public void LeftMonsterSpawn()
         {
-            GameObject LefttMonster = Left_Ork;
+            int randomValue = Random.Range(0, 2);
+            GameObject LefttMonster = Left_Ork[randomValue];
             LeftSpawnMonster = Instantiate(LefttMonster, new Vector3(-4.0f, 0.72f, 0), Quaternion.identity);
             EnemyBase spawnEnemy2 = LeftSpawnMonster.GetComponent<EnemyBase>();
 
@@ -1000,7 +1007,7 @@ namespace TabTabs.NamChanwoo
             if (spawnEnemy2 != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.
-                Test3Spawn.Instance.SpawnMode_B_NodeLeft(spawnEnemy2);
+                Test3Spawn.Instance.SpawnMode_B_NodeLeft(spawnEnemy2,randomValue);
             }
             selectEnemy = spawnEnemy2;
             LeftEnemy = spawnEnemy2;

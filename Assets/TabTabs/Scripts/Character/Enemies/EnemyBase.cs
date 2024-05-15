@@ -169,7 +169,7 @@ namespace TabTabs.NamChanwoo
                     Destroy(gameObject);
                     Test3Spawn.Instance.RightAttackNum = 0; // 리셋
                     GameObject DieEffect = Instantiate(RightOrc2Die);
-                    //Right_Orc2_Anim.RightAnim.SetTrigger("Right_Die");
+                    //Right_Orc2_Anim.RightAnim.SetTrigger("Die");
                     //StartCoroutine(Right_MonsterDie());
                 }
                 else
@@ -180,7 +180,7 @@ namespace TabTabs.NamChanwoo
                     Destroy(gameObject);
                     Test3Spawn.Instance.LeftAttackNum = 0; // 리셋
                     GameObject DieEffect = Instantiate(LeftOrc2Die);
-                    //Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Die");
+                    //Left_Orc2_Anim.LeftAnim.SetTrigger("Die");
                     //StartCoroutine(Left_MonsterDie());
                 }    
             }
@@ -194,7 +194,7 @@ namespace TabTabs.NamChanwoo
                     Destroy(gameObject);
                     Test3Spawn.Instance.RightAttackNum = 0; // 리셋
                     GameObject DieEffect = Instantiate(RightOrc2Die);
-                    //Right_Orc2_Anim.RightAnim.SetTrigger("Right_Die");
+                    //Right_Orc2_Anim.RightAnim.SetTrigger("Die");
                     //StartCoroutine(Right_MonsterDie());
                 }
                 else
@@ -205,7 +205,7 @@ namespace TabTabs.NamChanwoo
                     Destroy(gameObject);
                     Test3Spawn.Instance.LeftAttackNum = 0; // 리셋
                     GameObject DieEffect = Instantiate(LeftOrc2Die);
-                    //Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Die");
+                    //Left_Orc2_Anim.LeftAnim.SetTrigger("Die");
                     //StartCoroutine(Left_MonsterDie());
                 }    
             }

@@ -184,9 +184,9 @@ namespace TabTabs.NamChanwoo
             {// Time�� �� �����ٸ�(GameOver) timeOver
                 repetition = true;
 
-                Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Attack");
+                Left_Orc2_Anim.LeftAnim.SetTrigger("Attack");
 
-                Right_Orc2_Anim.RightAnim.SetTrigger("Right_Attack");
+                Right_Orc2_Anim.RightAnim.SetTrigger("Attack");
                 playerDie = true;
 
                 if (playerDie == true)
@@ -332,11 +332,11 @@ namespace TabTabs.NamChanwoo
                     RandEnemyHitAudio();
                     if (selectEnemy == RightEnemy)
                     {
-                        Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage");
+                        Right_Orc2_Anim.RightAnim.SetTrigger("Damage");
                     }
                     else
                     {
-                        Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
+                        Left_Orc2_Anim.LeftAnim.SetTrigger("Damage");
                     }
 
                     Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
@@ -519,7 +519,7 @@ namespace TabTabs.NamChanwoo
                         Instantiate(leon_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
 
-                    Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Damage");
+                    Left_Orc2_Anim.LeftAnim.SetTrigger("Damage");
 
 
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);
@@ -676,7 +676,7 @@ namespace TabTabs.NamChanwoo
                         Instantiate(leon_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
 
-                    Right_Orc2_Anim.RightAnim.SetTrigger("Right_Damage"); // ��ũ�� �ǰݸ�� ���
+                    Right_Orc2_Anim.RightAnim.SetTrigger("Damage"); // ��ũ�� �ǰݸ�� ���
 
 
                     Destroy(selectEnemy.GetOwnNodes().Peek().gameObject);

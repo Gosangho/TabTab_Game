@@ -14,6 +14,6 @@ public class Left_Orc2_Anim : MonoBehaviour
 
     void LeftOrc2Attack()
     {
-        //LeftAnim.SetTrigger("Left_Attack");
+        //LeftAnim.SetTrigger("Attack");
     }
 }

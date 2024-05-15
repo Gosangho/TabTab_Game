@@ -49,9 +49,9 @@ namespace TabTabs.NamChanwoo
 
                 if(currentHealth <= 99.4f) {
                     if(wayOrc == 0) {
-                        Left_Orc2_Anim.LeftAnim.SetTrigger("Left_Attack");
+                        Left_Orc2_Anim.LeftAnim.SetTrigger("Attack");
                     } else {
-                        Right_Orc2_Anim.RightAnim.SetTrigger("Right_Attack");
+                        Right_Orc2_Anim.RightAnim.SetTrigger("Attack");
                     }
                     PlayerHeart.PlayerHeartGauge -= 1;
                     currentHealth = 100f;

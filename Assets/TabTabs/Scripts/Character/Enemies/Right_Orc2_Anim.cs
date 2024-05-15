@@ -18,7 +18,7 @@ using Spine.Unity;
 
         void RightOrc2Attack()
         {
-            //RightAnim.SetTrigger("Right_Attack");
+            //RightAnim.SetTrigger("Attack");
         }
     }
 
