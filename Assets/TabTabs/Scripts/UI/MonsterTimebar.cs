@@ -24,6 +24,8 @@ namespace TabTabs.NamChanwoo
         public GameObject timebarObject;
         public bool isTimebar = false;
 
+        public EnemyBase selectEnemy;
+
         void Start()
         {
             PlayerHeart = FindObjectOfType<PlayerHeart>();
@@ -48,11 +50,7 @@ namespace TabTabs.NamChanwoo
                 }
 
                 if(currentHealth <= 99.4f) {
-                    if(wayOrc == 0) {
-                        Left_Orc2_Anim.LeftAnim.SetTrigger("Attack");
-                    } else {
-                        Right_Orc2_Anim.RightAnim.SetTrigger("Attack");
-                    }
+                    selectEnemy.monster_anim.SetTrigger("Attack");
                     PlayerHeart.PlayerHeartGauge -= 1;
                     currentHealth = 100f;
                     spriteRenderer.size = new Vector2( 0.94f, spriteRenderer.size.y);

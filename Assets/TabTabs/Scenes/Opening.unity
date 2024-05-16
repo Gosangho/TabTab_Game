@@ -406,10 +406,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a511ea84a99b1948803ebb20f9f4913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BgmAudio: {fileID: 0}
-  SfxAudio_Char_AttackAudio: {fileID: 0}
-  SfxAudio_Enemy_hitAudio: {fileID: 0}
-  SfxTutorial: {fileID: 0}
+  BgmAudio: {fileID: 1591362517}
+  SfxAudio_Char_AttackAudio: {fileID: 1960651705}
+  SfxAudio_Enemy_hitAudio: {fileID: 1878608405}
+  SfxTutorial: {fileID: 415845300}
   BgmClip:
   - {fileID: 8300000, guid: 033766cc31c97904bae4404b8a079544, type: 3}
   - {fileID: 8300000, guid: 06906d718be5b6a4cb2df8732bf39832, type: 3}

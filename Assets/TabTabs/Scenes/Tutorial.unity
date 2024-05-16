@@ -623,6 +623,7 @@ MonoBehaviour:
   resultObj: {fileID: 0}
   continue_Button: {fileID: 0}
   repetition: 0
+  serverUpdate: 1
 --- !u!1 &111064493
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +999,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7aa55d52a273b784e8c888755236824a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2370,7 +2371,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ce80ee1e9fbd272488c27611f8c79af4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -6604,6 +6605,7 @@ MonoBehaviour:
   depletionRate: 0.01
   depletionRateIncrease: 0.01
   KillCount: 0
+  backgroundSprite: {fileID: 0}
 --- !u!114 &1299366705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7242,7 +7244,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3e0e068b2adb03942a2eacdabbb79308, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -9480,8 +9482,8 @@ MonoBehaviour:
   AttackButton: {fileID: 337069148}
   SelectEnemyButton: {fileID: 1488109284}
   PlayerBaseInstance: {fileID: 0}
-  Left_Ork: {fileID: 1641563902055648439, guid: d4eef8e6923e3754a9e75a3e2ce988c4, type: 3}
-  Right_Ork: {fileID: 1641563902055648439, guid: 3ae824eb34b928f498f324d115a56a98, type: 3}
+  Left_Ork: {fileID: 1641563902055648439, guid: d5fd64cc2af4fcc48a7cec2237b0234d, type: 3}
+  Right_Ork: {fileID: 1641563902055648439, guid: 96446a473ed46984e9909589253bde5a, type: 3}
   MonsterDie: 0
   NodeInstance: {fileID: 0}
   Character_Effect: {fileID: 784272574445725133, guid: 850ab64c476437e45b8d27b97cfddbbd, type: 3}

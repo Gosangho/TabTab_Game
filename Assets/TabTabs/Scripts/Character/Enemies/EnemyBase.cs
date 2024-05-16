@@ -25,6 +25,8 @@ namespace TabTabs.NamChanwoo
         private float m_attackGauge = 10.0f; // 공격 쿨다운
         public GameObject RightOrc2Die;
         public GameObject LeftOrc2Die;
+
+        public Animator monster_anim;
         
         
         public float AttackGauge

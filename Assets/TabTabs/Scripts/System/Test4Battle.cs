@@ -306,11 +306,12 @@ namespace TabTabs.NamChanwoo
                     RandEnemyHitAudio();
                     if (selectEnemy == RightEnemy)
                     {
-                        Right_Orc2_Anim.RightAnim.SetTrigger("Damage");
+                        Debug.Log("RightEnemy"+RightEnemy.monster_anim);
+                        RightEnemy.monster_anim.SetTrigger("Damage");
                     }
                     else
                     {
-                        Left_Orc2_Anim.LeftAnim.SetTrigger("Damage");
+                        LeftEnemy.monster_anim.SetTrigger("Damage");
                     }
 
                     Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
@@ -414,8 +415,8 @@ namespace TabTabs.NamChanwoo
 
         public void GameOverProcess() {
             repetition = true;
-            Left_Orc2_Anim.LeftAnim.SetTrigger("Attack");
-            Right_Orc2_Anim.RightAnim.SetTrigger("Attack");
+            LeftEnemy.monster_anim.SetTrigger("Attack");
+            RightEnemy.monster_anim.SetTrigger("Attack");
             playerDie = true;
             PlayerBase.PlayerAnim.SetTrigger("Die");
             resultObj.gameObject.SetActive(true);
@@ -582,7 +583,7 @@ namespace TabTabs.NamChanwoo
                         Instantiate(leon_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
 
-                    Left_Orc2_Anim.LeftAnim.SetTrigger("Damage");
+                    LeftEnemy.monster_anim.SetTrigger("Damage");
 
     
                     LeftSpawnMonster.transform.Find("Timebar/Timebar_Image").GetComponent<MonsterTimebar>().timebarObject.SetActive(true);
@@ -745,7 +746,7 @@ namespace TabTabs.NamChanwoo
                         Instantiate(leon_AfterImage, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                     }
 
-                    Right_Orc2_Anim.RightAnim.SetTrigger("Damage"); // ��ũ�� �ǰݸ�� ���
+                    RightEnemy.monster_anim.SetTrigger("Damage"); // ��ũ�� �ǰݸ�� ���
                    
                     RightSpawnMonster.transform.Find("Timebar/Timebar_Image").GetComponent<MonsterTimebar>().timebarObject.SetActive(true);
                     RightSpawnMonster.transform.Find("Timebar/Timebar_Image").GetComponent<MonsterTimebar>().isTimebar= true;

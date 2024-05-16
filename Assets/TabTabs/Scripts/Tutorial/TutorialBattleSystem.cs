@@ -118,11 +118,11 @@ namespace TabTabs.NamChanwoo
 
                     if (selectEnemy == RightEnemy)
                     {
-                        Right_Orc2_Anim.RightAnim.SetTrigger("Damage");
+                        RightEnemy.monster_anim.SetTrigger("Damage");
                     }
                     else
                     {
-                        Left_Orc2_Anim.LeftAnim.SetTrigger("Damage");
+                        LeftEnemy.monster_anim.SetTrigger("Damage");
                     }
 
                     Vector3 targetPosition = selectEnemy.GetOwnNodes().Peek().gameObject.transform.position;
@@ -214,7 +214,7 @@ namespace TabTabs.NamChanwoo
                     spriteRenderer.flipX = true;
                     PlayerBase.PlayerAnim.SetTrigger("Slide_Atk_1"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
 
-                    Left_Orc2_Anim.LeftAnim.SetTrigger("Damage");
+                    LeftEnemy.monster_anim.SetTrigger("Damage");
 
                     Character_Effect.transform.localScale = new Vector3(-1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
 
@@ -269,7 +269,7 @@ namespace TabTabs.NamChanwoo
                     spriteRenderer.flipX = false;
                     PlayerBase.PlayerAnim.SetTrigger("Slide_Atk_1"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
 
-                    Right_Orc2_Anim.RightAnim.SetTrigger("Damage"); // ��ũ�� �ǰݸ�� ���
+                    RightEnemy.monster_anim.SetTrigger("Damage"); // ��ũ�� �ǰݸ�� ���
 
                     Character_Effect.transform.localScale = new Vector3(1.0f, Character_Effect.transform.localScale.y, Character_Effect.transform.localScale.z);
 
