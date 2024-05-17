@@ -496,7 +496,7 @@ MonoBehaviour:
   SelectEnemyButton: {fileID: 1488109284}
   PlayerBaseInstance: {fileID: 0}
   Left_Ork: {fileID: 1641563902055648439, guid: d5fd64cc2af4fcc48a7cec2237b0234d, type: 3}
-  Right_Ork: {fileID: 1641563902055648439, guid: 96446a473ed46984e9909589253bde5a, type: 3}
+  Right_Ork: {fileID: 1641563902055648439, guid: d5fd64cc2af4fcc48a7cec2237b0234d, type: 3}
   Right_MonsterDie: 0
   Left_MonsterDie: 0
   NodeInstance: {fileID: 0}

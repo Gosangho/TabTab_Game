@@ -23,8 +23,7 @@ namespace TabTabs.NamChanwoo
         public Slider m_attackGaugeSlider;
         [FormerlySerializedAs("m_chargAttackGauge")] [SerializeField] private float m_maxAttackGauge = 10.0f; 
         private float m_attackGauge = 10.0f; // 공격 쿨다운
-        public GameObject RightOrc2Die;
-        public GameObject LeftOrc2Die;
+        public GameObject orc2Die;
 
         public Animator monster_anim;
         
@@ -162,6 +161,9 @@ namespace TabTabs.NamChanwoo
             //if (SceneManager.GetActiveScene().buildIndex == 3)
             //{
 
+            Vector3 currentPosition = transform.position;
+            Quaternion currentRotation = transform.rotation;
+
             if(BattleInstance3 != null) {
                 if (BattleInstance3.selectEnemy == BattleInstance3.RightEnemy)
                 {
@@ -170,7 +172,7 @@ namespace TabTabs.NamChanwoo
                     BattleInstance3.FirstDashAttack = false;
                     Destroy(gameObject);
                     Test3Spawn.Instance.RightAttackNum = 0; // 리셋
-                    GameObject DieEffect = Instantiate(RightOrc2Die);
+                    GameObject DieEffect = Instantiate(orc2Die,currentPosition,currentRotation);
                     //Right_Orc2_Anim.RightAnim.SetTrigger("Die");
                     //StartCoroutine(Right_MonsterDie());
                 }
@@ -181,7 +183,8 @@ namespace TabTabs.NamChanwoo
                     BattleInstance3.FirstDashAttack = false;
                     Destroy(gameObject);
                     Test3Spawn.Instance.LeftAttackNum = 0; // 리셋
-                    GameObject DieEffect = Instantiate(LeftOrc2Die);
+                    Quaternion rotationY180 = Quaternion.Euler(0, 180, 0);
+                    GameObject DieEffect = Instantiate(orc2Die,currentPosition,rotationY180);
                     //Left_Orc2_Anim.LeftAnim.SetTrigger("Die");
                     //StartCoroutine(Left_MonsterDie());
                 }    
@@ -195,7 +198,7 @@ namespace TabTabs.NamChanwoo
                     BattleInstance4.FirstDashAttack = false;
                     Destroy(gameObject);
                     Test3Spawn.Instance.RightAttackNum = 0; // 리셋
-                    GameObject DieEffect = Instantiate(RightOrc2Die);
+                    GameObject DieEffect = Instantiate(orc2Die,currentPosition,currentRotation);
                     //Right_Orc2_Anim.RightAnim.SetTrigger("Die");
                     //StartCoroutine(Right_MonsterDie());
                 }
@@ -206,7 +209,8 @@ namespace TabTabs.NamChanwoo
                     BattleInstance4.FirstDashAttack = false;
                     Destroy(gameObject);
                     Test3Spawn.Instance.LeftAttackNum = 0; // 리셋
-                    GameObject DieEffect = Instantiate(LeftOrc2Die);
+                    Quaternion rotationY180 = Quaternion.Euler(0, 180, 0);
+                    GameObject DieEffect = Instantiate(orc2Die,currentPosition,rotationY180);
                     //Left_Orc2_Anim.LeftAnim.SetTrigger("Die");
                     //StartCoroutine(Left_MonsterDie());
                 }    

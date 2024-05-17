@@ -873,6 +873,9 @@ namespace TabTabs.NamChanwoo
         {
             GameObject RightMonster = Right_Ork;
             GameObject RightSpawnMonster = Instantiate(RightMonster, new Vector3(4.0f, 0.72f, 0), Quaternion.identity);
+            Vector3 scale = RightSpawnMonster.transform.localScale;
+            scale.x *= -1;
+            RightSpawnMonster.transform.localScale = scale;
             EnemyBase spawnEnemy = RightSpawnMonster.GetComponent<EnemyBase>();
             if (spawnEnemy != null)
             {
@@ -896,6 +899,9 @@ namespace TabTabs.NamChanwoo
         {
             GameObject RightMonster = Right_Ork;
             GameObject RightSpawnMonster = Instantiate(RightMonster, new Vector3(4.0f, 0.72f, 0), Quaternion.identity);
+            Vector3 scale = RightSpawnMonster.transform.localScale;
+            scale.x *= -1;
+            RightSpawnMonster.transform.localScale = scale;
             EnemyBase spawnEnemy = RightSpawnMonster.GetComponent<EnemyBase>();
             if (spawnEnemy != null)
             {
