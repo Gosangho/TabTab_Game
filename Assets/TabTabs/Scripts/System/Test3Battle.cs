@@ -291,8 +291,9 @@ namespace TabTabs.NamChanwoo
                     {// ���� ���ݽø� �ߵ��Ǵ� �ִϸ��̼�
                         if (SelectCharacter.swordGirl1)
                         {
-                            GameObject swordGirl1FirstAttack =
-                            Instantiate(swordGirl1_FirstAttack, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
+                            PlayerBase.PlayerAnim.SetTrigger("Start");
+                            //GameObject swordGirl1FirstAttack =
+                            //Instantiate(swordGirl1_FirstAttack, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                         }
                         else if (SelectCharacter.swordGirl2)
                         {
@@ -451,7 +452,7 @@ namespace TabTabs.NamChanwoo
                             continue_Button.gameObject.SetActive(true);
                         }
                     }
-
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_Turn");
                     ScoreSystemInstance.score += 1; // ���ݼ����� Score +1
 
                     if (SelectCharacter.swordGirl1)
@@ -608,7 +609,7 @@ namespace TabTabs.NamChanwoo
                             continue_Button.gameObject.SetActive(true);
                         }
                     }
-
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_Turn");
                     ScoreSystemInstance.score += 1; // ���ݼ����� Score +1
 
                     if (SelectCharacter.swordGirl1)
@@ -784,33 +785,37 @@ namespace TabTabs.NamChanwoo
         }
         public void RandAnim()
         {
-            int randAnim = Random.Range(0, 6);
+            int randAnim = Random.Range(0, 2);
             if (FirstAttack==false)
             {
                 if (randAnim == 0)
                 {
                     PlayerBase.PlayerAnim.SetTrigger("Atk_1"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
                 }
-                else if (randAnim == 1)
+                else
                 {
                     PlayerBase.PlayerAnim.SetTrigger("Atk_2"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
                 }
-                else if (randAnim == 2)
-                {
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_3"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
-                }
-                else if (randAnim == 3)
-                {
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_4"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
-                }
-                else if (randAnim == 4)
-                {
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_5"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
-                }
-                else
-                {// 5
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_7"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
-                }
+                //else if (randAnim == 1)
+                //{
+                //    PlayerBase.PlayerAnim.SetTrigger("Atk_2"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
+                //}
+                //else if (randAnim == 2)
+                //{
+                //    PlayerBase.PlayerAnim.SetTrigger("Atk_3"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
+                //}
+                //else if (randAnim == 3)
+                //{
+                //    PlayerBase.PlayerAnim.SetTrigger("Atk_4"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
+                //}
+                //else if (randAnim == 4)
+                //{
+                //    PlayerBase.PlayerAnim.SetTrigger("Atk_5"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
+                //}
+                //else
+                //{// 5
+                //    PlayerBase.PlayerAnim.SetTrigger("Atk_7"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
+                //}
                 // * Atk_6�ִϸ��̼��� ���� ���ʽ��۽ø� �ߵ��Ǵ� �ִϸ��̼�
             }
 
