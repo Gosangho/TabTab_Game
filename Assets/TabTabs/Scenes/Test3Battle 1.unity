@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 36360933}
   - component: {fileID: 36360932}
   m_Layer: 0
-  m_Name: Spine Mecanim GameObject (leon_dot)
+  m_Name: Spine Mecanim GameObject (leon_dot)_Expect
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -673,15 +673,15 @@ MonoBehaviour:
   FirstDashAttack: 0
   swordGirl1_AfterImage: {fileID: 390234822208587241, guid: 7eaddaf20f08e9f4c933176912561142, type: 3}
   swordGirl2_AfterImage: {fileID: 7378436115457470089, guid: 6959bd472342b4f41bf80b4ff155c7da, type: 3}
-  swordGirl3_AfterImage: {fileID: 3923612964004226097, guid: df022baed6838ba41acceea0b1d1f8f8, type: 3}
+  swordGirl3_AfterImage: {fileID: 8407373330645811428, guid: eab6fc450cef1b34c925316d6415b544, type: 3}
   leon_AfterImage: {fileID: 318812932309649132, guid: b9476fea68b0e1246b63927dbdbb132f, type: 3}
   swordGirl1_FirstAttack: {fileID: 648292904465394717, guid: a8cd5cbcc5356c24e8a8ae6d1efaf5fe, type: 3}
   swordGirl2_FirstAttack: {fileID: 9011929992159210963, guid: dec2a9fa53eebb84aa285c5f8188f90d, type: 3}
-  swordGirl3_FirstAttack: {fileID: 4210679439638875803, guid: 6bf85ea3a7eccce4da839020eff73a3e, type: 3}
+  swordGirl3_FirstAttack: {fileID: 7090073371065652489, guid: 88adbad9c61d75a4c8ecd9c6a2ab1402, type: 3}
   leon_FirstAttack: {fileID: 79476593144278269, guid: 8479c743ed445374d81dc9ceccd73117, type: 3}
   swordGirl1: {fileID: 1935656255}
   swordGirl2: {fileID: 293145281}
-  swordGirl3: {fileID: 1940394523}
+  swordGirl3: {fileID: 1441415909}
   leon: {fileID: 18791061}
   reStartObj: {fileID: 1222271127}
   selectCharacterInstance: {fileID: 0}
@@ -4173,7 +4173,7 @@ GameObject:
   - component: {fileID: 937136486}
   - component: {fileID: 937136490}
   m_Layer: 0
-  m_Name: Spine Mecanim GameObject (swordgirl_1)
+  m_Name: Spine Mecanim GameObject (swordgirl_1)_Expect
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4333,7 +4333,7 @@ GameObject:
   - component: {fileID: 950076095}
   - component: {fileID: 950076094}
   m_Layer: 0
-  m_Name: Spine Mecanim GameObject (swordgirl_2)
+  m_Name: Spine Mecanim GameObject (swordgirl_2)_Expect
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6775,6 +6775,166 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &1441415909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1441415915}
+  - component: {fileID: 1441415914}
+  - component: {fileID: 1441415913}
+  - component: {fileID: 1441415912}
+  - component: {fileID: 1441415911}
+  - component: {fileID: 1441415910}
+  m_Layer: 0
+  m_Name: Spine Mecanim GameObject (zena1)
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1441415910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441415909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0dd27d124c2c7448932001e5362b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1441415911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441415909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9db98c60740638449864eb028fbe7ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonDataAsset: {fileID: 11400000, guid: 851245faab9929049845259f69dfefef, type: 2}
+  initialSkinName: 
+  fixPrefabOverrideViaMeshFilter: 2
+  initialFlipX: 0
+  initialFlipY: 0
+  updateWhenInvisible: 3
+  separatorSlotNames: []
+  zSpacing: 0
+  useClipping: 1
+  immutableTriangles: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  tintBlack: 0
+  singleSubmesh: 0
+  fixDrawOrder: 0
+  addNormals: 0
+  calculateTangents: 0
+  maskInteraction: 0
+  maskMaterials:
+    materialsMaskDisabled: []
+    materialsInsideMask: []
+    materialsOutsideMask: []
+  disableRenderingOnOverride: 1
+  translator:
+    autoReset: 1
+    useCustomMixMode: 1
+    layerMixModes: 01000000
+    layerBlendModes: 01000000
+  updateTiming: 1
+--- !u!95 &1441415912
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441415909}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a68d61aa4531b7e4ca8dafb1d803d51b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!23 &1441415913
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441415909}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e32b121cc92118b44aed76569ad83931, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 757855039
+  m_SortingLayer: 2
+  m_SortingOrder: 1
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1441415914
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441415909}
+  m_Mesh: {fileID: 0}
+--- !u!4 &1441415915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441415909}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.72, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1466277717
 GameObject:
   m_ObjectHideFlags: 0
@@ -8439,7 +8599,7 @@ GameObject:
   - component: {fileID: 1940394525}
   - component: {fileID: 1940394524}
   m_Layer: 0
-  m_Name: Spine Mecanim GameObject (swordgirl_3)
+  m_Name: Spine Mecanim GameObject (swordgirl_3)_Expect
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
