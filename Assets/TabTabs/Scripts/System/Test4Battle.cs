@@ -284,7 +284,7 @@ namespace TabTabs.NamChanwoo
                             Instantiate(leon_FirstAttack, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                         }
 
-                        //PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_6");
+                        PlayerBase.PlayerAnim.SetTrigger("Start");
 
                         FirstAttack = false;
                         float RandAttackSound = Random.value; // 0~1������ ������ ��
@@ -516,6 +516,7 @@ namespace TabTabs.NamChanwoo
                         }
                     }
 
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_Turn");
                     ScoreSystemInstance.score += 1; // ���ݼ����� Score +1
 
                     if (SelectCharacter.swordGirl1)
@@ -679,6 +680,7 @@ namespace TabTabs.NamChanwoo
                         }
                     }
 
+                    PlayerBase.PlayerAnim.SetTrigger("Atk_Turn");
                     ScoreSystemInstance.score += 1; // ���ݼ����� Score +1
 
                     if (SelectCharacter.swordGirl1)
@@ -858,34 +860,34 @@ namespace TabTabs.NamChanwoo
         }
         public void RandAnim()
         {
-            int randAnim = Random.Range(0, 6);
+            int randAnim = Random.Range(0, 2);
             if (FirstAttack==false)
             {
                 if (randAnim == 0)
                 {
                     PlayerBase.PlayerAnim.SetTrigger("Atk_1"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
                 }
-                else if (randAnim == 1)
+                else
                 {
                     PlayerBase.PlayerAnim.SetTrigger("Atk_2"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
                 }
-                else if (randAnim == 2)
-                {
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_3"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
-                }
-                else if (randAnim == 3)
-                {
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_4"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
-                }
-                else if (randAnim == 4)
-                {
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_5"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
-                }
-                else
-                {// 5
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_7"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
-                }
-                // * Atk_6�ִϸ��̼��� ���� ���ʽ��۽ø� �ߵ��Ǵ� �ִϸ��̼�
+                //else if (randAnim == 2)
+                //{
+                //    PlayerBase.PlayerAnim.SetTrigger("Atk_3"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
+                //}
+                //else if (randAnim == 3)
+                //{
+                //    PlayerBase.PlayerAnim.SetTrigger("Atk_4"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
+                //}
+                //else if (randAnim == 4)
+                //{
+                //    PlayerBase.PlayerAnim.SetTrigger("Atk_5"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
+                //}
+                //else
+                //{// 5
+                //    PlayerBase.PlayerAnim.SetTrigger("Atk_7"); // ��ũ�� ��ġ�� �̵��� ���ݸ��
+                //}
+                //// * Atk_6�ִϸ��̼��� ���� ���ʽ��۽ø� �ߵ��Ǵ� �ִϸ��̼�
             }
 
         }
