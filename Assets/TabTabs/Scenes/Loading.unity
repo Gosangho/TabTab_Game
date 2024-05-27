@@ -123,6 +123,39 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &223234126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 223234127}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &223234127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223234126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 180.16473, y: 102.6291, z: 6.9972386}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1592877172}
+  - {fileID: 1717621071}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &253637272
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da4bb354beb063d46a4aecb8e65a88b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingSliderBarObject: {fileID: 1254005168}
   loadingSliderBar: {fileID: 1254005169}
   loadingNumberText: {fileID: 814725942}
   loadingImage: {fileID: 1419740550}
@@ -818,6 +852,50 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1592877171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1592877172}
+  - component: {fileID: 1592877173}
+  m_Layer: 0
+  m_Name: BackEndManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1592877172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592877171}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 102.086365, y: 216.70432, z: -9.598326}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 223234127}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1592877173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592877171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5df3a7593b7c14da57934b0ef7e337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1644936017
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,6 +1077,82 @@ Canvas:
   m_SortingLayerID: 1144447055
   m_SortingOrder: 9
   m_TargetDisplay: 0
+--- !u!1 &1717621070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1717621071}
+  - component: {fileID: 1717621072}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1717621071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717621070}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -180.16473, y: -102.6291, z: -6.9972386}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 223234127}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1717621072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717621070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8dd8be1b301ef1448a0c345b9a724e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordGirl1:
+    characterName: 
+    bestScore: 0
+    totalKillScore: 0
+    PlayerName: 
+  swordGirl2:
+    characterName: 
+    bestScore: 0
+    totalKillScore: 0
+    PlayerName: 
+  swordGirl3:
+    characterName: 
+    bestScore: 0
+    totalKillScore: 0
+    PlayerName: 
+  leon:
+    characterName: 
+    bestScore: 0
+    totalKillScore: 0
+    PlayerName: 
+  playerData:
+    PlayerId: 
+    TutorialPlay: 0
+    MakeNickName: 0
+    PlayerName: 
+    Gold: 0
+    AdsYn: 0
+    AdsDate: 
+    SwordGirl2Get: 0
+    SwordGirl3Get: 0
+    LeonGet: 0
+    PlayerAttandence: 00000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &1898845700
 GameObject:
   m_ObjectHideFlags: 0

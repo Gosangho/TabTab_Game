@@ -12,7 +12,13 @@ public class FadeScene : MonoBehaviour
     public static bool isBattle2 = false;
     public static bool isLobby = false;
     public static bool isTutorial = false;
+    public static bool isOpening = false;
+
+    public static bool isLogin = false;
+
     public GameObject loadingImage;
+
+    
 
     public void Opennig()
     {
@@ -87,5 +93,11 @@ public class FadeScene : MonoBehaviour
     {
         isTutorial = true;
         StartCoroutine(_LoadeTutorialScene());
+    }
+
+    public void LoadLogoLoginScene()
+    {
+        isLogin = true;
+        SceneManager.LoadScene(6);
     }
 }

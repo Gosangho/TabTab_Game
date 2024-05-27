@@ -5,10 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+using GooglePlayGames;
+
 namespace TabTabs.NamChanwoo
 {
     public class LoadingScene : MonoBehaviour
     {
+        public GameObject loadingSliderBarObject;
         public Slider loadingSliderBar;
         public TextMeshProUGUI loadingNumberText;
         public AsyncOperation asyncOperation;
@@ -17,14 +20,45 @@ namespace TabTabs.NamChanwoo
 
         public Camera cam;
 
+        string sceneNameToLoad = "Opening"; 
+        string sceneNameToLoby = "lobby"; 
+
+        void Awake()
+        {
+            //구글 로그인
+            PlayGamesPlatform.DebugLogEnabled = true;
+            PlayGamesPlatform.Activate();
+        }
+
+
         void Start()
         {
             ContinueButton.continueButtonClick = false;
-            DataManager.Instance.SaveGameData();
-            Debug.Log("����Ϸ�");
-      
-            StartCoroutine(Loading());
+         //   DataManager.Instance.SaveGameData();
+            Debug.Log("로딩 시작");
+           
+            if(FadeScene.isLogin) {
+                loadingSliderBarObject.SetActive(false);
+                loadingNumberText.text = "로그인 중입니다.";
+                StartCoroutine(LoginLoading());     
+            } else {
+                StartCoroutine(Loading());
+            }
         }
+
+
+        IEnumerator LoginLoading()
+        {
+            yield return new WaitForSeconds(1f);
+            
+            if(googleLogin()) {
+                BackEndManager.Instance.broInit();
+                SceneManager.LoadScene(sceneNameToLoby);
+            }
+        }
+
+       
+
 
         IEnumerator Loading()
         {
@@ -54,7 +88,7 @@ namespace TabTabs.NamChanwoo
             }
 
 
-            float duration = 5f; // ���濡 �ɸ� �� �ð� (��)
+            float duration = 5f; 
             float targetValue = 1f;
             float startTime = Time.time;
 
@@ -65,14 +99,14 @@ namespace TabTabs.NamChanwoo
 
                 float scaleValue = loadingSliderBar.value * 100f;
                 int intValue = Mathf.RoundToInt(scaleValue);
-                loadingNumberText.text = intValue.ToString(); // ������ ��ȯ�Ͽ� ǥ��
+                loadingNumberText.text = intValue.ToString(); 
 
                 yield return null;
             }
 
             loadingSliderBar.value = targetValue;
             int finalValue = Mathf.RoundToInt(targetValue * 100f);
-            loadingNumberText.text = finalValue.ToString(); // ������ ��ȯ�Ͽ� ǥ��
+            loadingNumberText.text = finalValue.ToString(); 
 
             
             cam.rect = new Rect(0, 0, 1, 1);
@@ -82,9 +116,37 @@ namespace TabTabs.NamChanwoo
             loadingImage.SetActive(true);
 
             yield return new WaitForSeconds(0.1f);
-            // �� Ȱ��ȭ ���
+           
             asyncOperation.allowSceneActivation = true;
 
+        }
+
+        bool googleLogin() {
+            bool isLogin = false;
+            string userId;
+
+            #if UNITY_EDITOR
+                Debug.Log("구글 로그인 성공");
+                isLogin = true;
+            #else
+                if(PlayGamesPlatform.Instance.localUser.authenticated){
+                    Debug.Log("이미 로그인 되어있음");
+                    isLogin = true;
+                } else {
+                    Social.localUser.Authenticate((bool success) => {
+                        if(success){
+                            Debug.Log("구글 로그인 성공");
+                            userId = Social.localUser.id;
+                            isLogin = true;
+                        } else {
+                            Debug.Log("구글 로그인 실패");
+                            isLogin = false;
+                        }
+                    });
+                }
+            #endif
+
+            return isLogin;
         }
     }
 }

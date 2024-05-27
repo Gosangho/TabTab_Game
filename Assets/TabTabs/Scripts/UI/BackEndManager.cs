@@ -32,16 +32,7 @@ public class BackEndManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var bro = Backend.Initialize(true); // 뒤끝 초기화
 
-        // 뒤끝 초기화에 대한 응답값
-        if(bro.IsSuccess()) {
-            Debug.Log("초기화 성공 : " + bro); // 성공일 경우 statusCode 204 Success
-            // Application 버전 확인
-            CheckApplicationVersion();
-        } else {
-            Debug.LogError("초기화 실패 : " + bro); // 실패일 경우 statusCode 400대 에러 발생
-        }
     }
 
     // Update is called once per frame
@@ -56,6 +47,18 @@ public class BackEndManager : MonoBehaviour
      
     }
 
+    public void broInit()
+    {
+        var bro = Backend.Initialize(true); // 뒤끝 초기화
+
+        // 뒤끝 초기화에 대한 응답값
+        if(bro.IsSuccess()) {
+            Debug.Log("초기화 성공 : " + bro); // 성공일 경우 statusCode 204 Success
+        } else {
+            Debug.LogError("초기화 실패 : " + bro); // 실패일 경우 statusCode 400대 에러 발생
+        }
+    }
+
     void backendCallback(BackendReturnObject BRO)
     {
 
@@ -68,8 +71,8 @@ public class BackEndManager : MonoBehaviour
 
             // 서버시간 획득
             Debug.Log(Backend.Utils.GetServerTime());
-            // Application 버전 확인
-            CheckApplicationVersion();
+
+            StartCoroutine(CheckApplicationVersion());
         }
         // 초기화 실패한 경우 실행
         else
@@ -78,10 +81,9 @@ public class BackEndManager : MonoBehaviour
         }
     }
 
-
-    private void CheckApplicationVersion()
+    // Application 버전 확인
+    IEnumerator CheckApplicationVersion()
     {
-        Debug.Log("version info - ");
         LoginGuestBackend();
        /* Backend.Utils.GetLatestVersion(versionBRO =>
         {
@@ -106,6 +108,8 @@ public class BackEndManager : MonoBehaviour
                 LoginGuestBackend();
             }
         });*/
+        Debug.Log("version info - ");
+        yield return new WaitForSeconds(0.1f);
     }
 
 
@@ -114,16 +118,17 @@ public class BackEndManager : MonoBehaviour
     {
         Debug.Log("로그인 callback - ");
 
-        BackendReturnObject bro = Backend.BMember.GuestLogin("게스트 로그인으로 로그인함");
+        BackendReturnObject bro = Backend.BMember.GuestLogin();
          Debug.Log("로그인 결과 :" + bro);
         if(bro.IsSuccess())
         {
+                 Debug.Log("로그인 결과ID :" + Backend.BMember.GetGuestID());
             DataManager.Instance.playerData.PlayerId = Backend.BMember.GetGuestID(); 
            
             string originalString = DataManager.Instance.playerData.PlayerId;
         
 
-            Debug.Log("로컬 기기에 저장된 아이디 :" + DataManager.Instance.playerData.PlayerId);
+            Debug.Log("로컬 기기에 저장된 아이디1 :" + DataManager.Instance.playerData.PlayerId);
 
             DBInitGetDate();
             DBInitCharacterDate();
@@ -136,7 +141,7 @@ public class BackEndManager : MonoBehaviour
            
             string originalString = DataManager.Instance.playerData.PlayerId;
 
-            Debug.Log("로컬 기기에 저장된 아이디 :" + DataManager.Instance.playerData.PlayerId);
+            Debug.Log("로컬 기기에 저장된 아이디2 :" + DataManager.Instance.playerData.PlayerId);
 
             DBInitGetDate();
             DBInitCharacterDate();
@@ -147,6 +152,7 @@ public class BackEndManager : MonoBehaviour
     // 동기 방식으로 구현
     public void DBInitGetDate() {
         Where where = new Where();
+
         where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
 
         var bro = Backend.GameData.GetMyData("playerData", where, 1);
@@ -231,6 +237,8 @@ public class BackEndManager : MonoBehaviour
     IEnumerator DoDbSaveGameData() {
         // 해당 계정의 기존 데이터가 있는지 확인
         Where where = new Where();
+
+        Debug.Log("DbSaveGameData::serverwhereStart:"+DataManager.Instance.playerData.PlayerId);
         where.Equal("PlayerId",  DataManager.Instance.playerData.PlayerId);
 
         Debug.Log("DbSaveGameData::serverwhereStart");

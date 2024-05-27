@@ -87,7 +87,7 @@ namespace TabTabs.NamChanwoo
 
                 DataManager.Instance.swordGirl1.characterName = "Lana";
                 characterName  = DataManager.Instance.swordGirl1.characterName;
-              //  BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl1, inputScore, isRecord);
+                BackEndManager.Instance.SaveBestScore(DataManager.Instance.swordGirl1, inputScore, isRecord);
               
             }
             else if (SelectCharacter.swordGirl2)
