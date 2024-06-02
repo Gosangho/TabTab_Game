@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-using GooglePlayGames;
 
 namespace TabTabs.NamChanwoo
 {
@@ -20,15 +19,7 @@ namespace TabTabs.NamChanwoo
 
         public Camera cam;
 
-        string sceneNameToLoad = "Opening"; 
-        string sceneNameToLoby = "lobby"; 
-
-        void Awake()
-        {
-            //구글 로그인
-            PlayGamesPlatform.DebugLogEnabled = true;
-            PlayGamesPlatform.Activate();
-        }
+  
 
 
         void Start()
@@ -41,7 +32,7 @@ namespace TabTabs.NamChanwoo
                 loadingSliderBarObject.SetActive(false);
                 loadingNumberText.text = "로그인 중입니다.";
                 StartCoroutine(LoginLoading());     
-            } else {
+            }  else {
                 StartCoroutine(Loading());
             }
         }
@@ -51,10 +42,12 @@ namespace TabTabs.NamChanwoo
         {
             yield return new WaitForSeconds(1f);
             
-            if(googleLogin()) {
-                BackEndManager.Instance.broInit();
-                SceneManager.LoadScene(sceneNameToLoby);
-            }
+            // 뒤끝&구글 초기화
+            BackEndManager.Instance.broInit();
+
+            FadeScene.isLogin= false;
+
+            BackEndManager.Instance.gameInitInfo();
         }
 
        
@@ -121,33 +114,7 @@ namespace TabTabs.NamChanwoo
 
         }
 
-        bool googleLogin() {
-            bool isLogin = false;
-            string userId;
-
-            #if UNITY_EDITOR
-                Debug.Log("구글 로그인 성공");
-                isLogin = true;
-            #else
-                if(PlayGamesPlatform.Instance.localUser.authenticated){
-                    Debug.Log("이미 로그인 되어있음");
-                    isLogin = true;
-                } else {
-                    Social.localUser.Authenticate((bool success) => {
-                        if(success){
-                            Debug.Log("구글 로그인 성공");
-                            userId = Social.localUser.id;
-                            isLogin = true;
-                        } else {
-                            Debug.Log("구글 로그인 실패");
-                            isLogin = false;
-                        }
-                    });
-                }
-            #endif
-
-            return isLogin;
-        }
+       
     }
 }
 

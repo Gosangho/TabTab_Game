@@ -7,6 +7,10 @@ using UnityEngine.Purchasing;
 using BackEnd;
 using static BackEnd.SendQueue;
 using LitJson;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
+using UnityEngine.SceneManagement;
+
 
 public class BackEndManager : MonoBehaviour
 {
@@ -49,6 +53,19 @@ public class BackEndManager : MonoBehaviour
 
     public void broInit()
     {
+        //구글 로그인
+        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration
+        .Builder()
+       // .RequestServerAuthCode(false)
+       // .RequestIdToken()
+        .Build();
+
+        //커스텀 된 정보로 GPGS 초기화
+        PlayGamesPlatform.InitializeInstance(config);
+        PlayGamesPlatform.DebugLogEnabled = true;
+        PlayGamesPlatform.Activate();
+
+
         var bro = Backend.Initialize(true); // 뒤끝 초기화
 
         // 뒤끝 초기화에 대한 응답값
@@ -57,6 +74,8 @@ public class BackEndManager : MonoBehaviour
         } else {
             Debug.LogError("초기화 실패 : " + bro); // 실패일 경우 statusCode 400대 에러 발생
         }
+
+
     }
 
     void backendCallback(BackendReturnObject BRO)
@@ -71,8 +90,6 @@ public class BackEndManager : MonoBehaviour
 
             // 서버시간 획득
             Debug.Log(Backend.Utils.GetServerTime());
-
-            StartCoroutine(CheckApplicationVersion());
         }
         // 초기화 실패한 경우 실행
         else
@@ -81,10 +98,14 @@ public class BackEndManager : MonoBehaviour
         }
     }
 
+    public void gameInitInfo() {
+        StartCoroutine(CheckApplicationVersion());
+    }
+
     // Application 버전 확인
     IEnumerator CheckApplicationVersion()
     {
-        LoginGuestBackend();
+        // 앱 버전 체크 구현 위치
        /* Backend.Utils.GetLatestVersion(versionBRO =>
         {
             if (versionBRO.IsSuccess())
@@ -108,44 +129,78 @@ public class BackEndManager : MonoBehaviour
                 LoginGuestBackend();
             }
         });*/
+
+        //구글 계정 확인
+        if(googleLogin()) {
+            // 사용자 정보 확인
+            LoginBackend();
+        }
+        
         Debug.Log("version info - ");
         yield return new WaitForSeconds(0.1f);
     }
 
+    bool googleLogin() {
+        bool isLogin = false;
+        string userId ="115136368152474690130";
+        string userName ="lsh235s";
+
+        #if UNITY_EDITOR
+            BackendReturnObject BRO = Backend.BMember.CustomSignUp(userId, userName);
+            isLogin = true;
+       
+            Debug.Log(BRO);
+        #else
+            if(Social.localUser.authenticated == true){
+                userId = Social.localUser.id;
+                userName = Social.localUser.userName;
+                BackendReturnObject BRO = Backend.BMember.CustomLogin(userId, userName);
+        
+                Debug.Log("이미 로그인 되어있음 "+userId+"/"+userName);
+                Debug.Log(BRO);
+                isLogin = true;
+            } else {
+                Social.localUser.Authenticate((bool success, string message) => {
+                    if(success){
+                        Debug.Log("구글 로그인 성공 "+userId+"/"+userName);
+                        Debug.Log("message : "+message);
+                        // 로그인 성공 -> 뒤끝 서버에 획득한 구글 토큰으로 가입 요청
+                        BackendReturnObject BRO = Backend.BMember.CustomSignUp(userId, userName);
+
+                        Debug.Log(BRO);
+                        isLogin = true;
+                    } else {
+                        Debug.Log("구글 로그인 실패");
+                        Debug.Log("message : "+message);
+                        isLogin = false;
+                    }
+                });
+            }
+        #endif
+
+        Backend.BMember.CustomLogin(userId, userName);
+
+        DataManager.Instance.playerData.PlayerId = userId;
+
+        return isLogin;
+    }
+
+    
+
 
     // 사용자 로그인 동기 방식으로 구현
-    public void LoginGuestBackend()
+    public void LoginBackend()
     {
-        Debug.Log("로그인 callback - ");
+        DBInitGetDate();
+        DBInitCharacterDate();
+        // 로그인 이후 닉네임 생성한 사용자 일경우
 
-        BackendReturnObject bro = Backend.BMember.GuestLogin();
-         Debug.Log("로그인 결과 :" + bro);
-        if(bro.IsSuccess())
-        {
-                 Debug.Log("로그인 결과ID :" + Backend.BMember.GetGuestID());
-            DataManager.Instance.playerData.PlayerId = Backend.BMember.GetGuestID(); 
-           
-            string originalString = DataManager.Instance.playerData.PlayerId;
-        
+        if("default".Equals( DataManager.Instance.getCharacter(4)) ) {
+            SceneManager.LoadScene("Opening");
+        }  else {
+            SceneManager.LoadScene("lobby");
+        }
 
-            Debug.Log("로컬 기기에 저장된 아이디1 :" + DataManager.Instance.playerData.PlayerId);
-
-            DBInitGetDate();
-            DBInitCharacterDate();
-        } else {
-            Backend.BMember.DeleteGuestInfo(); 
-
-            BackendReturnObject bros = Backend.BMember.GuestLogin("게스트 로그인으로 로그인함");
-
-            DataManager.Instance.playerData.PlayerId = Backend.BMember.GetGuestID(); 
-           
-            string originalString = DataManager.Instance.playerData.PlayerId;
-
-            Debug.Log("로컬 기기에 저장된 아이디2 :" + DataManager.Instance.playerData.PlayerId);
-
-            DBInitGetDate();
-            DBInitCharacterDate();
-        }  
     }
 
     // 사용자 초기 정보 가져오기

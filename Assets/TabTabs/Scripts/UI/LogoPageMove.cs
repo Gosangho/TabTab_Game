@@ -22,6 +22,7 @@ public class LogoPageMove : MonoBehaviour
 
     private void AnimationComplete(Spine.TrackEntry trackEntry)
     {
+    
         FadeSceneInstance.LoadLogoLoginScene();
     }
 

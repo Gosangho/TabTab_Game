@@ -12,7 +12,6 @@ public class FadeScene : MonoBehaviour
     public static bool isBattle2 = false;
     public static bool isLobby = false;
     public static bool isTutorial = false;
-    public static bool isOpening = false;
 
     public static bool isLogin = false;
 
@@ -100,4 +99,6 @@ public class FadeScene : MonoBehaviour
         isLogin = true;
         SceneManager.LoadScene(6);
     }
+
+
 }

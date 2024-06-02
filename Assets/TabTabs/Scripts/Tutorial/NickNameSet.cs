@@ -29,6 +29,10 @@ namespace TabTabs.NamChanwoo
       {
         displayText = InputField.GetComponent<TextMeshProUGUI>();
         inputTexts = InputField.GetComponent<TMP_InputField>();
+
+        if(DataManager.Instance.playerData.MakeNickName==true) { // 닉네임 생성 여부 확인
+          decideButtonEvent();
+        }
       }
 
     
