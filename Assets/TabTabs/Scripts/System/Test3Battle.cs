@@ -24,12 +24,14 @@ namespace TabTabs.NamChanwoo
         public EnemyBase RightEnemy;
         public CharacterBase CharacterBaseInstance;
         public List<EnemyBase> SceneEnemyList = new List<EnemyBase>();
+        public List<GameObject> right_Monster = new List<GameObject>();
+        public List<GameObject> left_Monster = new List<GameObject>();
         public ENodeType ClickNode;
         public Button AttackButton;
         public Button SelectEnemyButton;
         public PlayerBase PlayerBaseInstance;
-        public GameObject Left_Ork;
-        public GameObject Right_Ork;
+        //public GameObject Left_Ork;
+        //public GameObject Right_Ork;
         public bool Right_MonsterDie; // ������ ���Ͱ� �׾������ true�� ���� -> ���� �� false�� ����
         public bool Left_MonsterDie;
         public Node NodeInstance;
@@ -291,9 +293,8 @@ namespace TabTabs.NamChanwoo
                     {// ���� ���ݽø� �ߵ��Ǵ� �ִϸ��̼�
                         if (SelectCharacter.swordGirl1)
                         {
-                            PlayerBase.PlayerAnim.SetTrigger("Start");
-                            //GameObject swordGirl1FirstAttack =
-                            //Instantiate(swordGirl1_FirstAttack, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
+                            GameObject swordGirl1FirstAttack =
+                            Instantiate(swordGirl1_FirstAttack, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                         }
                         else if (SelectCharacter.swordGirl2)
                         {
@@ -311,7 +312,6 @@ namespace TabTabs.NamChanwoo
                             Instantiate(leon_FirstAttack, PlayerBaseInstance.gameObject.transform.position, Quaternion.identity);
                         }
 
-                        //PlayerBaseInstance.PlayerAnim.SetTrigger("Atk_6");
 
                         FirstAttack = false;
                         float RandAttackSound = Random.value; // 0~1������ ������ ��
@@ -328,9 +328,11 @@ namespace TabTabs.NamChanwoo
                             audioManager.Instance.SfxAudioPlay("Char_Spirit");
                         }
                     }
+
                     //RandEffect();
                     RandAttackAudio();
                     RandEnemyHitAudio();
+
                     if (selectEnemy == RightEnemy)
                     {
                         RightEnemy.monster_anim.SetTrigger("Damage");
@@ -452,7 +454,7 @@ namespace TabTabs.NamChanwoo
                             continue_Button.gameObject.SetActive(true);
                         }
                     }
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_Turn");
+
                     ScoreSystemInstance.score += 1; // ���ݼ����� Score +1
 
                     if (SelectCharacter.swordGirl1)
@@ -609,7 +611,7 @@ namespace TabTabs.NamChanwoo
                             continue_Button.gameObject.SetActive(true);
                         }
                     }
-                    PlayerBase.PlayerAnim.SetTrigger("Atk_Turn");
+
                     ScoreSystemInstance.score += 1; // ���ݼ����� Score +1
 
                     if (SelectCharacter.swordGirl1)
@@ -876,12 +878,15 @@ namespace TabTabs.NamChanwoo
             
         public void StartSpawn()
         {
-            GameObject RightMonster = Right_Ork;
-            GameObject RightSpawnMonster = Instantiate(RightMonster, new Vector3(4.0f, 0.72f, 0), Quaternion.identity);
-            Vector3 scale = RightSpawnMonster.transform.localScale;
+            // 오른쪽 몬스터 스폰
+            int randMonster = 0;
+            randMonster = Random.Range(0, 4);
+            GameObject rightMonster = right_Monster[randMonster];
+            GameObject rightSpawnMonster = Instantiate(rightMonster, new Vector3(4.0f, 0.72f, 0), Quaternion.identity);
+            Vector3 scale = rightSpawnMonster.transform.localScale;
             scale.x *= -1;
-            RightSpawnMonster.transform.localScale = scale;
-            EnemyBase spawnEnemy = RightSpawnMonster.GetComponent<EnemyBase>();
+            rightSpawnMonster.transform.localScale = scale;
+            EnemyBase spawnEnemy = rightSpawnMonster.GetComponent<EnemyBase>();
             if (spawnEnemy != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.
@@ -889,10 +894,11 @@ namespace TabTabs.NamChanwoo
             }
             RightEnemy = spawnEnemy; // �� ����
             selectEnemy = spawnEnemy; // ������ ���Ͱ� ����Ʈ��
-
-            GameObject LefttMonster = Left_Ork;
-            GameObject LeftSpawnMonster = Instantiate(LefttMonster, new Vector3(-4.0f, 0.72f, 0), Quaternion.identity);
-            EnemyBase spawnEnemy2 = LeftSpawnMonster.GetComponent<EnemyBase>();
+            // 왼쪽 몬스터 스폰
+            randMonster = Random.Range(0, 4);
+            GameObject lefttMonster = left_Monster[randMonster];
+            GameObject leftSpawnMonster = Instantiate(lefttMonster, new Vector3(-4.0f, 0.72f, 0), Quaternion.identity);
+            EnemyBase spawnEnemy2 = leftSpawnMonster.GetComponent<EnemyBase>();
             if (spawnEnemy2 != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.
@@ -902,12 +908,15 @@ namespace TabTabs.NamChanwoo
         }
         public void RightMonsterSpawn()
         {
-            GameObject RightMonster = Right_Ork;
-            GameObject RightSpawnMonster = Instantiate(RightMonster, new Vector3(4.0f, 0.72f, 0), Quaternion.identity);
-            Vector3 scale = RightSpawnMonster.transform.localScale;
+            // 오른쪽 몬스터 스폰
+            int randMonster = 0;
+            randMonster = Random.Range(0, 4);
+            GameObject rightMonster = right_Monster[randMonster];
+            GameObject rightSpawnMonster = Instantiate(rightMonster, new Vector3(4.0f, 0.72f, 0), Quaternion.identity);
+            Vector3 scale = rightSpawnMonster.transform.localScale;
             scale.x *= -1;
-            RightSpawnMonster.transform.localScale = scale;
-            EnemyBase spawnEnemy = RightSpawnMonster.GetComponent<EnemyBase>();
+            rightSpawnMonster.transform.localScale = scale;
+            EnemyBase spawnEnemy = rightSpawnMonster.GetComponent<EnemyBase>();
             if (spawnEnemy != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.
@@ -918,9 +927,12 @@ namespace TabTabs.NamChanwoo
         }
         public void LeftMonsterSpawn()
         {
-            GameObject LefttMonster = Left_Ork;
-            GameObject LeftSpawnMonster = Instantiate(LefttMonster, new Vector3(-4.0f, 0.72f, 0), Quaternion.identity);
-            EnemyBase spawnEnemy2 = LeftSpawnMonster.GetComponent<EnemyBase>();
+            // 왼쪽 몬스터 스폰
+            int randMonster = 0;
+            randMonster = Random.Range(0, 4);
+            GameObject lefttMonster = left_Monster[randMonster];
+            GameObject leftSpawnMonster = Instantiate(lefttMonster, new Vector3(-4.0f, 0.72f, 0), Quaternion.identity);
+            EnemyBase spawnEnemy2 = leftSpawnMonster.GetComponent<EnemyBase>();
             if (spawnEnemy2 != null)
             {
                 //GameManager.NotificationSystem.SceneMonsterSpawned.Invoke(spawnEnemy); // ���Ͱ� �����Ǿ����� �ý��ۿ� �˸��ϴ�.

@@ -27,7 +27,7 @@ using System;
       public bool SwordGirl2Get; // �÷��̾ �������2�� �����ϰ��ִ����� ����
       public bool SwordGirl3Get; // �÷��̾ �������3�� �����ϰ��ִ����� ����
       public bool LeonGet; // �÷��̾ ������ �����ϰ��ִ����� ����
-      public bool[] PlayerAttandence = new bool[31]; // �÷��̾��� �⼮��Ȳ
+      public bool[] PlayerAttandence = new bool[28]; // �÷��̾��� �⼮��Ȳ
   }
    
 

@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 1641563902055648437}
   - component: {fileID: 1641563902055648438}
   m_Layer: 7
-  m_Name: Right_Orc_TypeA 1
+  m_Name: Right_Orc_TypeA 1_Except
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
