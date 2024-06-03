@@ -250,7 +250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641563900929858474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.024, y: -0.04, z: 0}
+  m_LocalPosition: {x: 0.024, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -304,8 +304,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641563902055648439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.285, y: 0.681, z: 0}
-  m_LocalScale: {x: -0.9, y: 0.9, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 575868305401118587}
@@ -331,7 +331,7 @@ MonoBehaviour:
   BattleInstance4: {fileID: 0}
   m_attackGaugeSlider: {fileID: 0}
   m_maxAttackGauge: 2
-  orc2Die: {fileID: 8331212226777391327, guid: bcc7726901eee954e9e88501ef88061b, type: 3}
+  monsterDie_Effect: {fileID: 6389773153908608108, guid: a435ebc5ae04cb449aa62cdb019eb457, type: 3}
   monster_anim: {fileID: 2076180658855224018}
   m_moveSpeed: 8
 --- !u!114 &1641563902055648436
@@ -384,7 +384,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: 0.49}
+  m_Offset: {x: 0.02, y: 0.44}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -395,7 +395,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 1}
+  m_Size: {x: 0.6, y: 0.9}
   m_EdgeRadius: 0
 --- !u!1 &4299941830858510117
 GameObject:
@@ -410,7 +410,6 @@ GameObject:
   - component: {fileID: 8324967719110061605}
   - component: {fileID: 2076180658855224018}
   - component: {fileID: 1616796886929655774}
-  - component: {fileID: 2405225858681166645}
   m_Layer: 0
   m_Name: Spine Mecanim GameObject (orc_1)
   m_TagString: Untagged
@@ -427,7 +426,7 @@ Transform:
   m_GameObject: {fileID: 4299941830858510117}
   m_LocalRotation: {x: -0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.4, y: 0.4, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1641563902055648434}
@@ -461,7 +460,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4f95c4b3776ad8947872a0031e564885, type: 2}
+  - {fileID: 2100000, guid: 6386f07de55da4849be725614d532771, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -493,7 +492,7 @@ Animator:
   m_GameObject: {fileID: 4299941830858510117}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: daac316ececa54f4297ecacf80a5cab3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6f49a26b5c40f0c47b0056672c23ecd7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -516,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9db98c60740638449864eb028fbe7ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 473093631c7041b46ba33c3676a233ac, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 6c076fff59f4ec8418a2182df49af699, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
@@ -545,17 +544,3 @@ MonoBehaviour:
     layerMixModes: 01000000
     layerBlendModes: 01000000
   updateTiming: 1
---- !u!114 &2405225858681166645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4299941830858510117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 445b1c9f162479c469516fd357b41489, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newMaterial: {fileID: 2100000, guid: 4f95c4b3776ad8947872a0031e564885, type: 2}
-  Left_brightnessValue1: 0

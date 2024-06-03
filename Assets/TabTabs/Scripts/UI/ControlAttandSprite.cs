@@ -38,11 +38,13 @@ public class ControlAttandSprite : MonoBehaviour
             AttandManager.AttandInstance.attandCount++;
             DataManager.Instance.SaveGameData();
             Debug.Log("������ �⼮���� ����");
+
             if (AttandManager.AttandInstance.attandCount >= 14)
             {
                 attandRewardCharacterButton.image.sprite = attandRewardCharacterSprite;
                 attandRewardGoldButton.image.sprite = attandRewardGoldSprite;
             }
+
             BackEndManager.Instance.DbSaveGameData();
         }
     }

@@ -140,10 +140,10 @@ public class SelectCharacter : MonoBehaviour
             
             DataManager.Instance.selectCharacter(0, "Sword3");
         }
-        else
-        {
-            swordGirl3Purchase.gameObject.SetActive(true);
-        }
+        //else
+        //{
+        //    swordGirl3Purchase.gameObject.SetActive(true);
+        //}
         //UpdateImage(swordGirl2Image);
         characterName.text = "캐릭터 :  Zena";
         characterBestScore.text = "최고기록 : " + DataManager.Instance.swordGirl3.bestScore.ToString();

@@ -651,12 +651,20 @@ MonoBehaviour:
   RightEnemy: {fileID: 0}
   CharacterBaseInstance: {fileID: 0}
   SceneEnemyList: []
+  right_Monster:
+  - {fileID: 1641563902055648439, guid: d5fd64cc2af4fcc48a7cec2237b0234d, type: 3}
+  - {fileID: 1641563902055648439, guid: 9a69ea8093fb3bb4d90fdfdbb2c7998e, type: 3}
+  - {fileID: 2325397780501413244, guid: 8ae39c42b6485694e9a965bd9aaa2625, type: 3}
+  - {fileID: 6842859088964726447, guid: 3d6e9095d50740e4dbe9539c482c7dd7, type: 3}
+  left_Monster:
+  - {fileID: 1641563902055648439, guid: d5fd64cc2af4fcc48a7cec2237b0234d, type: 3}
+  - {fileID: 1641563902055648439, guid: 9a69ea8093fb3bb4d90fdfdbb2c7998e, type: 3}
+  - {fileID: 2325397780501413244, guid: 8ae39c42b6485694e9a965bd9aaa2625, type: 3}
+  - {fileID: 6842859088964726447, guid: 3d6e9095d50740e4dbe9539c482c7dd7, type: 3}
   ClickNode: 0
   AttackButton: {fileID: 337069148}
   SelectEnemyButton: {fileID: 1488109284}
   PlayerBaseInstance: {fileID: 0}
-  Left_Ork: {fileID: 1641563902055648439, guid: d5fd64cc2af4fcc48a7cec2237b0234d, type: 3}
-  Right_Ork: {fileID: 1641563902055648439, guid: d5fd64cc2af4fcc48a7cec2237b0234d, type: 3}
   Right_MonsterDie: 0
   Left_MonsterDie: 0
   NodeInstance: {fileID: 0}
@@ -6927,7 +6935,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441415909}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
