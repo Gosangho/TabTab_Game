@@ -106,37 +106,25 @@ public class BackEndManager : MonoBehaviour
     IEnumerator CheckApplicationVersion()
     {
         // 앱 버전 체크 구현 위치
-       /* Backend.Utils.GetLatestVersion(versionBRO =>
+        Debug.Log("GetLatestVersion Start");
+        var bro = Backend.Utils.GetLatestVersion();
+        Debug.Log(bro);
+        string version = bro.GetReturnValuetoJSON()["version"].ToString();
+        //최신 버전일 경우
+        if(version  == Application.version)
         {
-            if (versionBRO.IsSuccess())
-            {
-                string latest = versionBRO.GetReturnValuetoJSON()["version"].ToString();
-                Debug.Log("version info - current: " + currentVersion + " latest: " + latest);
-                if (currentVersion != latest)
-                {
-                    int type = (int)versionBRO.GetReturnValuetoJSON()["type"];
-                    // type = 1 : 선택, type = 2 : 강제
-                }
-                else
-                {
-                    // 뒷끝 게스트 로그인 시도
-                    LoginGuestBackend();
-                }
+            //구글 계정 확인
+            if(googleLogin()) {
+                // 사용자 정보 확인
+                LoginBackend();
             }
-            else
-            {
-                // 뒷끝 토큰 로그인 시도
-                LoginGuestBackend();
-            }
-        });*/
-
-        //구글 계정 확인
-        if(googleLogin()) {
-            // 사용자 정보 확인
-            LoginBackend();
+        } else {
+            string url = "https://play.google.com/store/apps/details?id=pixeldust.tabtab.com" ;
+            Application.OpenURL(url);
         }
         
-        Debug.Log("version info - ");
+
+
         yield return new WaitForSeconds(0.1f);
     }
 
