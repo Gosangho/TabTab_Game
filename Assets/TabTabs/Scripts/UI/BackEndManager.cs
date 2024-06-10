@@ -111,13 +111,12 @@ public class BackEndManager : MonoBehaviour
         Debug.Log(bro);
         string version = bro.GetReturnValuetoJSON()["version"].ToString();
         //최신 버전일 경우
+        Debug.Log(version+"/"+Application.version);
         if(version  == Application.version)
         {
             //구글 계정 확인
-            if(googleLogin()) {
-                // 사용자 정보 확인
-                LoginBackend();
-            }
+            googleLogin();
+          
         } else {
             string url = "https://play.google.com/store/apps/details?id=pixeldust.tabtab.com" ;
             Application.OpenURL(url);
@@ -138,6 +137,8 @@ public class BackEndManager : MonoBehaviour
             isLogin = true;
        
             Debug.Log(BRO);
+            // 사용자 정보 확인
+            LoginBackend();
         #else
             if(Social.localUser.authenticated == true){
                 userId = Social.localUser.id;
@@ -147,14 +148,17 @@ public class BackEndManager : MonoBehaviour
                 Debug.Log("이미 로그인 되어있음 "+userId+"/"+userName);
                 Debug.Log(BRO);
                 isLogin = true;
+                // 사용자 정보 확인
+                LoginBackend();
             } else {
                 Social.localUser.Authenticate((bool success, string message) => {
                     if(success){
+                        userId = Social.localUser.id;
+                        userName = Social.localUser.userName;
                         Debug.Log("구글 로그인 성공 "+userId+"/"+userName);
                         Debug.Log("message : "+message);
                         // 로그인 성공 -> 뒤끝 서버에 획득한 구글 토큰으로 가입 요청
                         BackendReturnObject BRO = Backend.BMember.CustomSignUp(userId, userName);
-
                         Debug.Log(BRO);
                         isLogin = true;
                     } else {
@@ -162,13 +166,13 @@ public class BackEndManager : MonoBehaviour
                         Debug.Log("message : "+message);
                         isLogin = false;
                     }
+                    DataManager.Instance.playerData.PlayerId = userId;
+
+                    Backend.BMember.CustomLogin(userId, userName);
+                    LoginBackend();
                 });
             }
         #endif
-
-        Backend.BMember.CustomLogin(userId, userName);
-
-        DataManager.Instance.playerData.PlayerId = userId;
 
         return isLogin;
     }
