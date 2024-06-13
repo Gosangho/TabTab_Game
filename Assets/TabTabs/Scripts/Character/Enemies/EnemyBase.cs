@@ -9,6 +9,15 @@ using UnityEngine.SceneManagement;
 
 namespace TabTabs.NamChanwoo
 {
+
+    public enum MonsterEnum
+    {
+        Small,
+        Goblin,
+        Ork1,
+        Ork2
+    }
+
     public class EnemyBase : CharacterBase
     {
         private NodeArea m_nodeArea;
@@ -24,8 +33,9 @@ namespace TabTabs.NamChanwoo
         [FormerlySerializedAs("m_chargAttackGauge")] [SerializeField] private float m_maxAttackGauge = 10.0f; 
         private float m_attackGauge = 10.0f; // 공격 쿨다운
         public GameObject monsterDie_Effect;
-
         public Animator monster_anim;
+        [SerializeField]
+        public MonsterEnum MonsterEnum;
         
         
         public float AttackGauge

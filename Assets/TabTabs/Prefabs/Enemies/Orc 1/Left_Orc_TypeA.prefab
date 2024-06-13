@@ -333,6 +333,7 @@ MonoBehaviour:
   m_maxAttackGauge: 2
   monsterDie_Effect: {fileID: 6389773153908608108, guid: a435ebc5ae04cb449aa62cdb019eb457, type: 3}
   monster_anim: {fileID: 2076180658855224018}
+  MonsterEnum: 2
   m_moveSpeed: 8
 --- !u!114 &1641563902055648436
 MonoBehaviour:
