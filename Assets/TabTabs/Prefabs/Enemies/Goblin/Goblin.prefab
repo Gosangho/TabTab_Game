@@ -282,6 +282,7 @@ MonoBehaviour:
   m_maxAttackGauge: 2
   monsterDie_Effect: {fileID: 4383068915193334722, guid: f0517290104dd7748999b50b107bfc01, type: 3}
   monster_anim: {fileID: 6842859089356304240}
+  MonsterEnum: 1
   m_moveSpeed: 8
 --- !u!114 &6842859088964726444
 MonoBehaviour:
@@ -344,7 +345,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 0.45, y: 0.83}
+  m_Size: {x: 0.6, y: 0.46}
   m_EdgeRadius: 0
 --- !u!1 &6842859089356304243
 GameObject:
@@ -540,7 +541,7 @@ MonoBehaviour:
   boxCollider2D: {fileID: 6842859088964726446}
   skeletonAnimation: {fileID: 0}
   m_areaType: 0
-  m_rows: 7
+  m_rows: 3
   m_columns: 3
   m_spineBoundOffset: {x: 0, y: 0}
   m_debugVisible: 1

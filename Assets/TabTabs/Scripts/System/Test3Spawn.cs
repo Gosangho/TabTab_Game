@@ -26,6 +26,8 @@ namespace TabTabs.NamChanwoo
         public int LeftAttackNum;
         int RightRow;
         int LeftRow;
+        //int orkFirstRow;
+        //int goblinFirstRow;
 
         /*[SerializeField] private GameObject m_Enemy;*/
 
@@ -88,7 +90,6 @@ namespace TabTabs.NamChanwoo
             }
 
             NodeArea nodeArea = enemyBase.nodeArea;
-
             // NodeArea�� �߰ߵǾ����� Ȯ���Ͻʽÿ�.
             if (nodeArea == null)
             {
@@ -102,6 +103,7 @@ namespace TabTabs.NamChanwoo
             for (RightRow = 0; RightRow < spawnNodeNum; RightRow++)
             {
                 int ranAttackNode = Random.Range(0, 2); // 50�ۼ�Ʈ Ȯ��
+
                 if (ranAttackNode == 0)
                 {
                     // �� �࿡�� ���Ƿ� ���� �����մϴ�.
@@ -126,27 +128,144 @@ namespace TabTabs.NamChanwoo
 
                     //���ʹ̰� �����ϴ� ��忡 �߰��մϴ�.
                     enemyBase.AddNodes(nodeComponent);
+
                     RightAttackNum++; // ������ ���Ϳ� ��� ��������Ʈ�� �����Ǿ����� �˷��ִ� ����
+
+                    //if (RightAttackNum == 1 && enemyBase.MonsterEnum == MonsterEnum.Ork1 || enemyBase.MonsterEnum == MonsterEnum.Ork2)
+                    //{// 생성된 어택노드가 1개일떄 행번호 저장
+                    //    orkFirstRow = RightRow;
+                    //}
+                    //else if (RightAttackNum == 1 && enemyBase.MonsterEnum == MonsterEnum.Goblin)
+                    //{
+                    //    goblinFirstRow = RightRow;
+                    //}
                 }
                 else
                 {
                     Debug.Log("������ ������ ��������Ʈ�� �������� �ʽ��ϴ�.");
                 }
+            }
 
-                if (RightRow == 6 && RightAttackNum == 0)
-                {// for���� 7�� ������������ ������ ��������Ʈ�� 0�� �ϰ��(���ܼ���)
-                    int randColumn2 = UnityEngine.Random.Range(0, nodeArea.Columns);
-                    int randRow = UnityEngine.Random.Range(0, 7);
-                    GameObject nodePrefab2 = GetNodePrefab(randColumn2);
-                    Vector2 spawnPosition2 = nodeArea.GetGridPosition(randRow, randColumn2);
-                    GameObject spawnedNode2 = Instantiate(nodePrefab2, spawnPosition2, Quaternion.identity, nodeArea.transform);
-                    Node nodeComponent2 = spawnedNode2.GetComponent<Node>();
-                    nodeComponent2.Init_Right();
-                    //���ʹ̰� �����ϴ� ��忡 �߰��մϴ�.
-                    enemyBase.AddNodes(nodeComponent2);
+            if (enemyBase.MonsterEnum == MonsterEnum.Ork1 || enemyBase.MonsterEnum == MonsterEnum.Ork2)
+            {
+                //List<int> numbers = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };
+
+                //if (RightRow == 7 && RightAttackNum == 1)
+                //{
+                //    numbers.RemoveAt(orkFirstRow); // ork1, ork2일떄 1개의 어택노드가 생성되었다면 생성된 노드의 행 번호를 제거
+                //    int index = Random.Range(0, numbers.Count);
+                //    int ran1 = numbers[index];
+
+                //    int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
+                //    GameObject nodePrefab = GetNodePrefab(randColumn);
+                //    Vector2 spawnPosition = nodeArea.GetGridPosition(ran1, randColumn);
+                //    GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+                //    Node nodeComponent = spawnedNode.GetComponent<Node>();
+                //    nodeComponent.Init_Right();
+                //    enemyBase.AddNodes(nodeComponent);
+                //    RightAttackNum++;
+                //    numbers.Clear();
+                //}
+                if (RightRow == 7 && RightAttackNum == 0)
+                {// 생성된 어택노드가 0개라면 ork1, ork2의 어택노드를 최소 2개 생성
+                    //int index = Random.Range(0, numbers.Count);
+                    //int ran1 = numbers[index];
+                    //numbers.RemoveAt(index);
+                    int ran1 = UnityEngine.Random.Range(0, 7);
+                    int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
+                    GameObject nodePrefab = GetNodePrefab(randColumn);
+                    Vector2 spawnPosition = nodeArea.GetGridPosition(ran1, randColumn);
+                    GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+                    Node nodeComponent = spawnedNode.GetComponent<Node>();
+                    nodeComponent.Init_Right();
+                    enemyBase.AddNodes(nodeComponent);
+                    RightAttackNum++;
+
+                    //int index2 = Random.Range(0, numbers.Count);
+                    //int ran2 = numbers[index2];
+                    ////numbers.RemoveAt(index2);
+
+                    //int randColumn1 = UnityEngine.Random.Range(0, nodeArea.Columns);
+                    //GameObject nodePrefab1 = GetNodePrefab(randColumn1);
+                    //Vector2 spawnPosition1 = nodeArea.GetGridPosition(ran2, randColumn1);
+                    //GameObject spawnedNode1 = Instantiate(nodePrefab1, spawnPosition1, Quaternion.identity, nodeArea.transform);
+                    //Node nodeComponent1 = spawnedNode1.GetComponent<Node>();
+                    //nodeComponent1.Init_Right();
+                    //enemyBase.AddNodes(nodeComponent1);
+                    //RightAttackNum++;
+
+                    //numbers.Clear();
+                }
+            }
+            else if (enemyBase.MonsterEnum == MonsterEnum.Goblin)
+            {
+                //List<int> numbers = new List<int>() { 0, 1, 2 };
+
+                //if (RightRow == 3 && RightAttackNum == 1)
+                //{
+                //    numbers.RemoveAt(goblinFirstRow);
+                //    int index = Random.Range(0, numbers.Count);
+                //    int ran1 = numbers[index];
+
+                //    int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
+                //    GameObject nodePrefab = GetNodePrefab(randColumn);
+                //    Vector2 spawnPosition = nodeArea.GetGridPosition(ran1, randColumn);
+                //    GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+                //    Node nodeComponent = spawnedNode.GetComponent<Node>();
+                //    nodeComponent.Init_Right();
+                //    enemyBase.AddNodes(nodeComponent);
+                //    RightAttackNum++;
+                //    numbers.Clear();
+                //}
+                if (RightRow == 3 && RightAttackNum == 0)
+                {
+                    //int index = Random.Range(0, numbers.Count);
+                    //int ran1 = numbers[index];
+                    //numbers.RemoveAt(index);
+                    int ran1 = UnityEngine.Random.Range(0, 3);
+                    int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
+                    GameObject nodePrefab = GetNodePrefab(randColumn);
+                    Vector2 spawnPosition = nodeArea.GetGridPosition(ran1, randColumn);
+                    GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+                    Node nodeComponent = spawnedNode.GetComponent<Node>();
+                    nodeComponent.Init_Right();
+                    enemyBase.AddNodes(nodeComponent);
+                    RightAttackNum++;
+
+                    //int index2 = Random.Range(0, numbers.Count);
+                    //int ran2 = numbers[index2];
+                    //numbers.RemoveAt(index2);
+
+                    //int randColumn1 = UnityEngine.Random.Range(0, nodeArea.Columns);
+                    //GameObject nodePrefab1 = GetNodePrefab(randColumn1);
+                    //Vector2 spawnPosition1 = nodeArea.GetGridPosition(ran2, randColumn1);
+                    //GameObject spawnedNode1 = Instantiate(nodePrefab1, spawnPosition1, Quaternion.identity, nodeArea.transform);
+                    //Node nodeComponent1 = spawnedNode1.GetComponent<Node>();
+                    //nodeComponent1.Init_Right();
+                    //enemyBase.AddNodes(nodeComponent1);
+                    //RightAttackNum++;
+
+                    //numbers.Clear();
+                }
+            }
+            else
+            {// MonsterEnum이 Small
+                if (RightRow == 1 && RightAttackNum == 0)
+                {
+                    int randColumn = UnityEngine.Random.Range(0, 1);
+                    int randRow = UnityEngine.Random.Range(0, nodeArea.Rows);
+                    GameObject nodePrefab = GetNodePrefab(randColumn);
+                    Vector2 spawnPosition = nodeArea.GetGridPosition(randRow, randColumn);
+                    GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+                    Node nodeComponent = spawnedNode.GetComponent<Node>();
+                    nodeComponent.Init_Right();
+                    enemyBase.AddNodes(nodeComponent);
                     RightAttackNum++;
                 }
             }
+
+            //orkFirstRow = 0;
+            //goblinFirstRow = 0;
             RightRow = 0;
         }
         public void SpawnLeft_Node(EnemyBase enemyBase)
@@ -201,27 +320,142 @@ namespace TabTabs.NamChanwoo
 
                     //���ʹ̰� �����ϴ� ��忡 �߰��մϴ�.
                     enemyBase.AddNodes(nodeComponent);
+
                     LeftAttackNum++; // ���ʸ��Ϳ� ��� ��������Ʈ�� �����Ǿ����� �˷��ִ� ����
+
+                    //if (LeftAttackNum == 1 && enemyBase.MonsterEnum == MonsterEnum.Ork1 || enemyBase.MonsterEnum == MonsterEnum.Ork2)
+                    //{// 생성된 어택노드가 1개일떄 행번호 저장
+                    //    orkFirstRow = LeftRow;
+                    //}
+                    //else if (LeftAttackNum == 1 && enemyBase.MonsterEnum == MonsterEnum.Goblin)
+                    //{
+                    //    goblinFirstRow = LeftRow;
+                    //}
                 }
                 else
                 {// ������ �ʾҴٸ� ��������Ʈ�� �������� ����
                     Debug.Log("���� ������ ��������Ʈ�� �������� �ʽ��ϴ�.");
                 }
+            }
 
-                if (LeftRow == 6 && LeftAttackNum == 0)
-                {// for���� 7�� ������������ ������ ��������Ʈ�� 0�� �ϰ��(���ܼ���)
-                    int randColumn2 = UnityEngine.Random.Range(0, nodeArea.Columns);
-                    int randRow = UnityEngine.Random.Range(0, 7);
-                    GameObject nodePrefab2 = GetNodePrefab(randColumn2);
-                    Vector2 spawnPosition2 = nodeArea.GetGridPosition(randRow, randColumn2);
-                    GameObject spawnedNode2 = Instantiate(nodePrefab2, spawnPosition2, Quaternion.identity, nodeArea.transform);
-                    Node nodeComponent2 = spawnedNode2.GetComponent<Node>();
-                    nodeComponent2.Init_Right();
-                    //���ʹ̰� �����ϴ� ��忡 �߰��մϴ�.
-                    enemyBase.AddNodes(nodeComponent2);
+            if (enemyBase.MonsterEnum == MonsterEnum.Ork1 || enemyBase.MonsterEnum == MonsterEnum.Ork2)
+            {
+                //List<int> numbers = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };
+
+                //if (LeftRow == 7 && LeftAttackNum == 1)
+                //{
+                //    numbers.RemoveAt(orkFirstRow); // ork1, ork2일떄 1개의 어택노드가 생성되었다면 생성된 노드의 행 번호를 제거
+                //    int index = Random.Range(0, numbers.Count);
+                //    int ran1 = numbers[index];
+
+                //    int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
+                //    GameObject nodePrefab = GetNodePrefab(randColumn);
+                //    Vector2 spawnPosition = nodeArea.GetGridPosition(ran1, randColumn);
+                //    GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+                //    Node nodeComponent = spawnedNode.GetComponent<Node>();
+                //    nodeComponent.Init_Left();
+                //    enemyBase.AddNodes(nodeComponent);
+                //    LeftAttackNum++;
+                //    numbers.Clear();
+                //}
+                if (LeftRow == 7 && LeftAttackNum == 0)
+                {// 생성된 어택노드가 0개라면 ork1, ork2의 어택노드를 최소 2개 생성
+
+                    //int index = Random.Range(0, numbers.Count);
+                    //int ran1 = numbers[index];
+                    //numbers.RemoveAt(index);
+                    int ran1 = UnityEngine.Random.Range(0, 7);
+                    int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
+                    GameObject nodePrefab = GetNodePrefab(randColumn);
+                    Vector2 spawnPosition = nodeArea.GetGridPosition(ran1, randColumn);
+                    GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+                    Node nodeComponent = spawnedNode.GetComponent<Node>();
+                    nodeComponent.Init_Left();
+                    enemyBase.AddNodes(nodeComponent);
+                    LeftAttackNum++;
+
+                    //int index2 = Random.Range(0, numbers.Count);
+                    //int ran2 = numbers[index2];
+                    //numbers.RemoveAt(index2);
+
+                    //int randColumn1 = UnityEngine.Random.Range(0, nodeArea.Columns);
+                    //GameObject nodePrefab1 = GetNodePrefab(randColumn1);
+                    //Vector2 spawnPosition1 = nodeArea.GetGridPosition(ran2, randColumn1);
+                    //GameObject spawnedNode1 = Instantiate(nodePrefab1, spawnPosition1, Quaternion.identity, nodeArea.transform);
+                    //Node nodeComponent1 = spawnedNode1.GetComponent<Node>();
+                    //nodeComponent1.Init_Left();
+                    //enemyBase.AddNodes(nodeComponent1);
+                    //LeftAttackNum++;
+                    //numbers.Clear();
+                }
+            }
+            else if (enemyBase.MonsterEnum == MonsterEnum.Goblin)
+            {
+                //List<int> numbers = new List<int>() { 0, 1, 2 };
+
+                //if (LeftRow == 3 && LeftAttackNum == 1)
+                //{
+                //    numbers.RemoveAt(goblinFirstRow);
+                //    int index = Random.Range(0, numbers.Count);
+                //    int ran1 = numbers[index];
+
+                //    int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
+                //    GameObject nodePrefab = GetNodePrefab(randColumn);
+                //    Vector2 spawnPosition = nodeArea.GetGridPosition(ran1, randColumn);
+                //    GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+                //    Node nodeComponent = spawnedNode.GetComponent<Node>();
+                //    nodeComponent.Init_Left();
+                //    enemyBase.AddNodes(nodeComponent);
+                //    LeftAttackNum++;
+                //    numbers.Clear();
+                //}
+                if (LeftRow == 3 && LeftAttackNum == 0)
+                {
+                    //int index = Random.Range(0, numbers.Count);
+                    //int ran1 = numbers[index];
+                    //numbers.RemoveAt(index);
+                    int ran1 = UnityEngine.Random.Range(0, 3);
+                    int randColumn = UnityEngine.Random.Range(0, nodeArea.Columns);
+                    GameObject nodePrefab = GetNodePrefab(randColumn);
+                    Vector2 spawnPosition = nodeArea.GetGridPosition(ran1, randColumn);
+                    GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+                    Node nodeComponent = spawnedNode.GetComponent<Node>();
+                    nodeComponent.Init_Left();
+                    enemyBase.AddNodes(nodeComponent);
+                    LeftAttackNum++;
+
+                    //int index2 = Random.Range(0, numbers.Count);
+                    //int ran2 = numbers[index2];
+                    //numbers.RemoveAt(index2);
+
+                    //int randColumn1 = UnityEngine.Random.Range(0, nodeArea.Columns);
+                    //GameObject nodePrefab1 = GetNodePrefab(randColumn1);
+                    //Vector2 spawnPosition1 = nodeArea.GetGridPosition(ran2, randColumn1);
+                    //GameObject spawnedNode1 = Instantiate(nodePrefab1, spawnPosition1, Quaternion.identity, nodeArea.transform);
+                    //Node nodeComponent1 = spawnedNode1.GetComponent<Node>();
+                    //nodeComponent1.Init_Left();
+                    //enemyBase.AddNodes(nodeComponent1);
+                    //LeftAttackNum++;
+                    //numbers.Clear();
+                }
+            }
+            else
+            {// MonsterEnum이 Small
+                if (LeftRow == 1 && LeftAttackNum == 0)
+                {
+                    int randColumn = UnityEngine.Random.Range(0, 1);
+                    int randRow = UnityEngine.Random.Range(0, nodeArea.Rows);
+                    GameObject nodePrefab = GetNodePrefab(randColumn);
+                    Vector2 spawnPosition = nodeArea.GetGridPosition(randRow, randColumn);
+                    GameObject spawnedNode = Instantiate(nodePrefab, spawnPosition, Quaternion.identity, nodeArea.transform);
+                    Node nodeComponent = spawnedNode.GetComponent<Node>();
+                    nodeComponent.Init_Left();
+                    enemyBase.AddNodes(nodeComponent);
                     LeftAttackNum++;
                 }
             }
+            //orkFirstRow = 0;
+            //goblinFirstRow = 0;
             LeftRow = 0;
         }
 
