@@ -57,11 +57,6 @@ public class DataManager : MonoBehaviour
 
     public void LoadGameData()
     {
-        LoadCharacterData(swordGirl1FileName, ref swordGirl1);
-        LoadCharacterData(swordGirl2FileName, ref swordGirl2);
-        LoadCharacterData(swordGirl3FileName, ref swordGirl3);
-        LoadCharacterData(leonFileName, ref leon);
-
         string playerfilePath = Path.Combine(Application.persistentDataPath, playerDataFileName);
 
         if (File.Exists(playerfilePath))
@@ -69,6 +64,11 @@ public class DataManager : MonoBehaviour
             string playerjsonData = File.ReadAllText(playerfilePath);
             playerData = JsonUtility.FromJson<PlayerData>(playerjsonData);
         }
+
+        LoadCharacterData(swordGirl1FileName, ref swordGirl1);
+        LoadCharacterData(swordGirl2FileName, ref swordGirl2);
+        LoadCharacterData(swordGirl3FileName, ref swordGirl3);
+        LoadCharacterData(leonFileName, ref leon);
 
         Debug.Log("�ҷ����� �Ϸ�");
     }
@@ -106,7 +106,7 @@ public class DataManager : MonoBehaviour
         string playerjsonData = JsonUtility.ToJson(playerData, true);
 
         File.WriteAllText(playerfilePath, playerjsonData);
-        BackEndManager.Instance.DbSaveGameData();
+
     }
 
     private void OnApplicationQuit()

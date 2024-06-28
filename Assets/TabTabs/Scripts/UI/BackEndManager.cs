@@ -157,7 +157,6 @@ public class BackEndManager : MonoBehaviour
         string userName ="lsh235s";
 
         userId = SystemInfo.deviceUniqueIdentifier;
-        Debug.Log("googleLogin::"+userId);
 
         if(!string.IsNullOrEmpty(uuid)){
             DataManager.Instance.playerData.PlayerId = userId;
@@ -168,6 +167,8 @@ public class BackEndManager : MonoBehaviour
             BackendReturnObject bros = Backend.BMember.CustomLogin(userId, userId);
             
             if(bros.IsSuccess()) {
+                DataManager.Instance.DbSaveGameData();
+                //DbSaveGameData();
                 LoginBackend();
             } else {
                 errorText.SetActive(true);
@@ -251,6 +252,7 @@ public class BackEndManager : MonoBehaviour
     {
         DBInitGetDate();
         DBInitCharacterDate();
+        DbSaveGameData();
         // 로그인 이후 닉네임 생성한 사용자 일경우
 
         if("default".Equals( DataManager.Instance.getCharacter(4)) ) {
@@ -383,6 +385,12 @@ public class BackEndManager : MonoBehaviour
                 intParam.Add("LeonGet", DataManager.Instance.playerData.LeonGet);
                 intParam.Add("PlayerAttandence", DataManager.Instance.playerData.PlayerAttandence);
 
+                if(DataManager.Instance.playerData.MakeNickName) {
+                    if(DataManager.Instance.playerData.PlayerName != ""){
+                        Backend.BMember.CreateNickname(DataManager.Instance.playerData.PlayerName); 
+                    }
+                }
+               
                 Backend.GameData.Insert("playerData", intParam, (callback) => {
                     Debug.Log("내 playerInfo의 indate : " + callback);
                 });
@@ -400,6 +408,12 @@ public class BackEndManager : MonoBehaviour
                 upParam.Add("SwordGirl3Get", DataManager.Instance.playerData.SwordGirl3Get);
                 upParam.Add("LeonGet", DataManager.Instance.playerData.LeonGet);
                 upParam.Add("PlayerAttandence", DataManager.Instance.playerData.PlayerAttandence);
+
+                if(DataManager.Instance.playerData.MakeNickName) {
+                    if(DataManager.Instance.playerData.PlayerName != ""){
+                        Backend.BMember.CreateNickname(DataManager.Instance.playerData.PlayerName); 
+                    }
+                }
 
                 Backend.GameData.Update("playerData", where, upParam, (callback) => {
                     Debug.Log("내 playerInfo의 update : " + callback);

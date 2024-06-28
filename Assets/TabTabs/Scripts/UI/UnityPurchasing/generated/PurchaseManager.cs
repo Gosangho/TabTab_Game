@@ -92,6 +92,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
             DataManager.Instance.playerData.AdsDate = System.DateTime.Now.ToString();
             DataManager.Instance.playerData.Gold += 3000;
             DataManager.Instance.DbSaveGameData();
+            BackEndManager.Instance.DbSaveGameData();
 
             popMessage.SetActive(true);
              // "Purchase_message" GameObject 내부의 "Purchase_Text" GameObject를 찾음
@@ -109,6 +110,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
             /* test_id2 구매 처리 */
             DataManager.Instance.playerData.Gold += 2000;
             DataManager.Instance.DbSaveGameData();
+            BackEndManager.Instance.DbSaveGameData();
 
             popMessage.SetActive(true);
              // "Purchase_message" GameObject 내부의 "Purchase_Text" GameObject를 찾음
@@ -124,6 +126,7 @@ public class PurchaseManager : MonoBehaviour, IStoreListener
             DataManager.Instance.playerData.AdsDate = System.DateTime.Now.ToString();
             DataManager.Instance.playerData.Gold += 3000;
             DataManager.Instance.DbSaveGameData();
+            BackEndManager.Instance.DbSaveGameData();
 
    
         }
