@@ -27,16 +27,20 @@ namespace TabTabs.NamChanwoo
         {
             if (continueButtonClick == false)
             {
-                if(DataManager.Instance.playerData.AdsYn == 0) {
+                if (DataManager.Instance.playerData.AdsYn == 0)
+                {
                     AdsManager.Instance.continueButtonInstance = this;
                     AdsManager.Instance.rewardedAdPlay();
-                } else {
+                }
+                else
+                {
                     GetReward();
                 }
             } 
         }
 
-        public void GetReward() {
+        public void GetReward() 
+        {
             TImebar.timebarImage.fillAmount = 0.5f;
             reStartObj.gameObject.SetActive(false);
             resultObj.gameObject.SetActive(false);

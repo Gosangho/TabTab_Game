@@ -268,9 +268,7 @@ namespace TabTabs.NamChanwoo
                     GameObject gameObject = Instantiate(ScoreTextObj, scorePosition, Quaternion.identity); // �����ġ�� ����
 
                     if (Right_TrainAttack == true || Left_TrainAttack == true)
-                    {// �������̳� ���� ���͸� ���̰� �ٽ� �� �Ȼ��¿��� ���ݹ�ư�� �������(GameOver)
-                        // ���ӿ��� -> ���� �ٽý���
-                        //Time.timeScale = 0.0f; // ���Ӹ���
+                    {
                         playerDie = true;
                         PlayerBase.PlayerAnim.SetTrigger("Die");
                         resultObj.gameObject.SetActive(true);
@@ -433,8 +431,8 @@ namespace TabTabs.NamChanwoo
         {
             if (selectEnemy == RightEnemy && playerDie == false)
             {// ���� ���õ� ���Ͱ� ������ �����̰�
-                if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
-                {// ���ʸ��Ϳ� ������ ����� �Ѽ��� ���ٸ� == ������ ù��° �����
+                //if (LeftEnemy.GetOwnNodes().Count == Test3Spawn.Instance.LeftAttackNum)
+                //{// ���ʸ��Ϳ� ������ ����� �Ѽ��� ���ٸ� == ������ ù��° �����
 
                     if (FirstDashAttack || FirstAttack)
                     {// FirstAttack : ���ӽ��۽� ù ������ �뽬��ư�� ��� GameOver
@@ -586,12 +584,12 @@ namespace TabTabs.NamChanwoo
                             LeftMonsterSpawn();
                         }
                     }
-                }
+                //}
             }
             else if (selectEnemy == LeftEnemy && playerDie == false)
             {
-                if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
-                {
+                //if (RightEnemy.GetOwnNodes().Count == Test3Spawn.Instance.RightAttackNum)
+                //{
 
                     if (FirstDashAttack || FirstAttack)
                     {// FirstAttack : ���ӽ��۽� ù ������ �뽬��ư�� ��� GameOver
@@ -740,7 +738,7 @@ namespace TabTabs.NamChanwoo
                             LeftMonsterSpawn();
                         }
                     }
-                }
+                //}
             }
         }
 
