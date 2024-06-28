@@ -144,9 +144,11 @@ public class audioManager : MonoBehaviour
             case "ItemGet": SfxIndex = 7; break;
             case "Tutorial_Text": SfxIndex = 8; break;
         }
-        
-        SfxAudio_Char_AttackAudio.clip = SfxClip[SfxIndex];
-        SfxAudio_Char_AttackAudio.Play();
+        if(SfxAudio_Char_AttackAudio !=null) {
+            SfxAudio_Char_AttackAudio.clip = SfxClip[SfxIndex];
+            SfxAudio_Char_AttackAudio.Play();
+        }
+ 
     }
     public void SfxAudioPlay_Enemy(string type)
     {
@@ -160,6 +162,7 @@ public class audioManager : MonoBehaviour
             case "Tutorial_Warning": SfxIndex = 3; break;
         }
 
+        Debug.Log(SfxIndex);
         SfxAudio_Enemy_hitAudio.clip = SfxClip_Enemyhit[SfxIndex];
         SfxAudio_Enemy_hitAudio.Play();
     }

@@ -113,6 +113,13 @@ namespace TabTabs.NamChanwoo
             asyncOperation.allowSceneActivation = true;
 
         }
+        
+        public void gameClosed() {
+            Application.Quit();
+            #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+            #endif
+        }
 
        
     }

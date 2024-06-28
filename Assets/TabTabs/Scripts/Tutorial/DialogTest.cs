@@ -97,10 +97,12 @@ namespace TabTabs.NamChanwoo
 
         public IEnumerator StartWarningAudio()
         {
-            audioManager.Instance.SfxAudio_Enemy_hitAudio.loop = true;
-            audioManager.Instance.SfxAudioPlay_Enemy("Tutorial_Warning");
-            yield return new WaitForSeconds(3.0f);
-            audioManager.Instance.SfxAudio_Enemy_hitAudio.loop = false;
+            if(audioManager.Instance.SfxAudio_Enemy_hitAudio != null) {
+                audioManager.Instance.SfxAudio_Enemy_hitAudio.loop = true;
+                audioManager.Instance.SfxAudioPlay_Enemy("Tutorial_Warning");
+                yield return new WaitForSeconds(3.0f);
+                audioManager.Instance.SfxAudio_Enemy_hitAudio.loop = false;
+            }
         }
         public IEnumerator StartDialog()
         {

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
+using UnityEditor;
 using BackEnd;
 using static BackEnd.SendQueue;
 using LitJson;
@@ -20,8 +21,20 @@ public class BackEndManager : MonoBehaviour
     //비동기로 가입, 로그인을 할때에는 Update()에서 처리를 해야합니다. 이 값은 Update에서 구현하기 위한 플래그 값 입니다.
     BackendReturnObject bro = new BackendReturnObject();
 
+    [SerializeField] private string uuid;
+
+    public string UUID => uuid;
+
+    public GameObject errorText;
+
     private void Awake()
     {
+        if (string.IsNullOrEmpty(uuid))
+        {
+            uuid = System.Guid.NewGuid().ToString();
+           // Debug.Log($"Generated UUID for {gameObject.name}: {uuid}");
+        }
+
         if (Instance == null)
         {
             Instance = this;
@@ -54,7 +67,7 @@ public class BackEndManager : MonoBehaviour
     public void broInit()
     {
         //구글 로그인
-        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration
+       /* PlayGamesClientConfiguration config = new PlayGamesClientConfiguration
         .Builder()
        // .RequestServerAuthCode(false)
        // .RequestIdToken()
@@ -64,7 +77,7 @@ public class BackEndManager : MonoBehaviour
         PlayGamesPlatform.InitializeInstance(config);
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
-
+*/
 
         var bro = Backend.Initialize(true); // 뒤끝 초기화
 
@@ -109,16 +122,20 @@ public class BackEndManager : MonoBehaviour
         Debug.Log("GetLatestVersion Start");
         var bro = Backend.Utils.GetLatestVersion();
         Debug.Log(bro);
-        string version = "";
+        string version = Application.version;
+        string serverVersion ="";
         #if UNITY_EDITOR
-            version = Application.version;
+            serverVersion = Application.version;
         #else
-            version = bro.GetReturnValuetoJSON()["version"].ToString();
+            serverVersion = bro.GetReturnValuetoJSON()["version"].ToString();
         #endif
         //최신 버전일 경우
-        Debug.Log(version+"/"+Application.version);
-        if(version  == Application.version)
+        int localVersionNumber = int.Parse(version.Replace(".", ""));
+        int serverVersionNumber = int.Parse(serverVersion.Replace(".", ""));
+        
+        if(localVersionNumber  >= serverVersionNumber)
         {
+            Debug.Log("localVersionNumber::"+localVersionNumber);
             //구글 계정 확인
             googleLogin();
           
@@ -132,30 +149,63 @@ public class BackEndManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
     }
 
+
+
     bool googleLogin() {
         bool isLogin = false;
         string userId ="115136368152474690130";
         string userName ="lsh235s";
 
+        userId = SystemInfo.deviceUniqueIdentifier;
+        Debug.Log("googleLogin::"+userId);
+
+        if(!string.IsNullOrEmpty(uuid)){
+            DataManager.Instance.playerData.PlayerId = userId;
+            BackendReturnObject BRO = Backend.BMember.CustomSignUp(userId, userId);
+
+            isLogin = true;
+            // 사용자 정보 확인
+            BackendReturnObject bros = Backend.BMember.CustomLogin(userId, userId);
+            
+            if(bros.IsSuccess()) {
+                LoginBackend();
+            } else {
+                errorText.SetActive(true);
+            }
+        }
+
+        /*
         #if UNITY_EDITOR
+            DataManager.Instance.playerData.PlayerId = userId;
             BackendReturnObject BRO = Backend.BMember.CustomSignUp(userId, userId);
             isLogin = true;
-       
-            Debug.Log(BRO);
             // 사용자 정보 확인
-            Backend.BMember.CustomLogin(userId, userName);
-            LoginBackend();
+            BackendReturnObject bros = Backend.BMember.CustomLogin(userId, userId);
+            
+            Debug.Log(bros.IsSuccess());
+            if(bros.IsSuccess()) {
+                LoginBackend();
+            } else {
+                errorText.SetActive(true);
+            }
         #else
             if(Social.localUser.authenticated == true){
                 userId = Social.localUser.id;
                 userName = Social.localUser.userName;
+                DataManager.Instance.playerData.PlayerId = userId;
+
                 BackendReturnObject BRO = Backend.BMember.CustomLogin(userId, userId);
         
                 Debug.Log("이미 로그인 되어있음 "+userId+"/"+userName);
                 Debug.Log(BRO);
-                isLogin = true;
-                // 사용자 정보 확인
-                LoginBackend();
+                Debug.Log(BRO.IsSuccess());
+                if(BRO.IsSuccess()) {
+                    isLogin = true;
+                    // 사용자 정보 확인
+                    LoginBackend();
+                } else {
+                    errorText.SetActive(true);
+                }
             } else {
                 Social.localUser.Authenticate((bool success, string message) => {
                     if(success){
@@ -167,18 +217,28 @@ public class BackEndManager : MonoBehaviour
                         BackendReturnObject BRO = Backend.BMember.CustomSignUp(userId, userId);
                         Debug.Log(BRO);
                         isLogin = true;
+
+                        DataManager.Instance.playerData.PlayerId = userId;
+
+                        BackendReturnObject bros = Backend.BMember.CustomLogin(userId, userId);
+                        Debug.Log(bros.IsSuccess());
+                        if(bros.IsSuccess()) {
+                            isLogin = true;
+                            // 사용자 정보 확인
+                            LoginBackend();
+                        } else {
+                            errorText.SetActive(true);
+                        }
                     } else {
                         Debug.Log("구글 로그인 실패");
                         Debug.Log("message : "+message);
                         isLogin = false;
+                        errorText.SetActive(true);
                     }
-                    DataManager.Instance.playerData.PlayerId = userId;
-
-                    Backend.BMember.CustomLogin(userId, userId);
-                    LoginBackend();
+                 
                 });
             }
-        #endif
+        #endif*/
 
         return isLogin;
     }
@@ -233,6 +293,10 @@ public class BackEndManager : MonoBehaviour
             for (int i = 0; i < bro.FlattenRows()[0]["PlayerAttandence"].Count; i++)
             {
                 DataManager.Instance.playerData.PlayerAttandence[i] = (bool)bro.FlattenRows()[0]["PlayerAttandence"][i];
+            }
+            
+            if(!DataManager.Instance.playerData.MakeNickName) {
+                DataManager.Instance.selectCharacter(4,"default");
             }
         }
         DataManager.Instance.DbSaveGameData();
