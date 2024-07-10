@@ -11,7 +11,7 @@ namespace TabTabs.NamChanwoo
         public static Image timebarImage;
         public float TimebarImagefillAmount;
         public PlayerHeart PlayerHeart;
-        public float StartTimeGauge = 0.5f; // ���۽� Timebar�� �������� 50%����
+        public float StartTimeGauge = 1.0f; // ���۽� Timebar�� �������� 50%����
         [SerializeField] public float depletionRate = 0.1f; // �ʴ� Timebar�� ������ 10% �϶�
         [SerializeField] public float depletionRateIncrease = 0.01f; // �� 3���� óġ�Ҷ����� Ÿ�� ������ �϶��� 1%�� ���
         public int KillCount = 0;
@@ -21,7 +21,7 @@ namespace TabTabs.NamChanwoo
 
         void Start()
         {
-            TimebarImagefillAmount = 0.5f;
+            TimebarImagefillAmount = 1.0f;
             timebarImage = GetComponent<Image>();
             PlayerHeart = FindObjectOfType<PlayerHeart>();
             timebarImage.fillAmount = StartTimeGauge;
@@ -33,11 +33,20 @@ namespace TabTabs.NamChanwoo
             
             timebarImage.fillAmount -= Time.deltaTime * depletionRate; // TimebarGauge 1�ʴ� 10%�� �϶�
 
-            if (KillCount % 3 == 0 && KillCount > 0)
-            {// ���� 3���� ó���Ҷ�����
-                depletionRate += depletionRateIncrease; // Ÿ�ӹ��� ������ �϶��ӵ� 1%�� ���
+            if (KillCount  >= 10 && KillCount > 0)
+            {
                 KillCount = 0;
+
+                if (depletionRate >= 0.6f)
+                {// timebar의 감소수치가 60% 이상이라면(max 감소수치)
+                    depletionRate = 0.6f;
+                }
+                else
+                {
+                    depletionRate += depletionRateIncrease;
+                }
             }
+
             if (timebarImage.fillAmount <= 0.3f && !isFlashing)
             {
                 StartCoroutine(FlashBackground());
