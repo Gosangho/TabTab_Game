@@ -9,6 +9,7 @@ namespace TabTabs.NamChanwoo
     public class ContinueButton : MonoBehaviour
     {
         Test3Battle test3BattleInstance;
+        TImebar timebarInstance;
         public static bool continueButtonClick = false; // �̾��ϱ�(1ȸ)�� �̹� ����ߴ����� ����
         public GameObject resultObj;
         public GameObject newRecordObj;
@@ -21,6 +22,7 @@ namespace TabTabs.NamChanwoo
         {
             test3BattleInstance = FindObjectOfType<Test3Battle>();
             playerBaseInstance = FindObjectOfType<PlayerBase>();
+            timebarInstance = FindObjectOfType<TImebar>();
         }
 
         public void ContinueB()
@@ -41,7 +43,8 @@ namespace TabTabs.NamChanwoo
 
         public void GetReward() 
         {
-            TImebar.timebarImage.fillAmount = 0.5f;
+            TImebar.timebarImage.fillAmount = 1.0f;
+            timebarInstance.depletionRate = 0.1f;
             reStartObj.gameObject.SetActive(false);
             resultObj.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
